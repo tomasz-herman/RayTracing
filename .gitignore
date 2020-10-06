@@ -33,5 +33,9 @@ msbuild.log
 msbuild.err
 msbuild.wrn
 
+# Logs
+
+logs/
+
 # Visual Studio 2015
 .vs/

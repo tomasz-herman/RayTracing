@@ -1,8 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
+using Serilog;
 
 namespace RayTracer
 {
@@ -14,6 +13,8 @@ namespace RayTracer
         [STAThread]
         static void Main()
         {
+            Log.Configure();
+            
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

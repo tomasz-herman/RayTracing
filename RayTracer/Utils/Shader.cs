@@ -7,65 +7,63 @@ namespace RayTracer.Utils
 {
     class Shader
     {
-        int Handle;
+        private const string ShadersPath = "RayTracer.Shaders.";
+        private readonly int _handle;
 
         public Shader(string vertexPath, string fragmentPath)
         {
-            int VertexShader;
-            int FragmentShader;
+            Log.Info($"Loading shader {vertexPath}, {fragmentPath}");
+            string vertexShaderSource = ReadShaderFromFile(vertexPath);
+            string fragmentShaderSource = ReadShaderFromFile(fragmentPath);
 
-            string VertexShaderSource;
+            var vertexShaderId = CompileShader(vertexShaderSource, ShaderType.VertexShader);
+            var fragmentShaderId = CompileShader(fragmentShaderSource, ShaderType.FragmentShader);
+
+            _handle = LinkShader(vertexShaderId, fragmentShaderId);
+        }
+
+        private string ReadShaderFromFile(string shaderName)
+        {
             var assembly = typeof(Program).Assembly;
-            Stream vertexShaderStream = assembly.GetManifestResourceStream("RayTracer.Shaders."+vertexPath);
-            Stream fragmentShaderStream = assembly.GetManifestResourceStream("RayTracer.Shaders."+fragmentPath);
+            using Stream vertexShaderStream = assembly.GetManifestResourceStream(ShadersPath+shaderName);
+            using StreamReader reader = new StreamReader(vertexShaderStream, Encoding.UTF8);
+            return reader.ReadToEnd();
+        }
 
-            using (StreamReader reader = new StreamReader(vertexShaderStream, Encoding.UTF8))
-            {
-                VertexShaderSource = reader.ReadToEnd();
-            }
+        private int CompileShader(string shaderSource, ShaderType shaderType)
+        {
+            int shaderId = GL.CreateShader(shaderType);
+            GL.ShaderSource(shaderId, shaderSource);
 
-            string FragmentShaderSource;
+            GL.CompileShader(shaderId);
 
-            using (StreamReader reader = new StreamReader(fragmentShaderStream, Encoding.UTF8))
-            {
-                FragmentShaderSource = reader.ReadToEnd();
-            }
+            string infoLogVert = GL.GetShaderInfoLog(shaderId);
+            if (!String.IsNullOrEmpty(infoLogVert))
+                Log.Error(infoLogVert);
 
-            VertexShader = GL.CreateShader(ShaderType.VertexShader);
-            GL.ShaderSource(VertexShader, VertexShaderSource);
+            return shaderId;
+        }
 
-            FragmentShader = GL.CreateShader(ShaderType.FragmentShader);
-            GL.ShaderSource(FragmentShader, FragmentShaderSource);
+        private int LinkShader(int vertexShaderId, int fragmentShaderId)
+        {
+            int handle = GL.CreateProgram();
 
-            GL.CompileShader(VertexShader);
+            GL.AttachShader(handle, vertexShaderId);
+            GL.AttachShader(handle, fragmentShaderId);
 
-            string infoLogVert = GL.GetShaderInfoLog(VertexShader);
-            if (infoLogVert != System.String.Empty)
-                Console.WriteLine(infoLogVert);
+            GL.LinkProgram(handle);
 
-            GL.CompileShader(FragmentShader);
+            GL.DetachShader(handle, vertexShaderId);
+            GL.DetachShader(handle, fragmentShaderId);
+            GL.DeleteShader(fragmentShaderId);
+            GL.DeleteShader(vertexShaderId);
 
-            string infoLogFrag = GL.GetShaderInfoLog(FragmentShader);
-
-            if (infoLogFrag != System.String.Empty)
-                Console.WriteLine(infoLogFrag);
-
-            Handle = GL.CreateProgram();
-
-            GL.AttachShader(Handle, VertexShader);
-            GL.AttachShader(Handle, FragmentShader);
-
-            GL.LinkProgram(Handle);
-
-            GL.DetachShader(Handle, VertexShader);
-            GL.DetachShader(Handle, FragmentShader);
-            GL.DeleteShader(FragmentShader);
-            GL.DeleteShader(VertexShader);
+            return handle;
         }
 
         public void Use()
         {
-            GL.UseProgram(Handle);
+            GL.UseProgram(_handle);
         }
 
         private bool disposedValue = false;
@@ -74,7 +72,7 @@ namespace RayTracer.Utils
         {
             if (!disposedValue)
             {
-                GL.DeleteProgram(Handle);
+                GL.DeleteProgram(_handle);
 
                 disposedValue = true;
             }
@@ -82,7 +80,7 @@ namespace RayTracer.Utils
 
         ~Shader()
         {
-            GL.DeleteProgram(Handle);
+            GL.DeleteProgram(_handle);
         }
 
 
