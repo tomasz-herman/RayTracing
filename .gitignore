@@ -39,3 +39,4 @@ logs/
 
 # Visual Studio 2015
 .vs/
+/RayTracer/RayTracer.csproj.DotSettings

@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Text;
+using OpenTK.Graphics;
 using OpenTK.Graphics.ES30;
 
 namespace RayTracer.Utils
 {
-    class Shader
+    public class Shader
     {
-        private const string ShadersPath = "RayTracer.Shaders.";
+        private const string ShadersPath = "RayTracer.Resources.Shaders.";
         private readonly int _handle;
 
         public Shader(string vertexPath, string fragmentPath)
@@ -30,21 +32,20 @@ namespace RayTracer.Utils
             return reader.ReadToEnd();
         }
 
-        private int CompileShader(string shaderSource, ShaderType shaderType)
+        private static int CompileShader(string shaderSource, ShaderType shaderType)
         {
             int shaderId = GL.CreateShader(shaderType);
             GL.ShaderSource(shaderId, shaderSource);
 
             GL.CompileShader(shaderId);
-
             string infoLogVert = GL.GetShaderInfoLog(shaderId);
-            if (!String.IsNullOrEmpty(infoLogVert))
+            if (!string.IsNullOrEmpty(infoLogVert))
                 Log.Error(infoLogVert);
 
             return shaderId;
         }
 
-        private int LinkShader(int vertexShaderId, int fragmentShaderId)
+        private static int LinkShader(int vertexShaderId, int fragmentShaderId)
         {
             int handle = GL.CreateProgram();
 
@@ -66,23 +67,19 @@ namespace RayTracer.Utils
             GL.UseProgram(_handle);
         }
 
-        private bool disposedValue = false;
+        private bool isDisposed = false;
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
-            {
-                GL.DeleteProgram(_handle);
-
-                disposedValue = true;
-            }
+            if (isDisposed) return;
+            GL.DeleteProgram(_handle);
+            isDisposed = true;
         }
 
         ~Shader()
         {
             GL.DeleteProgram(_handle);
         }
-
 
         public void Dispose()
         {
