@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracer", "RayTracer\RayTracer.csproj", "{D6D2358F-EB83-4467-A8DD-E7762D2C8B72}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracerTests", "RayTracerTests\RayTracerTests.csproj", "{97334303-E582-4078-B560-ED6DE18E7FCA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{D6D2358F-EB83-4467-A8DD-E7762D2C8B72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6D2358F-EB83-4467-A8DD-E7762D2C8B72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6D2358F-EB83-4467-A8DD-E7762D2C8B72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97334303-E582-4078-B560-ED6DE18E7FCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97334303-E582-4078-B560-ED6DE18E7FCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97334303-E582-4078-B560-ED6DE18E7FCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97334303-E582-4078-B560-ED6DE18E7FCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
