@@ -9,6 +9,6 @@ namespace RayTracer.Models
 
         public abstract HitInfo HitTest(Ray ray, HitInfo hitInfo);
         
-        //public abstract Mesh GetMesh();
+        public abstract Mesh GetMesh();
     }
 }

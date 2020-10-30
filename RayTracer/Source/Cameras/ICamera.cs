@@ -2,19 +2,23 @@
 
 namespace RayTracer.Cameras
 {
-    public abstract class ICamera
+    public interface ICamera
     {
-        public Vector3 Position;
-        public Vector3 Direction;
-        public Vector3 Up;
-        public float AspectRatio;
-        public float NearPlane;
-        public float FarPlane;
+        public Vector3 Position { get; set; }
+        public Vector3 Direction { get; set; }
+        public Vector3 Up { get; }
+        public float AspectRatio { get; set; }
+        public float NearPlane { get; set; }
+        public float FarPlane { get; set; }
+        public Vector3 Front { get; set; }
+        public Vector3 Right { get; }
+        public float Yaw { get; set; }
+        public float Pitch { get; set; }
 
-        public abstract Matrix4 GetViewMatrix();
-        public abstract Matrix4 GetProjectionMatrix();
-        public abstract void Rotate(float dx, float dy, float dz);
-        public abstract void Move(float x, float y, float z);
-        public abstract void GetRay(double x, double y);
+        public Matrix4 GetViewMatrix();
+        public Matrix4 GetProjectionMatrix();
+        public void Rotate(float dx, float dy, float dz);
+        public void Move(float x, float y, float z);
+        public void GetRay(double x, double y);
     }
 }

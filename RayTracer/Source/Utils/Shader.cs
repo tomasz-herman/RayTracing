@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Drawing;
+using System.Collections.Generic;
 using System.IO;
+using System.Reflection.Metadata;
 using System.Text;
-using OpenTK.Graphics;
+using OpenTK;
 using OpenTK.Graphics.ES30;
 
 namespace RayTracer.Utils
@@ -20,8 +21,17 @@ namespace RayTracer.Utils
 
             var vertexShaderId = CompileShader(vertexShaderSource, ShaderType.VertexShader);
             var fragmentShaderId = CompileShader(fragmentShaderSource, ShaderType.FragmentShader);
-
             _handle = LinkShader(vertexShaderId, fragmentShaderId);
+            GL.GetProgram(_handle, GetProgramParameterName.ActiveUniforms, out var numberOfUniforms);
+            
+            _uniformLocations = new Dictionary<string, int>();
+            
+            for (var i = 0; i < numberOfUniforms; i++)
+            {
+                var key = GL.GetActiveUniform(_handle, i, out _, out _);
+                var location = GL.GetUniformLocation(_handle, key);
+                _uniformLocations.Add(key, location);
+            }
         }
 
         private string ReadShaderFromFile(string shaderName)
@@ -41,7 +51,7 @@ namespace RayTracer.Utils
             string infoLogVert = GL.GetShaderInfoLog(shaderId);
             if (!string.IsNullOrEmpty(infoLogVert))
                 Log.Error(infoLogVert);
-
+    
             return shaderId;
         }
 
@@ -62,12 +72,19 @@ namespace RayTracer.Utils
             return handle;
         }
 
+        public void SetMatrix4(string name, Matrix4 data)
+        {
+            GL.UseProgram(_handle);
+            GL.UniformMatrix4(_uniformLocations[name], true, ref data);
+        }
+
         public void Use()
         {
             GL.UseProgram(_handle);
         }
 
         private bool isDisposed = false;
+        private Dictionary<string, int> _uniformLocations;
 
         protected virtual void Dispose(bool disposing)
         {
