@@ -1,7 +1,7 @@
 ﻿using RayTracer.Models;
 using RayTracer.Utils;
 
-namespace RayTracer.Renderer
+namespace RayTracer
 {
     public interface IRenderer
     {

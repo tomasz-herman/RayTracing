@@ -39,10 +39,10 @@ namespace RayTracer
             this.gLControl.Name = "gLControl";
             this.gLControl.Size = new System.Drawing.Size(500, 300);
             this.gLControl.TabIndex = 0;
-            this.gLControl.VSync = false;
+            this.gLControl.VSync = true;
             this.gLControl.Load += new System.EventHandler(this.GLControl_Load);
-            this.gLControl.Resize += new System.EventHandler(this.GLControl_Resize);
             this.gLControl.Paint += new System.Windows.Forms.PaintEventHandler(this.GLControl_Paint);
+            this.Resize += this.OnResize;
             this.Controls.Add(this.gLControl);
         }
 

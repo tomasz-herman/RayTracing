@@ -13,8 +13,9 @@ using OpenTK.Graphics.ES30;
 using OpenTK.Input;
 using RayTracer.Cameras;
 using RayTracer.Models;
-using RayTracer.Renderer;
+using RayTracer;
 using RayTracer.Utils;
+using ButtonState = OpenTK.Input.ButtonState;
 
 namespace RayTracer
 {
@@ -24,11 +25,11 @@ namespace RayTracer
         private Shader shader;
         private Model model;
         private IRenderer _renderer;
-        private LoadedModel lm;
+        private Model lm;
         private ICamera _camera;
         private bool _firstMove;
         private Vector2 _lastPos;
-        Timer t = new Timer();
+        Timer FpsTimer = new Timer();
 
         public MainForm()
         {
@@ -46,17 +47,10 @@ namespace RayTracer
             gLControl.Invalidate();
             var positions = new List<float>() {0f, 0f, 0f, 1f, 1f, 0f, 1f, 0f, 0f};
             var indices = new List<int>() {0, 1, 2};
-            lm = new LoadedModel {mesh = new Mesh(positions, indices)};
-            _renderer = new Renderer.Renderer();
-            _camera = new MovingCamera(new Vector3(-1, 0, -1), 1);
-        }
-
-        private void GLControl_Resize(object sender, EventArgs e)
-        {
-            if (!_loaded)
-                return;
-            GL.Viewport(0, 0, gLControl.Width, gLControl.Height);
-            gLControl.Invalidate();
+            lm = new Sphere(new Vector3(0,0,0), 10);//ModelLoader.Load("../../../../Resources/Models/sphere.obj", PostProcessSteps.Triangulate);
+            _renderer = new Renderer();
+            _camera = new MovingCamera(new Vector3(0, 0, -5), 1);
+            _renderer.Render(shader, lm);
         }
 
         private void GLControl_Paint(object sender, PaintEventArgs e)
@@ -68,74 +62,88 @@ namespace RayTracer
             Log.Info("View: \n" + _camera.GetProjectionMatrix());
             _renderer.Render(shader, lm);
             gLControl.SwapBuffers();
-            InitializeTimer();
+            InitializeFpsTimer();
         }
 
-        private void InitializeTimer()
+        private void InitializeFpsTimer()
         {
-            t.Interval = 16;
-            t.Enabled = true;
-
-            t.Tick += TimerTick;
+            FpsTimer.Interval = 16;
+            FpsTimer.Enabled = true;
+            FpsTimer.Tick += OnNewFrame;
         }
 
-        private void TimerTick(object sender, EventArgs e)
+        private void OnNewFrame(object sender, EventArgs e)
         {
             var keyboard = Keyboard.GetState();
-            const float cameraSpeed = 0.015f;
+            const float cameraSpeed = 0.15f;
             const float sensitivity = 0.2f;
 
             if (keyboard.IsKeyDown(Key.W))
             {
-                _camera.Position += _camera.Front * cameraSpeed * t.Interval / 1000; // Forward
+                _camera.Position += _camera.Front * cameraSpeed * FpsTimer.Interval / 1000; // Forward
             }
 
             if (keyboard.IsKeyDown(Key.S))
             {
-                _camera.Position -= _camera.Front * cameraSpeed * t.Interval / 1000; // Backwards
+                _camera.Position -= _camera.Front * cameraSpeed * FpsTimer.Interval / 1000; // Backwards
             }
 
             if (keyboard.IsKeyDown(Key.A))
             {
-                _camera.Position -= _camera.Right * cameraSpeed * t.Interval / 1000; // Left
+                _camera.Position -= _camera.Right * cameraSpeed * FpsTimer.Interval / 1000; // Left
             }
 
             if (keyboard.IsKeyDown(Key.D))
             {
-                _camera.Position += _camera.Right * cameraSpeed * t.Interval / 1000; // Right
+                _camera.Position += _camera.Right * cameraSpeed * FpsTimer.Interval / 1000; // Right
             }
 
             if (keyboard.IsKeyDown(Key.Space))
             {
-                _camera.Position += _camera.Up * cameraSpeed * t.Interval / 1000; // Up
+                _camera.Position += _camera.Up * cameraSpeed * FpsTimer.Interval / 1000; // Up
             }
 
             if (keyboard.IsKeyDown(Key.LShift))
             {
-                _camera.Position -= _camera.Up * cameraSpeed * t.Interval / 1000; // Down
+                _camera.Position -= _camera.Up * cameraSpeed * FpsTimer.Interval / 1000; // Down
             }
-
-            //
-            // Get the mouse state
+            
             var mouse = Mouse.GetState();
 
-            if (_firstMove) // this bool variable is initially set to true
+            if (mouse.LeftButton == ButtonState.Pressed)
             {
-                _lastPos = new Vector2(mouse.X, mouse.Y);
-                _firstMove = false;
+                if (_firstMove)
+                {
+                    _lastPos = new Vector2(mouse.X, mouse.Y);
+                    _firstMove = false;
+                }
+                else
+                {
+                    var deltaX = mouse.X - _lastPos.X;
+                    var deltaY = mouse.Y - _lastPos.Y;
+                    _lastPos = new Vector2(mouse.X, mouse.Y);
+                    
+                    _camera.Yaw += deltaX * sensitivity;
+                    _camera.Pitch -= deltaY * sensitivity;
+                }
             }
             else
             {
-                // Calculate the offset of the mouse position
-                var deltaX = mouse.X - _lastPos.X;
-                var deltaY = mouse.Y - _lastPos.Y;
-                _lastPos = new Vector2(mouse.X, mouse.Y);
-
-                // Apply the camera pitch and yaw (we clamp the pitch in the camera class)
-                _camera.Yaw += deltaX * sensitivity;
-                _camera.Pitch -= deltaY * sensitivity; // reversed since y-coordinates range from bottom to top
+                _firstMove = true;
             }
+            
+            gLControl.Invalidate();
+        }
 
+        private void OnResize(object sender, EventArgs e)
+        {
+            Control control = (Control)sender;
+            if (!_loaded)
+                return;
+            gLControl.Height = control.Height;
+            gLControl.Width = control.Width;
+            GL.Viewport(0, 0, control.Width, control.Height);
+            _camera.AspectRatio = gLControl.Width / (float)gLControl.Height;
             gLControl.Invalidate();
         }
     }
