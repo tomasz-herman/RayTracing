@@ -1,0 +1,125 @@
+﻿using System.Collections.Generic;
+using OpenTK;
+using RayTracer.Maths;
+
+namespace RayTracer.Models
+{
+    public class Cube : Model
+    {
+        private Mesh _mesh;
+        public Cube()
+        {
+            var buffers = GetBuffers();
+            _mesh = new Mesh(buffers.vertexBuffer, buffers.normalBuffer, buffers.texBuffer, buffers.indicesBuffer);
+        }
+
+        private List<Vector3> GetVertices()
+        {
+            return new List<Vector3>
+            {
+                new Vector3(-1, -1, -1),
+                new Vector3(1, -1, -1),
+                new Vector3(1, 1, -1),
+                new Vector3(-1, 1, -1),
+                new Vector3(-1, -1, 1),
+                new Vector3(1, -1, 1),
+                new Vector3(1, 1, 1),
+                new Vector3(-1, 1, 1)
+            };
+        }
+
+        private List<int> GetIndices()
+        {
+            return new List<int>
+            {
+                0, 1, 3, 3, 1, 2,
+                1, 5, 2, 2, 5, 6,
+                5, 4, 6, 6, 4, 7,
+                4, 0, 7, 7, 0, 3,
+                3, 2, 7, 7, 2, 6,
+                4, 5, 0, 0, 5, 1
+            };
+        }
+
+        private List<Vector3> GetNormals()
+        {
+            return new List<Vector3>
+            {
+                new Vector3(0, 0, 1),
+                new Vector3(1, 0, 0),
+                new Vector3(0, 0, -1),
+                new Vector3(-1, 0, 0),
+                new Vector3(0, 1, 0),
+                new Vector3(0, -1, 0)
+            };
+        }
+
+        private List<Vector2> GetTexCoords()
+        {
+            return new List<Vector2>
+            {
+                new Vector2(0, 0),
+                new Vector2(1, 0),
+                new Vector2(1, 1),
+                new Vector2(0, 1)
+            };
+        }
+
+        private List<int> GetTexInds()
+        {
+            return new List<int>
+            {
+                0, 1, 3, 3, 1, 2
+            };
+        }
+
+        private (List<int> indicesBuffer, List<float> vertexBuffer, List<float> texBuffer, List<float> normalBuffer) GetBuffers()
+        {
+            var vertices = GetVertices();
+            var indices = GetIndices();
+            var normals = GetNormals();
+            var texCoords = GetTexCoords();
+            var texInds = GetTexInds();
+
+            var vertexBuffer = new List<float>(18 * 6);
+            for (int i = 0; i < 36; i++)
+            {
+                vertexBuffer.Add(vertices[indices[i]].X); // x
+                vertexBuffer.Add(vertices[indices[i]].Y); // y
+                vertexBuffer.Add(vertices[indices[i]].Z); // z
+            }
+
+            var textureBuffer = new List<float>(12 * 6);
+            for (int i = 0; i < 36; i++)
+            {
+                textureBuffer.Add(texCoords[texInds[i % 6]].X); // x
+                textureBuffer.Add(texCoords[texInds[i % 6]].Y); // y
+            }
+
+            var normalBuffer = new List<float>(18 * 6);
+            for (int i = 0; i < 36; i++)
+            {
+                normalBuffer.Add(normals[indices[i / 6]].X); // x
+                normalBuffer.Add(normals[indices[i / 6]].Y); // y
+                normalBuffer.Add(normals[indices[i / 6]].Z); // z
+            }
+
+            var indicesBuffer = new List<int>(36);
+            for (int i = 0; i < 36; i++)
+            {
+                indicesBuffer.Add(i);
+            }
+            return (indicesBuffer, vertexBuffer, textureBuffer, normalBuffer);
+        }
+
+        public override HitInfo HitTest(Ray ray, HitInfo hitInfo)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override Mesh GetMesh()
+        {
+            return _mesh;
+        }
+    }
+}
