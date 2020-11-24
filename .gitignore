@@ -33,6 +33,9 @@ msbuild.log
 msbuild.err
 msbuild.wrn
 
+# Resources
+*.obj
+
 # Logs
 
 logs/
