@@ -21,7 +21,7 @@ namespace RayTracer.RayTracing
             return hit.ModelHit.Material.Shade(hit, scene, Shade);
         }
 
-        public void RayTrace(Scene scene, ICamera camera)
+        public void RayTrace(Scene scene, Camera camera)
         {
             throw new NotImplementedException();
         }

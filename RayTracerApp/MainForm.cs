@@ -4,12 +4,13 @@ using System.Windows.Forms;
 using OpenTK;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Input;
+using RayTracer;
 using RayTracer.Cameras;
 using RayTracer.Models;
 using RayTracer.Utils;
 using ButtonState = OpenTK.Input.ButtonState;
 
-namespace RayTracer
+namespace RayTracerApp
 {
     public partial class MainForm : Form
     {
@@ -18,7 +19,7 @@ namespace RayTracer
         private Model model;
         private IRenderer _renderer;
         private Model lm;
-        private ICamera _camera;
+        private Camera _camera;
         private bool _firstMove;
         private Vector2 _lastPos;
         Timer FpsTimer = new Timer();
@@ -41,7 +42,7 @@ namespace RayTracer
             var indices = new List<int>() {0, 1, 2};
             lm = new Sphere(new Vector3(0,0,0), 10);//ModelLoader.Load("../../../../Resources/Models/sphere.obj", PostProcessSteps.Triangulate);
             _renderer = new Renderer();
-            _camera = new MovingCamera(new Vector3(0, 0, -5), 1);
+            _camera = new PerspectiveCamera(new Vector3(0, 0, -5), 1);
             _renderer.Render(shader, lm);
         }
 

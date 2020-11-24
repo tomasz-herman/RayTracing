@@ -3,7 +3,7 @@ using OpenTK;
 
 namespace RayTracer.Cameras
 {
-    public class MovingCamera : ICamera
+    public abstract class Camera
     {
         // Those vectors are directions pointing outwards from the camera to define how it rotated
         private Vector3 _front = -Vector3.UnitZ;
@@ -13,15 +13,15 @@ namespace RayTracer.Cameras
         private Vector3 _right = Vector3.UnitX;
 
         // Rotation around the X axis (radians)
-        private float _pitch;
+        protected float _pitch;
 
         // Rotation around the Y axis (radians)
-        private float _yaw = -MathHelper.PiOver2; // Without this you would be started rotated 90 degrees right
+        protected float _yaw = -MathHelper.PiOver2; // Without this you would be started rotated 90 degrees right
 
         // The field of view of the camera (radians)
-        private float _fov = MathHelper.PiOver2;
+        protected float _fov = MathHelper.PiOver2;
 
-        public MovingCamera(Vector3 position, float aspectRatio)
+        public Camera(Vector3 position, float aspectRatio)
         {
             Position = position;
             AspectRatio = aspectRatio;
@@ -29,7 +29,6 @@ namespace RayTracer.Cameras
 
         // The position of the camera
         public Vector3 Position { get; set; }
-        public Vector3 Direction { get; set; }
 
         // This is simply the aspect ratio of the viewport, used for the projection matrix
         public float AspectRatio { get; set; }
@@ -84,19 +83,7 @@ namespace RayTracer.Cameras
                 _fov = MathHelper.DegreesToRadians(angle);
             }
         }
-
-        // Get the view matrix using the amazing LookAt function described more in depth on the web tutorials
-        public Matrix4 GetViewMatrix()
-        {
-            return Matrix4.LookAt(Position, Position + _front, _up);
-        }
-
-        // Get the projection matrix using the same method we have used up until this point
-        public Matrix4 GetProjectionMatrix()
-        {
-            return Matrix4.CreatePerspectiveFieldOfView(_fov, AspectRatio, 0.01f, 100f);
-        }
-
+        
         public void Rotate(float dx, float dy, float dz)
         {
             throw new NotImplementedException();
@@ -107,12 +94,6 @@ namespace RayTracer.Cameras
             throw new NotImplementedException();
         }
 
-        public void GetRay(double x, double y)
-        {
-            throw new NotImplementedException();
-        }
-
-        // This function is going to update the direction vertices using some of the math learned in the web tutorials
         private void UpdateVectors()
         {
             // First the front matrix is calculated using some basic trigonometry
@@ -129,7 +110,9 @@ namespace RayTracer.Cameras
             _right = Vector3.Normalize(Vector3.Cross(_front, Vector3.UnitY));
             _up = Vector3.Normalize(Vector3.Cross(_right, _front));
         }
+
+        public abstract Matrix4 GetViewMatrix();
+        public abstract Matrix4 GetProjectionMatrix();
+        public abstract void GetRay(double x, double y);
     }
 }
-
-

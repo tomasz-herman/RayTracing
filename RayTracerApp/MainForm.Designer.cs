@@ -1,6 +1,6 @@
 ﻿using OpenTK;
 
-namespace RayTracer
+namespace RayTracerApp
 {
     partial class MainForm
     {
