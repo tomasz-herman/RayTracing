@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection.Metadata;
 using System.Text;
 using OpenTK;
 using OpenTK.Graphics.ES30;

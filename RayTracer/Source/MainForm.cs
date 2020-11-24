@@ -1,19 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using OpenTK;
 using OpenTK.Graphics.ES30;
 using OpenTK.Input;
 using RayTracer.Cameras;
 using RayTracer.Models;
-using RayTracer;
 using RayTracer.Utils;
 using ButtonState = OpenTK.Input.ButtonState;
 

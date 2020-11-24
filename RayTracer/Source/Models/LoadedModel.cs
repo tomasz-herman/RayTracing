@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using RayTracer.Maths;
+﻿using RayTracer.Maths;
 
 namespace RayTracer.Models
 {

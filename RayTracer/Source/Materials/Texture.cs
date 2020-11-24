@@ -2,7 +2,6 @@
 using System.IO;
 using OpenTK.Graphics.OpenGL;
 using RayTracer.Maths;
-using Serilog.Core;
 using StbImageSharp;
 
 namespace RayTracer.Materials

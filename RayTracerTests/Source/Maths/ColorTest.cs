@@ -1,7 +1,4 @@
-using System.Collections.Generic;
-using System.Drawing;
 using NUnit.Framework;
-using OpenTK.Graphics;
 using Color = RayTracer.Maths.Color;
 
 namespace RayTracerTests

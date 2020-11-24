@@ -5,6 +5,6 @@ namespace RayTracer
 {
     public interface IRenderer
     {
-        public void Render(Shader shader, Model model);
+        void Render(Shader shader, Model model);
     }
 }
