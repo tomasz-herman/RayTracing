@@ -1,10 +1,10 @@
-﻿using RayTracer.Models;
-using RayTracer.Utils;
+﻿using RayTracer.Cameras;
+using RayTracer.World;
 
 namespace RayTracer
 {
     public interface IRenderer
     {
-        void Render(Shader shader, Model model);
+        void Render(Scene scene, Camera camera);
     }
 }

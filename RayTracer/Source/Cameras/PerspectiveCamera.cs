@@ -5,10 +5,6 @@ namespace RayTracer.Cameras
 {
     public class PerspectiveCamera : Camera
     {
-        public PerspectiveCamera(Vector3 position, float aspectRatio): base(position, aspectRatio)
-        {
-        }
-        
         public override Matrix4 GetViewMatrix()
         {
             return Matrix4.LookAt(Position, Position + Front, Up);

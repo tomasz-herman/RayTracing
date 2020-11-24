@@ -7,10 +7,19 @@ namespace RayTracer.World
 {
     public class Scene
     {
-        public List<Model> Models;
-        public List<Light> Light;
+        public List<Model> Models = new List<Model>();
+        public List<Light> Lights = new List<Light>();
         public AmbientLight AmbientLight;
 
+        public void AddModel(Model model)
+        {
+            Models.Add(model);
+        }
+        public void AddLight(Light light)
+        {
+            Lights.Add(light);
+        }
+        
         public HitInfo HitTest(Ray ray)
         {
             HitInfo hit = new HitInfo();

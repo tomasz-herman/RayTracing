@@ -1,4 +1,5 @@
 ﻿using OpenTK;
+using OpenTK.Graphics;
 
 namespace RayTracerApp
 {
@@ -41,7 +42,6 @@ namespace RayTracerApp
             this.gLControl.TabIndex = 0;
             this.gLControl.VSync = true;
             this.gLControl.Load += new System.EventHandler(this.GLControl_Load);
-            this.gLControl.Paint += new System.Windows.Forms.PaintEventHandler(this.GLControl_Paint);
             this.Resize += this.OnResize;
             this.Controls.Add(this.gLControl);
         }
