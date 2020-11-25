@@ -1,7 +1,7 @@
 ﻿using OpenTK.Graphics.OpenGL4;
 using RayTracer.Cameras;
 using RayTracer.Models;
-using RayTracer.Utils;
+using RayTracer.Shaders;
 using RayTracer.World;
 
 namespace RayTracer
@@ -22,6 +22,7 @@ namespace RayTracer
 
             foreach (var model in scene.Models)
             {
+                _shader.SetMatrix4("model", model.GetModelMatrix());
                 model.GetMesh().Render();
             }
         }

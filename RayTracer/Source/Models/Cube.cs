@@ -7,6 +7,7 @@ namespace RayTracer.Models
     public class Cube : Model
     {
         private Mesh _mesh;
+        Vector3 center;
         public Cube()
         {
             var buffers = GetBuffers();
@@ -81,34 +82,27 @@ namespace RayTracer.Models
             var texCoords = GetTexCoords();
             var texInds = GetTexInds();
 
-            var vertexBuffer = new List<float>(18 * 6);
-            for (int i = 0; i < 36; i++)
+            var vertexBuffer = new List<float>();
+            var textureBuffer = new List<float>();
+            var normalBuffer = new List<float>();
+            var indicesBuffer = new List<int>();
+            
+            for (int i = 0; i < indices.Count; i++)
             {
                 vertexBuffer.Add(vertices[indices[i]].X); // x
                 vertexBuffer.Add(vertices[indices[i]].Y); // y
                 vertexBuffer.Add(vertices[indices[i]].Z); // z
-            }
-
-            var textureBuffer = new List<float>(12 * 6);
-            for (int i = 0; i < 36; i++)
-            {
+                
                 textureBuffer.Add(texCoords[texInds[i % 6]].X); // x
                 textureBuffer.Add(texCoords[texInds[i % 6]].Y); // y
-            }
-
-            var normalBuffer = new List<float>(18 * 6);
-            for (int i = 0; i < 36; i++)
-            {
+                
                 normalBuffer.Add(normals[indices[i / 6]].X); // x
                 normalBuffer.Add(normals[indices[i / 6]].Y); // y
                 normalBuffer.Add(normals[indices[i / 6]].Z); // z
-            }
-
-            var indicesBuffer = new List<int>(36);
-            for (int i = 0; i < 36; i++)
-            {
+                
                 indicesBuffer.Add(i);
             }
+            
             return (indicesBuffer, vertexBuffer, textureBuffer, normalBuffer);
         }
 

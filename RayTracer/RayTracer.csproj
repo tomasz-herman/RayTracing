@@ -22,6 +22,7 @@
     <ItemGroup>
       <Folder Include="Resources\Models" />
       <Folder Include="Resources\Textures" />
+      <Folder Include="Source\Utils" />
     </ItemGroup>
 
 </Project>

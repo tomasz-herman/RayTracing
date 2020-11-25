@@ -5,54 +5,18 @@ namespace RayTracer.Cameras
 {
     public abstract class Camera
     {
-        private Vector3 _front = -Vector3.UnitZ;
-
-        private Vector3 _up = Vector3.UnitY;
-
-        private Vector3 _right = Vector3.UnitX;
-
+        protected Vector3 _front = -Vector3.UnitZ;
+        protected Vector3 _up = Vector3.UnitY;
+        protected Vector3 _right = Vector3.UnitX;
         protected float _pitch;
-
         protected float _yaw = -MathHelper.PiOver2;
 
         protected float _fov = MathHelper.PiOver3;
-
-        public Vector3 Position { get; set; }
+        protected Vector3 position;
 
         public float AspectRatio { get; set; }
         public float NearPlane { get; set; }
         public float FarPlane { get; set; }
-
-        public Vector3 Front
-        {
-            get => _front;
-            set => _front = Vector3.Normalize(value);
-        }
-
-        public Vector3 Up => _up;
-
-        public Vector3 Right => _right;
-
-        public float Pitch
-        {
-            get => MathHelper.RadiansToDegrees(_pitch);
-            set
-            {
-                var angle = MathHelper.Clamp(value, -89f, 89f);
-                _pitch = MathHelper.DegreesToRadians(angle);
-                UpdateVectors();
-            }
-        }
-
-        public float Yaw
-        {
-            get => MathHelper.RadiansToDegrees(_yaw);
-            set
-            {
-                _yaw = MathHelper.DegreesToRadians(value);
-                UpdateVectors();
-            }
-        }
 
         public float Fov
         {
@@ -64,16 +28,18 @@ namespace RayTracer.Cameras
             }
         }
         
-        public void Rotate(float dx, float dy, float dz)
+        public void Rotate(float dpitch, float dyaw, float droll)
         {
-            throw new NotImplementedException();
+            _pitch += dpitch;
+            _yaw += dyaw;
+            UpdateVectors();
         }
 
-        public void Move(float x, float y, float z)
+        public void Move(float dx, float dy, float dz)
         {
-            throw new NotImplementedException();
+            position += _front * dz+_up*dy+_right*dx;
         }
-
+        
         private void UpdateVectors()
         {
             _front.X = (float) Math.Cos(_pitch) * (float) Math.Cos(_yaw);

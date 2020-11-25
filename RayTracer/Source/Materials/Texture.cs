@@ -17,13 +17,13 @@ namespace RayTracer.Materials
             using var stream = File.OpenRead(path);
             ImageResult image = ImageResult.FromStream(stream, ColorComponents.RedGreenBlueAlpha);
             byte[] data = image.Data;
-            this.data = new Color[image.Width,image.Height];
-            for (int i = 0; i < image.Width*image.Height; ++i)
+            this.data = new Color[image.Width, image.Height];
+            for (int i = 0; i < image.Width * image.Height; ++i)
             {
-                byte r = data[i*4];
-                byte g = data[i*4 + 1];
-                byte b = data[i*4 + 2];
-                this.data[i%image.Width,i/image.Width]=new Color(r/255f,g/255f,b/255f);
+                byte r = data[i * 4];
+                byte g = data[i * 4 + 1];
+                byte b = data[i * 4 + 2];
+                this.data[i % image.Width, i / image.Width] = new Color(r / 255f, g / 255f, b / 255f);
             }
 
             id = LoadGLTexture(image);
@@ -31,7 +31,7 @@ namespace RayTracer.Materials
 
         private static int LoadGLTexture(ImageResult image)
         {
-            int id = GL.GenTexture(); 
+            int id = GL.GenTexture();
             Use(id);
             GL.TexImage2D(TextureTarget.Texture2D,
                 0,
@@ -42,16 +42,18 @@ namespace RayTracer.Materials
                 PixelFormat.Rgba,
                 PixelType.UnsignedByte,
                 image.Data);
-                
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
 
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)TextureWrapMode.Repeat);
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)TextureWrapMode.Repeat);
-            
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapR, (int)TextureWrapMode.Repeat);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter,
+                (int) TextureMinFilter.Linear);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter,
+                (int) TextureMagFilter.Linear);
+
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int) TextureWrapMode.Repeat);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int) TextureWrapMode.Repeat);
+
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapR, (int) TextureWrapMode.Repeat);
             GL.GenerateMipmap(GenerateMipmapTarget.Texture2D);
-            
+
             Clear();
 
             return id;
@@ -62,12 +64,12 @@ namespace RayTracer.Materials
             GL.ActiveTexture(unit);
             GL.BindTexture(TextureTarget.Texture2D, id);
         }
-        
+
         public void Use(TextureUnit unit = TextureUnit.Texture0)
         {
             Use(id, unit);
         }
-        
+
         public static void Clear(TextureUnit unit = TextureUnit.Texture0)
         {
             Use(0, unit);

@@ -46,7 +46,7 @@ namespace RayTracerApp
             this.Controls.Add(this.gLControl);
         }
 
-        private OpenTK.GLControl gLControl = new GLControl();
+        private OpenTK.GLControl gLControl = new GLControl(new OpenTK.Graphics.GraphicsMode(32, 24, 0, 8));
 
         #endregion
     }

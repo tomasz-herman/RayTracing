@@ -7,15 +7,10 @@ namespace RayTracer.Models
 {
     public class Sphere : Model
     {
-        Vector3 center;
-        double radius;
         private Mesh mesh;
 
-        public Sphere(Vector3 center, float radius)
+        public Sphere()
         {
-            this.center = center;
-            this.radius = radius;
-
             var (positions, texCoords) = GetVertexList(100, 100);
             var indicesList = GetElementBuffer(100, 100);
             mesh = new Mesh(positions,positions, texCoords, indicesList);
@@ -24,11 +19,11 @@ namespace RayTracer.Models
         public override HitInfo HitTest(Ray ray, HitInfo hitInfo)
         {
             double t;
-            Vector3 distance = ray.Origin - center;
+            Vector3 distance = ray.Origin - Position;
 
             double a = ray.Direction.LengthSquared;
             double b = Vector3.Dot(distance * 2, ray.Direction);
-            double c = distance.LengthSquared - radius * radius;
+            double c = distance.LengthSquared - Scale * Scale;
             double disc = b * b - 4 * a * c;
 
             if (disc < 0)

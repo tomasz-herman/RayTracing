@@ -1,47 +1,63 @@
-﻿using OpenTK;
-using OpenTK.Input;
+﻿using System.Drawing;
+using System.Windows.Forms;
 using RayTracer.Cameras;
+using RayTracerApp.Utils;
 
 namespace RayTracerApp
 {
     public class CameraController
     {
         private bool _firstMouseMove;
-        private Vector2 _lastMousePos;
+        private Point _lastMousePos;
         private Camera _camera;
-        public float Sensitivity = 0.2f;
-        public float CameraSpeed = 1f;
+        public float Sensitivity = 0.002f;
+        public float CameraSpeed = 0.02f;
 
-        public CameraController(Camera camera)
+        private DictionaryWithDefault<Keys, bool> keys = new DictionaryWithDefault<Keys, bool>();
+
+
+        public CameraController(Camera camera, Control control)
         {
             _camera = camera;
+            control.MouseMove += UpdateCameraOrientation;
+            control.KeyDown += OnKeyDown;
+            control.KeyUp += OnKeyUp;
+        }
+
+        private void OnKeyUp(object sender, KeyEventArgs e)
+        {
+            keys[e.KeyCode] = false;
+            if (!e.Shift) keys[Keys.LShiftKey] = false;
+        }
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            keys[e.KeyCode] = true;
+            if (e.Shift) keys[Keys.LShiftKey] = true;
         }
 
         public void UpdateCamera(float msElapsed)
         {
-            UpdateCameraOrientation(msElapsed);
             UpdateCameraPosition(msElapsed);
         }
         
-        private void UpdateCameraOrientation(float msElapsed)
+        private void UpdateCameraOrientation(object sender, MouseEventArgs e)
         {
-            var mouse = Mouse.GetState();
 
-            if (mouse.LeftButton == ButtonState.Pressed)
+            if (e.Button == MouseButtons.Left)
             {
                 if (_firstMouseMove)
                 {
-                    _lastMousePos = new Vector2(mouse.X, mouse.Y);
+                    _lastMousePos = e.Location;
                     _firstMouseMove = false;
                 }
                 else
                 {
-                    var deltaX = mouse.X - _lastMousePos.X;
-                    var deltaY = mouse.Y - _lastMousePos.Y;
-                    _lastMousePos = new Vector2(mouse.X, mouse.Y);
+                    var deltaX = e.Location.X - _lastMousePos.X;
+                    var deltaY = e.Location.Y - _lastMousePos.Y;
+                    _lastMousePos = e.Location;
                     
-                    _camera.Yaw += deltaX * Sensitivity;
-                    _camera.Pitch -= deltaY * Sensitivity;
+                    _camera.Rotate( -deltaY * Sensitivity, deltaX * Sensitivity, 0);
                 }
             }
             else
@@ -49,40 +65,41 @@ namespace RayTracerApp
                 _firstMouseMove = true;
             }
         }
-        
+
         private void UpdateCameraPosition(float msElapsed)
         {
-            var keyboard = Keyboard.GetState();
-
-            if (keyboard.IsKeyDown(Key.W))
+            float dx = 0, dy = 0, dz = 0;
+            if (keys[Keys.W])
             {
-                _camera.Position += _camera.Front * msElapsed * CameraSpeed / 1000; // Forward
+                dz += CameraSpeed * msElapsed;
             }
-
-            if (keyboard.IsKeyDown(Key.S))
+            
+            if (keys[Keys.S])
             {
-                _camera.Position -= _camera.Front * msElapsed * CameraSpeed / 1000; // Backwards
+                dz -= CameraSpeed * msElapsed; // Backwards
             }
-
-            if (keyboard.IsKeyDown(Key.A))
+            
+            if (keys[Keys.A])
             {
-                _camera.Position -= _camera.Right * msElapsed * CameraSpeed / 1000; // Left
+                dx -= CameraSpeed * msElapsed; // Left
             }
-
-            if (keyboard.IsKeyDown(Key.D))
+            
+            if (keys[Keys.D])
             {
-                _camera.Position += _camera.Right * msElapsed * CameraSpeed / 1000; // Right
+                dx += CameraSpeed * msElapsed; // Right
             }
-
-            if (keyboard.IsKeyDown(Key.Space))
+            
+            if (keys[Keys.Space])
             {
-                _camera.Position += _camera.Up * msElapsed * CameraSpeed / 1000; // Up
+                dy += CameraSpeed * msElapsed; // Up
             }
-
-            if (keyboard.IsKeyDown(Key.LShift))
+            
+            if (keys[Keys.LShiftKey])
             {
-                _camera.Position -= _camera.Up * msElapsed * CameraSpeed / 1000; // Down
+                dy -= CameraSpeed * msElapsed; // Down
             }
+            
+            _camera.Move(dx, dy, dz);
         }
     }
 }

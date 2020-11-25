@@ -4,13 +4,16 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using OpenTK;
+using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Input;
 using OpenTK.Platform;
 using RayTracer;
 using RayTracer.Cameras;
+using RayTracer.Lights;
+using RayTracer.Maths;
 using RayTracer.Models;
-using RayTracer.Utils;
+using RayTracer.Shaders;
 using RayTracer.World;
 using ButtonState = OpenTK.Input.ButtonState;
 using Camera = RayTracer.Cameras.Camera;
@@ -22,7 +25,7 @@ namespace RayTracerApp
     {
         private Scene scene = new Scene();
         private IRenderer _renderer;
-        private Camera _camera = new PerspectiveCamera{Position = new Vector3(0, 0, 20), AspectRatio = 1};
+        private Camera _camera = new PerspectiveCamera(new Vector3(0, 0, 20)){ AspectRatio = 1};
         private CameraController _cameraController;
         Timer FpsTimer = new Timer();
 
@@ -35,8 +38,13 @@ namespace RayTracerApp
         {
             GL.Enable(EnableCap.DepthTest);
             _renderer = new Renderer();
-            _cameraController = new CameraController(_camera);
-            scene.AddModel(new Sphere(new Vector3(0,0,0), 10));
+            _cameraController = new CameraController(_camera, gLControl);
+            scene.AmbientLight = new AmbientLight{Color = Color.FromColor4(Color4.LightSkyBlue)};
+            scene.AddModel(new Sphere{Position = new Vector3(0,0,0), Scale = 2});
+            scene.AddModel(new Sphere{Position = new Vector3(0,2,0), Scale = 1});
+            scene.AddModel(new Sphere{Position = new Vector3(0,15,0), Scale = 5});
+            scene.AddModel(new Cube{Position = new Vector3(5,0,4), Scale = 3});
+            // scene.AddModel(new Cube());
             
             InitializeFpsTimer();
             UpdateViewport();
