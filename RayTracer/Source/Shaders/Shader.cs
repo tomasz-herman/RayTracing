@@ -35,7 +35,7 @@ namespace RayTracer.Shaders
 
         private string ReadShaderFromFile(string shaderName)
         {
-            var assembly = typeof(Program).Assembly;
+            var assembly = GetType().Assembly;
             using Stream vertexShaderStream = assembly.GetManifestResourceStream(ShadersPath+shaderName);
             using StreamReader reader = new StreamReader(vertexShaderStream, Encoding.UTF8);
             return reader.ReadToEnd();

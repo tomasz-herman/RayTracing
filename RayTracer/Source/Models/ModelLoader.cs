@@ -7,38 +7,48 @@ namespace RayTracer.Models
 {
     public class ModelLoader
     {
-        private static void ProcessVertices(Assimp.Mesh mesh, List<float> vertices)
+        private static List<float> ProcessVertices(Assimp.Mesh mesh)
         {
+            List<float> vertices = new List<float>();
             foreach (var v in mesh.Vertices)
             {
                 vertices.Add(v.X);
                 vertices.Add(v.Y);
                 vertices.Add(v.Z);
             }
+
+            return vertices;
         }
 
-        private static void ProcessTextCoord(Assimp.Mesh mesh, List<float> textCoord)
+        private static List<float> ProcessTextCoord(Assimp.Mesh mesh)
         {
-            if (!mesh.HasTextureCoords(0)) return;
-            foreach (var tc in mesh.TextureCoordinateChannels[0])
-            {
-                textCoord.Add(tc.X);
-                textCoord.Add(1-tc.Y);
-            }
+            List<float> textCoord = new List<float>();
+            if (mesh.HasTextureCoords(0))
+                foreach (var tc in mesh.TextureCoordinateChannels[0])
+                {
+                    textCoord.Add(tc.X);
+                    textCoord.Add(1-tc.Y);
+                }
+
+            return textCoord;
         }
 
-        private static void ProcessNormals(Assimp.Mesh mesh, List<float> normals)
+        private static List<float> ProcessNormals(Assimp.Mesh mesh)
         {
+            List<float> normals = new List<float>();
             foreach (var n in mesh.Normals)
             {
                 normals.Add(n.X);
                 normals.Add(n.Y);
                 normals.Add(n.Z);
             }
+
+            return normals;
         }
 
-        private static void ProcessIndices(Assimp.Mesh mesh, List<int> indices)
+        private static List<int> ProcessIndices(Assimp.Mesh mesh)
         {
+            List<int> indices = new List<int>();
             foreach (var f in mesh.Faces)
             {
                foreach(var ind in f.Indices)
@@ -46,23 +56,16 @@ namespace RayTracer.Models
                    indices.Add(ind);
                }
             }
+
+            return indices;
         }
 
-        private static Mesh ProcessMesh(Assimp.Scene scene, Assimp.Mesh mesh)
+        private static Mesh ProcessMesh(Scene scene, Assimp.Mesh mesh)
         {
-            var positions = new List<float>();
-            var textures = new List<float>();
-            var normals = new List<float>();
-            //List<float> tangents = new List<float>();
-            //List<float> bitangens = new List<float>();
-            var indices = new List<int>();
-
-            //var material = processMaterial(scene, mesh);
-            //System.Console.WriteLine(material.ToString());
-            ProcessIndices(mesh, indices);
-            ProcessNormals(mesh, normals);
-            ProcessVertices(mesh, positions);
-            ProcessTextCoord(mesh, textures);
+            var positions = ProcessVertices(mesh);
+            var textures = ProcessTextCoord(mesh);
+            var normals = ProcessNormals(mesh);
+            var indices = ProcessIndices(mesh);
             
             return new Mesh(positions, normals, textures, indices);
         }

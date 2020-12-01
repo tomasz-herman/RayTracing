@@ -25,5 +25,3 @@ namespace RayTracer.Cameras
         }
     }
 }
-
-
