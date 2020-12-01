@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <UseWindowsForms>true</UseWindowsForms>
+        <PublishSingleFile>true</PublishSingleFile>
+        <PublishTrimmed>true</PublishTrimmed>
+        <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AssimpNet" Version="5.0.0-beta1" />
+      <PackageReference Include="OpenTK" Version="3.1.0" />
+      <PackageReference Include="OpenTK.GLControl" Version="3.1.0" />
+      <PackageReference Include="Serilog" Version="2.10.1-dev-01249" />
+      <PackageReference Include="Serilog.Sinks.Async" Version="1.4.1-dev-00073" />
+      <PackageReference Include="Serilog.Sinks.Console" Version="4.0.0-dev-00839" />
+      <PackageReference Include="Serilog.Sinks.File" Version="5.0.0-dev-00887" />
+      <PackageReference Include="StbImageSharp" Version="2.22.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Resources\Shaders\*" />
+      <EmbeddedResource Include="Resources\Shaders\*" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Resources\Models" />
+      <Folder Include="Resources\Textures" />
+    </ItemGroup>
+
+</Project>
