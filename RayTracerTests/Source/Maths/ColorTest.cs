@@ -1,16 +1,13 @@
+using System.Collections.Generic;
 using FluentAssertions;
 using NUnit.Framework;
+using OpenTK.Graphics;
 using RayTracer.Maths;
 
 namespace RayTracerTests
 {
     public class ColorTest
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-        
         [Test]
         public void ColorsAdd()
         {
@@ -20,7 +17,7 @@ namespace RayTracerTests
 
             Color result = first + second;
 
-            Assert.That(result, Is.EqualTo(expected));
+            result.Should().Be(expected);
         }
         
         [Test]
@@ -32,7 +29,7 @@ namespace RayTracerTests
 
             Color result = right * left;
 
-            Assert.That(result, Is.EqualTo(expected));
+            result.Should().Be(expected);
         }
         
         [Test]
@@ -43,7 +40,7 @@ namespace RayTracerTests
             Color expected = new Color(0.25f, 0.5f, 1f);
 
             Color result = color * scalar;
-            Assert.That(result, Is.EqualTo(expected));
+            result.Should().Be(expected);
         }
         
         [Test]
@@ -55,6 +52,40 @@ namespace RayTracerTests
             color.Clamp();
 
             color.Should().Be(expected);
+        }
+        
+        [Test]
+        public void ColorsCanBeDisassembledToRgbByteValues()
+        {
+            Color color = new Color(0.2f, 0.4f, 0.8f);
+
+            IEnumerable<byte> components = color.Components();
+
+            components.Should().ContainInOrder(51, 102, 204).And.HaveCount(3);
+        }
+
+        [Test]
+        public void ColorsCanMix()
+        {
+            Color red = new Color(1, 0, 0);
+            Color blue = new Color(1, 0, 0);
+            float mix = 0.6f;
+            Color expected = new Color(0.6f, 0, 0.4f);
+
+            Color mixed = Color.Mix(red, blue, mix);
+
+            mixed.Should().Be(expected);
+        }
+        
+        [Test]
+        public void ColorsCanBeCreatedFromColor4()
+        {
+            Color4 red4 = Color4.Red;
+            Color expected = new Color(1, 0, 0);
+            
+            Color red = Color.FromColor4(red4);
+            
+            red.Should().Be(expected);
         }
     }
 }

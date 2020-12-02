@@ -44,9 +44,9 @@ namespace RayTracer.Utils
             for(int i = 0; i < Height; i++)
             for(int j = 0; j < Width; j++) {
                 Color color = _data[Height - i - 1, j];
-                raw[i * Width * 3 + j * 3 + 0] = (byte) (color.R * 255);
-                raw[i * Width * 3 + j * 3 + 1] = (byte) (color.G * 255);
-                raw[i * Width * 3 + j * 3 + 2] = (byte) (color.B * 255);
+                raw[i * Width * 3 + j * 3 + 0] = color.RComp;
+                raw[i * Width * 3 + j * 3 + 1] = color.GComp;
+                raw[i * Width * 3 + j * 3 + 2] = color.BComp;
             }
 
             return raw;
