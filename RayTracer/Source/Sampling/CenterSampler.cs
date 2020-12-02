@@ -3,9 +3,10 @@ using OpenTK;
 
 namespace RayTracer.Sampling
 {
-    public class CenterSampler:ISampler
+    public class CenterSampler : ISampler
     {
-        private readonly Vector2 sample = new Vector2(0.5f,0.5f);
+        private readonly Vector2 sample = new Vector2(0.5f, 0.5f);
+
         public Vector2 Sample()
         {
             return sample;

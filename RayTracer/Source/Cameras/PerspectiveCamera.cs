@@ -10,6 +10,7 @@ namespace RayTracer.Cameras
         {
             this.position = position;
         }
+
         public override Matrix4 GetViewMatrix()
         {
             return Matrix4.LookAt(position, position + front, up);
