@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Forms;
 using RayTracer;
+using RayTracerApp.Forms;
 
 namespace RayTracerApp
 {

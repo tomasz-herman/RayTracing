@@ -18,4 +18,10 @@
       <ProjectReference Include="..\RayTracer\RayTracer.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Update="Forms\EditForm.cs">
+        <SubType>Form</SubType>
+      </Compile>
+    </ItemGroup>
+
 </Project>

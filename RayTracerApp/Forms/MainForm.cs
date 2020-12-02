@@ -1,25 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL4;
-using OpenTK.Input;
-using OpenTK.Platform;
 using RayTracer;
 using RayTracer.Cameras;
 using RayTracer.Lights;
 using RayTracer.Maths;
 using RayTracer.Models;
-using RayTracer.Shaders;
 using RayTracer.World;
-using ButtonState = OpenTK.Input.ButtonState;
 using Camera = RayTracer.Cameras.Camera;
 using Timer = System.Windows.Forms.Timer;
 
-namespace RayTracerApp
+namespace RayTracerApp.Forms
 {
     public partial class MainForm : Form
     {

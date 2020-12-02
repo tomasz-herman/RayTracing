@@ -1,17 +1,16 @@
-﻿using OpenTK;
-using OpenTK.Graphics;
+﻿using System.ComponentModel;
 
-namespace RayTracerApp
+namespace RayTracerApp.Forms
 {
-    partial class MainForm
+    partial class EditForm
     {
         /// <summary>
-        ///  Required designer variable.
+        /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
-        ///  Clean up any resources being used.
+        /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -35,18 +34,8 @@ namespace RayTracerApp
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "RayTracing";
-            this.gLControl.Location = new System.Drawing.Point(0, 0);
-            this.gLControl.Name = "gLControl";
-            this.gLControl.Size = new System.Drawing.Size(500, 300);
-            this.gLControl.TabIndex = 0;
-            this.gLControl.VSync = true;
-            this.gLControl.Load += new System.EventHandler(this.GLControl_Load);
-            this.Resize += this.OnResize;
-            this.Controls.Add(this.gLControl);
+            this.Text = "EditForm";
         }
-
-        private OpenTK.GLControl gLControl = new GLControl(new OpenTK.Graphics.GraphicsMode(32, 24, 0, 8));
 
         #endregion
     }
