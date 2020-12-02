@@ -39,7 +39,7 @@ namespace RayTracer.Utils
         
         public byte[] RawData()
         {
-            byte[] raw = new byte[Width * Height];
+            byte[] raw = new byte[Width * Height * 3];
             
             for(int i = 0; i < Height; i++)
             for(int j = 0; j < Width; j++) {
