@@ -1,5 +1,6 @@
 ﻿using System;
 using OpenTK;
+using RayTracer.Maths;
 
 namespace RayTracer.Cameras
 {
@@ -9,19 +10,20 @@ namespace RayTracer.Cameras
         {
             this.position = position;
         }
+
         public override Matrix4 GetViewMatrix()
         {
-            return Matrix4.LookAt(position, position + _front, _up);
+            return Matrix4.LookAt(position, position + front, up);
         }
 
         public override Matrix4 GetProjectionMatrix()
         {
-            return Matrix4.CreatePerspectiveFieldOfView(_fov, AspectRatio, 0.01f, 100f);
+            return Matrix4.CreatePerspectiveFieldOfView(fov, AspectRatio, 1, FarPlane);
         }
 
-        public override void GetRay(double x, double y)
+        public override Ray GetRay(float x, float y)
         {
-            throw new NotImplementedException();
+            return new Ray(position, upperLeft + x * horizontal - y * vertical - position);
         }
     }
 }
