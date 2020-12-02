@@ -28,7 +28,7 @@ namespace RayTracer.Maths
             first.R += second.R;
             first.G += second.G;
             first.B += second.B;
-            return first.Clamp();
+            return first;
         }
 
         public static Color operator *(Color first, Color second)
@@ -36,7 +36,7 @@ namespace RayTracer.Maths
             first.R *= second.R;
             first.G *= second.G;
             first.B *= second.B;
-            return first.Clamp();
+            return first;
         }
 
         public static Color operator *(Color first, float scalar)
@@ -44,7 +44,7 @@ namespace RayTracer.Maths
             first.R *= scalar;
             first.G *= scalar;
             first.B *= scalar;
-            return first.Clamp();
+            return first;
         }
 
         public static Color Mix(Color first, Color second, float firstShare)
@@ -55,7 +55,7 @@ namespace RayTracer.Maths
         private const float MinVal = 0f;
         private const float MaxVal = 1f;
 
-        private Color Clamp()
+        public Color Clamp()
         {
             R = Math.Clamp(R, MinVal, MaxVal);
             G = Math.Clamp(G, MinVal, MaxVal);

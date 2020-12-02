@@ -1,5 +1,6 @@
+using FluentAssertions;
 using NUnit.Framework;
-using Color = RayTracer.Maths.Color;
+using RayTracer.Maths;
 
 namespace RayTracerTests
 {
@@ -46,14 +47,14 @@ namespace RayTracerTests
         }
         
         [Test]
-        public void ColorsClampWhenNotInRange()
+        public void ColorsCanClampToItsRange()
         {
-            Color first = new Color(0.125f, 0.25f, 0.5f);
-            Color second = new Color(-3f, 25f, 1f);
-            Color expected = new Color(0f, 1f, 0.5f);
+            Color color = new Color(-3f, 25f, 0.5f);
+            Color expected = new Color(0, 1, 0.5f);
 
-            Color result = first * second;
-            Assert.That(result, Is.EqualTo(expected));
+            color.Clamp();
+
+            color.Should().Be(expected);
         }
     }
 }
