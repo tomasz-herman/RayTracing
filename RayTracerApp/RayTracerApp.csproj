@@ -19,7 +19,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Forms\EditForm.cs">
+      <Compile Update="Controls\NewModelPanel.cs">
+        <SubType>UserControl</SubType>
+      </Compile>
+      <Compile Update="Forms\Menu\NewObjectForm.cs">
         <SubType>Form</SubType>
       </Compile>
     </ItemGroup>

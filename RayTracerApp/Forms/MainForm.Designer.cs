@@ -76,11 +76,6 @@ namespace RayTracerApp.Forms
             this.PerformLayout();
         }
 
-        private void editButton_Click(object sender, EventArgs e)
-        {
-            var form = new EditForm();
-            form.Show();
-        }
         
         private ToolStrip toolStrip;
         private ToolStripButton editButton;

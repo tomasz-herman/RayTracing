@@ -71,5 +71,13 @@ namespace RayTracerApp.Forms
             _camera.AspectRatio = gLControl.Width / (float)gLControl.Height;
             gLControl.Invalidate();
         }
+
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            var form = new NewObjectForm();
+            form.SetController(new NewObjectController(scene));
+            form.Show();
+        }
     }
 }
