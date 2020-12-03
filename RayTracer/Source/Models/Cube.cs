@@ -106,7 +106,7 @@ namespace RayTracer.Models
             return (indicesBuffer, vertexBuffer, textureBuffer, normalBuffer);
         }
 
-        public override HitInfo HitTest(Ray ray, HitInfo hitInfo)
+        public override bool HitTest(Ray ray, ref HitInfo hit, float from, float to)
         {
             throw new System.NotImplementedException();
         }

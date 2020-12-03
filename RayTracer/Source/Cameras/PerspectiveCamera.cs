@@ -23,7 +23,7 @@ namespace RayTracer.Cameras
 
         public override Ray GetRay(float x, float y)
         {
-            return new Ray(position, upperLeft + x * horizontal - y * vertical - position);
+            return new Ray(position, (upperLeft + x * horizontal - y * vertical - position).Normalized());
         }
     }
 }

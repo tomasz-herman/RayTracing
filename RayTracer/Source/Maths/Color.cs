@@ -52,6 +52,14 @@ namespace RayTracer.Maths
             first.B *= scalar;
             return first;
         }
+        
+        public static Color operator /(Color first, float scalar)
+        {
+            first.R /= scalar;
+            first.G /= scalar;
+            first.B /= scalar;
+            return first;
+        }
 
         public static Color Mix(Color first, Color second, float firstShare)
         {

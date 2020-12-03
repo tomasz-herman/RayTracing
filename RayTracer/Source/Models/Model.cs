@@ -1,17 +1,18 @@
 ﻿using OpenTK;
 using RayTracer.Materials;
 using RayTracer.Maths;
+using RayTracer.RayTracing;
 
 namespace RayTracer.Models
 {
-    public abstract class Model
+    public abstract class Model : IHittable
     {
         public IMaterial Material;
         public Vector3 Position;
         public float Scale;
         public Vector3 Rotation;
 
-        public abstract HitInfo HitTest(Ray ray, HitInfo hitInfo);
+        public abstract bool HitTest(Ray ray, ref HitInfo hit, float from, float to);
         
         public abstract Mesh GetMesh();
 
