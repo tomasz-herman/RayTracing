@@ -16,7 +16,7 @@ namespace RayTracerDemo
     {
         static void Main(string[] args)
         {
-            Camera camera = new PerspectiveCamera(new Vector3(0, 0, -5)) {AspectRatio = 16f / 9};
+            Camera camera = new PerspectiveCamera(new Vector3(0, 0, 5)) {AspectRatio = 16f / 9};
             var scene = new Scene();
             scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.LightSkyBlue)};
             scene.AddModel(new Sphere {Position = new Vector3(0, 0.5f, 0), Scale = 1, Material = new Diffuse(Color.FromColor4(Color4.Orange))});
