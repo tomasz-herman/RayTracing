@@ -12,12 +12,11 @@ namespace RayTracing.Cameras
         private protected float pitch;
         private protected float yaw = -MathHelper.PiOver2;
         private protected float farPlane = 1000f;
-        private protected float fov = MathHelper.PiOver3;
         private protected float aspectRatio = 16f / 9;
         private protected Vector3 position;
         private protected Vector3 horizontal;
         private protected Vector3 vertical;
-        private protected Vector3 upperLeft;
+        private protected Vector3 lowerLeft;
 
         public float AspectRatio
         {
@@ -35,16 +34,6 @@ namespace RayTracing.Cameras
             set => farPlane = value;
         }
 
-        public float Fov
-        {
-            get => MathHelper.RadiansToDegrees(fov);
-            set
-            {
-                var angle = MathHelper.Clamp(value, 1f, 90f);
-                fov = MathHelper.DegreesToRadians(angle);
-            }
-        }
-
         public void Rotate(float dpitch, float dyaw, float droll)
         {
             pitch += dpitch;
@@ -57,6 +46,8 @@ namespace RayTracing.Cameras
             position += front * dz + up * dy + right * dx;
         }
 
+        protected abstract void UpdateViewport();
+
         private void UpdateVectors()
         {
             front.X = (float) Math.Cos(pitch) * (float) Math.Cos(yaw);
@@ -64,20 +55,10 @@ namespace RayTracing.Cameras
             front.Z = (float) Math.Cos(pitch) * (float) Math.Sin(yaw);
 
             front = Vector3.Normalize(front);
-
             right = Vector3.Normalize(Vector3.Cross(front, Vector3.UnitY));
             up = Vector3.Normalize(Vector3.Cross(right, front));
 
-            float width = (float) (2.0 * Math.Tan(fov / 2.0));
-            float height = width / aspectRatio;
-
-            var w = (position - front).Normalized();
-            var u = Vector3.Cross(up, w).Normalized();
-            var v = Vector3.Cross(w, u);
-
-            horizontal = width * u;
-            vertical = height * v;
-            upperLeft = position - horizontal / 2 + vertical / 2 - w;
+            UpdateViewport();
         }
 
         public abstract Matrix4 GetViewMatrix();
