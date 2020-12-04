@@ -1,30 +1,30 @@
 ﻿using System;
 using OpenTK;
-using RayTracer.Maths;
+using RayTracing.Maths;
 
-namespace RayTracer.Cameras
+namespace RayTracing.Cameras
 {
     public abstract class Camera
     {
-        protected Vector3 front = -Vector3.UnitZ;
-        protected Vector3 up = Vector3.UnitY;
-        protected Vector3 right = Vector3.UnitX;
-        protected float pitch;
-        protected float yaw = -MathHelper.PiOver2;
-        protected float farPlane = 1000f;
-        protected float fov = MathHelper.PiOver3;
-        private float _aspectRatio;
-        protected Vector3 position;
-        protected Vector3 horizontal;
-        protected Vector3 vertical;
-        protected Vector3 upperLeft;
+        private protected Vector3 front = -Vector3.UnitZ;
+        private protected Vector3 up = Vector3.UnitY;
+        private protected Vector3 right = Vector3.UnitX;
+        private protected float pitch;
+        private protected float yaw = -MathHelper.PiOver2;
+        private protected float farPlane = 1000f;
+        private protected float fov = MathHelper.PiOver3;
+        private protected float aspectRatio = 16f / 9;
+        private protected Vector3 position;
+        private protected Vector3 horizontal;
+        private protected Vector3 vertical;
+        private protected Vector3 upperLeft;
 
         public float AspectRatio
         {
-            get => _aspectRatio;
+            get => aspectRatio;
             set
             {
-                _aspectRatio = value;
+                aspectRatio = value;
                 UpdateVectors();
             }
         }
@@ -69,15 +69,15 @@ namespace RayTracer.Cameras
             up = Vector3.Normalize(Vector3.Cross(right, front));
 
             float width = (float) (2.0 * Math.Tan(fov / 2.0));
-            float height = width / _aspectRatio;
+            float height = width / aspectRatio;
 
-            var w = (position - front).Normalized();
+            var w = front.Normalized();
             var u = Vector3.Cross(up, w).Normalized();
             var v = Vector3.Cross(w, u);
 
             horizontal = width * u;
             vertical = height * v;
-            upperLeft = position - horizontal / 2 + vertical / 2 - w;
+            upperLeft = position - horizontal / 2 - vertical / 2 - w;
         }
 
         public abstract Matrix4 GetViewMatrix();

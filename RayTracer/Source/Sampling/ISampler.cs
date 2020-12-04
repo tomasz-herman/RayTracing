@@ -1,6 +1,6 @@
 ﻿using OpenTK;
 
-namespace RayTracer.Sampling
+namespace RayTracing.Sampling
 {
     public interface ISampler
     {

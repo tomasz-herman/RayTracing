@@ -1,21 +1,21 @@
 ﻿using System;
 using OpenTK;
 
-namespace RayTracer.Sampling
+namespace RayTracing.Sampling
 {
     public class CenterSampler : ISampler
     {
-        private readonly Vector2 sample = new Vector2(0.5f, 0.5f);
+        private readonly Vector2 _sample = new Vector2(0.5f, 0.5f);
 
         public Vector2 Sample()
         {
-            return sample;
+            return _sample;
         }
 
         public Vector2 Sample(int num)
         {
             if (num == 0)
-                return sample;
+                return _sample;
             else
                 throw new ArgumentException("Sample number should be equal to 0");
         }

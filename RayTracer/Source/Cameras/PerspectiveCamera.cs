@@ -1,8 +1,7 @@
-﻿using System;
-using OpenTK;
-using RayTracer.Maths;
+﻿using OpenTK;
+using RayTracing.Maths;
 
-namespace RayTracer.Cameras
+namespace RayTracing.Cameras
 {
     public class PerspectiveCamera : Camera
     {
@@ -23,7 +22,7 @@ namespace RayTracer.Cameras
 
         public override Ray GetRay(float x, float y)
         {
-            return new Ray(position, (upperLeft + x * horizontal - y * vertical - position).Normalized());
+            return new Ray(position, (upperLeft + x * horizontal + y * vertical - position).Normalized());
         }
     }
 }

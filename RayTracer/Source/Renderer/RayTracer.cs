@@ -1,18 +1,26 @@
 ﻿using System;
-using RayTracer.Cameras;
-using RayTracer.Maths;
-using RayTracer.Sampling;
-using RayTracer.Utils;
-using RayTracer.World;
+using RayTracing.Cameras;
+using RayTracing.Maths;
+using RayTracing.Sampling;
+using RayTracing.Utils;
+using RayTracing.World;
 
-namespace RayTracer.RayTracing
+namespace RayTracing
 {
     public class RayTracer : IRenderer
     {
-        public int MaxDepth;
+        public int MaxDepth=1;
         public int Samples;
         public ISampler Sampler;
         public int Resolution;
+
+        public RayTracer(int maxDepth, int samples, ISampler sampler, int resolution)
+        {
+            MaxDepth = maxDepth;
+            Samples = samples;
+            Sampler = sampler;
+            Resolution = resolution;
+        }
 
         public void Render(Scene scene, Camera camera)
         {
@@ -34,7 +42,7 @@ namespace RayTracer.RayTracing
                     }
                 }
             }
-            
+
             image.Process(c => c / Samples);
             // TODO: Get image raw data and load it to graphics card
             image.Write("RenderedScene.png");
@@ -42,8 +50,8 @@ namespace RayTracer.RayTracing
 
         public Color Shade(Ray ray, Scene scene, int depth)
         {
-            if(depth == 0) return new Color();
-            
+            if (depth == 0) return new Color();
+
             HitInfo hitInfo = new HitInfo();
 
             if (scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity))

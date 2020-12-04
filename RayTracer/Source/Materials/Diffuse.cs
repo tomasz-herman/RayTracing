@@ -1,8 +1,8 @@
 using System;
 using OpenTK;
-using RayTracer.Maths;
+using RayTracing.Maths;
 
-namespace RayTracer.Materials
+namespace RayTracing.Materials
 {
     public class Diffuse : IMaterial
     {
@@ -26,9 +26,9 @@ namespace RayTracer.Materials
                 
                 do
                 {
-                    vec.X = (float) rand.NextDouble();
-                    vec.Y = (float) rand.NextDouble();
-                    vec.Z = (float) rand.NextDouble();
+                    vec.X = (float) rand.NextDouble() * 2 - 1;
+                    vec.Y = (float) rand.NextDouble() * 2 - 1;
+                    vec.Z = (float) rand.NextDouble() * 2 - 1;
                 } while (vec.LengthSquared > 1);
 
                 return vec;

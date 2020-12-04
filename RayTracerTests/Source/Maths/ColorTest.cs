@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using FluentAssertions;
 using NUnit.Framework;
 using OpenTK.Graphics;
-using RayTracer.Maths;
+using RayTracing.Maths;
 
 namespace RayTracerTests
 {
@@ -68,9 +68,9 @@ namespace RayTracerTests
         public void ColorsCanMix()
         {
             Color red = new Color(1, 0, 0);
-            Color blue = new Color(1, 0, 0);
-            float mix = 0.6f;
-            Color expected = new Color(0.6f, 0, 0.4f);
+            Color blue = new Color(0, 0, 1);
+            float mix = 0.25f;
+            Color expected = new Color(0.25f, 0, 0.75f);
 
             Color mixed = Color.Mix(red, blue, mix);
 

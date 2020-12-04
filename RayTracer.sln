@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracerTests", "RayTracer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracerApp", "RayTracerApp\RayTracerApp.csproj", "{6ED4DB76-3B88-4438-85F4-EE8EF5AEC489}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracerDemo", "RayTracerDemo\RayTracerDemo.csproj", "{ABA6DB0F-F007-42E8-A59E-E4C78F0DC469}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{6ED4DB76-3B88-4438-85F4-EE8EF5AEC489}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6ED4DB76-3B88-4438-85F4-EE8EF5AEC489}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6ED4DB76-3B88-4438-85F4-EE8EF5AEC489}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABA6DB0F-F007-42E8-A59E-E4C78F0DC469}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABA6DB0F-F007-42E8-A59E-E4C78F0DC469}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABA6DB0F-F007-42E8-A59E-E4C78F0DC469}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABA6DB0F-F007-42E8-A59E-E4C78F0DC469}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

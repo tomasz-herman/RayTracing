@@ -1,7 +1,8 @@
 ﻿using OpenTK;
-using RayTracer.Models;
+using RayTracing.Maths;
+using RayTracing.Models;
 
-namespace RayTracer.Maths
+namespace RayTracing
 {
     public struct HitInfo
     {

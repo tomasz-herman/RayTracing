@@ -1,7 +1,7 @@
 ﻿using System;
-using RayTracer.Maths;
+using RayTracing.Maths;
 
-namespace RayTracer.Materials
+namespace RayTracing.Materials
 {
     public interface IMaterial
     {

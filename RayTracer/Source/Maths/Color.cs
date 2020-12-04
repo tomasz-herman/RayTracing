@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using OpenTK.Graphics;
 
-namespace RayTracer.Maths
+namespace RayTracing.Maths
 {
     public struct Color
     {
