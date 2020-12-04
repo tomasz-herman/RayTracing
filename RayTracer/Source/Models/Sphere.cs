@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using OpenTK;
-using RayTracer.Maths;
+using RayTracing.Maths;
 
-namespace RayTracer.Models
+namespace RayTracing.Models
 {
     public class Sphere : Model
     {
-        private Mesh mesh;
+        private Mesh _mesh;
 
-        public Sphere()
+        private protected override void LoadInternal()
         {
             var (positions, texCoords) = GetVertexList(100, 100);
             var indicesList = GetElementBuffer(100, 100);
-            mesh = new Mesh(positions,positions, texCoords, indicesList);
+            _mesh = new Mesh(positions, positions, texCoords, indicesList);
+            _mesh.Load();
         }
 
         public override bool HitTest(Ray ray, ref HitInfo hit, float from, float to)
@@ -31,9 +32,10 @@ namespace RayTracer.Models
             }
 
             float discSq = (float) Math.Sqrt(disc);
-            
+
             float root = (-bHalf - discSq) / a;
-            if (root < from || to < root) {
+            if (root < from || to < root)
+            {
                 root = (-bHalf + discSq) / a;
                 if (root < from || to < root)
                     return false;
@@ -42,14 +44,14 @@ namespace RayTracer.Models
             hit.Distance = root;
             hit.HitPoint = ray.Origin + ray.Direction * hit.Distance;
             hit.ModelHit = this;
-            hit.Normal = (hit.HitPoint - Position) / Scale/*radius*/;
+            hit.Normal = (hit.HitPoint - Position) / Scale /*radius*/;
 
             return true;
         }
 
         public override Mesh GetMesh()
         {
-            return mesh;
+            return _mesh;
         }
 
 
@@ -101,7 +103,7 @@ namespace RayTracer.Models
                     elementBuffer.Add(((r + 1) * sectors + s));
                 }
             }
-            
+
             return elementBuffer;
         }
     }

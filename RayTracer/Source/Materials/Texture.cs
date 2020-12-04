@@ -1,15 +1,15 @@
 ﻿using System;
 using System.IO;
 using OpenTK.Graphics.OpenGL;
-using RayTracer.Maths;
+using RayTracing.Maths;
 using StbImageSharp;
 
-namespace RayTracer.Materials
+namespace RayTracing.Materials
 {
     public class Texture
     {
-        private int id;
-        private Color[,] data;
+        private int _id;
+        private Color[,] _data;
 
         public Texture(String path)
         {
@@ -17,16 +17,16 @@ namespace RayTracer.Materials
             using var stream = File.OpenRead(path);
             ImageResult image = ImageResult.FromStream(stream, ColorComponents.RedGreenBlueAlpha);
             byte[] data = image.Data;
-            this.data = new Color[image.Width, image.Height];
+            this._data = new Color[image.Width, image.Height];
             for (int i = 0; i < image.Width * image.Height; ++i)
             {
                 byte r = data[i * 4];
                 byte g = data[i * 4 + 1];
                 byte b = data[i * 4 + 2];
-                this.data[i % image.Width, i / image.Width] = new Color(r / 255f, g / 255f, b / 255f);
+                this._data[i % image.Width, i / image.Width] = new Color(r / 255f, g / 255f, b / 255f);
             }
 
-            id = LoadGLTexture(image);
+            _id = LoadGLTexture(image);
         }
 
         private static int LoadGLTexture(ImageResult image)
@@ -66,7 +66,7 @@ namespace RayTracer.Materials
 
         public void Use(TextureUnit unit = TextureUnit.Texture0)
         {
-            Use(id, unit);
+            Use(_id, unit);
         }
 
         public static void Clear(TextureUnit unit = TextureUnit.Texture0)

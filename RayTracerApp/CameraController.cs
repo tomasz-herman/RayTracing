@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
-using RayTracer.Cameras;
+using RayTracing.Cameras;
 using RayTracerApp.Utils;
 
 namespace RayTracerApp
@@ -40,10 +40,9 @@ namespace RayTracerApp
         {
             UpdateCameraPosition(msElapsed);
         }
-        
+
         private void UpdateCameraOrientation(object sender, MouseEventArgs e)
         {
-
             if (e.Button == MouseButtons.Left)
             {
                 if (_firstMouseMove)
@@ -56,8 +55,8 @@ namespace RayTracerApp
                     var deltaX = e.Location.X - _lastMousePos.X;
                     var deltaY = e.Location.Y - _lastMousePos.Y;
                     _lastMousePos = e.Location;
-                    
-                    _camera.Rotate( -deltaY * Sensitivity, deltaX * Sensitivity, 0);
+
+                    _camera.Rotate(-deltaY * Sensitivity, deltaX * Sensitivity, 0);
                 }
             }
             else
@@ -73,32 +72,32 @@ namespace RayTracerApp
             {
                 dz += CameraSpeed * msElapsed;
             }
-            
+
             if (keys[Keys.S])
             {
                 dz -= CameraSpeed * msElapsed; // Backwards
             }
-            
+
             if (keys[Keys.A])
             {
                 dx -= CameraSpeed * msElapsed; // Left
             }
-            
+
             if (keys[Keys.D])
             {
                 dx += CameraSpeed * msElapsed; // Right
             }
-            
+
             if (keys[Keys.Space])
             {
                 dy += CameraSpeed * msElapsed; // Up
             }
-            
+
             if (keys[Keys.LShiftKey])
             {
                 dy -= CameraSpeed * msElapsed; // Down
             }
-            
+
             _camera.Move(dx, dy, dz);
         }
     }
