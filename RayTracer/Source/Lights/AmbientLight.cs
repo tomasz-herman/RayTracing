@@ -1,6 +1,6 @@
-﻿using RayTracer.Maths;
+﻿using RayTracing.Maths;
 
-namespace RayTracer.Lights
+namespace RayTracing.Lights
 {
     public struct AmbientLight
     {

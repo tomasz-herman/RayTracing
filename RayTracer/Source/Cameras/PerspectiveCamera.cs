@@ -1,8 +1,7 @@
-﻿using System;
-using OpenTK;
-using RayTracer.Maths;
+﻿using OpenTK;
+using RayTracing.Maths;
 
-namespace RayTracer.Cameras
+namespace RayTracing.Cameras
 {
     public class PerspectiveCamera : Camera
     {

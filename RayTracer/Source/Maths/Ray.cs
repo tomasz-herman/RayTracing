@@ -1,6 +1,6 @@
 ﻿using OpenTK;
 
-namespace RayTracer.Maths
+namespace RayTracing.Maths
 {
     public struct Ray
     {

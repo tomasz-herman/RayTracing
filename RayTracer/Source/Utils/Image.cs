@@ -1,9 +1,9 @@
 using System;
 using System.IO;
-using RayTracer.Maths;
+using RayTracing.Maths;
 using StbImageWriteSharp;
 
-namespace RayTracer.Utils
+namespace RayTracing.Utils
 {
     public class Image
     {
@@ -15,15 +15,15 @@ namespace RayTracer.Utils
         {
             _data = new Color[height, width];
         }
-        
+
         public Image(Image image) // copy constructor
         {
             _data = new Color[image.Width, image.Height];
-            for(int i = 0; i < Height; i++)
-            for(int j = 0; j < Width; j++)
+            for (int i = 0; i < Height; i++)
+            for (int j = 0; j < Width; j++)
                 _data[i, j] = image._data[i, j];
         }
-        
+
         public Color this[int w, int h]
         {
             get => _data[h, w];
@@ -32,17 +32,18 @@ namespace RayTracer.Utils
 
         public void Process(Func<Color, Color> function)
         {
-            for(int i = 0; i < Height; i++)
-            for(int j = 0; j < Width; j++)
+            for (int i = 0; i < Height; i++)
+            for (int j = 0; j < Width; j++)
                 _data[i, j] = function(_data[i, j]);
         }
-        
+
         public byte[] RawData()
         {
             byte[] raw = new byte[Width * Height * 3];
-            
-            for(int i = 0; i < Height; i++)
-            for(int j = 0; j < Width; j++) {
+
+            for (int i = 0; i < Height; i++)
+            for (int j = 0; j < Width; j++)
+            {
                 Color color = _data[Height - i - 1, j];
                 raw[i * Width * 3 + j * 3 + 0] = color.RComp;
                 raw[i * Width * 3 + j * 3 + 1] = color.GComp;
@@ -59,6 +60,5 @@ namespace RayTracer.Utils
             ImageWriter writer = new ImageWriter();
             writer.WritePng(raw, Width, Height, ColorComponents.RedGreenBlue, stream);
         }
-
     }
 }

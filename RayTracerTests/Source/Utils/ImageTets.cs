@@ -1,8 +1,8 @@
 using System;
 using NUnit.Framework;
-using RayTracer.Utils;
+using RayTracing.Utils;
 using FluentAssertions;
-using RayTracer.Maths;
+using RayTracing.Maths;
 
 namespace RayTracerTests
 {

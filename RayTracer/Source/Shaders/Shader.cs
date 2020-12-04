@@ -5,7 +5,7 @@ using System.Text;
 using OpenTK;
 using OpenTK.Graphics.OpenGL4;
 
-namespace RayTracer.Shaders
+namespace RayTracing.Shaders
 {
     public class Shader
     {

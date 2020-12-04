@@ -1,6 +1,6 @@
-using RayTracer.Maths;
+using RayTracing.Maths;
 
-namespace RayTracer.RayTracing
+namespace RayTracing.RayTracing
 {
     public interface IHittable
     {
