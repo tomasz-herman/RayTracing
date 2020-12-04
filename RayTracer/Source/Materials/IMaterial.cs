@@ -1,11 +1,10 @@
 ﻿using System;
 using RayTracer.Maths;
-using RayTracer.World;
 
 namespace RayTracer.Materials
 {
     public interface IMaterial
     {
-        Color Shade(HitInfo hit, Scene scene, Func<Scene, Ray, int, Color> recursiveFunction);
+        bool Scatter(ref Ray ray, ref HitInfo hit, out Color attenuation, out Ray scattered);
     }
 }

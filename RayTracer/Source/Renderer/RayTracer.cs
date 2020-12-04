@@ -48,8 +48,10 @@ namespace RayTracer.RayTracing
 
             if (scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity))
             {
-                // TODO: Shade recursively using material
-                return new Color(1, 0, 0);
+                if(hitInfo.ModelHit.Material.Scatter(ref ray, ref hitInfo, out Color attenuation, out Ray scattered)) {
+                    return attenuation * Shade(scattered, scene, depth - 1);
+                }
+                return new Color();
             }
 
             return scene.AmbientLight.Color;
