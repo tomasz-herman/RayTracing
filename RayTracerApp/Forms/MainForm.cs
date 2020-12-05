@@ -1,25 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL4;
-using OpenTK.Input;
-using OpenTK.Platform;
 using RayTracing;
 using RayTracing.Cameras;
 using RayTracing.Lights;
 using RayTracing.Maths;
 using RayTracing.Models;
-using RayTracing.Shaders;
 using RayTracing.World;
-using ButtonState = OpenTK.Input.ButtonState;
 using Camera = RayTracing.Cameras.Camera;
 using Timer = System.Windows.Forms.Timer;
 
-namespace RayTracerApp
+namespace RayTracerApp.Forms
 {
     public partial class MainForm : Form
     {
@@ -76,6 +69,14 @@ namespace RayTracerApp
             GL.Viewport(0, 0, Width, Height);
             _camera.AspectRatio = gLControl.Width / (float) gLControl.Height;
             gLControl.Invalidate();
+        }
+
+
+        private void newObjectButton_Click(object sender, EventArgs e)
+        {
+            var form = new NewObjectForm();
+            form.SetController(new NewObjectController(scene));
+            form.Show();
         }
     }
 }
