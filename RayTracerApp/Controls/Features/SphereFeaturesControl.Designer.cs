@@ -41,7 +41,7 @@ namespace RayTracerApp.Controls.Features
             1,
             0,
             0,
-            131072});
+            65536});
             this.radiusUpDown.Location = new System.Drawing.Point(119, 29);
             this.radiusUpDown.Name = "radiusUpDown";
             this.radiusUpDown.Size = new System.Drawing.Size(63, 23);
