@@ -57,7 +57,8 @@ namespace RayTracerApp.Forms
 
         private void cancelButton_Click(object sender, System.EventArgs e)
         {
-
+            controller.Dispose();
+            Close();
         }
     }
 }

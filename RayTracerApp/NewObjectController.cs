@@ -6,7 +6,7 @@ using System.Text;
 
 namespace RayTracerApp
 {
-    public class NewObjectController
+    public class NewObjectController : IDisposable
     {
         private Model _model;
 
@@ -17,12 +17,28 @@ namespace RayTracerApp
         }
         public void SetModel(Model model)
         {
+            DeleteModel();
             _model = model;
             _scene.AddModel(_model);
         }
         public Model GetModel()
         {
             return _model;
+        }
+
+        private void DeleteModel()
+        {
+            if (_model != null)
+            {
+                _scene.Models.Remove(_model);
+                _model = null;
+            }
+        }
+
+        public void Dispose()
+        {
+            DeleteModel();
+            _scene = null;
         }
     }
 }
