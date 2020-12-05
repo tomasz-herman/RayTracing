@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using OpenTK;
 using RayTracing.Cameras;
 using RayTracing.Maths;
@@ -29,8 +30,7 @@ namespace RayTracing
             int width = Resolution;
             int height = (int) (width / camera.AspectRatio);
             Image image = new Image(width, height);
-            Sampler<Vector2> sampler = new Sampler<Vector2>(Sampling, Samples);
-
+            AbstractSampler<Vector2> sampler = new Sampler<Vector2>(Sampling, Samples);
             for (int i = 0; i < width; i++)
             {
                 for (int j = 0; j < height; j++)
