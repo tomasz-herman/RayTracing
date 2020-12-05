@@ -7,6 +7,7 @@ namespace RayTracerApp.Forms
     {
         private NewObjectController controller;
         private List<Control> order;
+
         public void SetController(NewObjectController controller)
         {
             this.controller = controller;
@@ -14,8 +15,9 @@ namespace RayTracerApp.Forms
             positionPanel.SetController(this.controller);
             featuresPanel.SetController(this.controller);
 
-            order = new List<Control> { newModelPanel, positionPanel, featuresPanel };
+            order = new List<Control> {newModelPanel, positionPanel, featuresPanel};
         }
+
         public NewObjectForm()
         {
             InitializeComponent();
@@ -24,11 +26,12 @@ namespace RayTracerApp.Forms
         private void MoveNext()
         {
             var index = order.FindIndex(control => control.Visible);
-            if(index == 1) // next one is features panel
+            if (index == 1) // next one is features panel
             {
                 featuresPanel.UpdateFeatures();
             }
-            if(index < order.Count - 1)
+
+            if (index < order.Count - 1)
             {
                 order[index + 1].Visible = true;
                 order[index].Visible = false;

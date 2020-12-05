@@ -11,12 +11,13 @@ namespace RayTracerApp.Controls
         }
 
         private NewObjectController controller;
+
         public void SetController(NewObjectController newObjectController)
         {
             controller = newObjectController;
             sphereFeaturesControl.SetController(controller);
         }
-        
+
         public void UpdateFeatures()
         {
             var model = controller.GetModel();

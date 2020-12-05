@@ -6,10 +6,12 @@ namespace RayTracerApp.Controls
     public partial class NewModelPanel : UserControl
     {
         private NewObjectController controller;
+
         public void SetController(NewObjectController newObjectController)
         {
             controller = newObjectController;
         }
+
         public NewModelPanel()
         {
             InitializeComponent();
@@ -28,12 +30,13 @@ namespace RayTracerApp.Controls
             var rand = new System.Random();
             if (rb.Checked)
             {
-                if(rb.Text == "Sphere")
+                if (rb.Text == "Sphere")
                 {
-                    controller.SetModel(new Sphere { 
-                        Position = new OpenTK.Vector3(0),
-                        Scale = 1
-                    }.Load()
+                    controller.SetModel(new Sphere
+                        {
+                            Position = new OpenTK.Vector3(0),
+                            Scale = 1
+                        }.Load()
                     );
                 }
             }

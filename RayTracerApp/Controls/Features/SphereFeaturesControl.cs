@@ -16,6 +16,7 @@ namespace RayTracerApp.Controls.Features
         }
 
         private NewObjectController controller;
+
         public void SetController(NewObjectController newObjectController)
         {
             controller = newObjectController;
@@ -23,9 +24,8 @@ namespace RayTracerApp.Controls.Features
 
         private void radiusUpDown_ValueChanged(object sender, EventArgs e)
         {
-
             NumericUpDown nud = sender as NumericUpDown;
-            controller.GetModel().Scale = (float)nud.Value;
+            controller.GetModel().Scale = (float) nud.Value;
         }
     }
 }

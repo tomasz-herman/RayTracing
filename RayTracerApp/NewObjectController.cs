@@ -7,18 +7,20 @@ namespace RayTracerApp
     public class NewObjectController : IDisposable
     {
         private Model _model;
-
         private Scene _scene;
+
         public NewObjectController(Scene scene)
         {
             _scene = scene;
         }
+
         public void SetModel(Model model)
         {
             DeleteModel();
             _model = model;
             _scene.AddModel(_model);
         }
+
         public Model GetModel()
         {
             return _model;
