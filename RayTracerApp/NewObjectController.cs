@@ -1,8 +1,6 @@
-﻿using RayTracer.Models;
-using RayTracer.World;
+﻿using RayTracing.Models;
+using RayTracing.World;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RayTracerApp
 {

@@ -1,10 +1,4 @@
-﻿using RayTracer.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
+﻿using RayTracing.Models;
 using System.Windows.Forms;
 
 namespace RayTracerApp.Controls

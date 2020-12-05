@@ -1,4 +1,4 @@
-﻿using RayTracer.Models;
+﻿using RayTracing.Models;
 using System.Windows.Forms;
 
 namespace RayTracerApp.Controls
@@ -33,7 +33,7 @@ namespace RayTracerApp.Controls
                     controller.SetModel(new Sphere { 
                         Position = new OpenTK.Vector3(0),
                         Scale = 1
-                    }
+                    }.Load()
                     );
                 }
             }
