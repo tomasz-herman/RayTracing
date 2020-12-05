@@ -13,7 +13,7 @@ namespace RayTracer.Models
         {
             var (positions, texCoords) = GetVertexList(100, 100);
             var indicesList = GetElementBuffer(100, 100);
-            mesh = new Mesh(positions,positions, texCoords, indicesList);
+            mesh = new Mesh(positions, positions, texCoords, indicesList);
         }
 
         public override HitInfo HitTest(Ray ray, HitInfo hitInfo)

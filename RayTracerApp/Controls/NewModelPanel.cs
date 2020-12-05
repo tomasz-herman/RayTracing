@@ -5,10 +5,10 @@ namespace RayTracerApp.Controls
 {
     public partial class NewModelPanel : UserControl
     {
-        private NewObjectController _controller;
+        private NewObjectController controller;
         public void SetController(NewObjectController newObjectController)
         {
-            _controller = newObjectController;
+            controller = newObjectController;
         }
         public NewModelPanel()
         {
@@ -30,7 +30,7 @@ namespace RayTracerApp.Controls
             {
                 if(rb.Text == "Sphere")
                 {
-                    _controller.SetModel(new Sphere { 
+                    controller.SetModel(new Sphere { 
                         Position = new OpenTK.Vector3(0),
                         Scale = 1
                     }

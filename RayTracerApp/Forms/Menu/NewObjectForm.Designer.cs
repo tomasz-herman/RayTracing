@@ -37,6 +37,7 @@ namespace RayTracerApp.Forms
             this.nextButton = new System.Windows.Forms.Button();
             this.newModelPanel = new RayTracerApp.Controls.NewModelPanel();
             this.positionPanel = new RayTracerApp.Controls.PositionPanel();
+            this.featuresPanel = new RayTracerApp.Controls.FeaturesPanel();
             this.SuspendLayout();
             // 
             // cancelButton
@@ -84,11 +85,20 @@ namespace RayTracerApp.Forms
             this.positionPanel.TabIndex = 4;
             this.positionPanel.Visible = false;
             // 
+            // featuresPanel
+            // 
+            this.featuresPanel.Location = new System.Drawing.Point(12, 12);
+            this.featuresPanel.Name = "featuresPanel";
+            this.featuresPanel.Size = new System.Drawing.Size(238, 296);
+            this.featuresPanel.TabIndex = 5;
+            this.featuresPanel.Visible = false;
+            // 
             // NewObjectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(262, 349);
+            this.Controls.Add(this.featuresPanel);
             this.Controls.Add(this.positionPanel);
             this.Controls.Add(this.newModelPanel);
             this.Controls.Add(this.nextButton);
@@ -107,5 +117,6 @@ namespace RayTracerApp.Forms
         private System.Windows.Forms.Button nextButton;
         private NewModelPanel newModelPanel;
         private PositionPanel positionPanel;
+        private FeaturesPanel featuresPanel;
     }
 }
