@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using OpenTK;
 using RayTracing.Cameras;
 using RayTracing.Maths;
 using RayTracing.Sampling;
@@ -11,14 +13,14 @@ namespace RayTracing
     {
         public int MaxDepth=1;
         public int Samples;
-        public ISampler Sampler;
+        public Func<int, List<Vector2>> Sampling;
         public int Resolution;
 
-        public RayTracer(int maxDepth, int samples, ISampler sampler, int resolution)
+        public RayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution)
         {
             MaxDepth = maxDepth;
             Samples = samples;
-            Sampler = sampler;
+            Sampling = sampling;
             Resolution = resolution;
         }
 
@@ -27,6 +29,7 @@ namespace RayTracing
             int width = Resolution;
             int height = (int) (width / camera.AspectRatio);
             Image image = new Image(width, height);
+            Sampler<Vector2> sampler = new Sampler<Vector2>(Sampling, Samples);
 
             for (int i = 0; i < width; i++)
             {
@@ -34,7 +37,7 @@ namespace RayTracing
                 {
                     for (int k = 0; k < Samples; k++)
                     {
-                        var sample = Sampler.Sample();
+                        var sample = sampler.Sample;
                         float u = (i + sample.X) / (width - 1);
                         float v = (j + sample.Y) / (height - 1);
                         Ray ray = camera.GetRay(u, v);
