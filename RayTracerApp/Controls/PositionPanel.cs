@@ -38,19 +38,25 @@ namespace RayTracerApp.Controls
         private void pitchUpDown_ValueChanged(object sender, EventArgs e)
         {
             NumericUpDown nud = sender as NumericUpDown;
-            controller.GetModel().Rotation.X = (float) nud.Value;
+            var rotation = controller.GetModel().Rotation;
+            rotation.X = (float) nud.Value;
+            controller.GetModel().Rotation = rotation;
         }
 
         private void yawUpDown_ValueChanged(object sender, EventArgs e)
         {
             NumericUpDown nud = sender as NumericUpDown;
-            controller.GetModel().Rotation.Y = (float) nud.Value;
+            var rotation = controller.GetModel().Rotation;
+            rotation.Y = (float) nud.Value;
+            controller.GetModel().Rotation = rotation;
         }
 
         private void rollUpDown_ValueChanged(object sender, EventArgs e)
         {
             NumericUpDown nud = sender as NumericUpDown;
-            controller.GetModel().Rotation.Z = (float) nud.Value;
+            var rotation = controller.GetModel().Rotation;
+            rotation.Z = (float) nud.Value;
+            controller.GetModel().Rotation = rotation;
         }
 
         private void scaleUpDown_ValueChanged(object sender, EventArgs e)
