@@ -1,4 +1,5 @@
-﻿using RayTracing.Maths;
+﻿using OpenTK;
+using RayTracing.Maths;
 
 namespace RayTracing.Models
 {
@@ -10,6 +11,8 @@ namespace RayTracing.Models
         {
             _mesh = mesh;
         }
+
+        public override Vector3 Rotation { get; set; }
 
         private protected override void LoadInternal()
         {

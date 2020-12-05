@@ -10,7 +10,7 @@ namespace RayTracing.Models
         public IMaterial Material;
         public Vector3 Position;
         public float Scale = 1f;
-        public Vector3 Rotation;
+        public abstract Vector3 Rotation { get; set; }
 
         private protected abstract void LoadInternal();
 
