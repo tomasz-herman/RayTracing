@@ -101,6 +101,8 @@ namespace RayTracing.Models
             return (indicesBuffer, vertexBuffer, textureBuffer, normalBuffer);
         }
 
+        public override Vector3 Rotation { get; set; }
+
         private protected override void LoadInternal()
         {
             var buffers = GetBuffers();
