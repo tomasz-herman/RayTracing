@@ -29,14 +29,14 @@ namespace RayTracerApp.Controls
 
             if (rb.Checked)
             {
-                if (rb.Text == "Sphere")
+                switch (rb.Text)
                 {
-                    controller.SetModel(new Sphere
-                        {
-                            Position = new OpenTK.Vector3(0),
-                            Scale = 1
-                        }.Load()
-                    );
+                    case "Sphere":
+                        controller.SetModel(new Sphere().Load());
+                        break;
+                    case "Cube":
+                        controller.SetModel(new Cube().Load());
+                        break;
                 }
             }
         }
