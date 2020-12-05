@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using OpenTK;
 
 namespace RayTracing.Sampling
@@ -31,6 +32,9 @@ namespace RayTracing.Sampling
                     samples.Add(sample);
                 }
             }
+            
+            samples = samples.OrderBy(item => random.Next()).Take(count).ToList();
+            
             return samples;
         }
         
@@ -47,6 +51,9 @@ namespace RayTracing.Sampling
                     samples.Add(sample);
                 }
             }
+            
+            samples = samples.OrderBy(item => random.Next()).Take(count).ToList();
+
             return samples;
         }
         

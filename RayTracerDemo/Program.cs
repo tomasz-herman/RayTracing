@@ -20,7 +20,7 @@ namespace RayTracerDemo
             var scene = new Scene();
             scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.LightSkyBlue)};
             scene.AddModel(new Sphere {Position = new Vector3(0, 0.5f, 0), Scale = 1, Material = new Diffuse(Color.FromColor4(Color4.Orange))});
-            scene.AddModel(new Plane() {Position = new Vector3(0, -0.5f, 0), Scale = 1, Material = new Diffuse(Color.FromColor4(Color4.LawnGreen))});
+            scene.AddModel(new Plane {Position = new Vector3(0, -0.5f, 0), Scale = 1, Material = new Diffuse(Color.FromColor4(Color4.LawnGreen))});
             var rayTracer = new RayTracer(10, 64, Vec2Sampling.Jittered, 1280);
             rayTracer.Render(scene, camera);
             Console.WriteLine("done");
