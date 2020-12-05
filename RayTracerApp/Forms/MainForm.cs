@@ -3,16 +3,12 @@ using System.Windows.Forms;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL4;
-using OpenTK.Input;
-using OpenTK.Platform;
 using RayTracing;
 using RayTracing.Cameras;
 using RayTracing.Lights;
 using RayTracing.Maths;
 using RayTracing.Models;
-using RayTracing.Shaders;
 using RayTracing.World;
-using ButtonState = OpenTK.Input.ButtonState;
 using Camera = RayTracing.Cameras.Camera;
 using Timer = System.Windows.Forms.Timer;
 

@@ -27,7 +27,6 @@ namespace RayTracerApp.Controls
                 return;
             }
 
-            var rand = new System.Random();
             if (rb.Checked)
             {
                 if (rb.Text == "Sphere")
