@@ -1,18 +1,12 @@
 ﻿using System.Collections.Generic;
 using OpenTK;
-using RayTracer.Maths;
+using RayTracing.Maths;
 
-namespace RayTracer.Models
+namespace RayTracing.Models
 {
     public class Cube : Model
     {
         private Mesh _mesh;
-        Vector3 center;
-        public Cube()
-        {
-            var buffers = GetBuffers();
-            _mesh = new Mesh(buffers.vertexBuffer, buffers.normalBuffer, buffers.texBuffer, buffers.indicesBuffer);
-        }
 
         private List<Vector3> GetVertices()
         {
@@ -74,7 +68,8 @@ namespace RayTracer.Models
             };
         }
 
-        private (List<int> indicesBuffer, List<float> vertexBuffer, List<float> texBuffer, List<float> normalBuffer) GetBuffers()
+        private (List<int> indicesBuffer, List<float> vertexBuffer, List<float> texBuffer, List<float> normalBuffer)
+            GetBuffers()
         {
             var vertices = GetVertices();
             var indices = GetIndices();
@@ -86,27 +81,34 @@ namespace RayTracer.Models
             var textureBuffer = new List<float>();
             var normalBuffer = new List<float>();
             var indicesBuffer = new List<int>();
-            
+
             for (int i = 0; i < indices.Count; i++)
             {
                 vertexBuffer.Add(vertices[indices[i]].X); // x
                 vertexBuffer.Add(vertices[indices[i]].Y); // y
                 vertexBuffer.Add(vertices[indices[i]].Z); // z
-                
+
                 textureBuffer.Add(texCoords[texInds[i % 6]].X); // x
                 textureBuffer.Add(texCoords[texInds[i % 6]].Y); // y
-                
+
                 normalBuffer.Add(normals[indices[i / 6]].X); // x
                 normalBuffer.Add(normals[indices[i / 6]].Y); // y
                 normalBuffer.Add(normals[indices[i / 6]].Z); // z
-                
+
                 indicesBuffer.Add(i);
             }
-            
+
             return (indicesBuffer, vertexBuffer, textureBuffer, normalBuffer);
         }
 
-        public override HitInfo HitTest(Ray ray, HitInfo hitInfo)
+        private protected override void LoadInternal()
+        {
+            var buffers = GetBuffers();
+            _mesh = new Mesh(buffers.vertexBuffer, buffers.normalBuffer, buffers.texBuffer, buffers.indicesBuffer);
+            _mesh.Load();
+        }
+
+        public override bool HitTest(Ray ray, ref HitInfo hit, float from, float to)
         {
             throw new System.NotImplementedException();
         }

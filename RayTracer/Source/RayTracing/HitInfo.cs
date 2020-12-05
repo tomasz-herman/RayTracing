@@ -1,12 +1,13 @@
 ﻿using OpenTK;
-using RayTracer.Models;
+using RayTracing.Maths;
+using RayTracing.Models;
 
-namespace RayTracer.Maths
+namespace RayTracing
 {
     public struct HitInfo
     {
         public Model ModelHit;
-        public double Distance;
+        public float Distance;
         public Vector3 HitPoint;
         public Vector3 Normal;
         public Vector2 TexCoord;

@@ -1,59 +1,68 @@
 ﻿using System;
 using OpenTK;
+using RayTracing.Maths;
 
-namespace RayTracer.Cameras
+namespace RayTracing.Cameras
 {
     public abstract class Camera
     {
-        protected Vector3 _front = -Vector3.UnitZ;
-        protected Vector3 _up = Vector3.UnitY;
-        protected Vector3 _right = Vector3.UnitX;
-        protected float _pitch;
-        protected float _yaw = -MathHelper.PiOver2;
+        private protected Vector3 front = -Vector3.UnitZ;
+        private protected Vector3 up = Vector3.UnitY;
+        private protected Vector3 right = Vector3.UnitX;
+        private protected float pitch;
+        private protected float yaw = -MathHelper.PiOver2;
+        private protected float farPlane = 1000f;
+        private protected float aspectRatio = 16f / 9;
+        private protected Vector3 position;
+        private protected Vector3 horizontal;
+        private protected Vector3 vertical;
+        private protected Vector3 lowerLeft;
 
-        protected float _fov = MathHelper.PiOver3;
-        protected Vector3 position;
-
-        public float AspectRatio { get; set; }
-        public float NearPlane { get; set; }
-        public float FarPlane { get; set; }
-
-        public float Fov
+        public float AspectRatio
         {
-            get => MathHelper.RadiansToDegrees(_fov);
+            get => aspectRatio;
             set
             {
-                var angle = MathHelper.Clamp(value, 1f, 45f);
-                _fov = MathHelper.DegreesToRadians(angle);
+                aspectRatio = value;
+                UpdateVectors();
             }
         }
-        
+
+        public float FarPlane
+        {
+            get => farPlane;
+            set => farPlane = value;
+        }
+
         public void Rotate(float dpitch, float dyaw, float droll)
         {
-            _pitch += dpitch;
-            _yaw += dyaw;
+            pitch += dpitch;
+            yaw += dyaw;
             UpdateVectors();
         }
 
         public void Move(float dx, float dy, float dz)
         {
-            position += _front * dz+_up*dy+_right*dx;
+            position += front * dz + up * dy + right * dx;
         }
-        
+
+        protected abstract void UpdateViewport();
+
         private void UpdateVectors()
         {
-            _front.X = (float) Math.Cos(_pitch) * (float) Math.Cos(_yaw);
-            _front.Y = (float) Math.Sin(_pitch);
-            _front.Z = (float) Math.Cos(_pitch) * (float) Math.Sin(_yaw);
+            front.X = (float) Math.Cos(pitch) * (float) Math.Cos(yaw);
+            front.Y = (float) Math.Sin(pitch);
+            front.Z = (float) Math.Cos(pitch) * (float) Math.Sin(yaw);
 
-            _front = Vector3.Normalize(_front);
+            front = Vector3.Normalize(front);
+            right = Vector3.Normalize(Vector3.Cross(front, Vector3.UnitY));
+            up = Vector3.Normalize(Vector3.Cross(right, front));
 
-            _right = Vector3.Normalize(Vector3.Cross(_front, Vector3.UnitY));
-            _up = Vector3.Normalize(Vector3.Cross(_right, _front));
+            UpdateViewport();
         }
 
         public abstract Matrix4 GetViewMatrix();
         public abstract Matrix4 GetProjectionMatrix();
-        public abstract void GetRay(double x, double y);
+        public abstract Ray GetRay(float x, float y);
     }
 }

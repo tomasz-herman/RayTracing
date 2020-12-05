@@ -1,33 +1,44 @@
 ﻿using System.Collections.Generic;
-using RayTracer.Lights;
-using RayTracer.Maths;
-using RayTracer.Models;
+using RayTracing.Lights;
+using RayTracing.Maths;
+using RayTracing.Models;
+using RayTracing.RayTracing;
 
-namespace RayTracer.World
+namespace RayTracing.World
 {
-    public class Scene
+    public class Scene : IHittable
     {
         public List<Model> Models = new List<Model>();
         public List<Light> Lights = new List<Light>();
-        public AmbientLight AmbientLight;
+        public AmbientLight AmbientLight; //🐕
 
         public void AddModel(Model model)
         {
             Models.Add(model);
         }
+
         public void AddLight(Light light)
         {
             Lights.Add(light);
         }
-        
-        public HitInfo HitTest(Ray ray)
+
+        public bool HitTest(Ray ray, ref HitInfo hit, float from, float to)
         {
-            HitInfo hit = new HitInfo();
+            HitInfo tempHitInfo = new HitInfo();
+            bool hitAnything = false;
+            float closest = to;
+
             foreach (var model in Models)
             {
-                hit = model.HitTest(ray, hit);
+                if (model.HitTest(ray, ref tempHitInfo, from, closest))
+                {
+                    hitAnything = true;
+                    closest = tempHitInfo.Distance;
+                    hit = tempHitInfo;
+                }
             }
-            return hit;
+
+            return hitAnything;
         }
     }
 }

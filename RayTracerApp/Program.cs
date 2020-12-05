@@ -1,7 +1,6 @@
 using System;
 using System.Windows.Forms;
-using RayTracer;
-using RayTracerApp.Forms;
+using RayTracing;
 
 namespace RayTracerApp
 {
@@ -14,7 +13,7 @@ namespace RayTracerApp
         static void Main()
         {
             Log.Configure();
-            
+
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
