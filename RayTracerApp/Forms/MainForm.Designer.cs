@@ -52,14 +52,16 @@ namespace RayTracerApp.Forms
         private void InitializeToolstrip()
         {
             this.toolStrip = new System.Windows.Forms.ToolStrip();
-            this.editButton = new System.Windows.Forms.ToolStripButton();
+            this.newObjectButton = new System.Windows.Forms.ToolStripButton();
+            this.editObjectButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip.SuspendLayout();
 
             this.ddButton = new ToolStripDropDownButton();
             this.ddButton.Text = "Edit";
 
             this.ddButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                this.editButton
+                this.newObjectButton,
+                this.editObjectButton
             });
 
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -70,12 +72,17 @@ namespace RayTracerApp.Forms
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.TabIndex = 0;
             this.toolStrip.Text = "toolStrip";
-            this.editButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.newObjectButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
 
-            this.editButton.Name = "newObjectButton";
-            this.editButton.Text = "New object";
-            this.editButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.editButton.Click += new System.EventHandler(this.newObjectButton_Click);
+            this.newObjectButton.Name = "newObjectButton";
+            this.newObjectButton.Text = "New object";
+            this.newObjectButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.newObjectButton.Click += new System.EventHandler(this.newObjectButton_Click);
+
+            this.newObjectButton.Name = "editObjectButton";
+            this.newObjectButton.Text = "Edit object";
+            this.newObjectButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.newObjectButton.Click += new System.EventHandler(this.editObjectButton_Click);
 
 
             this.Controls.Add(this.toolStrip);
@@ -84,9 +91,9 @@ namespace RayTracerApp.Forms
             this.PerformLayout();
         }
 
-        
         private ToolStrip toolStrip;
-        private ToolStripButton editButton;
+        private ToolStripButton newObjectButton;
+        private ToolStripButton editObjectButton;
         private OpenTK.GLControl gLControl = new GLControl(new OpenTK.Graphics.GraphicsMode(32, 24, 0, 8));
         private ToolStripDropDownButton ddButton;
 

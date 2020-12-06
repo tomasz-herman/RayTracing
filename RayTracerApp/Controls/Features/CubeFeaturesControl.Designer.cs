@@ -38,8 +38,9 @@ namespace RayTracerApp.Controls.Features
             // 
             // edgeLabel
             // 
+            this.edgeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.edgeLabel.AutoSize = true;
-            this.edgeLabel.Location = new System.Drawing.Point(103, 39);
+            this.edgeLabel.Location = new System.Drawing.Point(113, 39);
             this.edgeLabel.Name = "edgeLabel";
             this.edgeLabel.Size = new System.Drawing.Size(33, 15);
             this.edgeLabel.TabIndex = 0;
@@ -47,13 +48,14 @@ namespace RayTracerApp.Controls.Features
             // 
             // edgeUpDown
             // 
+            this.edgeUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.edgeUpDown.DecimalPlaces = 2;
             this.edgeUpDown.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.edgeUpDown.Location = new System.Drawing.Point(142, 37);
+            this.edgeUpDown.Location = new System.Drawing.Point(152, 37);
             this.edgeUpDown.Name = "edgeUpDown";
             this.edgeUpDown.Size = new System.Drawing.Size(53, 23);
             this.edgeUpDown.TabIndex = 1;
@@ -71,7 +73,7 @@ namespace RayTracerApp.Controls.Features
             this.Controls.Add(this.edgeUpDown);
             this.Controls.Add(this.edgeLabel);
             this.Name = "CubeFeaturesControl";
-            this.Size = new System.Drawing.Size(206, 253);
+            this.Size = new System.Drawing.Size(216, 81);
             ((System.ComponentModel.ISupportInitialize)(this.edgeUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

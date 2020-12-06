@@ -27,14 +27,24 @@ namespace RayTracerApp.Forms
         private void MoveNext()
         {
             var index = order.FindIndex(control => control.Visible);
+
             if (index == order.FindIndex(x => x == featuresPanel) - 1) // next one is features panel
             {
                 featuresPanel.UpdateFeatures();
+
+                button1.Visible = true;
+                button2.Click += previousButton_Click;
+                button2.Click -= cancelButton_Click;
+                button2.Text = "Previous";
+
+                topLabel.Text = $"Add new {controller.GetModel().GetType().Name.ToLower()}...";
             }
 
             if (index == order.FindIndex(x => x == materialPanel) - 1) // next one is material panel (last panel)
             {
-                makeNextButtonFinish();
+                button3.Click -= nextButton_Click;
+                button3.Click += finishButton_Click;
+                button3.Text = "Finish";
             }
 
             if (index < order.Count - 1)
@@ -47,9 +57,20 @@ namespace RayTracerApp.Forms
         private void MovePrevious()
         {
             var index = order.FindIndex(control => control.Visible);
+            if(index == order.FindIndex(x => x == newModelPanel) + 1)
+            {
+                topLabel.Text = $"Add new object...";
+
+                button1.Visible = false;
+                button2.Click -= previousButton_Click;
+                button2.Click += cancelButton_Click;
+                button2.Text = "Cancel";
+            }
             if (index == order.FindIndex(x => x == materialPanel)) // current one is material panel (last panel)
             {
-                makeFinishButtonNext();
+                button3.Click += nextButton_Click;
+                button3.Click -= finishButton_Click;
+                button3.Text = "Next";
             }
 
             if (index > 0)
@@ -59,26 +80,11 @@ namespace RayTracerApp.Forms
             }
         }
 
-        private void makeNextButtonFinish()
-        {
-            nextButton.Click -= nextButton_Click;
-            nextButton.Click += finishButton_Click;
-
-            nextButton.Text = "Finish";
-        }
-
-        private void makeFinishButtonNext()
-        {
-            nextButton.Click += nextButton_Click;
-            nextButton.Click -= finishButton_Click;
-
-            nextButton.Text = "Next";
-        }
-
         private void nextButton_Click(object sender, System.EventArgs e)
         {
             MoveNext();
         }
+
         private void finishButton_Click(object sender, System.EventArgs e)
         {
             controller.Dispose();

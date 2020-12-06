@@ -32,55 +32,57 @@ namespace RayTracerApp.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.cancelButton = new System.Windows.Forms.Button();
-            this.previousButton = new System.Windows.Forms.Button();
-            this.nextButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.newModelPanel = new RayTracerApp.Controls.NewModelPanel();
             this.positionPanel = new RayTracerApp.Controls.PositionPanel();
             this.featuresPanel = new RayTracerApp.Controls.FeaturesPanel();
             this.materialPanel = new RayTracerApp.Controls.MaterialPanel();
+            this.topLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // cancelButton
+            // button1
             // 
-            this.cancelButton.Location = new System.Drawing.Point(37, 381);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 0;
-            this.cancelButton.Text = "Cancel";
-            this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.button1.Location = new System.Drawing.Point(85, 381);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Cancel";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // previousButton
+            // button2
             // 
-            this.previousButton.Location = new System.Drawing.Point(118, 381);
-            this.previousButton.Name = "previousButton";
-            this.previousButton.Size = new System.Drawing.Size(75, 23);
-            this.previousButton.TabIndex = 1;
-            this.previousButton.Text = "Previous";
-            this.previousButton.UseVisualStyleBackColor = true;
-            this.previousButton.Click += new System.EventHandler(this.previousButton_Click);
+            this.button2.Location = new System.Drawing.Point(166, 381);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Cancel";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // nextButton
+            // button3
             // 
-            this.nextButton.Location = new System.Drawing.Point(200, 381);
-            this.nextButton.Name = "nextButton";
-            this.nextButton.Size = new System.Drawing.Size(75, 23);
-            this.nextButton.TabIndex = 2;
-            this.nextButton.Text = "Next";
-            this.nextButton.UseVisualStyleBackColor = true;
-            this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
+            this.button3.Location = new System.Drawing.Point(247, 381);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "Next";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.nextButton_Click);
             // 
             // newModelPanel
             // 
-            this.newModelPanel.Location = new System.Drawing.Point(12, 12);
+            this.newModelPanel.Location = new System.Drawing.Point(12, 26);
             this.newModelPanel.Name = "newModelPanel";
-            this.newModelPanel.Size = new System.Drawing.Size(233, 152);
+            this.newModelPanel.Size = new System.Drawing.Size(242, 152);
             this.newModelPanel.TabIndex = 3;
             // 
             // positionPanel
             // 
-            this.positionPanel.Location = new System.Drawing.Point(1, 12);
+            this.positionPanel.Location = new System.Drawing.Point(12, 21);
             this.positionPanel.Name = "positionPanel";
             this.positionPanel.Size = new System.Drawing.Size(258, 301);
             this.positionPanel.TabIndex = 4;
@@ -88,7 +90,7 @@ namespace RayTracerApp.Forms
             // 
             // featuresPanel
             // 
-            this.featuresPanel.Location = new System.Drawing.Point(12, 12);
+            this.featuresPanel.Location = new System.Drawing.Point(12, 26);
             this.featuresPanel.Name = "featuresPanel";
             this.featuresPanel.Size = new System.Drawing.Size(238, 296);
             this.featuresPanel.TabIndex = 5;
@@ -96,24 +98,37 @@ namespace RayTracerApp.Forms
             // 
             // materialPanel
             // 
-            this.materialPanel.Location = new System.Drawing.Point(1, 23);
+            this.materialPanel.Location = new System.Drawing.Point(12, 21);
             this.materialPanel.Name = "materialPanel";
             this.materialPanel.Size = new System.Drawing.Size(294, 339);
             this.materialPanel.TabIndex = 6;
             this.materialPanel.Visible = false;
             // 
+            // topLabel
+            // 
+            this.topLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.topLabel.Location = new System.Drawing.Point(0, 0);
+            this.topLabel.Name = "topLabel";
+            this.topLabel.Size = new System.Drawing.Size(334, 23);
+            this.topLabel.TabIndex = 7;
+            this.topLabel.Text = "Add new object...";
+            this.topLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // NewObjectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(309, 416);
+            this.ClientSize = new System.Drawing.Size(334, 411);
+            this.Controls.Add(this.topLabel);
             this.Controls.Add(this.materialPanel);
             this.Controls.Add(this.featuresPanel);
             this.Controls.Add(this.positionPanel);
             this.Controls.Add(this.newModelPanel);
-            this.Controls.Add(this.nextButton);
-            this.Controls.Add(this.previousButton);
-            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.MaximumSize = new System.Drawing.Size(350, 450);
+            this.MinimumSize = new System.Drawing.Size(350, 450);
             this.Name = "NewObjectForm";
             this.Text = "NewObjectForm";
             this.ResumeLayout(false);
@@ -122,12 +137,13 @@ namespace RayTracerApp.Forms
 
         #endregion
 
-        private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.Button previousButton;
-        private System.Windows.Forms.Button nextButton;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
         private NewModelPanel newModelPanel;
         private PositionPanel positionPanel;
         private FeaturesPanel featuresPanel;
         private MaterialPanel materialPanel;
+        private System.Windows.Forms.Label topLabel;
     }
 }

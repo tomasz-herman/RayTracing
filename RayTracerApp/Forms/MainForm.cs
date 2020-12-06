@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL4;
+using RayTracerApp.Forms.Menu;
 using RayTracing;
 using RayTracing.Cameras;
 using RayTracing.Lights;
@@ -76,6 +77,12 @@ namespace RayTracerApp.Forms
         {
             var form = new NewObjectForm();
             form.SetController(new NewObjectController(scene));
+            form.Show();
+        }
+        private void editObjectButton_Click(object sender, EventArgs e)
+        {
+            var form = new EditObjectForm();
+            form.SetController(new EditObjectController(scene.Models[0]));
             form.Show();
         }
     }

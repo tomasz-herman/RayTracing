@@ -43,7 +43,7 @@ namespace RayTracerApp.Controls
             // 
             // cubeFeaturesControl
             // 
-            this.cubeFeaturesControl.Location = new System.Drawing.Point(3, 15);
+            this.cubeFeaturesControl.Location = new System.Drawing.Point(18, 15);
             this.cubeFeaturesControl.Name = "cubeFeaturesControl";
             this.cubeFeaturesControl.Size = new System.Drawing.Size(206, 160);
             this.cubeFeaturesControl.TabIndex = 1;
@@ -55,7 +55,7 @@ namespace RayTracerApp.Controls
             this.Controls.Add(this.cubeFeaturesControl);
             this.Controls.Add(this.sphereFeaturesControl);
             this.Name = "FeaturesPanel";
-            this.Size = new System.Drawing.Size(225, 304);
+            this.Size = new System.Drawing.Size(232, 195);
             this.ResumeLayout(false);
 
         }
