@@ -23,6 +23,7 @@ namespace RayTracerApp.Forms.Menu
             button3.Click += nextButton_Click;
             button2.Click += cancelButton_Click;
             button1.Click += cancelButton_Click;
+            this.controller = controller;
 
             switch (controller.GetModel())
             {

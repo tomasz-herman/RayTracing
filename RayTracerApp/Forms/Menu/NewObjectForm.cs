@@ -1,37 +1,66 @@
-﻿using System.Collections.Generic;
+﻿using RayTracerApp.Controls;
+using RayTracing.Models;
+using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace RayTracerApp.Forms
 {
-    public partial class NewObjectForm : Form
+    public partial class NewObjectForm : EditorForm
     {
-        private NewObjectController controller;
-        private List<Control> order;
+        private IController controller;
+        private List<IPanel> order;
+        private IPanel currentPanel;
 
-        public void SetController(NewObjectController controller)
-        {
-            this.controller = controller;
-            newModelPanel.SetController(this.controller);
-            positionPanel.SetController(this.controller);
-            featuresPanel.SetController(this.controller);
-            materialPanel.SetController(this.controller);
-
-            order = new List<Control> { newModelPanel, featuresPanel, positionPanel, materialPanel };
-        }
-
-        public NewObjectForm()
+        public NewObjectForm(IController controller)
         {
             InitializeComponent();
+
+            button3.Click += nextButton_Click;
+            button2.Click += cancelButton_Click;
+            button1.Click += cancelButton_Click;
+
+            this.controller = controller;
+
+            currentPanel = newModelPanel;
+            currentPanel.SetController(this.controller);
+            topLabel.Text = $"Add new object...";
+        }
+
+        private void SetController()
+        {
+            foreach (var panel in order)
+            {
+                panel.SetController(this.controller);
+            }
+        }
+
+        private void ChooseOrder()
+        {
+            switch (controller.GetModel())
+            {
+                case Sphere sphere:
+                    order = new List<IPanel> { newModelPanel, positionPanel, materialPanel };
+                    break;
+
+                case Cube cube:
+                    order = new List<IPanel> { newModelPanel, positionPanel, materialPanel };
+                    break;
+            }
         }
 
         private void MoveNext()
         {
-            var index = order.FindIndex(control => control.Visible);
-
-            if (index == order.FindIndex(x => x == featuresPanel) - 1) // next one is features panel
+            var index = 0;
+            if(currentPanel != newModelPanel)
             {
-                featuresPanel.UpdateForModel();
+                index = order.FindIndex(control => control == currentPanel);
+            }
 
+            if (index == 0)
+            {
+                ChooseOrder();
+                SetController();
                 button1.Visible = true;
                 button2.Click += previousButton_Click;
                 button2.Click -= cancelButton_Click;
@@ -40,7 +69,7 @@ namespace RayTracerApp.Forms
                 topLabel.Text = $"Add new {controller.GetModel().GetType().Name.ToLower()}...";
             }
 
-            if (index == order.FindIndex(x => x == materialPanel) - 1) // next one is material panel (last panel)
+            if (index == order.Count-2)
             {
                 button3.Click -= nextButton_Click;
                 button3.Click += finishButton_Click;
@@ -49,15 +78,18 @@ namespace RayTracerApp.Forms
 
             if (index < order.Count - 1)
             {
-                order[index + 1].Visible = true;
-                order[index].Visible = false;
+                order[index + 1].UpdateForModel();
+                order[index + 1].ShowPanel();
+                order[index].HidePanel();
+                currentPanel = order[index + 1];
             }
         }
 
         private void MovePrevious()
         {
-            var index = order.FindIndex(control => control.Visible);
-            if(index == order.FindIndex(x => x == newModelPanel) + 1)
+            var index = order.FindIndex(control => control == currentPanel);
+
+            if (index == 1)
             {
                 topLabel.Text = $"Add new object...";
 
@@ -66,7 +98,7 @@ namespace RayTracerApp.Forms
                 button2.Click += cancelButton_Click;
                 button2.Text = "Cancel";
             }
-            if (index == order.FindIndex(x => x == materialPanel)) // current one is material panel (last panel)
+            if (index == order.Count-1) // current one is material panel (last panel)
             {
                 button3.Click += nextButton_Click;
                 button3.Click -= finishButton_Click;
@@ -75,8 +107,10 @@ namespace RayTracerApp.Forms
 
             if (index > 0)
             {
-                order[index - 1].Visible = true;
-                order[index].Visible = false;
+                order[index - 1].UpdateForModel();
+                order[index - 1].ShowPanel();
+                order[index].HidePanel();
+                currentPanel = order[index - 1];
             }
         }
 

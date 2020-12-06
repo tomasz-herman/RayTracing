@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace RayTracerApp.Controls
 {
-    public partial class NewModelPanel : UserControl
+    public partial class NewModelPanel : UserControl, IPanel
     {
         private IController controller;
 
@@ -39,6 +39,21 @@ namespace RayTracerApp.Controls
                         break;
                 }
             }
+        }
+
+        public void UpdateForModel()
+        {
+            
+        }
+
+        public void ShowPanel()
+        {
+            Visible = true;
+        }
+
+        public void HidePanel()
+        {
+            Visible = false;
         }
     }
 }
