@@ -72,17 +72,18 @@ namespace RayTracerApp.Forms
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.TabIndex = 0;
             this.toolStrip.Text = "toolStrip";
-            this.newObjectButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
 
+            this.newObjectButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.newObjectButton.Name = "newObjectButton";
             this.newObjectButton.Text = "New object";
             this.newObjectButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.newObjectButton.Click += new System.EventHandler(this.newObjectButton_Click);
 
-            this.newObjectButton.Name = "editObjectButton";
-            this.newObjectButton.Text = "Edit object";
-            this.newObjectButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.newObjectButton.Click += new System.EventHandler(this.editObjectButton_Click);
+            this.editObjectButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.editObjectButton.Name = "editObjectButton";
+            this.editObjectButton.Text = "Edit object";
+            this.editObjectButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.editObjectButton.Click += new System.EventHandler(this.editObjectButton_Click);
 
 
             this.Controls.Add(this.toolStrip);

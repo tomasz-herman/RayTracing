@@ -4,7 +4,7 @@ using System;
 
 namespace RayTracerApp
 {
-    public class NewObjectController : IDisposable
+    public class NewObjectController : IController
     {
         private Model _model;
         private Scene _scene;

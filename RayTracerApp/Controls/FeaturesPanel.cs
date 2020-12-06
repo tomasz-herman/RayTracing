@@ -3,41 +3,38 @@ using System.Windows.Forms;
 
 namespace RayTracerApp.Controls
 {
-    public partial class FeaturesPanel : UserControl
+    public partial class FeaturesPanel : UserControl, IPanel
     {
         public FeaturesPanel()
         {
             InitializeComponent();
         }
 
-        private NewObjectController controller;
+        private IController controller;
 
-        public void SetController(NewObjectController newObjectController)
+        public void SetController(IController newObjectController)
         {
             controller = newObjectController;
-            sphereFeaturesControl.SetController(controller);
-            cubeFeaturesControl.SetController(controller);
         }
 
-        public void UpdateFeatures()
+        public void UpdateForModel()
         {
             var model = controller.GetModel();
             HideFeaturesControls();
-            switch (model)
-            {
-                case Sphere sphere:
-                    sphereFeaturesControl.Visible = true;
-                    break;
-                case Cube cube:
-                    cubeFeaturesControl.Visible = true;
-                    break;
-            }
         }
 
         private void HideFeaturesControls()
         {
-            sphereFeaturesControl.Visible = false;
-            cubeFeaturesControl.Visible = false;
+        }
+
+        public void ShowPanel()
+        {
+            this.Visible = true;
+        }
+
+        public void HidePanel()
+        {
+            this.Visible = false;
         }
     }
 }

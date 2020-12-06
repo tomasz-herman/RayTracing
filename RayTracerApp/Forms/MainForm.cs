@@ -81,8 +81,7 @@ namespace RayTracerApp.Forms
         }
         private void editObjectButton_Click(object sender, EventArgs e)
         {
-            var form = new EditObjectForm();
-            form.SetController(new EditObjectController(scene.Models[0]));
+            var form = new EditObjectForm(new EditObjectController(scene.Models[0]));
             form.Show();
         }
     }

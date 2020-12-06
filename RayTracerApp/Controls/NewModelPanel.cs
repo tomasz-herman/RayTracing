@@ -5,9 +5,9 @@ namespace RayTracerApp.Controls
 {
     public partial class NewModelPanel : UserControl
     {
-        private NewObjectController controller;
+        private IController controller;
 
-        public void SetController(NewObjectController newObjectController)
+        public void SetController(IController newObjectController)
         {
             controller = newObjectController;
         }

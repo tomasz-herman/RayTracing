@@ -2,18 +2,32 @@
 
 namespace RayTracerApp.Controls
 {
-    public partial class MaterialPanel : UserControl
+    public partial class MaterialPanel : UserControl, IPanel
     {
-        private NewObjectController controller;
+        private IController controller;
 
         public MaterialPanel()
         {
             InitializeComponent();
         }
 
-        public void SetController(NewObjectController controller)
+        public void SetController(IController controller)
         {
             this.controller = controller;
+        }
+
+        public void UpdateForModel()
+        {
+            
+        }
+        public void ShowPanel()
+        {
+            this.Visible = true;
+        }
+
+        public void HidePanel()
+        {
+            this.Visible = false;
         }
     }
 }

@@ -16,7 +16,7 @@ namespace RayTracerApp.Forms
             featuresPanel.SetController(this.controller);
             materialPanel.SetController(this.controller);
 
-            order = new List<Control> {newModelPanel, featuresPanel, positionPanel, materialPanel};
+            order = new List<Control> { newModelPanel, featuresPanel, positionPanel, materialPanel };
         }
 
         public NewObjectForm()
@@ -30,7 +30,7 @@ namespace RayTracerApp.Forms
 
             if (index == order.FindIndex(x => x == featuresPanel) - 1) // next one is features panel
             {
-                featuresPanel.UpdateFeatures();
+                featuresPanel.UpdateForModel();
 
                 button1.Visible = true;
                 button2.Click += previousButton_Click;

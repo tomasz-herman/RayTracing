@@ -3,11 +3,11 @@ using System.Windows.Forms;
 
 namespace RayTracerApp.Controls
 {
-    public partial class PositionPanel : UserControl
+    public partial class PositionPanel : UserControl, IPanel
     {
-        private NewObjectController controller;
+        private IController controller;
 
-        public void SetController(NewObjectController newObjectController)
+        public void SetController(IController newObjectController)
         {
             controller = newObjectController;
         }
@@ -63,6 +63,30 @@ namespace RayTracerApp.Controls
         {
             NumericUpDown nud = sender as NumericUpDown;
             controller.GetModel().Scale = (float) nud.Value;
+        }
+
+        public void UpdateForModel()
+        {
+            var model = controller.GetModel();
+            this.scaleUpDown.Value = (decimal)model.Scale;
+
+            this.rollUpDown.Value = (decimal)model.Rotation.Z;
+            this.yawUpDown.Value = (decimal)model.Rotation.Y;
+            this.pitchUpDown.Value = (decimal)model.Rotation.X;
+
+            this.xUpDown.Value = (decimal)model.Position.X;
+            this.yUpDown.Value = (decimal)model.Position.Y;
+            this.zUpDown.Value = (decimal)model.Position.Z;
+        }
+
+        public void ShowPanel()
+        {
+            this.Visible = true;
+        }
+
+        public void HidePanel()
+        {
+            this.Visible = false;
         }
     }
 }
