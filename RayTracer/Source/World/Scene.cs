@@ -8,9 +8,9 @@ namespace RayTracing.World
 {
     public class Scene : IHittable
     {
-        public List<Model> Models = new List<Model>();
-        public List<Light> Lights = new List<Light>();
-        public AmbientLight AmbientLight; //🐕
+        public List<Model> Models { get; } = new List<Model>();
+        public List<Light> Lights { get; } = new List<Light>();
+        public AmbientLight AmbientLight { get; set; } //🐕
 
         public void AddModel(Model model)
         {
