@@ -16,11 +16,13 @@ namespace RayTracerDemo
     {
         static void Main(string[] args)
         {
-            Camera camera = new PerspectiveCamera(new Vector3(0, 0, 5)) {AspectRatio = 16f / 9};
+            Camera camera = new PerspectiveCamera(new Vector3(0, 0, 8)) {AspectRatio = 16f / 9};
             var scene = new Scene();
             scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.LightSkyBlue)};
             scene.AddModel(new Sphere {Position = new Vector3(0, 0.5f, 0), Scale = 1, Material = new Diffuse(Color.FromColor4(Color4.Orange))});
-            scene.AddModel(new Plane {Position = new Vector3(0, -0.5f, 0), Scale = 1, Material = new Diffuse(Color.FromColor4(Color4.LawnGreen))});
+            scene.AddModel(new Sphere {Position = new Vector3(-2.5f, 0.5f, 1), Scale = 1, Material = new Reflective(Color.FromColor4(Color4.Azure), 0.1f)});
+            scene.AddModel(new Sphere {Position = new Vector3(2.5f, 0.5f, 1), Scale = 1, Material = new Reflective(Color.FromColor4(Color4.Aqua), 0.75f)});
+            scene.AddModel(new Plane {Position = new Vector3(0, -0.5f, 0), Scale = 1, Material = new Diffuse(Color.FromColor4(Color4.ForestGreen))});
             var rayTracer = new RayTracer(10, 64, Vec2Sampling.Jittered, 1280);
             rayTracer.Render(scene, camera);
             Console.WriteLine("done");
