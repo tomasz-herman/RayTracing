@@ -18,6 +18,7 @@ namespace RayTracerApp
         {
             DeleteModel();
             _model = model;
+            _model.Load();
             _scene.AddModel(_model);
         }
 
@@ -26,7 +27,7 @@ namespace RayTracerApp
             return _model;
         }
 
-        private void DeleteModel()
+        public void DeleteModel()
         {
             if (_model != null)
             {
@@ -37,8 +38,8 @@ namespace RayTracerApp
 
         public void Dispose()
         {
-            DeleteModel();
             _scene = null;
+            _model = null;
         }
     }
 }

@@ -30,6 +30,7 @@ namespace RayTracerApp.Controls
         private void InitializeComponent()
         {
             this.sphereFeaturesControl = new RayTracerApp.Controls.Features.SphereFeaturesControl();
+            this.cubeFeaturesControl = new RayTracerApp.Controls.Features.CubeFeaturesControl();
             this.SuspendLayout();
             // 
             // sphereFeaturesControl
@@ -40,10 +41,18 @@ namespace RayTracerApp.Controls
             this.sphereFeaturesControl.TabIndex = 0;
             this.sphereFeaturesControl.Visible = false;
             // 
+            // cubeFeaturesControl
+            // 
+            this.cubeFeaturesControl.Location = new System.Drawing.Point(3, 15);
+            this.cubeFeaturesControl.Name = "cubeFeaturesControl";
+            this.cubeFeaturesControl.Size = new System.Drawing.Size(206, 160);
+            this.cubeFeaturesControl.TabIndex = 1;
+            // 
             // FeaturesPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cubeFeaturesControl);
             this.Controls.Add(this.sphereFeaturesControl);
             this.Name = "FeaturesPanel";
             this.Size = new System.Drawing.Size(225, 304);
@@ -56,5 +65,6 @@ namespace RayTracerApp.Controls
         private System.Windows.Forms.Label radiusLabel;
         private System.Windows.Forms.NumericUpDown radiusUpDown;
         private Features.SphereFeaturesControl sphereFeaturesControl;
+        private Features.CubeFeaturesControl cubeFeaturesControl;
     }
 }

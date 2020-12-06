@@ -16,6 +16,7 @@ namespace RayTracerApp.Controls
         {
             controller = newObjectController;
             sphereFeaturesControl.SetController(controller);
+            cubeFeaturesControl.SetController(controller);
         }
 
         public void UpdateFeatures()
@@ -27,12 +28,16 @@ namespace RayTracerApp.Controls
                 case Sphere sphere:
                     sphereFeaturesControl.Visible = true;
                     break;
+                case Cube cube:
+                    cubeFeaturesControl.Visible = true;
+                    break;
             }
         }
 
         private void HideFeaturesControls()
         {
             sphereFeaturesControl.Visible = false;
+            cubeFeaturesControl.Visible = false;
         }
     }
 }

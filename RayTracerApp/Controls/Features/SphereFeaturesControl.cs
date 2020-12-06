@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using RayTracing.Models;
 
 namespace RayTracerApp.Controls.Features
 {
@@ -20,7 +21,7 @@ namespace RayTracerApp.Controls.Features
         private void radiusUpDown_ValueChanged(object sender, EventArgs e)
         {
             NumericUpDown nud = sender as NumericUpDown;
-            controller.GetModel().Scale = (float) nud.Value;
+            ((Sphere)controller.GetModel()).Radius = (float) nud.Value;
         }
     }
 }

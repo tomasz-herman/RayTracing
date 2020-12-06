@@ -14,8 +14,9 @@ namespace RayTracerApp.Forms
             newModelPanel.SetController(this.controller);
             positionPanel.SetController(this.controller);
             featuresPanel.SetController(this.controller);
+            materialPanel.SetController(this.controller);
 
-            order = new List<Control> {newModelPanel, featuresPanel, positionPanel};
+            order = new List<Control> {newModelPanel, featuresPanel, positionPanel, materialPanel};
         }
 
         public NewObjectForm()
@@ -31,6 +32,11 @@ namespace RayTracerApp.Forms
                 featuresPanel.UpdateFeatures();
             }
 
+            if (index == order.FindIndex(x => x == materialPanel) - 1) // next one is material panel (last panel)
+            {
+                makeNextButtonFinish();
+            }
+
             if (index < order.Count - 1)
             {
                 order[index + 1].Visible = true;
@@ -41,6 +47,11 @@ namespace RayTracerApp.Forms
         private void MovePrevious()
         {
             var index = order.FindIndex(control => control.Visible);
+            if (index == order.FindIndex(x => x == materialPanel)) // current one is material panel (last panel)
+            {
+                makeFinishButtonNext();
+            }
+
             if (index > 0)
             {
                 order[index - 1].Visible = true;
@@ -48,9 +59,30 @@ namespace RayTracerApp.Forms
             }
         }
 
+        private void makeNextButtonFinish()
+        {
+            nextButton.Click -= nextButton_Click;
+            nextButton.Click += finishButton_Click;
+
+            nextButton.Text = "Finish";
+        }
+
+        private void makeFinishButtonNext()
+        {
+            nextButton.Click += nextButton_Click;
+            nextButton.Click -= finishButton_Click;
+
+            nextButton.Text = "Next";
+        }
+
         private void nextButton_Click(object sender, System.EventArgs e)
         {
             MoveNext();
+        }
+        private void finishButton_Click(object sender, System.EventArgs e)
+        {
+            controller.Dispose();
+            Close();
         }
 
         private void previousButton_Click(object sender, System.EventArgs e)
@@ -60,6 +92,7 @@ namespace RayTracerApp.Forms
 
         private void cancelButton_Click(object sender, System.EventArgs e)
         {
+            controller.DeleteModel();
             controller.Dispose();
             Close();
         }

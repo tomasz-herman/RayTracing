@@ -11,9 +11,21 @@ namespace RayTracing.Models
 
         public override Vector3 Rotation { get; set; }
 
+        private float radius = 1f;
+
+        public float Radius
+        {
+            get => radius;
+            set
+            {
+                radius = value;
+                Load();
+            }
+        }
+        
         private protected override void LoadInternal()
         {
-            var (positions, texCoords) = GetVertexList(100, 100);
+            var (positions, texCoords) = GetVertexList(Radius, 100, 100);
             var indicesList = GetElementBuffer(100, 100);
             _mesh = new Mesh(positions, positions, texCoords, indicesList);
             _mesh.Load();
@@ -22,10 +34,11 @@ namespace RayTracing.Models
         public override bool HitTest(Ray ray, ref HitInfo hit, float from, float to)
         {
             Vector3 distance = ray.Origin - Position;
-
+            float radius = Radius * Scale;
+            
             float a = ray.Direction.LengthSquared;
             float bHalf = Vector3.Dot(distance, ray.Direction);
-            float c = distance.LengthSquared - Scale * Scale;
+            float c = distance.LengthSquared - radius * radius;
             float disc = bHalf * bHalf - a * c;
 
             if (disc < 0)
@@ -46,7 +59,7 @@ namespace RayTracing.Models
             hit.Distance = root;
             hit.HitPoint = ray.Origin + ray.Direction * hit.Distance;
             hit.ModelHit = this;
-            hit.Normal = (hit.HitPoint - Position) / Scale /*radius*/;
+            hit.Normal = (hit.HitPoint - Position) / radius;
 
             return true;
         }
@@ -57,7 +70,7 @@ namespace RayTracing.Models
         }
 
 
-        private (List<float>, List<float>) GetVertexList(short rings, short sectors)
+        private (List<float>, List<float>) GetVertexList(float radius, short rings, short sectors)
         {
             float R = 1f / (rings - 1);
             float S = 1f / (sectors - 1);
@@ -72,8 +85,11 @@ namespace RayTracing.Models
                 for (s = 0; s < sectors; s++)
                 {
                     x = (float) (Math.Cos(2 * (float) Math.PI * s * S) * Math.Sin((float) Math.PI * r * R));
+                    x *= radius;
                     y = (float) (Math.Sin(-(float) Math.PI / 2 + (float) Math.PI * r * R));
+                    y *= radius;
                     z = (float) (Math.Sin(2 * (float) Math.PI * s * S) * Math.Sin((float) Math.PI * r * R));
+                    z *= radius;
                     // positions
                     positions.Add(x);
                     positions.Add(y);

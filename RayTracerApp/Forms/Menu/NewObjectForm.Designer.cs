@@ -38,11 +38,12 @@ namespace RayTracerApp.Forms
             this.newModelPanel = new RayTracerApp.Controls.NewModelPanel();
             this.positionPanel = new RayTracerApp.Controls.PositionPanel();
             this.featuresPanel = new RayTracerApp.Controls.FeaturesPanel();
+            this.materialPanel = new RayTracerApp.Controls.MaterialPanel();
             this.SuspendLayout();
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(12, 314);
+            this.cancelButton.Location = new System.Drawing.Point(37, 381);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 0;
@@ -52,7 +53,7 @@ namespace RayTracerApp.Forms
             // 
             // previousButton
             // 
-            this.previousButton.Location = new System.Drawing.Point(93, 314);
+            this.previousButton.Location = new System.Drawing.Point(118, 381);
             this.previousButton.Name = "previousButton";
             this.previousButton.Size = new System.Drawing.Size(75, 23);
             this.previousButton.TabIndex = 1;
@@ -62,7 +63,7 @@ namespace RayTracerApp.Forms
             // 
             // nextButton
             // 
-            this.nextButton.Location = new System.Drawing.Point(175, 314);
+            this.nextButton.Location = new System.Drawing.Point(200, 381);
             this.nextButton.Name = "nextButton";
             this.nextButton.Size = new System.Drawing.Size(75, 23);
             this.nextButton.TabIndex = 2;
@@ -93,11 +94,20 @@ namespace RayTracerApp.Forms
             this.featuresPanel.TabIndex = 5;
             this.featuresPanel.Visible = false;
             // 
+            // materialPanel
+            // 
+            this.materialPanel.Location = new System.Drawing.Point(1, 23);
+            this.materialPanel.Name = "materialPanel";
+            this.materialPanel.Size = new System.Drawing.Size(294, 339);
+            this.materialPanel.TabIndex = 6;
+            this.materialPanel.Visible = false;
+            // 
             // NewObjectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(262, 349);
+            this.ClientSize = new System.Drawing.Size(309, 416);
+            this.Controls.Add(this.materialPanel);
             this.Controls.Add(this.featuresPanel);
             this.Controls.Add(this.positionPanel);
             this.Controls.Add(this.newModelPanel);
@@ -118,5 +128,6 @@ namespace RayTracerApp.Forms
         private NewModelPanel newModelPanel;
         private PositionPanel positionPanel;
         private FeaturesPanel featuresPanel;
+        private MaterialPanel materialPanel;
     }
 }

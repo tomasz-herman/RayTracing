@@ -8,6 +8,17 @@ namespace RayTracing.Models
     {
         private Mesh _mesh;
 
+        private float edge = 1f;
+        public float Edge
+        {
+            get => edge;
+            set
+            {
+                edge = value;
+                Load();
+            }
+        }
+        
         private List<Vector3> GetVertices()
         {
             return new List<Vector3>
@@ -84,9 +95,9 @@ namespace RayTracing.Models
 
             for (int i = 0; i < indices.Count; i++)
             {
-                vertexBuffer.Add(vertices[indices[i]].X); // x
-                vertexBuffer.Add(vertices[indices[i]].Y); // y
-                vertexBuffer.Add(vertices[indices[i]].Z); // z
+                vertexBuffer.Add(edge * vertices[indices[i]].X); // x
+                vertexBuffer.Add(edge * vertices[indices[i]].Y); // y
+                vertexBuffer.Add(edge * vertices[indices[i]].Z); // z
 
                 textureBuffer.Add(texCoords[texInds[i % 6]].X); // x
                 textureBuffer.Add(texCoords[texInds[i % 6]].Y); // y
