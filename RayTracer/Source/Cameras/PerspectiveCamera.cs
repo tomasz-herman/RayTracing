@@ -21,6 +21,7 @@ namespace RayTracing.Cameras
         public PerspectiveCamera(Vector3 position)
         {
             this.position = position;
+            UpdateVectors();
         }
 
         protected override void UpdateViewport()
