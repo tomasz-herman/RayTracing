@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using OpenTK;
 using RayTracing.Maths;
 using RayTracing.Sampling;
@@ -11,6 +12,8 @@ namespace RayTracing.Cameras
         private float _lensRadius;
         private float _focusDistance;
         private Sampler<Vector2> _lensSampler;
+        private Func<int, List<Vector2>> _sampling;
+        private int _samplesCount = 64;
 
         public float Fov
         {
@@ -22,12 +25,53 @@ namespace RayTracing.Cameras
             }
         }
 
-        public LensCamera(Vector3 position, float lensRadius, float focusDistance, Sampler<Vector2> lensSampler = null)
+        public float LensRadius
+        {
+            get => _lensRadius;
+            set
+            {
+                _lensRadius = value;
+                UpdateViewport();
+            }
+        }
+
+        public float FocusDistance
+        {
+            get => _focusDistance;
+            set
+            {
+                _focusDistance = value;
+                UpdateViewport();
+            }
+        }
+        
+        public Func<int, List<Vector2>> Sampling
+        {
+            get => _sampling;
+            set
+            {
+                _sampling = value;
+                _lensSampler = new Sampler<Vector2>(_sampling, _samplesCount, 8, Vec2Sampling.ToDisk);
+            }
+        }
+        
+        public int SamplesCount
+        {
+            get => _samplesCount;
+            set
+            {
+                _samplesCount = value;
+                _lensSampler = new Sampler<Vector2>(_sampling, _samplesCount, 8, Vec2Sampling.ToDisk);
+            }
+        }
+
+        public LensCamera(Vector3 position, float lensRadius, float focusDistance, int samplesCount = 64, Func<int, List<Vector2>> sampling = null)
         {
             this.position = position;
             _lensRadius = lensRadius;
             _focusDistance = focusDistance;
-            _lensSampler = lensSampler ?? new Sampler<Vector2>(Vec2Sampling.Jittered, 100, 8, Vec2Sampling.ToDisk);
+            _samplesCount = samplesCount;
+            Sampling = sampling ?? Vec2Sampling.Jittered;
             UpdateVectors();
         }
 
