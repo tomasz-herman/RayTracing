@@ -8,22 +8,22 @@ using RayTracing.Models;
 
 namespace RayTracerTests.Source.Models
 {
-    public class SphereTest
+    public class PlaneTest
     {
-        [TestCaseSource(nameof(SphereNotHitCases))]
-        public void SphereShouldNotBeHit(Sphere sphere, Ray impactRay, float to)
+        [TestCaseSource(nameof(PlaneNotHitCases))]
+        public void PlaneShouldNotBeHit(Plane plane, Ray impactRay, float to)
         {
             HitInfo info = new HitInfo();
-            bool hit = sphere.HitTest(impactRay, ref info, 0, to);
+            bool hit = plane.HitTest(impactRay, ref info, 0, to);
             
             hit.Should().BeFalse();
         }
         
-        [TestCaseSource(nameof(SphereHitCases))]
-        public void SphereShouldBeHit(Sphere sphere, Ray impactRay, HitInfo expectedInfo)
+        [TestCaseSource(nameof(PlaneHitCases))]
+        public void PlaneShouldBeHit(Plane plane, Ray impactRay, HitInfo expectedInfo)
         {
             HitInfo info = new HitInfo();
-            bool hit = sphere.HitTest(impactRay, ref info, 0, float.PositiveInfinity);
+            bool hit = plane.HitTest(impactRay, ref info, 0, float.PositiveInfinity);
             
             hit.Should().BeTrue();
             VectorsShouldBeApproximately(info.Normal, expectedInfo.Normal, Ray.Epsilon);
@@ -32,109 +32,109 @@ namespace RayTracerTests.Source.Models
         }
         
         [Test]
-        public void SphereHitMarksHitInfoWithItself()
+        public void PlaneHitMarksHitInfoWithItself()
         {
-            Sphere sphere = new Sphere {Position = Vector3.Zero, Scale = 1};
-            Ray ray = new Ray {Origin = 2 * Vector3.UnitZ, Direction = -Vector3.UnitZ};
+            Plane plane = new Plane {Position = Vector3.Zero, Scale = 1};
+            Ray ray = new Ray {Origin = 2 * Vector3.UnitY, Direction = -Vector3.UnitY};
             HitInfo info = new HitInfo();
             
-            sphere.HitTest(ray, ref info, 0, float.PositiveInfinity);
+            plane.HitTest(ray, ref info, 0, float.PositiveInfinity);
 
-            info.ModelHit.Should().Be(sphere);
+            info.ModelHit.Should().Be(plane);
         }
         
-        static object[] SphereNotHitCases =
+        static object[] PlaneNotHitCases =
         {
             new object[]
             {
-                new Sphere
+                new Plane
                 {
                     Position = Vector3.Zero, 
                     Scale = 1
                 }, 
                 new Ray
                 {
-                    Origin = 2 * Vector3.UnitZ, 
+                    Origin = 2 * Vector3.UnitY, 
+                    Direction = Vector3.UnitY
+                },
+                float.PositiveInfinity
+            },
+            new object[]
+            {
+                new Plane
+                {
+                    Position = Vector3.Zero, 
+                    Scale = 1
+                }, 
+                new Ray
+                {
+                    Origin = 2 * Vector3.UnitY, 
+                    Direction = -Vector3.UnitY
+                },
+                1.0f
+            },
+            new object[]
+            {
+                new Plane
+                {
+                    Position = Vector3.Zero, 
+                    Scale = 1
+                }, 
+                new Ray
+                {
+                    Origin = 2 * Vector3.UnitY, 
                     Direction = Vector3.UnitZ
                 },
                 float.PositiveInfinity
             },
             new object[]
             {
-                new Sphere
-                {
-                    Position = Vector3.UnitY, 
-                    Scale = 0.5f
-                }, 
-                new Ray
-                {
-                    Origin = 2 * Vector3.UnitZ, 
-                    Direction = -Vector3.UnitZ
-                },
-                float.PositiveInfinity
-            },
-            new object[]
-            {
-                new Sphere
+                new Plane
                 {
                     Position = Vector3.Zero, 
                     Scale = 1
                 }, 
                 new Ray
                 {
-                    Origin = 2 * Vector3.UnitZ, 
-                    Direction = -Vector3.UnitY
+                    Origin = 2 * Vector3.UnitY, 
+                    Direction = Vector3.UnitX
                 },
                 float.PositiveInfinity
-            },
-            new object[]
-            {
-                new Sphere
-                {
-                    Position = Vector3.Zero, 
-                    Scale = 1
-                }, 
-                new Ray
-                {
-                    Origin = 2 * Vector3.UnitZ, 
-                    Direction = -Vector3.UnitZ
-                },
-                0.5f
             },
         };
         
-        static object[] SphereHitCases =
+        static object[] PlaneHitCases =
         {
             new object[]
             {
-                new Sphere
+                new Plane
                 {
                     Position = Vector3.Zero, 
                     Scale = 1
                 }, 
                 new Ray
                 {
-                    Origin = 2 * Vector3.UnitZ, 
-                    Direction = -Vector3.UnitZ
+                    Origin = 2 * Vector3.UnitY, 
+                    Direction = -Vector3.UnitY
                 }, 
                 new HitInfo
                 {
-                    Distance = 1.0f,
-                    HitPoint = Vector3.UnitZ,
-                    Normal = Vector3.UnitZ
+                    Distance = 2.0f,
+                    HitPoint = Vector3.Zero,
+                    Normal = Vector3.UnitY
                 }
             },
             new object[]
             {
-                new Sphere
+                new Plane
                 {
-                    Position = Vector3.UnitY, 
+                    Position = Vector3.Zero, 
                     Scale = 1
                 }, 
                 new Ray
                 {
-                    Origin = 2 * Vector3.UnitZ, 
-                    Direction = -Vector3.UnitZ
+                    Origin = -2 * Vector3.UnitY, 
+                    Direction = Vector3.UnitY
                 }, 
                 new HitInfo
                 {
@@ -145,25 +145,45 @@ namespace RayTracerTests.Source.Models
             },
             new object[]
             {
-                new Sphere
+                new Plane
                 {
                     Position = Vector3.Zero, 
-                    Scale = 3
+                    Scale = 1
                 }, 
                 new Ray
                 {
-                    Origin = 2 * Vector3.UnitZ, 
+                    Origin = Vector3.One, 
+                    Direction = -Vector3.Normalize(Vector3.One)
+                }, 
+                new HitInfo
+                {
+                    Distance = (float)Math.Sqrt(3),
+                    HitPoint = Vector3.Zero,
+                    Normal = Vector3.UnitY
+                }
+            },
+            new object[]
+            {
+                new Plane
+                {
+                    Rotation = new Vector3((float)Math.PI / 2, 0, 0),
+                    Position = Vector3.Zero, 
+                    Scale = 1
+                }, 
+                new Ray
+                {
+                    Origin = 2 * Vector3.One, 
                     Direction = -Vector3.UnitZ
                 }, 
                 new HitInfo
                 {
-                    Distance = 5.0f,
-                    HitPoint = -3 * Vector3.UnitZ,
+                    Distance = 2.0f,
+                    HitPoint = new Vector3(2, 2, 0),
                     Normal = Vector3.UnitZ
                 }
             },
         };
-        
+
         static void VectorsShouldBeApproximately(Vector3 vec1, Vector3 vec2, float precision)
         {
             vec1.X.Should().BeApproximately(vec2.X, precision);
@@ -171,6 +191,4 @@ namespace RayTracerTests.Source.Models
             vec1.Z.Should().BeApproximately(vec2.Z, precision);
         }
     }
-    
-    
 }
