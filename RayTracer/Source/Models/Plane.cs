@@ -35,7 +35,7 @@ namespace RayTracing.Models
                 hit.Distance = t;
                 hit.HitPoint = ray.Origin + ray.Direction * hit.Distance;
                 hit.ModelHit = this;
-                hit.Normal = _normal;
+                hit.SetNormal(ref ray, ref _normal);
                 return true;
             }
 

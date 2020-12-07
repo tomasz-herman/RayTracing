@@ -46,8 +46,8 @@ namespace RayTracing.Models
             hit.Distance = root;
             hit.HitPoint = ray.Origin + ray.Direction * hit.Distance;
             hit.ModelHit = this;
-            hit.Normal = (hit.HitPoint - Position) / Scale /*radius*/;
-
+            Vector3 normal = (hit.HitPoint - Position) / Scale;
+            hit.SetNormal(ref ray, ref normal);
             return true;
         }
 
