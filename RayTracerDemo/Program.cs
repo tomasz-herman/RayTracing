@@ -22,7 +22,7 @@ namespace RayTracerDemo
             scene.AddModel(new Sphere {Position = new Vector3(-2.5f, 0.5f, 1), Scale = 1, Material = new Reflective(Color.FromColor4(Color4.Azure), 0.1f)});
             scene.AddModel(new Sphere {Position = new Vector3(2.5f, 0.5f, 1), Scale = 1, Material = new Reflective(Color.FromColor4(Color4.Aqua), 0.75f)});
             scene.AddModel(new Plane {Position = new Vector3(0, -0.5f, 0), Scale = 1, Material = new Diffuse(Color.FromColor4(Color4.ForestGreen))});
-            var rayTracer = new RayTracer(10, 64, Vec2Sampling.Jittered, 1280);
+            var rayTracer = new FileRayTracer(10, 64, Vec2Sampling.Jittered, 1280);
             rayTracer.Render(scene, camera);
             Console.WriteLine("done");
         }

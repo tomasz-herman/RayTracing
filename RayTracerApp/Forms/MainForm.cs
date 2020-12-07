@@ -6,8 +6,10 @@ using OpenTK.Graphics.OpenGL4;
 using RayTracing;
 using RayTracing.Cameras;
 using RayTracing.Lights;
+using RayTracing.Materials;
 using RayTracing.Maths;
 using RayTracing.Models;
+using RayTracing.Sampling;
 using RayTracing.World;
 using Camera = RayTracing.Cameras.Camera;
 using Timer = System.Windows.Forms.Timer;
@@ -30,14 +32,13 @@ namespace RayTracerApp.Forms
         private void GLControl_Load(object sender, EventArgs e)
         {
             GL.Enable(EnableCap.DepthTest);
-            _renderer = new Renderer();
+            // _renderer = new IncrementalRayTracer(10, 64, Vec2Sampling.Jittered, gLControl.Width);
             _cameraController = new CameraController(_camera, gLControl);
             scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.LightSkyBlue)};
-            scene.AddModel(new Sphere {Position = new Vector3(0, 0, 0), Scale = 2}.Load());
-            scene.AddModel(new Sphere {Position = new Vector3(0, 2, 0), Scale = 1}.Load());
-            scene.AddModel(new Sphere {Position = new Vector3(0, 15, 0), Scale = 5}.Load());
-            scene.AddModel(new Cube {Position = new Vector3(5, 0, 4), Scale = 3}.Load());
-            scene.AddModel(new Plane(){Position = new Vector3(0, -1, 0)}.Load());
+            scene.AddModel(new Sphere {Position = new Vector3(0, 0.5f, 0), Scale = 1, Material = new Diffuse(Color.FromColor4(Color4.Orange))});
+            scene.AddModel(new Sphere {Position = new Vector3(-2.5f, 0.5f, 1), Scale = 1, Material = new Reflective(Color.FromColor4(Color4.Azure), 0.1f)});
+            scene.AddModel(new Sphere {Position = new Vector3(2.5f, 0.5f, 1), Scale = 1, Material = new Reflective(Color.FromColor4(Color4.Aqua), 0.75f)});
+            scene.AddModel(new Plane {Position = new Vector3(0, -0.5f, 0), Scale = 1, Material = new Diffuse(Color.FromColor4(Color4.ForestGreen))});
 
             InitializeFpsTimer();
             UpdateViewport();
@@ -54,8 +55,8 @@ namespace RayTracerApp.Forms
         {
             _cameraController.UpdateCamera(FpsTimer.Interval);
 
-            _renderer.Render(scene, _camera);
-            gLControl.SwapBuffers();
+            // _renderer.Render(scene, _camera);
+            //gLControl.SwapBuffers();
         }
 
         private void OnResize(object sender, EventArgs e)
@@ -75,9 +76,14 @@ namespace RayTracerApp.Forms
 
         private void newObjectButton_Click(object sender, EventArgs e)
         {
-            var form = new NewObjectForm();
-            form.SetController(new NewObjectController(scene));
-            form.Show();
+            new IncrementalRayTracer(10, 64, Vec2Sampling.Jittered, gLControl.Width).Render(scene, _camera, (int a) =>
+            {
+                gLControl.SwapBuffers();
+                this.Text = a.ToString();
+            });
+            // var form = new NewObjectForm();
+            // form.SetController(new NewObjectController(scene));
+            // form.Show();
         }
     }
 }

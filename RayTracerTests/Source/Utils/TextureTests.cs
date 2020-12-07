@@ -1,43 +1,43 @@
 using System;
 using NUnit.Framework;
-using RayTracing.Utils;
 using FluentAssertions;
+using RayTracing.Materials;
 using RayTracing.Maths;
 
 namespace RayTracerTests
 {
-    public class ImageTets
+    public class TextureTets
     {
         [Test]
-        public void HeightOfNewImageIsConsistentWithConstructorParameter()
+        public void HeightOfNewTextureIsConsistentWithConstructorParameter()
         {
-            Image image;
+            Texture image;
             const int width = 3;
             const int height = 5;
                 
-            image = new Image(width, height);
+            image = new Texture(width, height);
 
             image.Height.Should().Be(height);
         }
         
         [Test]
-        public void WidthOfNewImageIsConsistentWithConstructorParameter()
+        public void WidthOfNewTextureIsConsistentWithConstructorParameter()
         {
-            Image image;
+            Texture image;
             const int width = 3;
             const int height = 5;
                 
-            image = new Image(width, height);
+            image = new Texture(width, height);
 
             image.Width.Should().Be(width);
         }
         
         [Test]
-        public void AccessingPixelOutsideOfImageShouldThrowOutRangeException()
+        public void AccessingPixelOutsideOfTextureShouldThrowOutRangeException()
         {
             const int width = 3;
             const int height = 5;
-            Image image = new Image(width, height);
+            Texture image = new Texture(width, height);
             
             Action action = () =>
             {
@@ -50,10 +50,10 @@ namespace RayTracerTests
         [Test]
         public void IndexingOperatorCanChangeValues()
         {
-            Image image;
+            Texture image;
             const int width = 1;
             const int height = 1;
-            image = new Image(width, height);
+            image = new Texture(width, height);
             Color violet = new Color(1, 0, 1);
 
             image[0, 0] = violet;
@@ -62,11 +62,11 @@ namespace RayTracerTests
         }
         
         [Test]
-        public void NewImageIsBlack()
+        public void NewTextureIsBlack()
         {
-            Image image;
+            Texture image;
                 
-            image = new Image(3, 2);
+            image = new Texture(3, 2);
 
             for (int i = 0; i < image.Height; i++)
             {
@@ -78,12 +78,12 @@ namespace RayTracerTests
         }
         
         [Test]
-        public void ImagesAreDeepCopied()
+        public void TexturesAreDeepCopied()
         {
-            Image image = new Image(1, 1);
+            Texture image = new Texture(1, 1);
             image[0, 0] = new Color(1, 0, 0);
             
-            Image copy = new Image(image);
+            Texture copy = new Texture(image);
             image[0, 0] = new Color(0, 1, 1);
 
             copy[0, 0].Should().Be(new Color(1, 0, 0));
@@ -92,7 +92,7 @@ namespace RayTracerTests
         [Test]
         public void RawDataShouldHaveRGBOrder()
         {
-            Image image = new Image(1, 1)
+            Texture image = new Texture(1, 1)
             {
                 [0, 0] = new Color(0.25f, 0.5f, 0.75f)
             };
@@ -106,7 +106,7 @@ namespace RayTracerTests
         [Test]
         public void RawDataShouldContainRowByRowFlippedInYAxis()
         {
-            Image image = new Image(3, 2)
+            Texture image = new Texture(3, 2)
             {
                 [0, 1] = new Color(1.0f / 255.0f, 2.0f / 255.0f, 3.0f / 255.0f),
                 [1, 1] = new Color(4.0f / 255.0f, 5.0f / 255.0f, 6.0f / 255.0f),
@@ -122,10 +122,10 @@ namespace RayTracerTests
         }
         
         [Test]
-        public void WriteShouldSaveImageToPngFile()
+        public void WriteShouldSaveTextureToPngFile()
         {
-            const string path = "WriteShouldSaveImageToPngFile.png";
-            Image image = new Image(3, 2)
+            const string path = "WriteShouldSaveTextureToPngFile.png";
+            Texture image = new Texture(3, 2)
             {
                 [0, 1] = new Color(1.0f / 255.0f, 2.0f / 255.0f, 3.0f / 255.0f),
                 [1, 1] = new Color(4.0f / 255.0f, 5.0f / 255.0f, 6.0f / 255.0f),
