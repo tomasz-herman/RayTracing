@@ -6,7 +6,7 @@ namespace RayTracing.Maths
     {
         public Vector3 Origin;
         public Vector3 Direction;
-        public const double Epsilon = 1e-6;
+        public const float Epsilon = 1e-6f;
 
         public Ray(Vector3 origin, Vector3 direction)
         {
