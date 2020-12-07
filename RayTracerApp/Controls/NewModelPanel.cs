@@ -1,5 +1,6 @@
 ﻿using RayTracing.Models;
 using System.Windows.Forms;
+using RayTracerApp.SceneControllers;
 
 namespace RayTracerApp.Controls
 {

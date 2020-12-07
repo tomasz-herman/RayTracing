@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using RayTracerApp.SceneControllers;
 
 namespace RayTracerApp.Controls.Features
 {

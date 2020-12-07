@@ -3,6 +3,7 @@ using RayTracing.Models;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using RayTracerApp.SceneControllers;
 
 namespace RayTracerApp.Forms
 {

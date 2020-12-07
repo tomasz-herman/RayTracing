@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using RayTracerApp.SceneControllers;
 
 namespace RayTracerApp.Forms.Menu
 {

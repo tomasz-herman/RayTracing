@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace RayTracerApp
+namespace RayTracerApp.SceneControllers
 {
     public interface IController : IDisposable
     {
