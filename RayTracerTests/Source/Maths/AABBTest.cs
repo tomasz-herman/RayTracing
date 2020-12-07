@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using NUnit.Framework;
 using OpenTK;
@@ -16,6 +17,17 @@ namespace RayTracerTests
             AABB result = first + second;
 
             result.Should().BeEquivalentTo(new AABB(-2, -2, -2, 1, 1, 1));
+        }
+        
+        [Test]
+        public void ConstructorThrowsExceptionIfMinIsGreaterThanMax()
+        {
+            Action action = () =>
+            {
+                AABB aabb = new AABB(1, 1, 1, 0, 0, 0);
+            };
+
+            action.Should().Throw<ArgumentException>();
         }
         
         [TestCaseSource(nameof(AABBHitCases))]
