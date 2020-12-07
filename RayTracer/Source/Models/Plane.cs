@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using OpenTK;
 using RayTracing.Maths;
 
@@ -24,7 +25,7 @@ namespace RayTracing.Models
 
         private protected override void LoadInternal()
         {
-            throw new System.NotImplementedException();
+            _mesh = new Rectangle(1000,1000,100,100).Load().GetMesh();
         }
 
         public override bool HitTest(Ray ray, ref HitInfo hit, float from, float to)
@@ -44,7 +45,7 @@ namespace RayTracing.Models
 
         public override Mesh GetMesh()
         {
-            throw new System.NotImplementedException();
+            return _mesh;
         }
     }
 }

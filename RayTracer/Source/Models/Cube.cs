@@ -6,7 +6,7 @@ namespace RayTracing.Models
 {
     public class Cube : Model
     {
-        private Mesh _mesh;
+        public override Vector3 Rotation { get; set; }
 
         private List<Vector3> GetVertices()
         {
@@ -84,24 +84,22 @@ namespace RayTracing.Models
 
             for (int i = 0; i < indices.Count; i++)
             {
-                vertexBuffer.Add(vertices[indices[i]].X); // x
-                vertexBuffer.Add(vertices[indices[i]].Y); // y
-                vertexBuffer.Add(vertices[indices[i]].Z); // z
+                vertexBuffer.Add(vertices[indices[i]].X);
+                vertexBuffer.Add(vertices[indices[i]].Y);
+                vertexBuffer.Add(vertices[indices[i]].Z);
 
-                textureBuffer.Add(texCoords[texInds[i % 6]].X); // x
-                textureBuffer.Add(texCoords[texInds[i % 6]].Y); // y
+                textureBuffer.Add(texCoords[texInds[i % 6]].X);
+                textureBuffer.Add(texCoords[texInds[i % 6]].Y);
 
-                normalBuffer.Add(normals[indices[i / 6]].X); // x
-                normalBuffer.Add(normals[indices[i / 6]].Y); // y
-                normalBuffer.Add(normals[indices[i / 6]].Z); // z
+                normalBuffer.Add(normals[indices[i / 6]].X);
+                normalBuffer.Add(normals[indices[i / 6]].Y);
+                normalBuffer.Add(normals[indices[i / 6]].Z);
 
                 indicesBuffer.Add(i);
             }
 
             return (indicesBuffer, vertexBuffer, textureBuffer, normalBuffer);
         }
-
-        public override Vector3 Rotation { get; set; }
 
         private protected override void LoadInternal()
         {
