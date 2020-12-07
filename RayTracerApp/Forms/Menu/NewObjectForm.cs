@@ -46,6 +46,10 @@ namespace RayTracerApp.Forms
                 case Cube cube:
                     order = new List<IPanel> { newModelPanel, positionPanel, materialPanel };
                     break;
+
+                case CustomModel customModel:
+                    order = new List<IPanel> { newModelPanel, featuresPanel, positionPanel, materialPanel };
+                    break;
             }
         }
 

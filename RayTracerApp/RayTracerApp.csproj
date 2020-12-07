@@ -43,8 +43,4 @@
       </EmbeddedResource>
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Controls\Features\" />
-    </ItemGroup>
-
 </Project>

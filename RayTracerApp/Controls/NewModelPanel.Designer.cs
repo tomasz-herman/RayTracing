@@ -59,7 +59,7 @@ namespace RayTracerApp.Controls
             this.ModelButton.Size = new System.Drawing.Size(76, 19);
             this.ModelButton.TabIndex = 2;
             this.ModelButton.TabStop = true;
-            this.ModelButton.Text = "Model 3D";
+            this.ModelButton.Text = "Custom model";
             this.ModelButton.UseVisualStyleBackColor = true;
             this.ModelButton.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
             // 

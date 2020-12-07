@@ -29,14 +29,26 @@ namespace RayTracerApp.Controls
         /// </summary>
         private void InitializeComponent()
         {
+            this.customModelFeatureControl = new RayTracerApp.Controls.Features.CustomModelFeatureControl();
             this.SuspendLayout();
+            // 
+            // customModelFeatureControl
+            // 
+            this.customModelFeatureControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.customModelFeatureControl.Location = new System.Drawing.Point(0, 0);
+            this.customModelFeatureControl.Name = "customModelFeatureControl";
+            this.customModelFeatureControl.Size = new System.Drawing.Size(212, 266);
+            this.customModelFeatureControl.TabIndex = 0;
             // 
             // FeaturesPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.customModelFeatureControl);
             this.Name = "FeaturesPanel";
-            this.Size = new System.Drawing.Size(232, 195);
+            this.Size = new System.Drawing.Size(215, 294);
             this.ResumeLayout(false);
 
         }
@@ -45,5 +57,6 @@ namespace RayTracerApp.Controls
 
         private System.Windows.Forms.Label radiusLabel;
         private System.Windows.Forms.NumericUpDown radiusUpDown;
+        private Features.CustomModelFeatureControl customModelFeatureControl;
     }
 }

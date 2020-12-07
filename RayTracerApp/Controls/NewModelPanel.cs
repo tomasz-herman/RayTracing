@@ -37,6 +37,9 @@ namespace RayTracerApp.Controls
                     case "Cube":
                         controller.SetModel(new Cube().Load());
                         break;
+                    case "Custom model":
+                        controller.SetModel(new CustomModel());
+                        break;
                 }
             }
         }

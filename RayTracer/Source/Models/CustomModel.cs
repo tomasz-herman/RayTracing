@@ -7,6 +7,15 @@ namespace RayTracing.Models
     {
         private Mesh _mesh;
 
+        public CustomModel()
+        {
+        }
+
+        public void SetMesh(Mesh mesh)
+        {
+            _mesh = mesh;
+        }
+
         public CustomModel(Mesh mesh)
         {
             _mesh = mesh;
@@ -28,6 +37,5 @@ namespace RayTracing.Models
         {
             return _mesh;
         }
-        
     }
 }

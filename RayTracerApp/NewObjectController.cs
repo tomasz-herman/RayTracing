@@ -18,7 +18,6 @@ namespace RayTracerApp
         {
             DeleteModel();
             _model = model;
-            _model.Load();
             _scene.AddModel(_model);
         }
 
