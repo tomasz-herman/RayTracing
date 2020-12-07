@@ -1,6 +1,7 @@
-﻿using RayTracing.Models;
+﻿using System;
 using System.Windows.Forms;
 using RayTracerApp.SceneControllers;
+using RayTracing.Models;
 
 namespace RayTracerApp.Controls
 {
@@ -8,19 +9,33 @@ namespace RayTracerApp.Controls
     {
         private IController controller;
 
-        public void SetController(IController newObjectController)
-        {
-            controller = newObjectController;
-        }
-
         public NewModelPanel()
         {
             InitializeComponent();
         }
 
-        private void RadioButton_CheckedChanged(object sender, System.EventArgs e)
+        public void SetController(IController controller)
         {
-            RadioButton rb = sender as RadioButton;
+            this.controller = controller;
+        }
+
+        public void UpdateForModel()
+        {
+        }
+
+        public void ShowPanel()
+        {
+            Visible = true;
+        }
+
+        public void HidePanel()
+        {
+            Visible = false;
+        }
+
+        private void RadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            var rb = sender as RadioButton;
 
             if (rb == null)
             {
@@ -29,7 +44,6 @@ namespace RayTracerApp.Controls
             }
 
             if (rb.Checked)
-            {
                 switch (rb.Text)
                 {
                     case "Sphere":
@@ -42,22 +56,6 @@ namespace RayTracerApp.Controls
                         controller.SetModel(new CustomModel());
                         break;
                 }
-            }
-        }
-
-        public void UpdateForModel()
-        {
-            
-        }
-
-        public void ShowPanel()
-        {
-            Visible = true;
-        }
-
-        public void HidePanel()
-        {
-            Visible = false;
         }
     }
 }

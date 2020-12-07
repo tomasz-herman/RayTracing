@@ -1,17 +1,16 @@
-﻿using RayTracerApp.Controls;
-using RayTracing.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
+using RayTracerApp.Controls;
 using RayTracerApp.SceneControllers;
+using RayTracing.Models;
 
 namespace RayTracerApp.Forms
 {
     public partial class NewObjectForm : EditorForm
     {
-        private IController controller;
-        private List<IPanel> order;
+        private readonly IController controller;
         private IPanel currentPanel;
+        private List<IPanel> order;
 
         public NewObjectForm(IController controller)
         {
@@ -25,15 +24,12 @@ namespace RayTracerApp.Forms
 
             currentPanel = newModelPanel;
             currentPanel.SetController(this.controller);
-            topLabel.Text = $"Add new object...";
+            topLabel.Text = "Add new object...";
         }
 
         private void SetController()
         {
-            foreach (var panel in order)
-            {
-                panel.SetController(this.controller);
-            }
+            foreach (var panel in order) panel.SetController(controller);
         }
 
         private void ChooseOrder()
@@ -41,15 +37,15 @@ namespace RayTracerApp.Forms
             switch (controller.GetModel())
             {
                 case Sphere sphere:
-                    order = new List<IPanel> { newModelPanel, positionPanel, materialPanel };
+                    order = new List<IPanel> {newModelPanel, positionPanel, materialPanel};
                     break;
 
                 case Cube cube:
-                    order = new List<IPanel> { newModelPanel, positionPanel, materialPanel };
+                    order = new List<IPanel> {newModelPanel, positionPanel, materialPanel};
                     break;
 
                 case CustomModel customModel:
-                    order = new List<IPanel> { newModelPanel, featuresPanel, positionPanel, materialPanel };
+                    order = new List<IPanel> {newModelPanel, featuresPanel, positionPanel, materialPanel};
                     break;
             }
         }
@@ -57,10 +53,7 @@ namespace RayTracerApp.Forms
         private void MoveNext()
         {
             var index = 0;
-            if(currentPanel != newModelPanel)
-            {
-                index = order.FindIndex(control => control == currentPanel);
-            }
+            if (currentPanel != newModelPanel) index = order.FindIndex(control => control == currentPanel);
 
             if (index == 0)
             {
@@ -71,10 +64,13 @@ namespace RayTracerApp.Forms
                 button2.Click -= cancelButton_Click;
                 button2.Text = "Previous";
 
-                topLabel.Text = $"Add new {controller.GetModel().GetType().Name.ToLower()}...";
+                if (controller.GetModel() is CustomModel)
+                    topLabel.Text = "Add custom model...";
+                else
+                    topLabel.Text = $"Add {controller.GetModel().GetType().Name.ToLower()}...";
             }
 
-            if (index == order.Count-2)
+            if (index == order.Count - 2)
             {
                 button3.Click -= nextButton_Click;
                 button3.Click += finishButton_Click;
@@ -96,14 +92,15 @@ namespace RayTracerApp.Forms
 
             if (index == 1)
             {
-                topLabel.Text = $"Add new object...";
+                topLabel.Text = "Add new object...";
 
                 button1.Visible = false;
                 button2.Click -= previousButton_Click;
                 button2.Click += cancelButton_Click;
                 button2.Text = "Cancel";
             }
-            if (index == order.Count-1) // current one is material panel (last panel)
+
+            if (index == order.Count - 1) // current one is material panel (last panel)
             {
                 button3.Click += nextButton_Click;
                 button3.Click -= finishButton_Click;
@@ -119,23 +116,23 @@ namespace RayTracerApp.Forms
             }
         }
 
-        private void nextButton_Click(object sender, System.EventArgs e)
+        private void nextButton_Click(object sender, EventArgs e)
         {
             MoveNext();
         }
 
-        private void finishButton_Click(object sender, System.EventArgs e)
+        private void finishButton_Click(object sender, EventArgs e)
         {
             controller.Dispose();
             Close();
         }
 
-        private void previousButton_Click(object sender, System.EventArgs e)
+        private void previousButton_Click(object sender, EventArgs e)
         {
             MovePrevious();
         }
 
-        private void cancelButton_Click(object sender, System.EventArgs e)
+        private void cancelButton_Click(object sender, EventArgs e)
         {
             controller.DeleteModel();
             controller.Dispose();

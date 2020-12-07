@@ -1,20 +1,15 @@
-﻿using RayTracerApp.Controls;
-using RayTracing.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
+using RayTracerApp.Controls;
 using RayTracerApp.SceneControllers;
+using RayTracing.Models;
 
 namespace RayTracerApp.Forms.Menu
 {
     public partial class EditObjectForm : EditorForm
     {
+        private readonly List<IPanel> order;
         private IController controller;
-        private List<IPanel> order;
         private IPanel currentPanel;
 
         public EditObjectForm(IController controller)
@@ -29,13 +24,13 @@ namespace RayTracerApp.Forms.Menu
             switch (controller.GetModel())
             {
                 case Sphere sphere:
-                    order = new List<IPanel> { positionPanel, materialPanel };
+                    order = new List<IPanel> {positionPanel, materialPanel};
                     currentPanel = positionPanel;
                     positionPanel.Visible = true;
                     break;
 
                 case Cube cube:
-                    order = new List<IPanel> { positionPanel, materialPanel };
+                    order = new List<IPanel> {positionPanel, materialPanel};
                     currentPanel = positionPanel;
                     positionPanel.Visible = true;
                     break;
@@ -43,16 +38,16 @@ namespace RayTracerApp.Forms.Menu
 
             SetController(controller);
             currentPanel.UpdateForModel();
-            topLabel.Text = $"Edit {controller.GetModel().GetType().Name.ToLower()}...";
+            if (controller.GetModel() is CustomModel)
+                topLabel.Text = "Edit custom model...";
+            else
+                topLabel.Text = $"Edit {controller.GetModel().GetType().Name.ToLower()}...";
         }
 
         private void SetController(IController controller)
         {
             this.controller = controller;
-            foreach(var panel in order)
-            {
-                panel.SetController(this.controller);
-            }
+            foreach (var panel in order) panel.SetController(this.controller);
         }
 
         private void MoveNext()
@@ -67,7 +62,7 @@ namespace RayTracerApp.Forms.Menu
                 button2.Text = "Previous";
             }
 
-            if (index == order.Count-2)
+            if (index == order.Count - 2)
             {
                 button3.Click -= nextButton_Click;
                 button3.Click += finishButton_Click;
@@ -94,7 +89,7 @@ namespace RayTracerApp.Forms.Menu
                 button3.Text = "Next";
             }
 
-            if(index == 1)
+            if (index == 1)
             {
                 button1.Visible = false;
                 button2.Click -= previousButton_Click;
@@ -111,23 +106,23 @@ namespace RayTracerApp.Forms.Menu
             }
         }
 
-        private void nextButton_Click(object sender, System.EventArgs e)
+        private void nextButton_Click(object sender, EventArgs e)
         {
             MoveNext();
         }
 
-        private void finishButton_Click(object sender, System.EventArgs e)
+        private void finishButton_Click(object sender, EventArgs e)
         {
             controller.Dispose();
             Close();
         }
 
-        private void previousButton_Click(object sender, System.EventArgs e)
+        private void previousButton_Click(object sender, EventArgs e)
         {
             MovePrevious();
         }
 
-        private void cancelButton_Click(object sender, System.EventArgs e)
+        private void cancelButton_Click(object sender, EventArgs e)
         {
             controller.Dispose();
             Close();

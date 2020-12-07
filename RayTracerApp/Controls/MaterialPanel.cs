@@ -19,16 +19,16 @@ namespace RayTracerApp.Controls
 
         public void UpdateForModel()
         {
-            
         }
+
         public void ShowPanel()
         {
-            this.Visible = true;
+            Visible = true;
         }
 
         public void HidePanel()
         {
-            this.Visible = false;
+            Visible = false;
         }
     }
 }
