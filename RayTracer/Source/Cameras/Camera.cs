@@ -48,7 +48,7 @@ namespace RayTracing.Cameras
 
         protected abstract void UpdateViewport();
 
-        private void UpdateVectors()
+        protected void UpdateVectors()
         {
             front.X = (float) Math.Cos(pitch) * (float) Math.Cos(yaw);
             front.Y = (float) Math.Sin(pitch);

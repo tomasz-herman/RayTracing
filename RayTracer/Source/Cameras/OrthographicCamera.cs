@@ -1,24 +1,24 @@
-﻿using System;
+using System;
 using OpenTK;
 using RayTracing.Maths;
 
 namespace RayTracing.Cameras
 {
-    public class PerspectiveCamera : Camera
+    public class OrthographicCamera : Camera
     {
-        private float _fov = MathHelper.PiOver3;
+        private float _size = 10.0f;
 
-        public float Fov
+        public float Size
         {
-            get => MathHelper.RadiansToDegrees(_fov);
+            get => _size;
             set
             {
-                var angle = MathHelper.Clamp(value, 1f, 90f);
-                _fov = MathHelper.DegreesToRadians(angle);
+                _size = value;
+                UpdateViewport();
             }
         }
 
-        public PerspectiveCamera(Vector3 position)
+        public OrthographicCamera(Vector3 position)
         {
             this.position = position;
             UpdateVectors();
@@ -26,12 +26,12 @@ namespace RayTracing.Cameras
 
         protected override void UpdateViewport()
         {
-            float width = (float) (2.0 * Math.Tan(_fov / 2.0));
+            float width = Size;
             float height = width / aspectRatio;
 
             horizontal = width * right;
             vertical = height * up;
-            lowerLeft = position - horizontal / 2 - vertical / 2 + front;
+            lowerLeft = position - horizontal / 2 - vertical / 2;
         }
 
         public override Matrix4 GetViewMatrix()
@@ -41,12 +41,12 @@ namespace RayTracing.Cameras
 
         public override Matrix4 GetProjectionMatrix()
         {
-            return Matrix4.CreatePerspectiveFieldOfView(_fov, AspectRatio, 1, FarPlane);
+            return Matrix4.CreateOrthographic(Size, Size / aspectRatio, 0, FarPlane);
         }
 
         public override Ray GetRay(float x, float y)
         {
-            return new Ray(position, (lowerLeft + x * horizontal + y * vertical - position).Normalized());
+            return new Ray(lowerLeft + x * horizontal + y * vertical, front);
         }
     }
 }

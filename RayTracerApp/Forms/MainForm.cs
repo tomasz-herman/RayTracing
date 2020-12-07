@@ -39,6 +39,7 @@ namespace RayTracerApp.Forms
             scene.AddModel(new Sphere {Position = new Vector3(4, 2, 8), Scale = 1}.Load());
             scene.AddModel(new Sphere {Position = new Vector3(1, 15, 0), Scale = 5}.Load());
             scene.AddModel(new Cube {Position = new Vector3(5, 0, 4), Scale = 3}.Load());
+            scene.AddModel(new Plane(){Position = new Vector3(0, -1, 0)}.Load());
 
             InitializeFpsTimer();
             UpdateViewport();

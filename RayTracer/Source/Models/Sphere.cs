@@ -7,8 +7,6 @@ namespace RayTracing.Models
 {
     public class Sphere : Model
     {
-        private Mesh _mesh;
-
         public override Vector3 Rotation { get; set; }
 
         private float radius = 1f;
