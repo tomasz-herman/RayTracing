@@ -5,8 +5,6 @@ namespace RayTracing.Models
 {
     public class CustomModel : Model
     {
-        private Mesh _mesh;
-
         public CustomModel(Mesh mesh)
         {
             _mesh = mesh;
