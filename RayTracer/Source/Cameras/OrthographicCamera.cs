@@ -31,7 +31,7 @@ namespace RayTracing.Cameras
 
             horizontal = width * right;
             vertical = height * up;
-            lowerLeft = position - horizontal / 2 - vertical / 2 + front;
+            lowerLeft = position - horizontal / 2 - vertical / 2;
         }
 
         public override Matrix4 GetViewMatrix()
