@@ -31,44 +31,46 @@ namespace RayTracerApp.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.cancelButton1 = new System.Windows.Forms.Button();
+            this.previousButton = new System.Windows.Forms.Button();
+            this.nextButton = new System.Windows.Forms.Button();
             this.topLabel = new System.Windows.Forms.Label();
             this.separator1 = new System.Windows.Forms.Label();
             this.separator2 = new System.Windows.Forms.Label();
+            this.finishButton = new System.Windows.Forms.Button();
+            this.cancelButton2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // cancelButton1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(85, 376);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Cancel";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
+            this.cancelButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelButton1.Location = new System.Drawing.Point(85, 376);
+            this.cancelButton1.Name = "cancelButton1";
+            this.cancelButton1.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton1.TabIndex = 0;
+            this.cancelButton1.Text = "Cancel";
+            this.cancelButton1.UseVisualStyleBackColor = true;
+            this.cancelButton1.Visible = false;
             // 
-            // button2
+            // previousButton
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(166, 376);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
+            this.previousButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.previousButton.Location = new System.Drawing.Point(166, 376);
+            this.previousButton.Name = "previousButton";
+            this.previousButton.Size = new System.Drawing.Size(75, 23);
+            this.previousButton.TabIndex = 1;
+            this.previousButton.Text = "Previous";
+            this.previousButton.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // nextButton
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(247, 376);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Next";
-            this.button3.UseVisualStyleBackColor = true;
+            this.nextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.nextButton.Location = new System.Drawing.Point(247, 376);
+            this.nextButton.Name = "nextButton";
+            this.nextButton.Size = new System.Drawing.Size(75, 23);
+            this.nextButton.TabIndex = 2;
+            this.nextButton.Text = "Next";
+            this.nextButton.UseVisualStyleBackColor = true;
             // 
             // topLabel
             // 
@@ -100,17 +102,39 @@ namespace RayTracerApp.Forms
             this.separator2.Size = new System.Drawing.Size(334, 2);
             this.separator2.TabIndex = 10;
             // 
+            // finishButton
+            // 
+            this.finishButton.Location = new System.Drawing.Point(247, 376);
+            this.finishButton.Name = "finishButton";
+            this.finishButton.Size = new System.Drawing.Size(75, 23);
+            this.finishButton.TabIndex = 11;
+            this.finishButton.Text = "Finish";
+            this.finishButton.UseVisualStyleBackColor = true;
+            this.finishButton.Visible = false;
+            // 
+            // cancelButton2
+            // 
+            this.cancelButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelButton2.Location = new System.Drawing.Point(166, 376);
+            this.cancelButton2.Name = "cancelButton2";
+            this.cancelButton2.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton2.TabIndex = 12;
+            this.cancelButton2.Text = "Cancel";
+            this.cancelButton2.UseVisualStyleBackColor = true;
+            // 
             // EditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(334, 411);
+            this.Controls.Add(this.cancelButton2);
+            this.Controls.Add(this.finishButton);
             this.Controls.Add(this.separator2);
             this.Controls.Add(this.separator1);
             this.Controls.Add(this.topLabel);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.nextButton);
+            this.Controls.Add(this.previousButton);
+            this.Controls.Add(this.cancelButton1);
             this.Name = "EditorForm";
             this.Text = "EditorForm";
             this.ResumeLayout(false);
@@ -119,9 +143,11 @@ namespace RayTracerApp.Forms
 
         #endregion
 
-        protected System.Windows.Forms.Button button1;
-        protected System.Windows.Forms.Button button2;
-        protected System.Windows.Forms.Button button3;
+        protected System.Windows.Forms.Button cancelButton1;
+        protected System.Windows.Forms.Button cancelButton2;
+        protected System.Windows.Forms.Button previousButton;
+        protected System.Windows.Forms.Button nextButton;
+        protected System.Windows.Forms.Button finishButton;
         protected System.Windows.Forms.Label topLabel;
         private System.Windows.Forms.Label separator1;
         private System.Windows.Forms.Label separator2;

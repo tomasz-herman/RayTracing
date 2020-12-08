@@ -16,9 +16,12 @@ namespace RayTracerApp.Forms.Menu
         {
             InitializeComponent();
 
-            button3.Click += nextButton_Click;
-            button2.Click += cancelButton_Click;
-            button1.Click += cancelButton_Click;
+            nextButton.Click += nextButton_Click;
+            previousButton.Click += previousButton_Click;
+            cancelButton1.Click += cancelButton_Click;
+            cancelButton2.Click += cancelButton_Click;
+            finishButton.Click += finishButton_Click;
+
             this.controller = controller;
 
             switch (controller.GetModel())
@@ -56,17 +59,15 @@ namespace RayTracerApp.Forms.Menu
 
             if (index == 0)
             {
-                button1.Visible = true;
-                button2.Click += previousButton_Click;
-                button2.Click -= cancelButton_Click;
-                button2.Text = "Previous";
+                cancelButton1.Visible = true;
+                previousButton.Visible = true;
+                cancelButton2.Visible = false;
             }
 
             if (index == order.Count - 2)
             {
-                button3.Click -= nextButton_Click;
-                button3.Click += finishButton_Click;
-                button3.Text = "Finish";
+                finishButton.Visible = true;
+                nextButton.Visible = false;
             }
 
             if (index < order.Count - 1)
@@ -84,17 +85,15 @@ namespace RayTracerApp.Forms.Menu
 
             if (index == order.Count - 1)
             {
-                button3.Click += nextButton_Click;
-                button3.Click -= finishButton_Click;
-                button3.Text = "Next";
+                cancelButton2.Visible = true;
+                cancelButton1.Visible = false;
+                previousButton.Visible = false;
             }
 
             if (index == 1)
             {
-                button1.Visible = false;
-                button2.Click -= previousButton_Click;
-                button2.Click += cancelButton_Click;
-                button2.Text = "Cancel";
+                nextButton.Visible = true;
+                finishButton.Visible = false;
             }
 
             if (index > 0)
