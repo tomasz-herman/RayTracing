@@ -40,11 +40,10 @@ namespace RayTracing
                 }
                 var output = new Texture(image);
                 output.Process(c => c / (k+1));
-                Blit(output);
             }
         }
         
-        public void Render(Scene scene, Camera camera, Action<int> swapBuffers)
+        public void Render(Scene scene, Camera camera, Action<int, Texture> onFrameReady)
         {
             int width = Resolution;
             int height = (int) (width / camera.AspectRatio);
@@ -64,35 +63,11 @@ namespace RayTracing
                         image[i, height-1-j] += Shade(ray, scene, MaxDepth);
                     }
                 });
-                // for (int i = 0; i < width; i++)
-                // {
-                //     for (int j = 0; j < height; j++)
-                //     {
-                //         var sample = sampler.GetSample(k);
-                //         float u = (i + sample.X) / (width - 1);
-                //         float v = (j + sample.Y) / (height - 1);
-                //         Ray ray = camera.GetRay(u, v);
-                //         image[i, height-1-j] += Shade(ray, scene, MaxDepth);
-                //     }
-                // }
+                
                 var output = new Texture(image);
                 output.Process(c => c / (k+1));
-                Blit(output);
-                swapBuffers(k);
+                onFrameReady((k+1) * 100 / Samples, output);
             }
-        }
-
-        public void Blit(Texture image)
-        {
-            image.LoadGLTexture();
-            int fboId = 0;
-            fboId = GL.GenFramebuffer();
-            GL.BindFramebuffer(FramebufferTarget.ReadFramebuffer, fboId);
-            GL.FramebufferTexture2D(FramebufferTarget.ReadFramebuffer, FramebufferAttachment.ColorAttachment0,
-                TextureTarget.Texture2D, image.Id, 0);
-            GL.BindFramebuffer(FramebufferTarget.DrawFramebuffer, 0);
-            GL.BlitFramebuffer(0, 0, image.Width, image.Height, 0, 0, image.Width, image.Height,
-                ClearBufferMask.ColorBufferBit, BlitFramebufferFilter.Nearest);
         }
     }
 }

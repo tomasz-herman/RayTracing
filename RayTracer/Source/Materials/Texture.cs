@@ -132,5 +132,18 @@ namespace RayTracing.Materials
         {
             Use(0, unit);
         }
+        
+        public void Blit()
+        {
+            LoadGLTexture();
+            int fboId = 0;
+            fboId = GL.GenFramebuffer();
+            GL.BindFramebuffer(FramebufferTarget.ReadFramebuffer, fboId);
+            GL.FramebufferTexture2D(FramebufferTarget.ReadFramebuffer, FramebufferAttachment.ColorAttachment0,
+                TextureTarget.Texture2D, Id, 0);
+            GL.BindFramebuffer(FramebufferTarget.DrawFramebuffer, 0);
+            GL.BlitFramebuffer(0, 0, Width, Height, 0, 0, Width, Height,
+                ClearBufferMask.ColorBufferBit, BlitFramebufferFilter.Nearest);
+        }
     }
 }
