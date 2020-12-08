@@ -62,13 +62,13 @@ namespace RayTracerApp
                     _lastMousePos = e.Location;
 
                     _camera.Rotate(-deltaY * Sensitivity, deltaX * Sensitivity, 0);
+                    _onModification();
                 }
             }
             else
             {
                 _firstMouseMove = true;
             }
-            _onModification();
         }
 
         private void UpdateCameraPosition(float msElapsed)

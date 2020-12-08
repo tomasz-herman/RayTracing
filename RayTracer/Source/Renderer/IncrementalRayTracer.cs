@@ -43,7 +43,7 @@ namespace RayTracing
             }
         }
         
-        public void Render(Scene scene, Camera camera, Action<int, Texture> onFrameReady)
+        public void Render(Scene scene, Camera camera, Action<int, Texture> onFrameReady, Func<bool> isCancellationRequested)
         {
             int width = Resolution;
             int height = (int) (width / camera.AspectRatio);
@@ -54,6 +54,8 @@ namespace RayTracing
             {
                 Parallel.For(0, width, i =>
                 {
+                    if(isCancellationRequested())
+                        return;
                     for (int j = 0; j < height; j++)
                     {
                         var sample = sampler.GetSample(k);
@@ -63,7 +65,9 @@ namespace RayTracing
                         image[i, height-1-j] += Shade(ray, scene, MaxDepth);
                     }
                 });
-                
+                if(isCancellationRequested())
+                    return;
+
                 var output = new Texture(image);
                 output.Process(c => c / (k+1));
                 onFrameReady((k+1) * 100 / Samples, output);

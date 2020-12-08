@@ -19,7 +19,7 @@ namespace RayTracerApp.Forms
 {
     public partial class MainForm : Form
     {
-        private const int SWAP_TIME = 5;
+        private const int SWAP_TIME = 2;
         private Scene scene = new Scene();
         private IRenderer _renderer;
         private Camera _camera = new PerspectiveCamera(new Vector3(0, 0, 20)) {AspectRatio = 1};
@@ -35,7 +35,7 @@ namespace RayTracerApp.Forms
         {
             lastModification = DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
             rayTracingStarted = false;
-            _backgroundWorker.CancelAsync();
+            _backgroundWorker?.CancelAsync();
         }
 
         public bool ShouldRaytrace()
@@ -43,17 +43,10 @@ namespace RayTracerApp.Forms
             long now = DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
             return now - lastModification > SWAP_TIME;
         }
-        
+
         public MainForm()
         {
             InitializeComponent();
-            _backgroundWorker = new BackgroundWorker
-            {
-                WorkerReportsProgress = true,
-                WorkerSupportsCancellation = true
-            };
-            _backgroundWorker.DoWork += StartRender;
-            _backgroundWorker.ProgressChanged += BackgroundWorkerProgressChanged;
             UpdateLastModification();
         }
 
@@ -99,9 +92,10 @@ namespace RayTracerApp.Forms
         {
             _cameraController.UpdateCamera(FpsTimer.Interval);
 
-            if(!rayTracingStarted)
+            if (!rayTracingStarted)
                 if (ShouldRaytrace())
                 {
+                    InitializeBackgroundWorker();
                     _backgroundWorker.RunWorkerAsync();
                     rayTracingStarted = true;
                 }
@@ -129,12 +123,10 @@ namespace RayTracerApp.Forms
 
         private void StartRender(object sender, DoWorkEventArgs e)
         {
-            _rayTracer.Render(scene, _camera, (a, t) =>
-            {
-                _backgroundWorker.ReportProgress(a,t);
-            });
+            _rayTracer.Render(scene, _camera,  _backgroundWorker.ReportProgress,
+                () => _backgroundWorker.CancellationPending);
         }
-        
+
         private void BackgroundWorkerProgressChanged(object sender,
             ProgressChangedEventArgs e)
         {
@@ -149,6 +141,17 @@ namespace RayTracerApp.Forms
             // var form = new NewObjectForm();
             // form.SetController(new NewObjectController(scene));
             // form.Show();
+        }
+
+        private void InitializeBackgroundWorker()
+        {
+            _backgroundWorker = new BackgroundWorker
+            {
+                WorkerReportsProgress = true,
+                WorkerSupportsCancellation = true
+            };
+            _backgroundWorker.DoWork += StartRender;
+            _backgroundWorker.ProgressChanged += BackgroundWorkerProgressChanged;
         }
     }
 }
