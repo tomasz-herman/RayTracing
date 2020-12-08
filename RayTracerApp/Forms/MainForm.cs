@@ -19,6 +19,7 @@ namespace RayTracerApp.Forms
 {
     public partial class MainForm : Form
     {
+        private const int SWAP_TIME = 5;
         private Scene scene = new Scene();
         private IRenderer _renderer;
         private Camera _camera = new PerspectiveCamera(new Vector3(0, 0, 20)) {AspectRatio = 1};
@@ -27,6 +28,22 @@ namespace RayTracerApp.Forms
         private BackgroundWorker _backgroundWorker;
         Timer FpsTimer = new Timer();
 
+        private long lastModification;
+        private bool rayTracingStarted;
+
+        public void UpdateLastModification()
+        {
+            lastModification = DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
+            rayTracingStarted = false;
+            _backgroundWorker.CancelAsync();
+        }
+
+        public bool ShouldRaytrace()
+        {
+            long now = DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
+            return now - lastModification > SWAP_TIME;
+        }
+        
         public MainForm()
         {
             InitializeComponent();
@@ -37,6 +54,7 @@ namespace RayTracerApp.Forms
             };
             _backgroundWorker.DoWork += StartRender;
             _backgroundWorker.ProgressChanged += BackgroundWorkerProgressChanged;
+            UpdateLastModification();
         }
 
         private void GLControl_Load(object sender, EventArgs e)
@@ -44,27 +62,27 @@ namespace RayTracerApp.Forms
             GL.Enable(EnableCap.DepthTest);
             _renderer = new Renderer();
             _rayTracer = new IncrementalRayTracer(10, 64, Vec2Sampling.Jittered, gLControl.Width);
-            _cameraController = new CameraController(_camera, gLControl);
+            _cameraController = new CameraController(_camera, gLControl, UpdateLastModification);
             scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.LightSkyBlue)};
             scene.AddModel(new Sphere
             {
                 Position = new Vector3(0, 0.5f, 0), Scale = 1, Material = new Diffuse(Color.FromColor4(Color4.Orange))
-            });
+            }.Load());
             scene.AddModel(new Sphere
             {
                 Position = new Vector3(-2.5f, 0.5f, 1), Scale = 1,
                 Material = new Reflective(Color.FromColor4(Color4.Azure), 0.1f)
-            });
+            }.Load());
             scene.AddModel(new Sphere
             {
                 Position = new Vector3(2.5f, 0.5f, 1), Scale = 1,
                 Material = new Reflective(Color.FromColor4(Color4.Aqua), 0.75f)
-            });
+            }.Load());
             scene.AddModel(new Plane
             {
                 Position = new Vector3(0, -0.5f, 0), Scale = 1,
                 Material = new Diffuse(Color.FromColor4(Color4.ForestGreen))
-            });
+            }.Load());
 
             InitializeFpsTimer();
             UpdateViewport();
@@ -81,8 +99,17 @@ namespace RayTracerApp.Forms
         {
             _cameraController.UpdateCamera(FpsTimer.Interval);
 
-            // _renderer.Render(scene, _camera);
-            //gLControl.SwapBuffers();
+            if(!rayTracingStarted)
+                if (ShouldRaytrace())
+                {
+                    _backgroundWorker.RunWorkerAsync();
+                    rayTracingStarted = true;
+                }
+                else
+                {
+                    _renderer.Render(scene, _camera);
+                    gLControl.SwapBuffers();
+                }
         }
 
         private void OnResize(object sender, EventArgs e)

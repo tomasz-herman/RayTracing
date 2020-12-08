@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using RayTracing.Cameras;
 using RayTracerApp.Utils;
@@ -7,6 +8,7 @@ namespace RayTracerApp
 {
     public class CameraController
     {
+        private Action _onModification;
         private bool _firstMouseMove;
         private Point _lastMousePos;
         private Camera _camera;
@@ -16,24 +18,27 @@ namespace RayTracerApp
         private DictionaryWithDefault<Keys, bool> keys = new DictionaryWithDefault<Keys, bool>();
 
 
-        public CameraController(Camera camera, Control control)
+        public CameraController(Camera camera, Control control, Action onModification)
         {
             _camera = camera;
             control.MouseMove += UpdateCameraOrientation;
             control.KeyDown += OnKeyDown;
             control.KeyUp += OnKeyUp;
+            _onModification = onModification;
         }
 
         private void OnKeyUp(object sender, KeyEventArgs e)
         {
             keys[e.KeyCode] = false;
             if (!e.Shift) keys[Keys.LShiftKey] = false;
+            _onModification();
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
             keys[e.KeyCode] = true;
             if (e.Shift) keys[Keys.LShiftKey] = true;
+            _onModification();
         }
 
         public void UpdateCamera(float msElapsed)
@@ -63,6 +68,7 @@ namespace RayTracerApp
             {
                 _firstMouseMove = true;
             }
+            _onModification();
         }
 
         private void UpdateCameraPosition(float msElapsed)
