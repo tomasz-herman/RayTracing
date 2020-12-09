@@ -15,9 +15,11 @@ namespace RayTracing
 {
     public class IncrementalRayTracer : RayTracer, IRenderer
     {
-        public IncrementalRayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution) : base(maxDepth, samples, sampling, resolution)
+        public IncrementalRayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution) :
+            base(maxDepth, samples, sampling, resolution)
         {
         }
+
         public void Render(Scene scene, Camera camera)
         {
             int width = Resolution;
@@ -35,15 +37,17 @@ namespace RayTracing
                         float u = (i + sample.X) / (width - 1);
                         float v = (j + sample.Y) / (height - 1);
                         Ray ray = camera.GetRay(u, v);
-                        image[i, height-1-j] += Shade(ray, scene, MaxDepth);
+                        image[i, height - 1 - j] += Shade(ray, scene, MaxDepth);
                     }
                 }
+
                 var output = new Texture(image);
-                output.Process(c => c / (k+1));
+                output.Process(c => c / (k + 1));
             }
         }
-        
-        public void Render(Scene scene, Camera camera, Action<int, Texture> onFrameReady, Func<bool> isCancellationRequested)
+
+        public void Render(Scene scene, Camera camera, Action<int, Texture> onFrameReady,
+            Func<bool> isCancellationRequested)
         {
             int width = Resolution;
             int height = (int) (width / camera.AspectRatio);
@@ -54,7 +58,7 @@ namespace RayTracing
             {
                 Parallel.For(0, width, i =>
                 {
-                    if(isCancellationRequested())
+                    if (isCancellationRequested())
                         return;
                     for (int j = 0; j < height; j++)
                     {
@@ -62,15 +66,15 @@ namespace RayTracing
                         float u = (i + sample.X) / (width - 1);
                         float v = (j + sample.Y) / (height - 1);
                         Ray ray = camera.GetRay(u, v);
-                        image[i, height-1-j] += Shade(ray, scene, MaxDepth);
+                        image[i, height - 1 - j] += Shade(ray, scene, MaxDepth);
                     }
                 });
-                if(isCancellationRequested())
+                if (isCancellationRequested())
                     return;
 
                 var output = new Texture(image);
-                output.Process(c => c / (k+1));
-                onFrameReady((k+1) * 100 / Samples, output);
+                output.Process(c => c / (k + 1));
+                onFrameReady((k + 1) * 100 / Samples, output);
             }
         }
     }

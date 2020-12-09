@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using OpenTK;
 using RayTracing.Cameras;
 using RayTracing.Materials;
@@ -11,7 +12,8 @@ namespace RayTracing
 {
     public class FileRayTracer : RayTracer, IRenderer
     {
-        public FileRayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution) : base(maxDepth, samples, sampling, resolution)
+        public FileRayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution) : base(
+            maxDepth, samples, sampling, resolution)
         {
         }
 
@@ -21,23 +23,22 @@ namespace RayTracing
             int height = (int) (width / camera.AspectRatio);
             var image = new Texture(width, height);
             AbstractSampler<Vector2> sampler = new Sampler<Vector2>(Sampling, Samples);
-            for (int i = 0; i < width; i++)
+            for (int k = 0; k < Samples; k++)
             {
-                for (int j = 0; j < height; j++)
+                Parallel.For(0, width, i =>
                 {
-                    for (int k = 0; k < Samples; k++)
+                    for (int j = 0; j < height; j++)
                     {
-                        var sample = sampler.Sample;
+                        var sample = sampler.GetSample(k);
                         float u = (i + sample.X) / (width - 1);
                         float v = (j + sample.Y) / (height - 1);
                         Ray ray = camera.GetRay(u, v);
-                        image[i, j] += Shade(ray, scene, MaxDepth);
+                        image[i, height - 1 - j] += Shade(ray, scene, MaxDepth);
                     }
-                }
+                });
             }
 
             image.Process(c => c / Samples);
-            // TODO: Get image raw data and load it to graphics card
             image.Write("RenderedScene.png");
         }
     }

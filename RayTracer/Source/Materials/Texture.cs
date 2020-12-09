@@ -12,16 +12,16 @@ namespace RayTracing.Materials
     {
         private int _id;
         private Color[,] _data;
-        
+
         public int Width => _data.GetLength(1);
         public int Height => _data.GetLength(0);
         public int Id => _id;
-        
+
         public Texture(int width, int height)
         {
             _data = new Color[height, width];
         }
-        
+
         public Texture(Texture image) // copy constructor
         {
             _data = new Color[image.Height, image.Width];
@@ -29,25 +29,25 @@ namespace RayTracing.Materials
             for (int j = 0; j < Width; j++)
                 _data[i, j] = image._data[i, j];
         }
-        
-        public Color this[int w, int h]
-        {
-            get => _data[h, w];
-            set => _data[h, w] = value;
-        }
-        
-        public void Process(Func<Color, Color> function)
-        {
-            for (int i = 0; i < Height; i++)
-            for (int j = 0; j < Width; j++)
-                _data[i, j] = function(_data[i, j]);
-        }
 
         public Texture(String path)
         {
             LoadFromPath(path);
 
             LoadGLTexture();
+        }
+
+        public Color this[int w, int h]
+        {
+            get => _data[h, w];
+            set => _data[h, w] = value;
+        }
+
+        public void Process(Func<Color, Color> function)
+        {
+            for (int i = 0; i < Height; i++)
+            for (int j = 0; j < Width; j++)
+                _data[i, j] = function(_data[i, j]);
         }
 
         private void LoadFromPath(string path)
@@ -58,13 +58,13 @@ namespace RayTracing.Materials
             _data = new Color[image.Width, image.Height];
             for (int i = 0; i < image.Width * image.Height; ++i)
             {
-                byte r = image.Data[i * 4];
-                byte g = image.Data[i * 4 + 1];
-                byte b = image.Data[i * 4 + 2];
+                byte r = image.Data[i * 3];
+                byte g = image.Data[i * 3 + 1];
+                byte b = image.Data[i * 3 + 2];
                 _data[i % image.Width, i / image.Width] = new Color(r / 255f, g / 255f, b / 255f);
             }
         }
-        
+
         public byte[] RawData()
         {
             byte[] raw = new byte[Width * Height * 3];
@@ -80,7 +80,7 @@ namespace RayTracing.Materials
 
             return raw;
         }
-        
+
         public void Write(string path)
         {
             byte[] raw = RawData();
@@ -132,12 +132,11 @@ namespace RayTracing.Materials
         {
             Use(0, unit);
         }
-        
+
         public void Blit()
         {
             LoadGLTexture();
-            int fboId = 0;
-            fboId = GL.GenFramebuffer();
+            int fboId = GL.GenFramebuffer();
             GL.BindFramebuffer(FramebufferTarget.ReadFramebuffer, fboId);
             GL.FramebufferTexture2D(FramebufferTarget.ReadFramebuffer, FramebufferAttachment.ColorAttachment0,
                 TextureTarget.Texture2D, Id, 0);
