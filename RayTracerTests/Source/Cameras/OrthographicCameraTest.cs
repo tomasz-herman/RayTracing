@@ -4,6 +4,7 @@ using NUnit.Framework;
 using OpenTK;
 using RayTracing.Cameras;
 using RayTracing.Maths;
+using static RayTracerTests.Source.TestUtils;
 
 namespace RayTracerTests.Source.Cameras
 {
@@ -22,14 +23,6 @@ namespace RayTracerTests.Source.Cameras
                     VectorsShouldBeApproximately(ray.Direction, new Vector3(1, 0, 0), Ray.Epsilon);
                 }
             }
-        }
-        
-        
-        static void VectorsShouldBeApproximately(Vector3 vec1, Vector3 vec2, float precision)
-        {
-            vec1.X.Should().BeApproximately(vec2.X, precision);
-            vec1.Y.Should().BeApproximately(vec2.Y, precision);
-            vec1.Z.Should().BeApproximately(vec2.Z, precision);
         }
     }
 }
