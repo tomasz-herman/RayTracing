@@ -15,6 +15,8 @@ namespace RayTracing
 {
     public class IncrementalRayTracer : RayTracer, IRenderer
     {
+        public Action<int, Texture> OnFrameReady;
+        public Func<bool> IsCancellationRequested;
         public IncrementalRayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution) :
             base(maxDepth, samples, sampling, resolution)
         {
@@ -25,40 +27,13 @@ namespace RayTracing
             int width = Resolution;
             int height = (int) (width / camera.AspectRatio);
             var image = new Texture(width, height);
-            AbstractSampler<Vector2> sampler = new Sampler<Vector2>(Sampling, Samples);
-
-            for (int k = 0; k < Samples; k++)
-            {
-                for (int i = 0; i < width; i++)
-                {
-                    for (int j = 0; j < height; j++)
-                    {
-                        var sample = sampler.GetSample(k);
-                        float u = (i + sample.X) / (width - 1);
-                        float v = (j + sample.Y) / (height - 1);
-                        Ray ray = camera.GetRay(u, v);
-                        image[i, height - 1 - j] += Shade(ray, scene, MaxDepth);
-                    }
-                }
-
-                var output = new Texture(image);
-                output.Process(c => c / (k + 1));
-            }
-        }
-
-        public void Render(Scene scene, Camera camera, Action<int, Texture> onFrameReady,
-            Func<bool> isCancellationRequested)
-        {
-            int width = Resolution;
-            int height = (int) (width / camera.AspectRatio);
-            var image = new Texture(width, height);
             AbstractSampler<Vector2> sampler = new ThreadSafeSampler<Vector2>(Sampling, Samples);
 
             for (int k = 0; k < Samples; k++)
             {
                 Parallel.For(0, width, i =>
                 {
-                    if (isCancellationRequested())
+                    if (IsCancellationRequested())
                         return;
                     for (int j = 0; j < height; j++)
                     {
@@ -69,12 +44,12 @@ namespace RayTracing
                         image[i, height - 1 - j] += Shade(ray, scene, MaxDepth);
                     }
                 });
-                if (isCancellationRequested())
+                if (IsCancellationRequested())
                     return;
 
                 var output = new Texture(image);
                 output.Process(c => c / (k + 1));
-                onFrameReady((k + 1) * 100 / Samples, output);
+                OnFrameReady((k + 1) * 100 / Samples, output);
             }
         }
     }

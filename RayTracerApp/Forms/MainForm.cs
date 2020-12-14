@@ -123,8 +123,9 @@ namespace RayTracerApp.Forms
 
         private void StartRender(object sender, DoWorkEventArgs e)
         {
-            _rayTracer.Render(scene, _camera,  _backgroundWorker.ReportProgress,
-                () => _backgroundWorker.CancellationPending);
+            _rayTracer.OnFrameReady = _backgroundWorker.ReportProgress;
+            _rayTracer.IsCancellationRequested = () => _backgroundWorker.CancellationPending;
+            _rayTracer.Render(scene, _camera);
         }
 
         private void BackgroundWorkerProgressChanged(object sender,
