@@ -70,7 +70,7 @@ namespace RayTracing.Models
             return new Mesh(positions, normals, textures, indices);
         }
 
-        public static Model Load(string path, PostProcessSteps ppSteps, params PropertyConfig[] configs)
+        public static Mesh LoadMesh(string path, PostProcessSteps ppSteps, params PropertyConfig[] configs)
         {
             if (!File.Exists(path))
                 return null;
@@ -94,7 +94,12 @@ namespace RayTracing.Models
             }
 
             Log.Info($"meshes loaded: {meshes.Count}");
-            return new CustomModel(meshes[0]);
+            return meshes[0];
+        }
+
+        public static CustomModel LoadModel(string path, PostProcessSteps ppSteps, params PropertyConfig[] configs)
+        {
+            return new CustomModel(LoadMesh(path, ppSteps, configs));
         }
     }
 }

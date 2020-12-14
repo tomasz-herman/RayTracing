@@ -4,15 +4,15 @@ using RayTracerApp.Controls;
 using RayTracerApp.SceneControllers;
 using RayTracing.Models;
 
-namespace RayTracerApp.Forms
+namespace RayTracerApp.Forms.Menu
 {
-    public partial class NewObjectForm : EditorForm
+    public partial class EditObjectForm : EditorForm
     {
-        private readonly IController controller;
+        private readonly List<IPanel> order;
+        private IController controller;
         private IPanel currentPanel;
-        private List<IPanel> order;
 
-        public NewObjectForm(IController controller)
+        public EditObjectForm(IController controller)
         {
             InitializeComponent();
 
@@ -24,51 +24,44 @@ namespace RayTracerApp.Forms
 
             this.controller = controller;
 
-            currentPanel = newModelPanel;
-            currentPanel.SetController(this.controller);
-            topLabel.Text = "Add new object...";
-        }
-
-        private void SetController()
-        {
-            foreach (var panel in order) panel.SetController(controller);
-        }
-
-        private void ChooseOrder()
-        {
             switch (controller.GetModel())
             {
                 case Sphere sphere:
-                    order = new List<IPanel> {newModelPanel, positionPanel, materialPanel};
+                    order = new List<IPanel> {positionPanel, materialPanel};
+                    currentPanel = positionPanel;
+                    positionPanel.Visible = true;
                     break;
 
                 case Cube cube:
-                    order = new List<IPanel> {newModelPanel, positionPanel, materialPanel};
-                    break;
-
-                case CustomModel customModel:
-                    order = new List<IPanel> {newModelPanel, featuresPanel, positionPanel, materialPanel};
+                    order = new List<IPanel> {positionPanel, materialPanel};
+                    currentPanel = positionPanel;
+                    positionPanel.Visible = true;
                     break;
             }
+
+            SetController(controller);
+            currentPanel.UpdateForModel();
+            if (controller.GetModel() is CustomModel)
+                topLabel.Text = "Edit custom model...";
+            else
+                topLabel.Text = $"Edit {controller.GetModel().GetType().Name.ToLower()}...";
+        }
+
+        private void SetController(IController controller)
+        {
+            this.controller = controller;
+            foreach (var panel in order) panel.SetController(this.controller);
         }
 
         private void MoveNext()
         {
-            var index = 0;
-            if (currentPanel != newModelPanel) index = order.FindIndex(control => control == currentPanel);
+            var index = order.FindIndex(control => control == currentPanel);
 
             if (index == 0)
             {
-                ChooseOrder();
-                SetController();
                 cancelButton1.Visible = true;
                 previousButton.Visible = true;
                 cancelButton2.Visible = false;
-
-                if (controller.GetModel() is CustomModel)
-                    topLabel.Text = "Add custom model...";
-                else
-                    topLabel.Text = $"Add {controller.GetModel().GetType().Name.ToLower()}...";
             }
 
             if (index == order.Count - 2)
@@ -90,16 +83,14 @@ namespace RayTracerApp.Forms
         {
             var index = order.FindIndex(control => control == currentPanel);
 
-            if (index == 1)
+            if (index == order.Count - 1)
             {
-                topLabel.Text = "Add new object...";
-
                 cancelButton2.Visible = true;
                 cancelButton1.Visible = false;
                 previousButton.Visible = false;
             }
 
-            if (index == order.Count - 1)
+            if (index == 1)
             {
                 nextButton.Visible = true;
                 finishButton.Visible = false;
@@ -132,7 +123,6 @@ namespace RayTracerApp.Forms
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            controller.DeleteModel();
             controller.Dispose();
             Close();
         }

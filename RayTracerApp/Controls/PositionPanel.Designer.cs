@@ -62,6 +62,8 @@ namespace RayTracerApp.Controls
             // 
             // translationGroupBox
             // 
+            this.translationGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.translationGroupBox.Controls.Add(this.translationLabel);
             this.translationGroupBox.Controls.Add(this.zLabel);
             this.translationGroupBox.Controls.Add(this.yLabel);
@@ -86,6 +88,7 @@ namespace RayTracerApp.Controls
             // 
             // zLabel
             // 
+            this.zLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.zLabel.AutoSize = true;
             this.zLabel.Location = new System.Drawing.Point(159, 73);
             this.zLabel.Name = "zLabel";
@@ -95,6 +98,7 @@ namespace RayTracerApp.Controls
             // 
             // yLabel
             // 
+            this.yLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.yLabel.AutoSize = true;
             this.yLabel.Location = new System.Drawing.Point(159, 44);
             this.yLabel.Name = "yLabel";
@@ -104,6 +108,7 @@ namespace RayTracerApp.Controls
             // 
             // xLabel
             // 
+            this.xLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.xLabel.AutoSize = true;
             this.xLabel.Location = new System.Drawing.Point(159, 15);
             this.xLabel.Name = "xLabel";
@@ -113,6 +118,7 @@ namespace RayTracerApp.Controls
             // 
             // zUpDown
             // 
+            this.zUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.zUpDown.DecimalPlaces = 2;
             this.zUpDown.Increment = new decimal(new int[] {
             1,
@@ -132,6 +138,7 @@ namespace RayTracerApp.Controls
             // 
             // yUpDown
             // 
+            this.yUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.yUpDown.DecimalPlaces = 2;
             this.yUpDown.Increment = new decimal(new int[] {
             1,
@@ -151,6 +158,7 @@ namespace RayTracerApp.Controls
             // 
             // xUpDown
             // 
+            this.xUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.xUpDown.DecimalPlaces = 2;
             this.xUpDown.Increment = new decimal(new int[] {
             1,
@@ -170,6 +178,8 @@ namespace RayTracerApp.Controls
             // 
             // rotationGroupBox
             // 
+            this.rotationGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.rotationGroupBox.Controls.Add(this.rotationLabel);
             this.rotationGroupBox.Controls.Add(this.rollLabel);
             this.rotationGroupBox.Controls.Add(this.yawLabel);
@@ -194,6 +204,7 @@ namespace RayTracerApp.Controls
             // 
             // rollLabel
             // 
+            this.rollLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rollLabel.AutoSize = true;
             this.rollLabel.Location = new System.Drawing.Point(139, 73);
             this.rollLabel.Name = "rollLabel";
@@ -203,6 +214,7 @@ namespace RayTracerApp.Controls
             // 
             // yawLabel
             // 
+            this.yawLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.yawLabel.AutoSize = true;
             this.yawLabel.Location = new System.Drawing.Point(139, 44);
             this.yawLabel.Name = "yawLabel";
@@ -212,6 +224,7 @@ namespace RayTracerApp.Controls
             // 
             // pitchLabel
             // 
+            this.pitchLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pitchLabel.AutoSize = true;
             this.pitchLabel.Location = new System.Drawing.Point(139, 15);
             this.pitchLabel.Name = "pitchLabel";
@@ -221,6 +234,7 @@ namespace RayTracerApp.Controls
             // 
             // rollUpDown
             // 
+            this.rollUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rollUpDown.DecimalPlaces = 2;
             this.rollUpDown.Increment = new decimal(new int[] {
             1,
@@ -240,6 +254,7 @@ namespace RayTracerApp.Controls
             // 
             // yawUpDown
             // 
+            this.yawUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.yawUpDown.DecimalPlaces = 2;
             this.yawUpDown.Increment = new decimal(new int[] {
             1,
@@ -259,6 +274,7 @@ namespace RayTracerApp.Controls
             // 
             // pitchUpDown
             // 
+            this.pitchUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pitchUpDown.DecimalPlaces = 2;
             this.pitchUpDown.Increment = new decimal(new int[] {
             1,
@@ -278,6 +294,8 @@ namespace RayTracerApp.Controls
             // 
             // scaleGroupBox
             // 
+            this.scaleGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.scaleGroupBox.Controls.Add(this.scaleUpDown);
             this.scaleGroupBox.Controls.Add(this.scaleLabel);
             this.scaleGroupBox.Location = new System.Drawing.Point(0, 212);
@@ -288,6 +306,7 @@ namespace RayTracerApp.Controls
             // 
             // scaleUpDown
             // 
+            this.scaleUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.scaleUpDown.DecimalPlaces = 2;
             this.scaleUpDown.Increment = new decimal(new int[] {
             1,

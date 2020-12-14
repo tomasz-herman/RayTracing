@@ -1,38 +1,54 @@
-﻿using RayTracing.Models;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using RayTracerApp.SceneControllers;
+using RayTracing.Models;
 
 namespace RayTracerApp.Controls
 {
-    public partial class FeaturesPanel : UserControl
+    public partial class FeaturesPanel : UserControl, IPanel
     {
+        private IController controller;
+
         public FeaturesPanel()
         {
             InitializeComponent();
         }
 
-        private NewObjectController controller;
-
-        public void SetController(NewObjectController newObjectController)
+        public void SetController(IController controller)
         {
-            controller = newObjectController;
-            sphereFeaturesControl.SetController(controller);
+            this.controller = controller;
         }
 
-        public void UpdateFeatures()
+        public void UpdateForModel()
         {
             var model = controller.GetModel();
             HideFeaturesControls();
-            switch (model)
-            {
-                case Sphere sphere:
-                    sphereFeaturesControl.Visible = true;
-                    break;
-            }
+            ShowProperControl(model);
+        }
+
+        public void ShowPanel()
+        {
+            Visible = true;
+        }
+
+        public void HidePanel()
+        {
+            Visible = false;
         }
 
         private void HideFeaturesControls()
         {
-            sphereFeaturesControl.Visible = false;
+            customModelFeatureControl.Visible = false;
+        }
+
+        private void ShowProperControl(Model model)
+        {
+            switch (model)
+            {
+                case CustomModel customModel:
+                    customModelFeatureControl.Visible = true;
+                    customModelFeatureControl.SetController(controller);
+                    break;
+            }
         }
     }
 }

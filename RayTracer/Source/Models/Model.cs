@@ -12,12 +12,14 @@ namespace RayTracing.Models
         public Vector3 Position;
         public float Scale = 1f;
         public abstract Vector3 Rotation { get; set; }
-
+        public bool Loaded { get => _loaded; }
+        protected bool _loaded;
         private protected abstract void LoadInternal();
 
         public Model Load()
         {
             LoadInternal();
+            _loaded = true;
             return this;
         }
 

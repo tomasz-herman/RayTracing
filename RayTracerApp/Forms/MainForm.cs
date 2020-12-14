@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL4;
+using RayTracerApp.Forms.Menu;
 using RayTracing;
 using RayTracing.Cameras;
 using RayTracing.Lights;
@@ -14,6 +15,7 @@ using RayTracing.Sampling;
 using RayTracing.World;
 using Camera = RayTracing.Cameras.Camera;
 using Timer = System.Windows.Forms.Timer;
+using RayTracerApp.SceneControllers;
 
 namespace RayTracerApp.Forms
 {
@@ -136,14 +138,6 @@ namespace RayTracerApp.Forms
             Text = e.ProgressPercentage + "%";
         }
 
-        private void newObjectButton_Click(object sender, EventArgs e)
-        {
-            _backgroundWorker.RunWorkerAsync();
-            // var form = new NewObjectForm();
-            // form.SetController(new NewObjectController(scene));
-            // form.Show();
-        }
-
         private void InitializeBackgroundWorker()
         {
             _backgroundWorker = new BackgroundWorker
@@ -153,6 +147,18 @@ namespace RayTracerApp.Forms
             };
             _backgroundWorker.DoWork += StartRender;
             _backgroundWorker.ProgressChanged += BackgroundWorkerProgressChanged;
+        }
+        
+        private void newObjectButton_Click(object sender, EventArgs e)
+        {
+            var form = new NewObjectForm(new NewObjectController(scene));
+            form.Show();
+        }
+        
+        private void editObjectButton_Click(object sender, EventArgs e)
+        {
+            var form = new EditObjectForm(new EditObjectController(scene, scene.Models[0]));
+            form.Show();
         }
     }
 }

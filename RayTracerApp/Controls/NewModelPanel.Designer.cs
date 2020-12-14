@@ -42,6 +42,9 @@ namespace RayTracerApp.Controls
             // 
             // NewModelBox
             // 
+            this.NewModelBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.NewModelBox.Controls.Add(this.ModelButton);
             this.NewModelBox.Controls.Add(this.SphereButton);
             this.NewModelBox.Controls.Add(this.CubeButton);
@@ -56,10 +59,10 @@ namespace RayTracerApp.Controls
             this.ModelButton.AutoSize = true;
             this.ModelButton.Location = new System.Drawing.Point(6, 69);
             this.ModelButton.Name = "ModelButton";
-            this.ModelButton.Size = new System.Drawing.Size(76, 19);
+            this.ModelButton.Size = new System.Drawing.Size(104, 19);
             this.ModelButton.TabIndex = 2;
             this.ModelButton.TabStop = true;
-            this.ModelButton.Text = "Model 3D";
+            this.ModelButton.Text = "Custom model";
             this.ModelButton.UseVisualStyleBackColor = true;
             this.ModelButton.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
             // 

@@ -32,91 +32,69 @@ namespace RayTracerApp.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.cancelButton = new System.Windows.Forms.Button();
-            this.previousButton = new System.Windows.Forms.Button();
-            this.nextButton = new System.Windows.Forms.Button();
+            this.featuresPanel = new RayTracerApp.Controls.FeaturesPanel();
             this.newModelPanel = new RayTracerApp.Controls.NewModelPanel();
             this.positionPanel = new RayTracerApp.Controls.PositionPanel();
-            this.featuresPanel = new RayTracerApp.Controls.FeaturesPanel();
+            this.materialPanel = new RayTracerApp.Controls.MaterialPanel();
             this.SuspendLayout();
-            // 
-            // cancelButton
-            // 
-            this.cancelButton.Location = new System.Drawing.Point(12, 314);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 0;
-            this.cancelButton.Text = "Cancel";
-            this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
-            // 
-            // previousButton
-            // 
-            this.previousButton.Location = new System.Drawing.Point(93, 314);
-            this.previousButton.Name = "previousButton";
-            this.previousButton.Size = new System.Drawing.Size(75, 23);
-            this.previousButton.TabIndex = 1;
-            this.previousButton.Text = "Previous";
-            this.previousButton.UseVisualStyleBackColor = true;
-            this.previousButton.Click += new System.EventHandler(this.previousButton_Click);
-            // 
-            // nextButton
-            // 
-            this.nextButton.Location = new System.Drawing.Point(175, 314);
-            this.nextButton.Name = "nextButton";
-            this.nextButton.Size = new System.Drawing.Size(75, 23);
-            this.nextButton.TabIndex = 2;
-            this.nextButton.Text = "Next";
-            this.nextButton.UseVisualStyleBackColor = true;
-            this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
-            // 
-            // newModelPanel
-            // 
-            this.newModelPanel.Location = new System.Drawing.Point(12, 12);
-            this.newModelPanel.Name = "newModelPanel";
-            this.newModelPanel.Size = new System.Drawing.Size(233, 152);
-            this.newModelPanel.TabIndex = 3;
-            // 
-            // positionPanel
-            // 
-            this.positionPanel.Location = new System.Drawing.Point(1, 12);
-            this.positionPanel.Name = "positionPanel";
-            this.positionPanel.Size = new System.Drawing.Size(258, 301);
-            this.positionPanel.TabIndex = 4;
-            this.positionPanel.Visible = false;
             // 
             // featuresPanel
             // 
-            this.featuresPanel.Location = new System.Drawing.Point(12, 12);
+            this.featuresPanel.Location = new System.Drawing.Point(0, 26);
             this.featuresPanel.Name = "featuresPanel";
-            this.featuresPanel.Size = new System.Drawing.Size(238, 296);
-            this.featuresPanel.TabIndex = 5;
+            this.featuresPanel.Size = new System.Drawing.Size(334, 331);
+            this.featuresPanel.TabIndex = 11;
             this.featuresPanel.Visible = false;
+            // 
+            // newModelPanel
+            // 
+            this.newModelPanel.Location = new System.Drawing.Point(0, 26);
+            this.newModelPanel.Name = "newModelPanel";
+            this.newModelPanel.Size = new System.Drawing.Size(334, 331);
+            this.newModelPanel.TabIndex = 12;
+            // 
+            // positionPanel
+            // 
+            this.positionPanel.Location = new System.Drawing.Point(0, 26);
+            this.positionPanel.Name = "positionPanel";
+            this.positionPanel.Size = new System.Drawing.Size(334, 331);
+            this.positionPanel.TabIndex = 13;
+            this.positionPanel.Visible = false;
+            // 
+            // materialPanel
+            // 
+            this.materialPanel.Location = new System.Drawing.Point(0, 28);
+            this.materialPanel.Name = "materialPanel";
+            this.materialPanel.Size = new System.Drawing.Size(334, 329);
+            this.materialPanel.TabIndex = 14;
+            this.materialPanel.Visible = false;
             // 
             // NewObjectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(262, 349);
-            this.Controls.Add(this.featuresPanel);
+            this.ClientSize = new System.Drawing.Size(334, 411);
+            this.Controls.Add(this.materialPanel);
             this.Controls.Add(this.positionPanel);
             this.Controls.Add(this.newModelPanel);
-            this.Controls.Add(this.nextButton);
-            this.Controls.Add(this.previousButton);
-            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.featuresPanel);
+            this.MaximumSize = new System.Drawing.Size(350, 450);
+            this.MinimumSize = new System.Drawing.Size(350, 450);
             this.Name = "NewObjectForm";
             this.Text = "NewObjectForm";
+            this.Controls.SetChildIndex(this.featuresPanel, 0);
+            this.Controls.SetChildIndex(this.newModelPanel, 0);
+            this.Controls.SetChildIndex(this.positionPanel, 0);
+            this.Controls.SetChildIndex(this.materialPanel, 0);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.Button previousButton;
-        private System.Windows.Forms.Button nextButton;
+        private FeaturesPanel featuresPanel;
         private NewModelPanel newModelPanel;
         private PositionPanel positionPanel;
-        private FeaturesPanel featuresPanel;
+        private MaterialPanel materialPanel;
     }
 }
