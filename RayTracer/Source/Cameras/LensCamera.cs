@@ -13,7 +13,7 @@ namespace RayTracing.Cameras
         private float _fov = MathHelper.PiOver3;
         private float _lensRadius;
         private float _focusDistance;
-        private Sampler<Vector2> _lensSampler;
+        private AbstractSampler<Vector2> _lensSampler;
         private Func<int, List<Vector2>> _sampling;
         private int _samplesCount;
 
@@ -53,7 +53,7 @@ namespace RayTracing.Cameras
             set
             {
                 _sampling = value;
-                _lensSampler = new Sampler<Vector2>(_sampling, _samplesCount, SAMPLE_SETS, Vec2Sampling.ToDisk);
+                _lensSampler = new ThreadSafeSampler<Vector2>(_sampling, _samplesCount, SAMPLE_SETS, Vec2Sampling.ToDisk);
             }
         }
         
@@ -63,7 +63,7 @@ namespace RayTracing.Cameras
             set
             {
                 _samplesCount = value;
-                _lensSampler = new Sampler<Vector2>(_sampling, _samplesCount, SAMPLE_SETS, Vec2Sampling.ToDisk);
+                _lensSampler = new ThreadSafeSampler<Vector2>(_sampling, _samplesCount, SAMPLE_SETS, Vec2Sampling.ToDisk);
             }
         }
 
@@ -79,8 +79,8 @@ namespace RayTracing.Cameras
 
         protected override void UpdateViewport()
         {
-            float width = (float) (2.0 * Math.Tan(_fov / 2.0));
-            float height = width / aspectRatio;
+            float height = (float) (2.0 * Math.Tan(_fov / 2.0));
+            float width = height * aspectRatio;
 
             horizontal = width * right * _focusDistance;
             vertical = height * up * _focusDistance;

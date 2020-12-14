@@ -26,8 +26,8 @@ namespace RayTracing.Cameras
 
         protected override void UpdateViewport()
         {
-            float width = (float) (2.0 * Math.Tan(_fov / 2.0));
-            float height = width / aspectRatio;
+            float height = (float) (2.0 * Math.Tan(_fov / 2.0));
+            float width = height * aspectRatio;
 
             horizontal = width * right;
             vertical = height * up;
