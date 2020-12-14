@@ -15,8 +15,9 @@ namespace RayTracing
 {
     public class IncrementalRayTracer : RayTracer, IRenderer
     {
-        public Action<int, Texture> OnFrameReady;
-        public Func<bool> IsCancellationRequested;
+        public Action<int, Texture> OnFrameReady { get; set; }
+        public Func<bool> IsCancellationRequested { get; set; }
+
         public IncrementalRayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution) :
             base(maxDepth, samples, sampling, resolution)
         {
@@ -33,7 +34,7 @@ namespace RayTracing
             {
                 Parallel.For(0, width, i =>
                 {
-                    if (IsCancellationRequested())
+                    if (IsCancellationRequested != null && IsCancellationRequested())
                         return;
                     for (int j = 0; j < height; j++)
                     {
@@ -44,12 +45,12 @@ namespace RayTracing
                         image[i, height - 1 - j] += Shade(ray, scene, MaxDepth);
                     }
                 });
-                if (IsCancellationRequested())
+                if (IsCancellationRequested != null && IsCancellationRequested())
                     return;
 
                 var output = new Texture(image);
                 output.Process(c => c / (k + 1));
-                OnFrameReady((k + 1) * 100 / Samples, output);
+                OnFrameReady?.Invoke((k + 1) * 100 / Samples, output);
             }
         }
     }
