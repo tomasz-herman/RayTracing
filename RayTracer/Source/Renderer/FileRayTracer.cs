@@ -12,9 +12,12 @@ namespace RayTracing
 {
     public class FileRayTracer : RayTracer, IRenderer
     {
-        public FileRayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution) : base(
+        private string _path;
+
+        public FileRayTracer(string path, int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution) : base(
             maxDepth, samples, sampling, resolution)
         {
+            _path = path;
         }
 
         public void Render(Scene scene, Camera camera)
@@ -39,7 +42,7 @@ namespace RayTracing
             }
 
             image.Process(c => c / Samples);
-            image.Write("RenderedScene.png");
+            image.Write(_path);
         }
     }
 }
