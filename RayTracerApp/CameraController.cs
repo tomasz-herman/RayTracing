@@ -8,15 +8,14 @@ namespace RayTracerApp
 {
     public class CameraController
     {
+        public float Sensitivity = 0.002f;
+        public float CameraSpeed = 0.02f;
+        
         private Action _onModification;
         private bool _firstMouseMove;
         private Point _lastMousePos;
         private Camera _camera;
-        public float Sensitivity = 0.002f;
-        public float CameraSpeed = 0.02f;
-
         private DictionaryWithDefault<Keys, bool> keys = new DictionaryWithDefault<Keys, bool>();
-
 
         public CameraController(Camera camera, Control control, Action onModification)
         {

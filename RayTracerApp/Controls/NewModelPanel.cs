@@ -7,7 +7,7 @@ namespace RayTracerApp.Controls
 {
     public partial class NewModelPanel : UserControl, IPanel
     {
-        private IController controller;
+        private IController _controller;
 
         public NewModelPanel()
         {
@@ -16,7 +16,7 @@ namespace RayTracerApp.Controls
 
         public void SetController(IController controller)
         {
-            this.controller = controller;
+            _controller = controller;
         }
 
         public void UpdateForModel()
@@ -47,13 +47,13 @@ namespace RayTracerApp.Controls
                 switch (rb.Text)
                 {
                     case "Sphere":
-                        controller.SetModel(new Sphere().Load());
+                        _controller.SetModel(new Sphere().Load());
                         break;
                     case "Cube":
-                        controller.SetModel(new Cube().Load());
+                        _controller.SetModel(new Cube().Load());
                         break;
                     case "Custom model":
-                        controller.SetModel(new CustomModel());
+                        _controller.SetModel(new CustomModel());
                         break;
                 }
         }

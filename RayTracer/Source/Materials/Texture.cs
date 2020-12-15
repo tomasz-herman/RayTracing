@@ -30,10 +30,9 @@ namespace RayTracing.Materials
                 _data[i, j] = image._data[i, j];
         }
 
-        public Texture(String path)
+        public Texture(string path)
         {
             LoadFromPath(path);
-
             LoadGLTexture();
         }
 

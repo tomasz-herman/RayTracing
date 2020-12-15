@@ -28,8 +28,7 @@ namespace RayTracerApp.Forms
         private CameraController _cameraController;
         private IncrementalRayTracer _rayTracer;
         private BackgroundWorker _backgroundWorker;
-        Timer FpsTimer = new Timer();
-
+        private Timer _fpsTimer = new Timer();
         private long lastModification;
         private bool rayTracingStarted;
 
@@ -85,14 +84,14 @@ namespace RayTracerApp.Forms
 
         private void InitializeFpsTimer()
         {
-            FpsTimer.Interval = 8;
-            FpsTimer.Enabled = true;
-            FpsTimer.Tick += OnTimerTick;
+            _fpsTimer.Interval = 8;
+            _fpsTimer.Enabled = true;
+            _fpsTimer.Tick += OnTimerTick;
         }
 
         private void OnTimerTick(object sender, EventArgs e)
         {
-            _cameraController.UpdateCamera(FpsTimer.Interval);
+            _cameraController.UpdateCamera(_fpsTimer.Interval);
 
             if (!rayTracingStarted)
                 if (ShouldRaytrace())

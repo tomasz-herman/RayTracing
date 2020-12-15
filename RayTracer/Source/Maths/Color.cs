@@ -11,7 +11,10 @@ namespace RayTracing.Maths
         public byte RComp => (byte) (R * 255);
         public byte GComp => (byte) (G * 255);
         public byte BComp => (byte) (B * 255);
-
+        
+        private const float MinVal = 0f;
+        private const float MaxVal = 1f;
+        
         public Color(float r, float g, float b)
         {
             R = r;
@@ -65,9 +68,6 @@ namespace RayTracing.Maths
         {
             return first * firstShare + second * (1 - firstShare);
         }
-
-        private const float MinVal = 0f;
-        private const float MaxVal = 1f;
 
         public Color Clamp()
         {

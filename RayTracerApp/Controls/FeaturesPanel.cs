@@ -6,7 +6,7 @@ namespace RayTracerApp.Controls
 {
     public partial class FeaturesPanel : UserControl, IPanel
     {
-        private IController controller;
+        private IController _controller;
 
         public FeaturesPanel()
         {
@@ -15,12 +15,12 @@ namespace RayTracerApp.Controls
 
         public void SetController(IController controller)
         {
-            this.controller = controller;
+            _controller = controller;
         }
 
         public void UpdateForModel()
         {
-            var model = controller.GetModel();
+            var model = _controller.GetModel();
             HideFeaturesControls();
             ShowProperControl(model);
         }
@@ -46,7 +46,7 @@ namespace RayTracerApp.Controls
             {
                 case CustomModel customModel:
                     customModelFeatureControl.Visible = true;
-                    customModelFeatureControl.SetController(controller);
+                    customModelFeatureControl.SetController(_controller);
                     break;
             }
         }

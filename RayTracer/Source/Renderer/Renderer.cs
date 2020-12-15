@@ -7,7 +7,7 @@ namespace RayTracing
 {
     public class Renderer : IRenderer
     {
-        private Shader _shader = new Shader("shader.vert", "shader.frag");
+        private readonly Shader _shader = new Shader("shader.vert", "shader.frag");
 
         public void Render(Scene scene, Camera camera)
         {

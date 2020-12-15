@@ -6,8 +6,9 @@ namespace RayTracing.Sampling
 {
     public abstract class AbstractSampler<T>
     {
-        protected List<List<T>> samples = new List<List<T>>();
-        protected int count, sets;
+        protected readonly List<List<T>> samples = new List<List<T>>();
+        protected readonly int count;
+        protected readonly int sets;
         
         public AbstractSampler(Func<int, List<T>> generator, int count = 64, int sets = 1, Func<T, T> mapper = null)
         {

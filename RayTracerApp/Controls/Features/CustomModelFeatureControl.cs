@@ -13,7 +13,7 @@ namespace RayTracerApp.Controls.Features
 {
     public partial class CustomModelFeatureControl : UserControl, IPanel
     {
-        private IController controller;
+        private IController _controller;
 
         public CustomModelFeatureControl()
         {
@@ -27,7 +27,7 @@ namespace RayTracerApp.Controls.Features
 
         public void SetController(IController controller)
         {
-            this.controller = controller;
+            _controller = controller;
         }
 
         public void ShowPanel()
@@ -73,8 +73,8 @@ namespace RayTracerApp.Controls.Features
                 {
                     filePath = openFileDialog.FileName;
                     var mesh = ModelLoader.LoadMesh(filePath, Assimp.PostProcessSteps.Triangulate);
-                    (controller.GetModel() as CustomModel).SetMesh(mesh);
-                    controller.GetModel().Load();
+                    (_controller.GetModel() as CustomModel).SetMesh(mesh);
+                    _controller.GetModel().Load();
                 }
             }
         }

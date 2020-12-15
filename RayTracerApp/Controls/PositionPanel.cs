@@ -6,7 +6,7 @@ namespace RayTracerApp.Controls
 {
     public partial class PositionPanel : UserControl, IPanel
     {
-        private IController controller;
+        private IController _controller;
 
         public PositionPanel()
         {
@@ -15,12 +15,12 @@ namespace RayTracerApp.Controls
 
         public void SetController(IController controller)
         {
-            this.controller = controller;
+            _controller = controller;
         }
 
         public void UpdateForModel()
         {
-            var model = controller.GetModel();
+            var model = _controller.GetModel();
             scaleUpDown.Value = (decimal) model.Scale;
 
             rollUpDown.Value = (decimal) model.Rotation.Z;
@@ -45,49 +45,49 @@ namespace RayTracerApp.Controls
         private void zUpDown_ValueChanged(object sender, EventArgs e)
         {
             var nud = sender as NumericUpDown;
-            controller.GetModel().Position.Z = (float) nud.Value;
+            _controller.GetModel().Position.Z = (float) nud.Value;
         }
 
         private void yUpDown_ValueChanged(object sender, EventArgs e)
         {
             var nud = sender as NumericUpDown;
-            controller.GetModel().Position.Y = (float) nud.Value;
+            _controller.GetModel().Position.Y = (float) nud.Value;
         }
 
         private void xUpDown_ValueChanged(object sender, EventArgs e)
         {
             var nud = sender as NumericUpDown;
-            controller.GetModel().Position.X = (float) nud.Value;
+            _controller.GetModel().Position.X = (float) nud.Value;
         }
 
         private void pitchUpDown_ValueChanged(object sender, EventArgs e)
         {
             var nud = sender as NumericUpDown;
-            var rotation = controller.GetModel().Rotation;
+            var rotation = _controller.GetModel().Rotation;
             rotation.X = (float) nud.Value;
-            controller.GetModel().Rotation = rotation;
+            _controller.GetModel().Rotation = rotation;
         }
 
         private void yawUpDown_ValueChanged(object sender, EventArgs e)
         {
             var nud = sender as NumericUpDown;
-            var rotation = controller.GetModel().Rotation;
+            var rotation = _controller.GetModel().Rotation;
             rotation.Y = (float) nud.Value;
-            controller.GetModel().Rotation = rotation;
+            _controller.GetModel().Rotation = rotation;
         }
 
         private void rollUpDown_ValueChanged(object sender, EventArgs e)
         {
             var nud = sender as NumericUpDown;
-            var rotation = controller.GetModel().Rotation;
+            var rotation = _controller.GetModel().Rotation;
             rotation.Z = (float) nud.Value;
-            controller.GetModel().Rotation = rotation;
+            _controller.GetModel().Rotation = rotation;
         }
 
         private void scaleUpDown_ValueChanged(object sender, EventArgs e)
         {
             var nud = sender as NumericUpDown;
-            controller.GetModel().Scale = (float) nud.Value;
+            _controller.GetModel().Scale = (float) nud.Value;
         }
     }
 }

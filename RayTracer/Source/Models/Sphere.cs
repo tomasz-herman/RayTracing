@@ -13,8 +13,8 @@ namespace RayTracing.Models
         {
             var (positions, texCoords) = GetVertexList(100, 100);
             var indicesList = GetElementBuffer(100, 100);
-            _mesh = new Mesh(positions, positions, texCoords, indicesList);
-            _mesh.Load();
+            mesh = new Mesh(positions, positions, texCoords, indicesList);
+            mesh.Load();
         }
 
         public override bool HitTest(Ray ray, ref HitInfo hit, float from, float to)
@@ -51,7 +51,7 @@ namespace RayTracing.Models
 
         public override Mesh GetMesh()
         {
-            return _mesh;
+            return mesh;
         }
 
 

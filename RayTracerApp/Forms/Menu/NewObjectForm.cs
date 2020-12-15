@@ -8,9 +8,9 @@ namespace RayTracerApp.Forms
 {
     public partial class NewObjectForm : EditorForm
     {
-        private readonly IController controller;
-        private IPanel currentPanel;
-        private List<IPanel> order;
+        private readonly IController _controller;
+        private IPanel _currentPanel;
+        private List<IPanel> _order;
 
         public NewObjectForm(IController controller)
         {
@@ -22,32 +22,32 @@ namespace RayTracerApp.Forms
             cancelButton2.Click += cancelButton_Click;
             finishButton.Click += finishButton_Click;
 
-            this.controller = controller;
+            _controller = controller;
 
-            currentPanel = newModelPanel;
-            currentPanel.SetController(this.controller);
+            _currentPanel = newModelPanel;
+            _currentPanel.SetController(_controller);
             topLabel.Text = "Add new object...";
         }
 
         private void SetController()
         {
-            foreach (var panel in order) panel.SetController(controller);
+            foreach (var panel in _order) panel.SetController(_controller);
         }
 
         private void ChooseOrder()
         {
-            switch (controller.GetModel())
+            switch (_controller.GetModel())
             {
                 case Sphere sphere:
-                    order = new List<IPanel> {newModelPanel, positionPanel, materialPanel};
+                    _order = new List<IPanel> {newModelPanel, positionPanel, materialPanel};
                     break;
 
                 case Cube cube:
-                    order = new List<IPanel> {newModelPanel, positionPanel, materialPanel};
+                    _order = new List<IPanel> {newModelPanel, positionPanel, materialPanel};
                     break;
 
                 case CustomModel customModel:
-                    order = new List<IPanel> {newModelPanel, featuresPanel, positionPanel, materialPanel};
+                    _order = new List<IPanel> {newModelPanel, featuresPanel, positionPanel, materialPanel};
                     break;
             }
         }
@@ -55,7 +55,7 @@ namespace RayTracerApp.Forms
         private void MoveNext()
         {
             var index = 0;
-            if (currentPanel != newModelPanel) index = order.FindIndex(control => control == currentPanel);
+            if (_currentPanel != newModelPanel) index = _order.FindIndex(control => control == _currentPanel);
 
             if (index == 0)
             {
@@ -65,30 +65,30 @@ namespace RayTracerApp.Forms
                 previousButton.Visible = true;
                 cancelButton2.Visible = false;
 
-                if (controller.GetModel() is CustomModel)
+                if (_controller.GetModel() is CustomModel)
                     topLabel.Text = "Add custom model...";
                 else
-                    topLabel.Text = $"Add {controller.GetModel().GetType().Name.ToLower()}...";
+                    topLabel.Text = $"Add {_controller.GetModel().GetType().Name.ToLower()}...";
             }
 
-            if (index == order.Count - 2)
+            if (index == _order.Count - 2)
             {
                 finishButton.Visible = true;
                 nextButton.Visible = false;
             }
 
-            if (index < order.Count - 1)
+            if (index < _order.Count - 1)
             {
-                order[index + 1].UpdateForModel();
-                order[index + 1].ShowPanel();
-                order[index].HidePanel();
-                currentPanel = order[index + 1];
+                _order[index + 1].UpdateForModel();
+                _order[index + 1].ShowPanel();
+                _order[index].HidePanel();
+                _currentPanel = _order[index + 1];
             }
         }
 
         private void MovePrevious()
         {
-            var index = order.FindIndex(control => control == currentPanel);
+            var index = _order.FindIndex(control => control == _currentPanel);
 
             if (index == 1)
             {
@@ -99,7 +99,7 @@ namespace RayTracerApp.Forms
                 previousButton.Visible = false;
             }
 
-            if (index == order.Count - 1)
+            if (index == _order.Count - 1)
             {
                 nextButton.Visible = true;
                 finishButton.Visible = false;
@@ -107,10 +107,10 @@ namespace RayTracerApp.Forms
 
             if (index > 0)
             {
-                order[index - 1].UpdateForModel();
-                order[index - 1].ShowPanel();
-                order[index].HidePanel();
-                currentPanel = order[index - 1];
+                _order[index - 1].UpdateForModel();
+                _order[index - 1].ShowPanel();
+                _order[index].HidePanel();
+                _currentPanel = _order[index - 1];
             }
         }
 
@@ -121,7 +121,7 @@ namespace RayTracerApp.Forms
 
         private void finishButton_Click(object sender, EventArgs e)
         {
-            controller.Dispose();
+            _controller.Dispose();
             Close();
         }
 
@@ -132,8 +132,8 @@ namespace RayTracerApp.Forms
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            controller.DeleteModel();
-            controller.Dispose();
+            _controller.DeleteModel();
+            _controller.Dispose();
             Close();
         }
     }

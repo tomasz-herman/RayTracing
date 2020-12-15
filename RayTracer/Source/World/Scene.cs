@@ -10,7 +10,7 @@ namespace RayTracing.World
     {
         public List<Model> Models { get; } = new List<Model>();
         public List<Light> Lights { get; } = new List<Light>();
-        public AmbientLight AmbientLight { get; set; } //🐕
+        public AmbientLight AmbientLight { get; set; }
 
         public void AddModel(Model model)
         {

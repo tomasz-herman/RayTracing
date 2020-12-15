@@ -11,20 +11,20 @@ namespace RayTracing.Models
 
         public void SetMesh(Mesh mesh)
         {
-            _mesh = mesh;
-            _loaded = false;
+            base.mesh = mesh;
+            loaded = false;
         }
 
         public CustomModel(Mesh mesh)
         {
-            _mesh = mesh;
+            base.mesh = mesh;
         }
 
         public override Vector3 Rotation { get; set; }
 
         private protected override void LoadInternal()
         {
-            _mesh.Load();
+            mesh.Load();
         }
 
         public override bool HitTest(Ray ray, ref HitInfo hit, float from, float to)
@@ -34,7 +34,7 @@ namespace RayTracing.Models
 
         public override Mesh GetMesh()
         {
-            return _mesh;
+            return mesh;
         }
     }
 }

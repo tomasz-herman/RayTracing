@@ -5,7 +5,7 @@ namespace RayTracerApp.Controls
 {
     public partial class MaterialPanel : UserControl, IPanel
     {
-        private IController controller;
+        private IController _controller;
 
         public MaterialPanel()
         {
@@ -14,7 +14,7 @@ namespace RayTracerApp.Controls
 
         public void SetController(IController controller)
         {
-            this.controller = controller;
+            _controller = controller;
         }
 
         public void UpdateForModel()

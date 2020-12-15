@@ -8,17 +8,17 @@ namespace RayTracing.Materials
     public class Diffuse : IMaterial
     {
         public Color Albedo { get; set; }
-        private AbstractSampler<Vector3> sampler;
+        private readonly AbstractSampler<Vector3> _sampler;
 
         public Diffuse(Color albedo, AbstractSampler<Vector3> sampler = null)
         {
-            this.sampler = sampler ?? new ThreadSafeSampler<Vector3>(Vec3Sampling.UniformSphere, 125, 8);
+            this._sampler = sampler ?? new ThreadSafeSampler<Vector3>(Vec3Sampling.UniformSphere, 125, 8);
             Albedo = albedo;
         }
         
         public bool Scatter(ref Ray ray, ref HitInfo hit, out Color attenuation, out Ray scattered)
         {
-            scattered = new Ray(hit.HitPoint, hit.Normal + sampler.Sample);
+            scattered = new Ray(hit.HitPoint, hit.Normal + _sampler.Sample);
             attenuation = Albedo;
             return true;
         }

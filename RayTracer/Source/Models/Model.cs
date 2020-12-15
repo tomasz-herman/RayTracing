@@ -7,19 +7,19 @@ namespace RayTracing.Models
 {
     public abstract class Model : IHittable
     {
-        protected Mesh _mesh;
+        protected Mesh mesh;
         public IMaterial Material;
         public Vector3 Position;
         public float Scale = 1f;
         public abstract Vector3 Rotation { get; set; }
-        public bool Loaded { get => _loaded; }
-        protected bool _loaded;
+        public bool Loaded => loaded;
+        protected bool loaded;
         private protected abstract void LoadInternal();
 
         public Model Load()
         {
             LoadInternal();
-            _loaded = true;
+            loaded = true;
             return this;
         }
 
