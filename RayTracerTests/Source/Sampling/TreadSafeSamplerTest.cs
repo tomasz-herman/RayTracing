@@ -34,7 +34,7 @@ namespace RayTracerTests.Source.Sampling
             {
                 Parallel.For(0, 1000, _ =>
                 {
-                    for (int j = 0; _ < 1000; _++)
+                    for (; _ < 1000; _++)
                     {
                         sampler.GetSample();
                     }

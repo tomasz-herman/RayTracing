@@ -36,11 +36,6 @@ namespace RayTracing.Models
             {
                 for (int x = 0; x <= _xCount; x++, i++)
                 {
-                    if (i > (_xCount + 1) * (_yCount + 1) - 1)
-                    {
-                        var a = 2;
-                    }
-
                     vertices[i] = new Vector3(_width * x / _xCount-halfWidth, 0, _height * y / _yCount-halfHeight);
                 }
             }

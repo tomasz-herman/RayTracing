@@ -55,8 +55,6 @@ namespace RayTracerApp.Controls
 
         #endregion
 
-        private System.Windows.Forms.Label radiusLabel;
-        private System.Windows.Forms.NumericUpDown radiusUpDown;
         private Features.CustomModelFeatureControl customModelFeatureControl;
     }
 }
