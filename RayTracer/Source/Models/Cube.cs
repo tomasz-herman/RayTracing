@@ -104,8 +104,8 @@ namespace RayTracing.Models
         private protected override void LoadInternal()
         {
             var buffers = GetBuffers();
-            mesh = new Mesh(buffers.vertexBuffer, buffers.normalBuffer, buffers.texBuffer, buffers.indicesBuffer);
-            mesh.Load();
+            Mesh = new Mesh(buffers.vertexBuffer, buffers.normalBuffer, buffers.texBuffer, buffers.indicesBuffer);
+            Mesh.Load();
         }
 
         public override bool HitTest(Ray ray, ref HitInfo hit, float from, float to)
@@ -115,7 +115,7 @@ namespace RayTracing.Models
 
         public override Mesh GetMesh()
         {
-            return mesh;
+            return Mesh;
         }
     }
 }

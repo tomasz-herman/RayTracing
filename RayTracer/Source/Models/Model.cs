@@ -7,7 +7,7 @@ namespace RayTracing.Models
 {
     public abstract class Model : IHittable
     {
-        protected Mesh mesh;
+        protected Mesh Mesh { get; set; }
         public IMaterial Material;
         public Vector3 Position;
         public float Scale = 1f;

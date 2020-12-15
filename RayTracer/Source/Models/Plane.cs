@@ -25,7 +25,7 @@ namespace RayTracing.Models
 
         private protected override void LoadInternal()
         {
-            mesh = new Rectangle(1000,1000,100,100).Load().GetMesh();
+            Mesh = new Rectangle(1000,1000,100,100).Load().GetMesh();
         }
 
         public override bool HitTest(Ray ray, ref HitInfo hit, float from, float to)
@@ -45,7 +45,7 @@ namespace RayTracing.Models
 
         public override Mesh GetMesh()
         {
-            return mesh;
+            return Mesh;
         }
     }
 }

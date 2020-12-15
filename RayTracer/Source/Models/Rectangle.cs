@@ -23,8 +23,8 @@ namespace RayTracing.Models
         private protected override void LoadInternal()
         {
             var buffers = GetBuffers();
-            mesh = new Mesh(buffers.vertexBuffer, buffers.normalBuffer, buffers.texBuffer, buffers.indicesBuffer);
-            mesh.Load();
+            Mesh = new Mesh(buffers.vertexBuffer, buffers.normalBuffer, buffers.texBuffer, buffers.indicesBuffer);
+            Mesh.Load();
         }
 
         private Vector3[] GetVertices()
@@ -119,7 +119,7 @@ namespace RayTracing.Models
 
         public override Mesh GetMesh()
         {
-            return mesh;
+            return Mesh;
         }
     }
 }

@@ -6,26 +6,26 @@ namespace RayTracing.Sampling
 {
     public class ThreadSafeSampler<T> : AbstractSampler<T>
     {
-        private ThreadLocal<Random> random = new ThreadLocal<Random>(() => new Random(Thread.CurrentThread.ManagedThreadId));
-        private ThreadLocal<int> current = new ThreadLocal<int>(() => 0);
-        private ThreadLocal<int> set = new ThreadLocal<int>(() => 0);
+        private ThreadLocal<Random> _random = new ThreadLocal<Random>(() => new Random(Thread.CurrentThread.ManagedThreadId));
+        private ThreadLocal<int> _current = new ThreadLocal<int>(() => 0);
+        private ThreadLocal<int> _set = new ThreadLocal<int>(() => 0);
         
         public ThreadSafeSampler(Func<int, List<T>> generator, int count = 64, int sets = 1, Func<T, T> mapper = null) 
             : base(generator, count, sets, mapper) { }
 
         public override T GetSample()
         {
-            if(current.Value >= count) 
+            if(_current.Value >= count) 
             {
-                current.Value = 0;
-                if(sets > 1) set.Value = random.Value.Next(sets);
+                _current.Value = 0;
+                if(Sets > 1) _set.Value = _random.Value.Next(Sets);
             }
-            return samples[set.Value][current.Value++];
+            return Samples[_set.Value][_current.Value++];
         }
         
         public override T GetSample(int i)
         {
-            return samples[set.Value][i];
+            return Samples[_set.Value][i];
         }
     }
 }

@@ -36,7 +36,7 @@ namespace RayTracing.Models
             LoadIndexBuffer(Indices);
         }
 
-        public void LoadDataBuffer(List<float> buffer, int index, int size)
+        private void LoadDataBuffer(List<float> buffer, int index, int size)
         {
             int vboId = GL.GenBuffer();
             vboIdList.Add(vboId);
@@ -50,7 +50,7 @@ namespace RayTracing.Models
             GL.VertexAttribPointer(index, size, VertexAttribPointerType.Float, false, 0, 0);
         }
 
-        public void LoadIndexBuffer(List<int> buffer)
+        private void LoadIndexBuffer(List<int> buffer)
         {
             int vboId = GL.GenBuffer();
             vboIdList.Add(vboId);
@@ -65,12 +65,12 @@ namespace RayTracing.Models
             GL.BindVertexArray(0);
         }
 
-        public void Init()
+        private void Init()
         {
             GL.BindVertexArray(vaoId);
         }
 
-        public void End()
+        private void End()
         {
             GL.BindVertexArray(0);
         }

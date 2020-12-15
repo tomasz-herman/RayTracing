@@ -20,23 +20,23 @@ namespace RayTracing.Cameras
 
         public PerspectiveCamera(Vector3 position)
         {
-            this.position = position;
+            this.Position = position;
             UpdateVectors();
         }
 
         protected override void UpdateViewport()
         {
             float height = (float) (2.0 * Math.Tan(_fov / 2.0));
-            float width = height * aspectRatio;
+            float width = height * AspectRatio;
 
-            horizontal = width * right;
-            vertical = height * up;
-            lowerLeft = position - horizontal / 2 - vertical / 2 + front;
+            Horizontal = width * Right;
+            Vertical = height * Up;
+            LowerLeft = Position - Horizontal / 2 - Vertical / 2 + Front;
         }
 
         public override Matrix4 GetViewMatrix()
         {
-            return Matrix4.LookAt(position, position + front, up);
+            return Matrix4.LookAt(Position, Position + Front, Up);
         }
 
         public override Matrix4 GetProjectionMatrix()
@@ -46,7 +46,7 @@ namespace RayTracing.Cameras
 
         public override Ray GetRay(float x, float y)
         {
-            return new Ray(position, (lowerLeft + x * horizontal + y * vertical - position).Normalized());
+            return new Ray(Position, (LowerLeft + x * Horizontal + y * Vertical - Position).Normalized());
         }
     }
 }

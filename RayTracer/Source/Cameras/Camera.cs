@@ -6,57 +6,56 @@ namespace RayTracing.Cameras
 {
     public abstract class Camera
     {
-        private protected Vector3 front = -Vector3.UnitZ;
-        private protected Vector3 up = Vector3.UnitY;
-        private protected Vector3 right = Vector3.UnitX;
-        private protected float pitch;
-        private protected float yaw = -MathHelper.PiOver2;
-        private protected float farPlane = 1000f;
-        private protected float aspectRatio = 16f / 9;
-        private protected Vector3 position;
-        private protected Vector3 horizontal;
-        private protected Vector3 vertical;
-        private protected Vector3 lowerLeft;
+        protected Vector3 Front { get; set; } = -Vector3.UnitZ;
+        protected Vector3 Up { get; set; } = Vector3.UnitY;
+        protected Vector3 Right { get; set; } = Vector3.UnitX;
+        protected float Pitch { get; set; }
+        protected float Yaw  { get; set; } = -MathHelper.PiOver2;
+        private float _aspectRatio = 16f / 9;
+        protected Vector3 Position { get; set; }
+        protected Vector3 Horizontal { get; set; }
+        protected Vector3 Vertical { get; set; }
+        protected Vector3 LowerLeft { get; set; }
+        
+        public float FarPlane { get; set; } = 1000f;
 
         public float AspectRatio
         {
-            get => aspectRatio;
+            get => _aspectRatio;
             set
             {
-                aspectRatio = value;
+                _aspectRatio = value;
                 UpdateVectors();
             }
         }
 
-        public float FarPlane
-        {
-            get => farPlane;
-            set => farPlane = value;
-        }
-
         public void Rotate(float dpitch, float dyaw, float droll)
         {
-            pitch += dpitch;
-            yaw += dyaw;
+            // TODO: implement roll
+            Pitch += dpitch;
+            Yaw += dyaw;
             UpdateVectors();
         }
 
         public void Move(float dx, float dy, float dz)
         {
-            position += front * dz + up * dy + right * dx;
+            Position += Front * dz + Up * dy + Right * dx;
         }
 
         protected abstract void UpdateViewport();
 
         protected void UpdateVectors()
         {
-            front.X = (float) Math.Cos(pitch) * (float) Math.Cos(yaw);
-            front.Y = (float) Math.Sin(pitch);
-            front.Z = (float) Math.Cos(pitch) * (float) Math.Sin(yaw);
+            Front = new Vector3
+            {
+                X = (float) Math.Cos(Pitch) * (float) Math.Cos(Yaw),
+                Y = (float) Math.Sin(Pitch),
+                Z = (float) Math.Cos(Pitch) * (float) Math.Sin(Yaw)
+            };
 
-            front = Vector3.Normalize(front);
-            right = Vector3.Normalize(Vector3.Cross(front, Vector3.UnitY));
-            up = Vector3.Normalize(Vector3.Cross(right, front));
+            Front = Vector3.Normalize(Front);
+            Right = Vector3.Normalize(Vector3.Cross(Front, Vector3.UnitY));
+            Up = Vector3.Normalize(Vector3.Cross(Right, Front));
 
             UpdateViewport();
         }

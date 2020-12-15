@@ -7,7 +7,7 @@ namespace RayTracing.Sampling
 {
     public static class Vec2Sampling
     {
-        private static Random random = new Random();
+        private static readonly Random _random = new Random();
         
         public static List<Vector2> Dummy(int count)
         {
@@ -33,7 +33,7 @@ namespace RayTracing.Sampling
                 }
             }
             
-            samples = samples.OrderBy(item => random.Next()).Take(count).ToList();
+            samples = samples.OrderBy(item => _random.Next()).Take(count).ToList();
             
             return samples;
         }
@@ -45,14 +45,14 @@ namespace RayTracing.Sampling
             for (int i = 0; i < size; ++i) {
                 for (int j = 0; j < size; ++j) {
                     Vector2 sample = new Vector2(
-                        (i + (float)random.NextDouble()) / size, 
-                        (j + (float)random.NextDouble()) / size
+                        (i + (float)_random.NextDouble()) / size, 
+                        (j + (float)_random.NextDouble()) / size
                     );
                     samples.Add(sample);
                 }
             }
             
-            samples = samples.OrderBy(item => random.Next()).Take(count).ToList();
+            samples = samples.OrderBy(item => _random.Next()).Take(count).ToList();
 
             return samples;
         }
@@ -63,8 +63,8 @@ namespace RayTracing.Sampling
             for (int i = 0; i < count; ++i)
             {
                 samples.Add(new Vector2(
-                    (float)random.NextDouble(), 
-                    (float)random.NextDouble())
+                    (float)_random.NextDouble(), 
+                    (float)_random.NextDouble())
                 );
             }
             return samples;

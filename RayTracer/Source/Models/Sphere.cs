@@ -12,9 +12,9 @@ namespace RayTracing.Models
         private protected override void LoadInternal()
         {
             var (positions, texCoords) = GetVertexList(100, 100);
-            var indicesList = GetElementBuffer(100, 100);
-            mesh = new Mesh(positions, positions, texCoords, indicesList);
-            mesh.Load();
+            var indicesList = GetIndices(100, 100);
+            Mesh = new Mesh(positions, positions, texCoords, indicesList);
+            Mesh.Load();
         }
 
         public override bool HitTest(Ray ray, ref HitInfo hit, float from, float to)
@@ -51,7 +51,7 @@ namespace RayTracing.Models
 
         public override Mesh GetMesh()
         {
-            return mesh;
+            return Mesh;
         }
 
 
@@ -72,11 +72,9 @@ namespace RayTracing.Models
                     x = (float) (Math.Cos(2 * (float) Math.PI * s * S) * Math.Sin((float) Math.PI * r * R));
                     y = (float) (Math.Sin(-(float) Math.PI / 2 + (float) Math.PI * r * R));
                     z = (float) (Math.Sin(2 * (float) Math.PI * s * S) * Math.Sin((float) Math.PI * r * R));
-                    // positions
                     positions.Add(x);
                     positions.Add(y);
                     positions.Add(z);
-                    // texture coordinates
                     texCoords.Add(1 - s * S);
                     texCoords.Add(r * R);
                 }
@@ -85,26 +83,26 @@ namespace RayTracing.Models
             return (positions, texCoords);
         }
 
-        private List<int> GetElementBuffer(short rings, short sectors)
+        private List<int> GetIndices(short rings, short sectors)
         {
             short r, s;
 
-            List<int> elementBuffer = new List<int>(rings * sectors * 6);
+            List<int> indices = new List<int>(rings * sectors * 6);
 
             for (r = 0; r < rings - 1; r++)
             {
                 for (s = 0; s < sectors - 1; s++)
                 {
-                    elementBuffer.Add((r * sectors + s));
-                    elementBuffer.Add((r * sectors + (s + 1)));
-                    elementBuffer.Add(((r + 1) * sectors + (s + 1)));
-                    elementBuffer.Add(((r + 1) * sectors + (s + 1)));
-                    elementBuffer.Add((r * sectors + s));
-                    elementBuffer.Add(((r + 1) * sectors + s));
+                    indices.Add((r * sectors + s));
+                    indices.Add((r * sectors + (s + 1)));
+                    indices.Add(((r + 1) * sectors + (s + 1)));
+                    indices.Add(((r + 1) * sectors + (s + 1)));
+                    indices.Add((r * sectors + s));
+                    indices.Add(((r + 1) * sectors + s));
                 }
             }
 
-            return elementBuffer;
+            return indices;
         }
     }
 }

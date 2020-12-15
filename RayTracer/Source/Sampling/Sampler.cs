@@ -17,14 +17,14 @@ namespace RayTracing.Sampling
             if(current >= count) 
             {
                 current = 0;
-                if(sets > 1) set = random.Next(sets);
+                if(Sets > 1) set = random.Next(Sets);
             }
-            return samples[set][current++];
+            return Samples[set][current++];
         }
         
         public override T GetSample(int i)
         {
-            return samples[set][i];
+            return Samples[set][i];
         }
     }
 }

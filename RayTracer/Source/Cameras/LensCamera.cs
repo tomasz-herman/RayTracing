@@ -69,7 +69,7 @@ namespace RayTracing.Cameras
 
         public LensCamera(Vector3 position, float lensRadius, float focusDistance, int samplesCount = 64, Func<int, List<Vector2>> sampling = null)
         {
-            this.position = position;
+            Position = position;
             _lensRadius = lensRadius;
             _focusDistance = focusDistance;
             _samplesCount = samplesCount;
@@ -80,16 +80,16 @@ namespace RayTracing.Cameras
         protected override void UpdateViewport()
         {
             float height = (float) (2.0 * Math.Tan(_fov / 2.0));
-            float width = height * aspectRatio;
+            float width = height * AspectRatio;
 
-            horizontal = width * right * _focusDistance;
-            vertical = height * up * _focusDistance;
-            lowerLeft = position - horizontal / 2 - vertical / 2 + front * _focusDistance;
+            Horizontal = width * Right * _focusDistance;
+            Vertical = height * Up * _focusDistance;
+            LowerLeft = Position - Horizontal / 2 - Vertical / 2 + Front * _focusDistance;
         }
 
         public override Matrix4 GetViewMatrix()
         {
-            return Matrix4.LookAt(position, position + front, up);
+            return Matrix4.LookAt(Position, Position + Front, Up);
         }
 
         public override Matrix4 GetProjectionMatrix()
@@ -100,9 +100,9 @@ namespace RayTracing.Cameras
         public override Ray GetRay(float x, float y)
         {
             Vector2 rd = _lensRadius * _lensSampler.Sample;
-            Vector3 offset = right * rd.X + up * rd.Y;
+            Vector3 offset = Right * rd.X + Up * rd.Y;
             
-            return new Ray(position + offset, (lowerLeft + x * horizontal + y * vertical - position - offset).Normalized());
+            return new Ray(Position + offset, (LowerLeft + x * Horizontal + y * Vertical - Position - offset).Normalized());
         }
     }
 }
