@@ -22,7 +22,7 @@ namespace RayTracerApp.Forms
     public partial class MainForm : Form
     {
         private const int SWAP_TIME = 2;
-        private Scene scene = new Scene();
+        private Scene _scene = new Scene();
         private IRenderer _renderer;
         private Camera _camera = new PerspectiveCamera(new Vector3(0, 0, 20)) {AspectRatio = 1};
         private CameraController _cameraController;
@@ -57,22 +57,22 @@ namespace RayTracerApp.Forms
             _renderer = new Renderer();
             _rayTracer = new IncrementalRayTracer(10, 64, Vec2Sampling.Jittered, gLControl.Width);
             _cameraController = new CameraController(_camera, gLControl, UpdateLastModification);
-            scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.LightSkyBlue)};
-            scene.AddModel(new Sphere
+            _scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.LightSkyBlue)};
+            _scene.AddModel(new Sphere
             {
                 Position = new Vector3(0, 0.5f, 0), Scale = 1, Material = new Diffuse(Color.FromColor4(Color4.Orange))
             }.Load());
-            scene.AddModel(new Sphere
+            _scene.AddModel(new Sphere
             {
                 Position = new Vector3(-2.5f, 0.5f, 1), Scale = 1,
                 Material = new Reflective(Color.FromColor4(Color4.Azure), 0.1f)
             }.Load());
-            scene.AddModel(new Sphere
+            _scene.AddModel(new Sphere
             {
                 Position = new Vector3(2.5f, 0.5f, 1), Scale = 1,
                 Material = new Reflective(Color.FromColor4(Color4.Aqua), 0.75f)
             }.Load());
-            scene.AddModel(new Plane
+            _scene.AddModel(new Plane
             {
                 Position = new Vector3(0, -0.5f, 0), Scale = 1,
                 Material = new Diffuse(Color.FromColor4(Color4.ForestGreen))
@@ -102,7 +102,7 @@ namespace RayTracerApp.Forms
                 }
                 else
                 {
-                    _renderer.Render(scene, _camera);
+                    _renderer.Render(_scene, _camera);
                     gLControl.SwapBuffers();
                 }
         }
@@ -126,7 +126,7 @@ namespace RayTracerApp.Forms
         {
             _rayTracer.OnFrameReady = _backgroundWorker.ReportProgress;
             _rayTracer.IsCancellationRequested = () => _backgroundWorker.CancellationPending;
-            _rayTracer.Render(scene, _camera);
+            _rayTracer.Render(_scene, _camera);
         }
 
         private void BackgroundWorkerProgressChanged(object sender,
@@ -150,13 +150,13 @@ namespace RayTracerApp.Forms
         
         private void newObjectButton_Click(object sender, EventArgs e)
         {
-            var form = new NewObjectForm(new NewObjectController(scene));
+            var form = new NewObjectForm(new NewObjectController(_scene));
             form.Show();
         }
         
         private void editObjectButton_Click(object sender, EventArgs e)
         {
-            var form = new EditObjectForm(new EditObjectController(scene, scene.Models[0]));
+            var form = new EditObjectForm(new EditObjectController(_scene, _scene.Models[0]));
             form.Show();
         }
     }
