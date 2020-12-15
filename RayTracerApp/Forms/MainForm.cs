@@ -134,6 +134,7 @@ namespace RayTracerApp.Forms
         {
             (e.UserState as Texture)?.Blit();
             gLControl.SwapBuffers();
+            (e.UserState as Texture)?.Dispose();
             Text = e.ProgressPercentage + "%";
         }
 

@@ -8,7 +8,7 @@ using ColorComponents = StbImageSharp.ColorComponents;
 
 namespace RayTracing.Materials
 {
-    public class Texture
+    public class Texture : IDisposable
     {
         private int _id;
         private Color[,] _data;
@@ -142,6 +142,12 @@ namespace RayTracing.Materials
             GL.BindFramebuffer(FramebufferTarget.DrawFramebuffer, 0);
             GL.BlitFramebuffer(0, 0, Width, Height, 0, 0, Width, Height,
                 ClearBufferMask.ColorBufferBit, BlitFramebufferFilter.Nearest);
+        }
+
+        public void Dispose()
+        {
+            GL.DeleteTexture(_id);
+            _data = null;
         }
     }
 }
