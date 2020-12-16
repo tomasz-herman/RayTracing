@@ -40,6 +40,7 @@ namespace RayTracing.Cameras
         public void Move(float dx, float dy, float dz)
         {
             Position += Front * dz + Up * dy + Right * dx;
+            UpdateViewport();
         }
 
         protected abstract void UpdateViewport();
