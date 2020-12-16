@@ -51,7 +51,6 @@ namespace RayTracing
                 var output = new Texture(image);
                 output.Process(c => c / (k + 1));
                 OnFrameReady?.Invoke((k + 1) * 100 / Samples, output);
-                //output.Dispose();
             }
         }
     }
