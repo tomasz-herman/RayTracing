@@ -3,7 +3,7 @@ using System.IO;
 using Assimp;
 using Assimp.Configs;
 
-namespace RayTracer.Models
+namespace RayTracing.Models
 {
     public class ModelLoader
     {
@@ -27,7 +27,7 @@ namespace RayTracer.Models
                 foreach (var tc in mesh.TextureCoordinateChannels[0])
                 {
                     textCoord.Add(tc.X);
-                    textCoord.Add(1-tc.Y);
+                    textCoord.Add(1 - tc.Y);
                 }
 
             return textCoord;
@@ -51,10 +51,10 @@ namespace RayTracer.Models
             List<int> indices = new List<int>();
             foreach (var f in mesh.Faces)
             {
-               foreach(var ind in f.Indices)
-               {
-                   indices.Add(ind);
-               }
+                foreach (var ind in f.Indices)
+                {
+                    indices.Add(ind);
+                }
             }
 
             return indices;
@@ -66,34 +66,40 @@ namespace RayTracer.Models
             var textures = ProcessTextCoord(mesh);
             var normals = ProcessNormals(mesh);
             var indices = ProcessIndices(mesh);
-            
+
             return new Mesh(positions, normals, textures, indices);
         }
-        public static Model Load(string path, PostProcessSteps ppSteps, params PropertyConfig[] configs)
+
+        public static Mesh LoadMesh(string path, PostProcessSteps ppSteps, params PropertyConfig[] configs)
         {
-            if(!File.Exists(path))
+            if (!File.Exists(path))
                 return null;
-            
+
             AssimpContext importer = new AssimpContext();
-            if(configs != null)
+            if (configs != null)
             {
-                foreach(PropertyConfig config in configs)
+                foreach (PropertyConfig config in configs)
                     importer.SetConfig(config);
             }
 
             Scene scene = importer.ImportFile(path, ppSteps);
-            if(scene == null)
+            if (scene == null)
                 return null;
 
             var meshes = new List<Mesh>();
-            for(int i = 0; i < scene.Meshes.Count; i++)
+            for (int i = 0; i < scene.Meshes.Count; i++)
             {
                 var m = ProcessMesh(scene, scene.Meshes[i]);
                 meshes.Add(m);
             }
 
             Log.Info($"meshes loaded: {meshes.Count}");
-            return new LoadedModel(meshes[0]);
+            return meshes[0];
+        }
+
+        public static CustomModel LoadModel(string path, PostProcessSteps ppSteps, params PropertyConfig[] configs)
+        {
+            return new CustomModel(LoadMesh(path, ppSteps, configs));
         }
     }
 }

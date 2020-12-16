@@ -12,6 +12,7 @@
       <PackageReference Include="Serilog.Sinks.Console" Version="4.0.0-dev-00839" />
       <PackageReference Include="Serilog.Sinks.File" Version="5.0.0-dev-00887" />
       <PackageReference Include="StbImageSharp" Version="2.22.4" />
+      <PackageReference Include="StbImageWriteSharp" Version="1.13.5" />
     </ItemGroup>
 
     <ItemGroup>
@@ -22,7 +23,6 @@
     <ItemGroup>
       <Folder Include="Resources\Models" />
       <Folder Include="Resources\Textures" />
-      <Folder Include="Source\Utils" />
     </ItemGroup>
 
 </Project>

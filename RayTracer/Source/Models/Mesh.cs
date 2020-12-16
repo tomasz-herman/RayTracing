@@ -1,30 +1,42 @@
 ﻿using System.Collections.Generic;
 using OpenTK.Graphics.OpenGL4;
 
-namespace RayTracer.Models
+namespace RayTracing.Models
 {
     public class Mesh
     {
         private List<int> vboIdList = new List<int>();
         private int vaoId;
         private int vertexCount;
-        public const int POSITIONS_INDEX = 0;
-        public const int NORMALS_INDEX = 1;
-        public const int TEX_COORDS_INDEX = 2;
+        private const int POSITIONS_INDEX = 0;
+        private const int NORMALS_INDEX = 1;
+        private const int TEX_COORDS_INDEX = 2;
+        public List<float> Positions;
+        public List<float> Normals;
+        public List<float> TexCoords;
+        public List<int> Indices;
 
-        public Mesh(List<float> positions,List<float> normals,List<float> texCoords, List<int> indices)
+        public Mesh(List<float> positions, List<float> normals, List<float> texCoords, List<int> indices)
         {
-            vertexCount = indices.Count;
+            Positions = positions;
+            Normals = normals;
+            TexCoords = texCoords;
+            Indices = indices;
+        }
+
+        public void Load()
+        {
+            vertexCount = Indices.Count;
             vaoId = GL.GenVertexArray();
 
             GL.BindVertexArray(vaoId);
-            LoadDataBuffer(positions, POSITIONS_INDEX, 3);
-            LoadDataBuffer(normals, NORMALS_INDEX, 3);
-            LoadDataBuffer(texCoords, TEX_COORDS_INDEX, 2);
-            LoadIndexBuffer(indices);
+            LoadDataBuffer(Positions, POSITIONS_INDEX, 3);
+            LoadDataBuffer(Normals, NORMALS_INDEX, 3);
+            LoadDataBuffer(TexCoords, TEX_COORDS_INDEX, 2);
+            LoadIndexBuffer(Indices);
         }
 
-        public void LoadDataBuffer(List<float> buffer, int index, int size)
+        private void LoadDataBuffer(List<float> buffer, int index, int size)
         {
             int vboId = GL.GenBuffer();
             vboIdList.Add(vboId);
@@ -38,7 +50,7 @@ namespace RayTracer.Models
             GL.VertexAttribPointer(index, size, VertexAttribPointerType.Float, false, 0, 0);
         }
 
-        public void LoadIndexBuffer(List<int> buffer)
+        private void LoadIndexBuffer(List<int> buffer)
         {
             int vboId = GL.GenBuffer();
             vboIdList.Add(vboId);
@@ -52,13 +64,13 @@ namespace RayTracer.Models
             GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
             GL.BindVertexArray(0);
         }
-        
-        public void Init()
+
+        private void Init()
         {
             GL.BindVertexArray(vaoId);
         }
 
-        public void End()
+        private void End()
         {
             GL.BindVertexArray(0);
         }

@@ -1,49 +1,52 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
-using RayTracer.Cameras;
+using RayTracing.Cameras;
 using RayTracerApp.Utils;
 
 namespace RayTracerApp
 {
     public class CameraController
     {
+        public float Sensitivity = 0.002f;
+        public float CameraSpeed = 0.02f;
+        
+        private Action _onModification;
         private bool _firstMouseMove;
         private Point _lastMousePos;
         private Camera _camera;
-        public float Sensitivity = 0.002f;
-        public float CameraSpeed = 0.02f;
-
         private DictionaryWithDefault<Keys, bool> keys = new DictionaryWithDefault<Keys, bool>();
 
-
-        public CameraController(Camera camera, Control control)
+        public CameraController(Camera camera, Control control, Action onModification)
         {
             _camera = camera;
             control.MouseMove += UpdateCameraOrientation;
             control.KeyDown += OnKeyDown;
             control.KeyUp += OnKeyUp;
+            _onModification = onModification;
         }
 
         private void OnKeyUp(object sender, KeyEventArgs e)
         {
             keys[e.KeyCode] = false;
             if (!e.Shift) keys[Keys.LShiftKey] = false;
+            _onModification();
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
             keys[e.KeyCode] = true;
             if (e.Shift) keys[Keys.LShiftKey] = true;
+            _onModification();
         }
 
         public void UpdateCamera(float msElapsed)
         {
             UpdateCameraPosition(msElapsed);
         }
-        
+
         private void UpdateCameraOrientation(object sender, MouseEventArgs e)
         {
-
             if (e.Button == MouseButtons.Left)
             {
                 if (_firstMouseMove)
@@ -56,8 +59,9 @@ namespace RayTracerApp
                     var deltaX = e.Location.X - _lastMousePos.X;
                     var deltaY = e.Location.Y - _lastMousePos.Y;
                     _lastMousePos = e.Location;
-                    
-                    _camera.Rotate( -deltaY * Sensitivity, deltaX * Sensitivity, 0);
+
+                    _camera.Rotate(-deltaY * Sensitivity, deltaX * Sensitivity, 0);
+                    _onModification();
                 }
             }
             else
@@ -73,32 +77,32 @@ namespace RayTracerApp
             {
                 dz += CameraSpeed * msElapsed;
             }
-            
+
             if (keys[Keys.S])
             {
                 dz -= CameraSpeed * msElapsed; // Backwards
             }
-            
+
             if (keys[Keys.A])
             {
                 dx -= CameraSpeed * msElapsed; // Left
             }
-            
+
             if (keys[Keys.D])
             {
                 dx += CameraSpeed * msElapsed; // Right
             }
-            
+
             if (keys[Keys.Space])
             {
                 dy += CameraSpeed * msElapsed; // Up
             }
-            
+
             if (keys[Keys.LShiftKey])
             {
                 dy -= CameraSpeed * msElapsed; // Down
             }
-            
+
             _camera.Move(dx, dy, dz);
         }
     }

@@ -1,50 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
 using OpenTK;
-using RayTracer.Maths;
+using RayTracing.Maths;
 
-namespace RayTracer.Models
+namespace RayTracing.Models
 {
     public class Sphere : Model
     {
-        private Mesh mesh;
+        public override Vector3 Rotation { get; set; }
 
-        public Sphere()
+        private protected override void LoadInternal()
         {
             var (positions, texCoords) = GetVertexList(100, 100);
-            var indicesList = GetElementBuffer(100, 100);
-            mesh = new Mesh(positions,positions, texCoords, indicesList);
+            var indicesList = GetIndices(100, 100);
+            Mesh = new Mesh(positions, positions, texCoords, indicesList);
+            Mesh.Load();
         }
 
-        public override HitInfo HitTest(Ray ray, HitInfo hitInfo)
+        public override bool HitTest(Ray ray, ref HitInfo hit, float from, float to)
         {
-            double t;
             Vector3 distance = ray.Origin - Position;
 
-            double a = ray.Direction.LengthSquared;
-            double b = Vector3.Dot(distance * 2, ray.Direction);
-            double c = distance.LengthSquared - Scale * Scale;
-            double disc = b * b - 4 * a * c;
+            float a = ray.Direction.LengthSquared;
+            float bHalf = Vector3.Dot(distance, ray.Direction);
+            float c = distance.LengthSquared - Scale * Scale;
+            float disc = bHalf * bHalf - a * c;
 
             if (disc < 0)
-                return new HitInfo {Distance = Double.MaxValue};
-            double discSq = Math.Sqrt(disc);
-            double denom = 2 * a;
-            t = (-b - discSq) / denom;
-            if (t < Ray.Epsilon)
             {
-                t = (-b + discSq) / denom;
+                return false;
             }
 
-            if (t < Ray.Epsilon)
-                return new HitInfo {Distance = Double.MaxValue};
+            float discSq = (float) Math.Sqrt(disc);
 
-            return new HitInfo {Distance = t};
+            float root = (-bHalf - discSq) / a;
+            if (root < from || to < root)
+            {
+                root = (-bHalf + discSq) / a;
+                if (root < from || to < root)
+                    return false;
+            }
+
+            hit.Distance = root;
+            hit.HitPoint = ray.Origin + ray.Direction * hit.Distance;
+            hit.ModelHit = this;
+            Vector3 normal = (hit.HitPoint - Position) / Scale;
+            hit.SetNormal(ref ray, ref normal);
+            return true;
         }
 
         public override Mesh GetMesh()
         {
-            return mesh;
+            return Mesh;
         }
 
 
@@ -65,11 +72,9 @@ namespace RayTracer.Models
                     x = (float) (Math.Cos(2 * (float) Math.PI * s * S) * Math.Sin((float) Math.PI * r * R));
                     y = (float) (Math.Sin(-(float) Math.PI / 2 + (float) Math.PI * r * R));
                     z = (float) (Math.Sin(2 * (float) Math.PI * s * S) * Math.Sin((float) Math.PI * r * R));
-                    // positions
                     positions.Add(x);
                     positions.Add(y);
                     positions.Add(z);
-                    // texture coordinates
                     texCoords.Add(1 - s * S);
                     texCoords.Add(r * R);
                 }
@@ -78,26 +83,26 @@ namespace RayTracer.Models
             return (positions, texCoords);
         }
 
-        private List<int> GetElementBuffer(short rings, short sectors)
+        private List<int> GetIndices(short rings, short sectors)
         {
             short r, s;
 
-            List<int> elementBuffer = new List<int>(rings * sectors * 6);
+            List<int> indices = new List<int>(rings * sectors * 6);
 
             for (r = 0; r < rings - 1; r++)
             {
                 for (s = 0; s < sectors - 1; s++)
                 {
-                    elementBuffer.Add((r * sectors + s));
-                    elementBuffer.Add((r * sectors + (s + 1)));
-                    elementBuffer.Add(((r + 1) * sectors + (s + 1)));
-                    elementBuffer.Add(((r + 1) * sectors + (s + 1)));
-                    elementBuffer.Add((r * sectors + s));
-                    elementBuffer.Add(((r + 1) * sectors + s));
+                    indices.Add((r * sectors + s));
+                    indices.Add((r * sectors + (s + 1)));
+                    indices.Add(((r + 1) * sectors + (s + 1)));
+                    indices.Add(((r + 1) * sectors + (s + 1)));
+                    indices.Add((r * sectors + s));
+                    indices.Add(((r + 1) * sectors + s));
                 }
             }
-            
-            return elementBuffer;
+
+            return indices;
         }
     }
 }

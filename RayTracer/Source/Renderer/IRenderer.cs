@@ -1,7 +1,7 @@
-﻿using RayTracer.Cameras;
-using RayTracer.World;
+﻿using RayTracing.Cameras;
+using RayTracing.World;
 
-namespace RayTracer
+namespace RayTracing
 {
     public interface IRenderer
     {

@@ -1,7 +1,7 @@
-﻿using RayTracer.Maths;
-using OpenTK;
+﻿using OpenTK;
+using RayTracing.Maths;
 
-namespace RayTracer.Lights
+namespace RayTracing.Lights
 {
     public struct Light
     {
