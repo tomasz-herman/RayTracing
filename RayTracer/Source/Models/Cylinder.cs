@@ -80,15 +80,15 @@ namespace RayTracing.Models
 
         public override bool HitTest(Ray ray, ref HitInfo hit, float from, float to)
         {
-            Vector3 dp = ray.Origin - _bottom;
-            Vector3 dir = ray.Direction;
-            Vector3 vDir = (_top - _bottom) / _height;
+            Vector3 deltaOrigins = ray.Origin - _bottom;
+            Vector3 rayDirection = ray.Direction;
+            Vector3 cylinderDirection = (_top - _bottom) / _height;
 
-            float vDirDotDir = Vector3.Dot(dir, vDir);
-            float dpDotVDir = Vector3.Dot(dp, vDir);
+            float vDirDotDir = Vector3.Dot(rayDirection, cylinderDirection);
+            float dpDotVDir = Vector3.Dot(deltaOrigins, cylinderDirection);
             
-            Vector3 aVec = dir - vDirDotDir * vDir;
-            Vector3 bVec = dp - dpDotVDir * vDir;
+            Vector3 aVec = rayDirection - vDirDotDir * cylinderDirection;
+            Vector3 bVec = deltaOrigins - dpDotVDir * cylinderDirection;
             
             float a = Vector3.Dot(aVec, aVec);
             float b = Vector3.Dot(aVec, bVec);
@@ -109,16 +109,25 @@ namespace RayTracing.Models
                     return false;
             }
 
-            hit.Distance = root;
-            hit.ModelHit = this;
-            hit.HitPoint = ray.Origin + ray.Direction * hit.Distance;
+            Vector3 hitPoint = ray.Origin + ray.Direction * root;
 
-            Vector3 normal = Vector3.Normalize(_bottom - hit.HitPoint);
-            normal = Vector3.Normalize(Vector3.Cross(normal, vDir));
-            normal = Vector3.Cross(normal, vDir);
-            hit.SetNormal(ref ray, ref normal);
+            if (Vector3.Dot(hitPoint - _top, cylinderDirection) < 0 && 
+                Vector3.Dot(hitPoint - _bottom, cylinderDirection) > 0)
+            {
+                hit.Distance = root;
+                hit.ModelHit = this;
+                hit.HitPoint = hitPoint;
 
-            return true;
+                Vector3 normal = Vector3.Normalize(_bottom - hit.HitPoint);
+                normal = Vector3.Normalize(Vector3.Cross(normal, cylinderDirection));
+                normal = Vector3.Cross(normal, cylinderDirection);
+                hit.SetNormal(ref ray, ref normal);
+
+                return true;
+            }
+
+            return false;
+
         }
 
         public override Mesh GetMesh()
