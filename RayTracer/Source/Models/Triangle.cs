@@ -10,41 +10,41 @@ namespace RayTracing.Models
         public override Vector3 Rotation { get; set; }
 
         private List<Vector3> _vertices;
-        private List<float> _vertexBuffer;
-        private List<float> _normalBuffer;
-        private List<float> _texBuffer;
+        private Vector3 _normal;
 
         public Triangle(Vector3 v1, Vector3 v2, Vector3 v3)
         {
             _vertices = new List<Vector3> {v1, v2, v3};
-            LoadBuffers();
+            var a = _vertices[1] - _vertices[0];
+            var b = _vertices[2] - _vertices[0];
+            _normal = Vector3.Cross(a, b);
         }
 
 
-        private void LoadBuffers()
+        private (List<float> vertexBuffer, List<float> normalBuffer, List<float> texBuffer) LoadBuffers()
         {
-            _vertexBuffer = new List<float>();
+            var vertexBuffer = new List<float>();
             foreach (var vertex in _vertices)
             {
-                _vertexBuffer.Add(vertex.X);
-                _vertexBuffer.Add(vertex.Y);
-                _vertexBuffer.Add(vertex.Z);
+                vertexBuffer.Add(vertex.X);
+                vertexBuffer.Add(vertex.Y);
+                vertexBuffer.Add(vertex.Z);
             }
 
-            _normalBuffer = new List<float>();
-            var a = _vertices[1] - _vertices[0];
-            var b = _vertices[2] - _vertices[0];
-            var normal = Vector3.Cross(a, b);
-            _normalBuffer.Add(normal.X);
-            _normalBuffer.Add(normal.Y);
-            _normalBuffer.Add(normal.Z);
+            var normalBuffer = new List<float>();
 
-            _texBuffer = new List<float> {0f, 0f, 1f, 1f, 0f, 1f};
+            normalBuffer.Add(_normal.X);
+            normalBuffer.Add(_normal.Y);
+            normalBuffer.Add(_normal.Z);
+
+            var texBuffer = new List<float> {0f, 0f, 1f, 1f, 0f, 1f};
+            return (vertexBuffer, normalBuffer, texBuffer);
         }
 
         private protected override void LoadInternal()
         {
-            Mesh = new Mesh(_vertexBuffer, _normalBuffer, _texBuffer, new List<int> {0, 1, 2});
+            var buffers = LoadBuffers();
+            Mesh = new Mesh(buffers.vertexBuffer, buffers.normalBuffer, buffers.texBuffer, new List<int> {0, 1, 2});
             Mesh.Load();
         }
 
