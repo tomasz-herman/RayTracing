@@ -21,7 +21,8 @@ namespace RayTracing.Models
         }
 
 
-        private (List<float> vertexBuffer, List<float> normalBuffer, List<float> texBuffer) LoadBuffers()
+        private (List<float> vertexBuffer, List<float> normalBuffer, List<float> texBuffer, List<int> indicesBuffer)
+            LoadBuffers()
         {
             var vertexBuffer = new List<float>();
             foreach (var vertex in _vertices)
@@ -31,20 +32,16 @@ namespace RayTracing.Models
                 vertexBuffer.Add(vertex.Z);
             }
 
-            var normalBuffer = new List<float>();
-
-            normalBuffer.Add(_normal.X);
-            normalBuffer.Add(_normal.Y);
-            normalBuffer.Add(_normal.Z);
-
+            var normalBuffer = new List<float> {_normal.X, _normal.Y, _normal.Z};
             var texBuffer = new List<float> {0f, 0f, 1f, 1f, 0f, 1f};
-            return (vertexBuffer, normalBuffer, texBuffer);
+            var indicesBuffer = new List<int> {1, 2, 3};
+            return (vertexBuffer, normalBuffer, texBuffer, indicesBuffer);
         }
 
         private protected override void LoadInternal()
         {
             var buffers = LoadBuffers();
-            Mesh = new Mesh(buffers.vertexBuffer, buffers.normalBuffer, buffers.texBuffer, new List<int> {0, 1, 2});
+            Mesh = new Mesh(buffers.vertexBuffer, buffers.normalBuffer, buffers.texBuffer, buffers.indicesBuffer);
             Mesh.Load();
         }
 
