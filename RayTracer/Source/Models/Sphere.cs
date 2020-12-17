@@ -7,8 +7,6 @@ namespace RayTracing.Models
 {
     public class Sphere : Model
     {
-        public override Vector3 Rotation { get; set; }
-
         private protected override void LoadInternal()
         {
             var (positions, texCoords) = GetVertexList(100, 100);
