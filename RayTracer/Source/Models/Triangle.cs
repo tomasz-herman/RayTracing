@@ -45,6 +45,7 @@ namespace RayTracing.Models
             Mesh.Load();
         }
 
+        //source: https://www.scratchapixel.com/code.php?id=9&origin=/lessons/3d-basic-rendering/ray-tracing-rendering-a-triangle
         public override bool HitTest(Ray ray, ref HitInfo hit, float @from, float to)
         {
             ray.Direction = ray.Direction.Normalized();
