@@ -12,7 +12,7 @@ namespace RayTracing.Materials
 
         public Diffuse(Color albedo, AbstractSampler<Vector3> sampler = null)
         {
-            _sampler = sampler ?? new ThreadSafeSampler<Vector3>(Vec3Sampling.UniformSphere, 125, 8);
+            _sampler = sampler ?? new ThreadSafeSampler<Vector3>(Vec3Sampling.UniformSphere, 1024, 8);
             Albedo = albedo;
         }
 
