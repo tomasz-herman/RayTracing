@@ -34,7 +34,7 @@ namespace RayTracing.Models
 
             var normalBuffer = new List<float> {_normal.X, _normal.Y, _normal.Z};
             var texBuffer = new List<float> {0f, 0f, 1f, 1f, 0f, 1f};
-            var indicesBuffer = new List<int> {1, 2, 3};
+            var indicesBuffer = new List<int> {0, 1, 2};
             return (vertexBuffer, normalBuffer, texBuffer, indicesBuffer);
         }
 
