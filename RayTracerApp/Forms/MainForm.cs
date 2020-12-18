@@ -24,7 +24,7 @@ namespace RayTracerApp.Forms
         private const int SWAP_TIME = 2;
         private Scene _scene = new Scene();
         private IRenderer _renderer;
-        private Camera _camera = new PerspectiveCamera(new Vector3(-1, 2, 5)) {AspectRatio = 1};
+        private Camera _camera = new PerspectiveCamera(new Vector3(0, 0, 20)) {AspectRatio = 1};
         private CameraController _cameraController;
         private IncrementalRayTracer _rayTracer;
         private BackgroundWorker _backgroundWorker;
@@ -53,7 +53,6 @@ namespace RayTracerApp.Forms
 
         private void GLControl_Load(object sender, EventArgs e)
         {
-            _camera.Rotate(-0.2f, 0.1f, 0);
             GL.Enable(EnableCap.DepthTest);
             _renderer = new Renderer();
             _rayTracer = new IncrementalRayTracer(10, 64, Vec2Sampling.Jittered, gLControl.Width);
@@ -78,28 +77,7 @@ namespace RayTracerApp.Forms
                 Position = new Vector3(0, -0.5f, 0), Scale = 1,
                 Material = new Diffuse(Color.FromColor4(Color4.ForestGreen))
             }.Load());
-            _scene.AddModel(new Triangle(
-                    new Vector3(0, 0, 6),
-                    new Vector3(5, 2, 6),
-                    new Vector3(-5, 2, 6))
-                {Scale = 1, Material = new Reflective(Color.FromColor4(Color4.Azure), 0.01f)}.Load());
-            _scene.AddModel(new Triangle(
-                    new Vector3(0, 0, -3),
-                    new Vector3(2, 2, -3),
-                    new Vector3(-2, 2, -3))
-                {Scale = 1, Material = new Reflective(Color.FromColor4(Color4.Azure), 0.01f)}.Load());
-            _scene.AddModel(new Triangle(
-                    new Vector3(0, 0, -3),
-                    new Vector3(2, 2, -3),
-                    new Vector3(5, 2, -3))
-                {Scale = 1, Material = new Reflective(Color.FromColor4(Color4.Azure), 0.01f)}.Load());
-            _scene.AddModel(new Triangle(
-                    new Vector3(0, 0, -3),
-                    new Vector3(-2, 2, -3),
-                    new Vector3(-5, 2, -3))
-                {Scale = 1, Material = new Reflective(Color.FromColor4(Color4.Azure), 0.01f)}.Load());
 
-            
             InitializeFpsTimer();
             UpdateViewport();
         }
@@ -170,13 +148,13 @@ namespace RayTracerApp.Forms
             _backgroundWorker.DoWork += StartRender;
             _backgroundWorker.ProgressChanged += BackgroundWorkerProgressChanged;
         }
-
+        
         private void newObjectButton_Click(object sender, EventArgs e)
         {
             var form = new NewObjectForm(new NewObjectController(_scene));
             form.Show();
         }
-
+        
         private void editObjectButton_Click(object sender, EventArgs e)
         {
             var form = new EditObjectForm(new EditObjectController(_scene, _scene.Models[0]));

@@ -20,29 +20,9 @@ namespace RayTracing.Models
             _normal = Vector3.Cross(a, b);
         }
 
-
-        private (List<float> vertexBuffer, List<float> normalBuffer, List<float> texBuffer, List<int> indicesBuffer)
-            LoadBuffers()
-        {
-            var vertexBuffer = new List<float>();
-            foreach (var vertex in _vertices)
-            {
-                vertexBuffer.Add(vertex.X);
-                vertexBuffer.Add(vertex.Y);
-                vertexBuffer.Add(vertex.Z);
-            }
-
-            var normalBuffer = new List<float> {_normal.X, _normal.Y, _normal.Z};
-            var texBuffer = new List<float> {0f, 0f, 1f, 1f, 0f, 1f};
-            var indicesBuffer = new List<int> {0, 1, 2};
-            return (vertexBuffer, normalBuffer, texBuffer, indicesBuffer);
-        }
-
         private protected override void LoadInternal()
         {
-            var buffers = LoadBuffers();
-            Mesh = new Mesh(buffers.vertexBuffer, buffers.normalBuffer, buffers.texBuffer, buffers.indicesBuffer);
-            Mesh.Load();
+            throw new Exception("Triangle is used only in ray tracing");
         }
 
         //source: https://www.scratchapixel.com/code.php?id=9&origin=/lessons/3d-basic-rendering/ray-tracing-rendering-a-triangle
@@ -75,7 +55,7 @@ namespace RayTracing.Models
             hit.TexCoord = new Vector2(u, v);
             hit.Distance = t;
             hit.HitPoint = ray.Origin + ray.Direction * t;
-            var normal = Vector3.Cross(v0v1, v0v2).Normalized();
+            var normal = _normal;
             if (Vector3.Dot(ray.Direction, normal) <= 0)
             {
                 normal *= -1;
@@ -88,7 +68,7 @@ namespace RayTracing.Models
 
         public override Mesh GetMesh()
         {
-            return Mesh;
+            throw new Exception("Triangle is used only in ray tracing");
         }
     }
 }
