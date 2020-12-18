@@ -88,27 +88,24 @@ namespace RayTracing.Models
             Vector3 deltaOrigins = ray.Origin - _bottom;
             Vector3 rayDirection = ray.Direction;
 
-            float vDirDotDir = Vector3.Dot(rayDirection, _normal);
-            float dpDotVDir = Vector3.Dot(deltaOrigins, _normal);
-            
-            Vector3 aVec = rayDirection - vDirDotDir * _normal;
-            Vector3 bVec = deltaOrigins - dpDotVDir * _normal;
+            Vector3 aVec = rayDirection - Vector3.Dot(rayDirection, _normal) * _normal;
+            Vector3 bVec = deltaOrigins - Vector3.Dot(deltaOrigins, _normal) * _normal;
             
             float a = Vector3.Dot(aVec, aVec);
-            float b = Vector3.Dot(aVec, bVec);
+            float bHalf = Vector3.Dot(aVec, bVec);
             float c = Vector3.Dot(bVec, bVec) - Scale * Scale;
             
-            float delta = b*b - a*c;
+            float delta = bHalf*bHalf - a*c;
             
             if (delta < 0)
                 return false;
             
             float deltaSq = (float) Math.Sqrt(delta);
 
-            float root = (-b - deltaSq) / a;
+            float root = (-bHalf - deltaSq) / a;
             if (root < from || to < root)
             {
-                root = (-b + deltaSq) / a;
+                root = (-bHalf + deltaSq) / a;
                 if (root < from || to < root)
                     return false;
             }
@@ -134,7 +131,7 @@ namespace RayTracing.Models
             return hit.Distance != to;
         }
 
-        public void CapHitTest(ref Ray ray, ref HitInfo hit, float from, float to, ref Vector3 capCenter)
+        private void CapHitTest(ref Ray ray, ref HitInfo hit, float from, float to, ref Vector3 capCenter)
         {
             float t = Vector3.Dot(capCenter - ray.Origin, _normal) / Vector3.Dot(ray.Direction, _normal);
             if (t > hit.Distance) return;
