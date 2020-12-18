@@ -19,11 +19,13 @@ Project rendering a scene using ray tracing and writing the generated image to t
 ##### RayTracerTests
 Tests
 
-##### 
+### Prerequisites 
+- .NET Core 3.1
+- RayTracerApp needs to be compiled under Windows 10. Rest of the projects work under Linux too.
 
 ### Build the project
 
-To run the application do the following steps:
+To build the application do the following steps:
 
 - Make sure to be in the root directory of the project
 - Run the command:
