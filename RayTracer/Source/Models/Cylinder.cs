@@ -6,10 +6,7 @@ namespace RayTracing.Models
 {
     public class Cylinder : Model
     {
-        private Plane _bottomPlane;
-        private Plane _topPlane;
         private Vector3 _normal;
-        
         private Vector3 _rotation;
         private Vector3 _position;
         private Vector3 _bottom;
