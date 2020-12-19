@@ -18,7 +18,12 @@ namespace RayTracing.Materials
 
         public bool Scatter(ref Ray ray, ref HitInfo hit, out Color attenuation, out Ray scattered)
         {
-            scattered = new Ray(hit.HitPoint, hit.Normal + _sampler.Sample);
+            var sample = _sampler.Sample;
+            while (Vector3.Dot(hit.Normal,sample)<=0)
+            {
+                sample = _sampler.Sample;
+            }
+            scattered = new Ray(hit.HitPoint, sample);
             attenuation = Albedo;
             return true;
         }
