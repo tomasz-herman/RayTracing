@@ -35,6 +35,17 @@ namespace RayTracing.Models
             LoadDataBuffer(TexCoords, TEX_COORDS_INDEX, 2);
             LoadIndexBuffer(Indices);
         }
+        
+        public void Unload()
+        {
+            foreach (var vbo in vboIdList)
+            {
+                GL.DeleteBuffer(vbo);
+            }
+            vboIdList.Clear();
+            GL.DeleteVertexArray(vaoId);
+            vaoId = 0;
+        }
 
         private void LoadDataBuffer(List<float> buffer, int index, int size)
         {
