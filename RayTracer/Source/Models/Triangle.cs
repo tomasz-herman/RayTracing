@@ -18,6 +18,7 @@ namespace RayTracing.Models
             var a = _vertices[1] - _vertices[0];
             var b = _vertices[2] - _vertices[0];
             _normal = Vector3.Cross(a, b);
+            _normal.Normalize();
         }
 
         private protected override void LoadInternal()
@@ -35,8 +36,7 @@ namespace RayTracing.Models
             var pvec = Vector3.Cross(ray.Direction, v0v2);
             var det = Vector3.Dot(v0v1, pvec);
 
-            var kEpsilon = 1e-5f;
-            if (Math.Abs(det) < kEpsilon) return false;
+            if (Math.Abs(det) < Ray.Epsilon) return false;
             var invDet = 1 / det;
 
             var tvec = ray.Origin - _vertices[0];
