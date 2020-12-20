@@ -18,6 +18,8 @@ namespace RayTracerDemo
         {
             Camera camera = new LensCamera(new Vector3(0, 0, 8), 0.1f, 8f);
             var scene = new Scene {AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.LightSkyBlue)}};
+            scene.AddModel(new Cylinder(5) {Position = new Vector3(-5f, 0.5f, -1), Scale = 1, Rotation = new Vector3(-0, 1.15f, 3.14f / 2), Material = new Diffuse(Color.FromColor4(Color4.Firebrick))});
+            scene.AddModel(new Cylinder(2) {Position = new Vector3(5f, 0.5f, 0), Scale = 1, Material = new Diffuse(Color.FromColor4(Color4.Chocolate))});
             scene.AddModel(new Sphere {Position = new Vector3(0, 0.5f, 0), Scale = 1, Material = new Diffuse(Color.FromColor4(Color4.Orange))});
             scene.AddModel(new Sphere {Position = new Vector3(-2.5f, 0.5f, 1), Scale = 1, Material = new Reflective(Color.FromColor4(Color4.Azure), 0.1f)});
             scene.AddModel(new Sphere {Position = new Vector3(2.5f, 0.5f, 1), Scale = 1, Material = new Reflective(Color.FromColor4(Color4.Aqua), 0.75f)});

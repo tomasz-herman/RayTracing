@@ -9,9 +9,9 @@ namespace RayTracing.Models
     {
         protected Mesh Mesh { get; set; }
         public IMaterial Material;
-        public Vector3 Position;
-        public float Scale = 1f;
-        public abstract Vector3 Rotation { get; set; }
+        public virtual Vector3 Position { get; set; }
+        public virtual float Scale { get; set; } = 1f;
+        public virtual Vector3 Rotation { get; set; }
         public bool Loaded => loaded;
         protected bool loaded;
         private protected abstract void LoadInternal();
