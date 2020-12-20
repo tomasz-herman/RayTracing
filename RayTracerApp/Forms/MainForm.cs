@@ -60,8 +60,8 @@ namespace RayTracerApp.Forms
             _scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.Black)};
             _scene.AddModel(new Sphere
             {
-                Position = new Vector3(0, 1.5f, 0), Scale = 1, 
-                Material = new Emissive(Color.FromColor4(Color4.White)*4)
+                Position = new Vector3(0, 5.5f, 0), Scale = 1, 
+                Material = new Emissive(Color.FromColor4(Color4.White)*8)
             }.Load());
             _scene.AddModel(new Sphere
             {

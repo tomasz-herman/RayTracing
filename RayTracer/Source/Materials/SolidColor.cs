@@ -10,6 +10,6 @@ namespace RayTracing.Materials
         {
             Color = color;
         }
-        public Color this[double x, double y] => Color;
+        public Color this[float x, float y] => Color;
     }
 }

@@ -5,6 +5,6 @@ namespace RayTracing.Materials
 {
     public interface ITexture
     {
-        public Color this[double x,double y] { get; }
+        public Color this[float x,float y] { get; }
     }
 }

@@ -25,7 +25,7 @@ namespace RayTracing.Materials
             return false;
         }
         
-        public Color Emitted(double u, double v, ref Vector3 p)
+        public Color Emitted(float u, float v, ref Vector3 p)
         {
             return _emit[u, v];
         }
