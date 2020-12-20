@@ -55,13 +55,7 @@ namespace RayTracing.Models
             hit.TexCoord = new Vector2(u, v);
             hit.Distance = t;
             hit.HitPoint = ray.Origin + ray.Direction * t;
-            var normal = _normal;
-            if (Vector3.Dot(ray.Direction, normal) <= 0)
-            {
-                normal *= -1;
-            }
-
-            hit.SetNormal(ref ray, ref normal);
+            hit.SetNormal(ref ray, ref _normal);
 
             return true;
         }
