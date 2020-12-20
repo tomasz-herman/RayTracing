@@ -47,7 +47,7 @@ namespace RayTracerApp.Controls
             var nud = sender as NumericUpDown;
             var pos = _controller.GetModel().Position;
             pos.Z = (float) nud.Value;
-            _controller.GetModel().Position= pos;
+            _controller.GetModel().Position = pos;
         }
 
         private void yUpDown_ValueChanged(object sender, EventArgs e)
@@ -55,7 +55,7 @@ namespace RayTracerApp.Controls
             var nud = sender as NumericUpDown;
             var pos = _controller.GetModel().Position;
             pos.Y = (float) nud.Value;
-            _controller.GetModel().Position= pos;
+            _controller.GetModel().Position = pos;
         }
 
         private void xUpDown_ValueChanged(object sender, EventArgs e)
@@ -63,7 +63,7 @@ namespace RayTracerApp.Controls
             var nud = sender as NumericUpDown;
             var pos = _controller.GetModel().Position;
             pos.X = (float) nud.Value;
-            _controller.GetModel().Position= pos;
+            _controller.GetModel().Position = pos;
         }
 
         private void pitchUpDown_ValueChanged(object sender, EventArgs e)
