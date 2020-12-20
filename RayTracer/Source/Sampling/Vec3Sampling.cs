@@ -22,5 +22,10 @@ namespace RayTracing.Sampling
             }
             return samples;
         }
+        
+        public static Vector3 ToSphereSurface(Vector3 sample)
+        {
+            return sample != Vector3.Zero ? sample.Normalized() : UniformSphere(1)[0].Normalized();
+        }
     }
 }

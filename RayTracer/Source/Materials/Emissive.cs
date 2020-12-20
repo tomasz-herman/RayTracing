@@ -12,10 +12,12 @@ namespace RayTracing.Materials
         {
             _emit = emit;
         }
+        
         public Emissive(Color emitColor)
         {
             _emit = new SolidColor(emitColor);
         }
+        
         public bool Scatter(ref Ray ray, ref HitInfo hit, out Color attenuation, out Ray scattered)
         {
             attenuation = Color.FromColor4(Color4.Black);
