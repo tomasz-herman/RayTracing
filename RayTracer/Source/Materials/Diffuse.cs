@@ -1,4 +1,3 @@
-using System;
 using OpenTK;
 using RayTracing.Maths;
 using RayTracing.Sampling;
@@ -12,7 +11,7 @@ namespace RayTracing.Materials
 
         public Diffuse(Color albedo, AbstractSampler<Vector3> sampler = null)
         {
-            _sampler = sampler ?? new ThreadSafeSampler<Vector3>(Vec3Sampling.UniformSphere, 125, 8);
+            _sampler = sampler ?? new ThreadSafeSampler<Vector3>(Vec3Sampling.UniformSphere, 10000, 8, Vec3Sampling.ToSphereSurface);
             Albedo = albedo;
         }
 
