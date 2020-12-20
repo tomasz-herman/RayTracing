@@ -22,6 +22,13 @@ namespace RayTracing.Models
             loaded = true;
             return this;
         }
+        
+        public Model Unload()
+        {
+            Mesh?.Unload();
+            loaded = false;
+            return this;
+        }
 
         public abstract bool HitTest(Ray ray, ref HitInfo hit, float from, float to);
 
