@@ -66,8 +66,11 @@ namespace RayTracing.Models
                 _aspect = value;
                 _height = _aspect * _scale;
                 CalculateBottomAndTop();
-                Unload();
-                Load();
+                if (loaded)
+                {
+                    Unload();
+                    Load();
+                }
             }
         }
 
