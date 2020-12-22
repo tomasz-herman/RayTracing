@@ -1,4 +1,5 @@
-﻿using OpenTK;
+﻿using System.Collections.Generic;
+using OpenTK;
 using RayTracing.Materials;
 using RayTracing.Maths;
 using RayTracing.RayTracing;
@@ -31,6 +32,11 @@ namespace RayTracing.Models
         }
 
         public abstract bool HitTest(Ray ray, ref HitInfo hit, float from, float to);
+        
+        public virtual List<IHittable> Preprocess()
+        {
+            return new List<IHittable> {this};
+        }
 
         public abstract Mesh GetMesh();
 

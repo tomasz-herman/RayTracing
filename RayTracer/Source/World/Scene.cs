@@ -40,5 +40,16 @@ namespace RayTracing.World
 
             return hitAnything;
         }
+
+        //TODO: Might do octree/bvh/w\e division here
+        public List<IHittable> Preprocess()
+        {
+            List<IHittable> hittables = new List<IHittable>();
+            foreach (var model in Models)
+            {
+                hittables.AddRange(((IHittable)model).Preprocess());
+            }
+            return hittables;
+        }
     }
 }
