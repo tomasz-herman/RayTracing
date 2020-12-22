@@ -57,7 +57,7 @@ namespace RayTracerApp.Forms
             _renderer = new Renderer();
             _rayTracer = new IncrementalRayTracer(10, 64*64, Vec2Sampling.Jittered, gLControl.Width);
             _cameraController = new CameraController(_camera, gLControl, UpdateLastModification);
-            _scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.Black)};
+            _scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.LightSkyBlue)};
             _scene.AddModel(new Sphere
             {
                 Position = new Vector3(0, 5.5f, 0), Scale = 1, 
@@ -71,7 +71,7 @@ namespace RayTracerApp.Forms
             _scene.AddModel(new Sphere
             {
                 Position = new Vector3(2.5f, 0.5f, 1), Scale = 1,
-                Material = new Reflective(Color.FromColor4(Color4.Aqua), 0.75f)
+                Material = new Reflective(new Texture("earthmap.jpg"), 0.75f)
             }.Load());
             _scene.AddModel(new Plane
             {

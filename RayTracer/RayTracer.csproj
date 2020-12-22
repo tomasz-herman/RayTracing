@@ -18,11 +18,7 @@
     <ItemGroup>
       <None Remove="Resources\Shaders\*" />
       <EmbeddedResource Include="Resources\Shaders\*" />
+      <None Remove="Resources\Textures\*" />
+      <EmbeddedResource Include="Resources\Textures\*" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Resources\Models" />
-      <Folder Include="Resources\Textures" />
-    </ItemGroup>
-
 </Project>
