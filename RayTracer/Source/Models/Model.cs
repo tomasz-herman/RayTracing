@@ -57,6 +57,7 @@ namespace RayTracing.Models
                 v2 = (new Vector4(v2, 1.0f) * modelMatrix).Xyz;
                 v3 = (new Vector4(v3, 1.0f) * modelMatrix).Xyz;
                 Triangle t = new Triangle(v1, v2, v3, tc1, tc2, tc3);
+                t.Material = Material;
                 hittables.Add(t);
             }
 

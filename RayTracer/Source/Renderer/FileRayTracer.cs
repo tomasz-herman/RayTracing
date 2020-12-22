@@ -22,6 +22,7 @@ namespace RayTracing
 
         public void Render(Scene scene, Camera camera)
         {
+            scene.Preprocess();
             int width = Resolution;
             int height = (int) (width / camera.AspectRatio);
             var image = new Texture(width, height);

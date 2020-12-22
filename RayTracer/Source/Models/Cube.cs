@@ -7,6 +7,12 @@ namespace RayTracing.Models
 {
     public class Cube : CustomModel
     {
+        public Cube()
+        {
+            var buffers = GetBuffers();
+            Mesh = new Mesh(buffers.vertexBuffer, buffers.normalBuffer, buffers.texBuffer, buffers.indicesBuffer);
+        }
+        
         public override Vector3 Rotation { get; set; }
 
         private List<Vector3> GetVertices()
@@ -104,8 +110,6 @@ namespace RayTracing.Models
 
         private protected override void LoadInternal()
         {
-            var buffers = GetBuffers();
-            Mesh = new Mesh(buffers.vertexBuffer, buffers.normalBuffer, buffers.texBuffer, buffers.indicesBuffer);
             Mesh.Load();
         }
 

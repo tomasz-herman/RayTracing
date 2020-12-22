@@ -9,6 +9,7 @@ namespace RayTracing.World
     public class Scene : IHittable
     {
         public List<Model> Models { get; } = new List<Model>();
+        public List<IHittable> Hittables { get; } = new List<IHittable>();
         public List<Light> Lights { get; } = new List<Light>();
         public AmbientLight AmbientLight { get; set; }
 
@@ -28,9 +29,9 @@ namespace RayTracing.World
             bool hitAnything = false;
             float closest = to;
 
-            foreach (var model in Models)
+            foreach (var hittable in Hittables)
             {
-                if (model.HitTest(ray, ref tempHitInfo, from, closest))
+                if (hittable.HitTest(ray, ref tempHitInfo, from, closest))
                 {
                     hitAnything = true;
                     closest = tempHitInfo.Distance;
@@ -44,12 +45,12 @@ namespace RayTracing.World
         //TODO: Might do octree/bvh/w\e division here
         public List<IHittable> Preprocess()
         {
-            List<IHittable> hittables = new List<IHittable>();
+            Hittables.Clear();
             foreach (var model in Models)
             {
-                hittables.AddRange(((IHittable)model).Preprocess());
+                Hittables.AddRange(((IHittable)model).Preprocess());
             }
-            return hittables;
+            return Hittables;
         }
     }
 }
