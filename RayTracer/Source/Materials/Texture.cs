@@ -36,13 +36,14 @@ namespace RayTracing.Materials
         {
             Log.Info($"Loading texture from path: {path}");
             Stream stream;
-            if(Path.IsPathRooted(path))
+            if (Path.IsPathRooted(path))
                 stream = File.OpenRead(path);
             else
             {
                 var assembly = GetType().Assembly;
-                stream = assembly.GetManifestResourceStream(TexturesPath+path);
+                stream = assembly.GetManifestResourceStream(TexturesPath + path);
             }
+
             LoadFromStream(stream);
             LoadGLTexture();
             stream.Dispose();
@@ -50,7 +51,7 @@ namespace RayTracing.Materials
 
         public Color this[float u, float v]
         {
-            get => _data[(int)(u * (Height-1)), (int)((1-v) * (Width-1))];
+            get => _data[(int) (u * (Height - 1)), (int) ((1 - v) * (Width - 1))];
         }
 
         public Color this[int w, int h]

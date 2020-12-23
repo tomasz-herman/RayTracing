@@ -22,7 +22,7 @@ namespace RayTracing.Models
 
         private Vector3[] GetVertices()
         {
-            return new []
+            return new[]
             {
                 new Vector3(-0.5f * _aspectRatio, 0, -0.5f),
                 new Vector3(0.5f * _aspectRatio, 0, -0.5f),
@@ -33,7 +33,7 @@ namespace RayTracing.Models
 
         private int[] GetIndices()
         {
-            return new []
+            return new[]
             {
                 0, 2, 1, 1, 2, 3
             };

@@ -11,20 +11,24 @@ namespace RayTracing.Materials
 
         public Diffuse(ITexture albedo, AbstractSampler<Vector3> sampler = null)
         {
-            _sampler = sampler ?? new ThreadSafeSampler<Vector3>(Vec3Sampling.UniformSphere, 10000, 8, Vec3Sampling.ToSphereSurface);
+            _sampler = sampler ??
+                       new ThreadSafeSampler<Vector3>(Vec3Sampling.UniformSphere, 10000, 8,
+                           Vec3Sampling.ToSphereSurface);
             Albedo = albedo;
         }
-        
+
         public Diffuse(Color albedo, AbstractSampler<Vector3> sampler = null)
         {
-            _sampler = sampler ?? new ThreadSafeSampler<Vector3>(Vec3Sampling.UniformSphere, 10000, 8, Vec3Sampling.ToSphereSurface);
+            _sampler = sampler ??
+                       new ThreadSafeSampler<Vector3>(Vec3Sampling.UniformSphere, 10000, 8,
+                           Vec3Sampling.ToSphereSurface);
             Albedo = new SolidColor(albedo);
         }
 
         public bool Scatter(ref Ray ray, ref HitInfo hit, out Color attenuation, out Ray scattered)
         {
             scattered = new Ray(hit.HitPoint, hit.Normal + _sampler.Sample);
-            attenuation = Albedo[hit.TexCoord.X,hit.TexCoord.Y];
+            attenuation = Albedo[hit.TexCoord.X, hit.TexCoord.Y];
             return true;
         }
     }

@@ -31,7 +31,7 @@ namespace RayTracing.Models
 
         protected void UpdateRotationMatrix(Vector3 newRotation)
         {
-            RotationMatrix = Matrix3.CreateRotationX(newRotation.X) * 
+            RotationMatrix = Matrix3.CreateRotationX(newRotation.X) *
                              Matrix3.CreateRotationY(newRotation.Y) *
                              Matrix3.CreateRotationZ(newRotation.Z);
         }

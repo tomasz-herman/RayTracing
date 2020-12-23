@@ -55,7 +55,7 @@ namespace RayTracerApp.Forms
         {
             GL.Enable(EnableCap.DepthTest);
             _renderer = new Renderer();
-            _rayTracer = new IncrementalRayTracer(10, 64*64, Vec2Sampling.Jittered, gLControl.Width);
+            _rayTracer = new IncrementalRayTracer(10, 64 * 64, Vec2Sampling.Jittered, gLControl.Width);
             _cameraController = new CameraController(_camera, gLControl, UpdateLastModification);
             _scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.LightSkyBlue)};
             var plane = new Plane
@@ -66,8 +66,8 @@ namespace RayTracerApp.Forms
             plane.Rotation = new Vector3(0, (float) Math.PI / 3, 0);
             _scene.AddModel(new Sphere
             {
-                Position = new Vector3(0, 5.5f, 0), Scale = 1, 
-                Material = new Emissive(Color.FromColor4(Color4.White)*8)
+                Position = new Vector3(0, 5.5f, 0), Scale = 1,
+                Material = new Emissive(Color.FromColor4(Color4.White) * 8)
             }.Load());
             _scene.AddModel(new Sphere
             {
@@ -79,13 +79,12 @@ namespace RayTracerApp.Forms
                 Position = new Vector3(2.5f, 0.5f, 1), Scale = 1,
                 Material = new Reflective(new Texture("earthmap.jpg"), 0.75f)
             }.Load());
-            _scene.AddModel(new Cylinder(2) {Position = new Vector3(5f, 0.5f, 0), Scale = 1, Material = new Diffuse(Color.FromColor4(Color4.Chocolate))});
+            _scene.AddModel(new Cylinder(2)
+            {
+                Position = new Vector3(5f, 0.5f, 0), Scale = 1,
+                Material = new Diffuse(Color.FromColor4(Color4.Chocolate))
+            });
             _scene.AddModel(plane);
-            // _scene.AddModel(new Sphere
-            // {
-            //     Position = new Vector3(0, 0, 0), Scale = 20, 
-            //     Material = new Diffuse(Color.FromColor4(Color4.DarkBlue))
-            // }.Load());
 
             InitializeFpsTimer();
             UpdateViewport();
@@ -157,13 +156,13 @@ namespace RayTracerApp.Forms
             _backgroundWorker.DoWork += StartRender;
             _backgroundWorker.ProgressChanged += BackgroundWorkerProgressChanged;
         }
-        
+
         private void newObjectButton_Click(object sender, EventArgs e)
         {
             var form = new NewObjectForm(new NewObjectController(_scene));
             form.Show();
         }
-        
+
         private void editObjectButton_Click(object sender, EventArgs e)
         {
             var form = new EditObjectForm(new EditObjectController(_scene, _scene.Models[0]));

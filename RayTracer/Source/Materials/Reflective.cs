@@ -17,7 +17,7 @@ namespace RayTracing.Materials
             Albedo = new SolidColor(albedo);
             Disturbance = disturbance;
         }
-        
+
         public Reflective(ITexture albedo, float disturbance = 0, AbstractSampler<Vector3> sampler = null)
         {
             _sampler = sampler ?? new ThreadSafeSampler<Vector3>(Vec3Sampling.UniformSphere, 125, 8);
@@ -29,7 +29,7 @@ namespace RayTracing.Materials
         {
             Vector3 reflected = ray.Direction.Reflect(hit.Normal);
             scattered = new Ray(hit.HitPoint, reflected + Disturbance * _sampler.Sample);
-            attenuation = Albedo[hit.TexCoord.X,hit.TexCoord.Y];
+            attenuation = Albedo[hit.TexCoord.X, hit.TexCoord.Y];
             return Vector3.Dot(scattered.Direction, hit.Normal) > 0;
         }
     }
