@@ -30,7 +30,7 @@ namespace RayTracerDemo
                 new Vector3(-5f, 2f, 2.5f),
                 new Vector3(-5f, -0.5f, 2f)
             ) {Material = new Reflective(Color.FromColor4(Color4.AliceBlue), 0.05f)});
-            scene.AddModel(new Sphere {Position = new Vector3(3f, 0.5f, 3.5f), Scale = 0.7f, Material = new Refractive(1.333f)});
+            scene.AddModel(new Sphere {Position = new Vector3(3f, 0.5f, 3.5f), Scale = 0.7f, Material = new Refractive(Color.FromColor4(Color4.White), 1.333f)});
             var rayTracer = new FileRayTracer("RenderedScene.png", 10, 64, Vec2Sampling.Jittered, 1280);
             rayTracer.Render(scene, camera);
             Console.WriteLine("done");
