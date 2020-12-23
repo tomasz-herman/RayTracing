@@ -68,11 +68,8 @@ namespace RayTracing.Models
 
         private void CalculateBottomAndTop()
         {
-            Matrix3 rotation = Matrix3.CreateRotationZ(_rotation.Z) * 
-                               Matrix3.CreateRotationY(_rotation.Y) * 
-                               Matrix3.CreateRotationX(_rotation.X);
-            _bottom = -_height * 0.5f * Vector3.UnitY * rotation + Position;
-            _top = _height * 0.5f * Vector3.UnitY * rotation + Position;
+            _bottom = -_height * 0.5f * Vector3.UnitY * RotationMatrix + Position;
+            _top = _height * 0.5f * Vector3.UnitY * RotationMatrix + Position;
             _normal = (_top - _bottom) / _height;
         }
         

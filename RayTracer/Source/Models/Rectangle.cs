@@ -6,18 +6,11 @@ namespace RayTracing.Models
 {
     public class Rectangle : Model
     {
-        public override Vector3 Rotation { get; set; }
-        private float _width;
-        private float _height;
-        private int _xCount;
-        private int _yCount;
+        private float _aspectRatio = 1;
 
-        public Rectangle(float width, float height, int xCount, int yCount)
+        public Rectangle(float aspect)
         {
-            _width = width;
-            _height = height;
-            _xCount = xCount;
-            _yCount = yCount;
+            _aspectRatio = aspect;
         }
 
         private protected override void LoadInternal()
@@ -29,40 +22,26 @@ namespace RayTracing.Models
 
         private Vector3[] GetVertices()
         {
-            var vertices = new Vector3[(_xCount + 1) * (_yCount + 1)];
-            var halfWidth = _width / 2;
-            var halfHeight = _height / 2;
-            for (int i = 0, y = 0; y <= _yCount; y++)
+            return new []
             {
-                for (int x = 0; x <= _xCount; x++, i++)
-                {
-                    vertices[i] = new Vector3(_width * x / _xCount-halfWidth, 0, _height * y / _yCount-halfHeight);
-                }
-            }
-
-            return vertices;
+                new Vector3(-0.5f * _aspectRatio, 0, -0.5f),
+                new Vector3(0.5f * _aspectRatio, 0, -0.5f),
+                new Vector3(-0.5f * _aspectRatio, 0, 0.5f),
+                new Vector3(0.5f * _aspectRatio, 0, 0.5f),
+            };
         }
 
         private int[] GetIndices()
         {
-            var indices = new int[_xCount * _yCount * 6];
-            for (int ti = 0, vi = 0, y = 0; y < _yCount; y++, vi++)
+            return new []
             {
-                for (int x = 0; x < _xCount; x++, ti += 6, vi++)
-                {
-                    indices[ti] = vi;
-                    indices[ti + 3] = indices[ti + 2] = vi + 1;
-                    indices[ti + 4] = indices[ti + 1] = vi + _xCount + 1;
-                    indices[ti + 5] = vi + _xCount + 2;
-                }
-            }
-
-            return indices;
+                0, 2, 1, 1, 2, 3
+            };
         }
 
         private Vector2[] GetTexCoords()
         {
-            return new []
+            return new[]
             {
                 new Vector2(0, 0),
                 new Vector2(1, 0),
@@ -70,10 +49,10 @@ namespace RayTracing.Models
                 new Vector2(0, 1)
             };
         }
-        
+
         private int[] GetTexInds()
         {
-            return new []
+            return new[]
             {
                 0, 1, 3, 3, 1, 2
             };

@@ -1,4 +1,5 @@
-﻿using OpenTK;
+﻿using System;
+using OpenTK;
 using RayTracing.Materials;
 using RayTracing.Maths;
 using RayTracing.RayTracing;
@@ -10,7 +11,7 @@ namespace RayTracing.Models
         protected Mesh Mesh { get; set; }
         protected bool loaded;
         private Vector3 _rotation;
-        
+
         public bool Loaded => loaded;
         public IMaterial Material;
         public virtual Vector3 Position { get; set; }
@@ -22,13 +23,19 @@ namespace RayTracing.Models
             set
             {
                 _rotation = value;
-                RotationMatrix = Matrix3.CreateRotationZ(_rotation.Z) * 
-                                 Matrix3.CreateRotationY(_rotation.Y) * 
-                                 Matrix3.CreateRotationX(_rotation.X);
+                UpdateRotationMatrix(value);
             }
         }
 
-        protected Matrix3 RotationMatrix = Matrix3.Identity;
+        protected virtual Matrix3 RotationMatrix { get; set; } = Matrix3.Identity;
+
+        protected void UpdateRotationMatrix(Vector3 newRotation)
+        {
+            RotationMatrix = Matrix3.CreateRotationX(newRotation.X) * 
+                             Matrix3.CreateRotationY(newRotation.Y) *
+                             Matrix3.CreateRotationZ(newRotation.Z);
+        }
+
         private protected abstract void LoadInternal();
 
         public Model Load()
@@ -37,7 +44,7 @@ namespace RayTracing.Models
             loaded = true;
             return this;
         }
-        
+
         public Model Unload()
         {
             Mesh?.Unload();
