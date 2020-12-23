@@ -49,6 +49,18 @@ namespace RayTracing.Materials
                 _data[i, j] = function(_data[i, j]);
         }
 
+        public void AutoGammaCorrect()
+        {
+            float sum = 0;
+            for (int i = 0; i < Height; i++)
+            for (int j = 0; j < Width; j++)
+                sum += _data[i, j].GetBrightness();
+            float brightness = sum / (Width * Height);
+            float correction = 2.0f - 1.5f * brightness;
+            Log.Info($"Auto gamma correcting image. Calculated average brightness: {brightness}, applying correction: {correction}.");
+            Process(c => c.GammaCorrection(correction));
+        }
+
         private void LoadFromPath(string path)
         {
             Log.Info($"Loading texture from path: {path}");
