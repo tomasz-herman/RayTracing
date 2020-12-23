@@ -16,7 +16,7 @@ namespace RayTracing.Materials
         {
             Albedo = albedo;
             _ir = refractiveIndex;
-            _sampler = sampler ?? new ThreadSafeSampler<float>(FloatSampling.Random, 125, 8);
+            _sampler = sampler ?? new ThreadSafeSampler<float>(FloatSampling.Random, 10000);
         }
 
         public bool Scatter(ref Ray ray, ref HitInfo hit, out Color attenuation, out Ray scattered)
