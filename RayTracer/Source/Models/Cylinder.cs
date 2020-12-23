@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using OpenTK;
 using RayTracing.Maths;
 
@@ -15,12 +16,14 @@ namespace RayTracing.Models
         private float _height;
         private float _scale = 1.0f;
         private float _aspect;
+        private int _sectorCount;
 
 
         // Radius = Scale
         // Height = Scale * Aspect
-        public Cylinder(float aspect = 1.0f)
+        public Cylinder(float aspect = 1.0f, int sectorCount = 100)
         {
+            _sectorCount = sectorCount;
             Aspect = aspect;
         }
 
@@ -63,6 +66,11 @@ namespace RayTracing.Models
                 _aspect = value;
                 _height = _aspect * _scale;
                 CalculateBottomAndTop();
+                if (loaded)
+                {
+                    Unload();
+                    Load();
+                }
             }
         }
 
@@ -75,7 +83,9 @@ namespace RayTracing.Models
 
         private protected override void LoadInternal()
         {
-            throw new NotImplementedException();
+            var buffers = GetBuffers();
+            Mesh = new Mesh(buffers.vertexBuffer, buffers.normalBuffer, buffers.texBuffer, buffers.indicesBuffer);
+            Mesh.Load();
         }
 
         // https://mrl.cs.nyu.edu/~dzorin/rendering/lectures/lecture3/lecture3-6pp.pdf
@@ -144,7 +154,146 @@ namespace RayTracing.Models
 
         public override Mesh GetMesh()
         {
-            throw new NotImplementedException();
+            return Mesh;
+        }
+
+        // http://www.songho.ca/opengl/gl_cylinder.html#cylinder
+        private List<float> GetUnitCircleVertices()
+        {
+            float sectorStep = (float) (2 * Math.PI / _sectorCount);
+
+            var unitCircleVertices = new List<float>();
+            for(int i = 0; i <= _sectorCount; ++i)
+            {
+                var sectorAngle = i * sectorStep;
+                unitCircleVertices.Add((float)Math.Cos(sectorAngle));
+                unitCircleVertices.Add((float)Math.Sin(sectorAngle));
+                unitCircleVertices.Add(0);
+            }
+            return unitCircleVertices;
+        }
+        
+        // http://www.songho.ca/opengl/gl_cylinder.html#cylinder
+        private (List<int> indicesBuffer, List<float> vertexBuffer, List<float> texBuffer, List<float> normalBuffer) GetBuffers()
+        {
+            var unitVertices = GetUnitCircleVertices();
+            var vertices = new List<float>();
+            var normals = new List<float>();
+            var texCoords = new List<float>();
+            
+            float height = _aspect;
+            float radius = 1f;
+            
+            for(int i = 0; i < 2; ++i)
+            {
+                float h = -height / 2.0f + i * height;
+                float t = 1.0f - i;
+
+                for(int j = 0, k = 0; j <= _sectorCount; ++j, k += 3)
+                {
+                    float ux = unitVertices[k];
+                    float uy = unitVertices[k+1];
+                    float uz = unitVertices[k+2];
+                    
+                    vertices.Add(ux * radius);
+                    vertices.Add(h);
+                    vertices.Add(uy * radius);
+                    
+                    normals.Add(ux);
+                    normals.Add(uz);
+                    normals.Add(uy);
+                    
+                    texCoords.Add((float)j / _sectorCount);
+                    texCoords.Add(t);
+                }
+            }
+            
+            int baseCenterIndex = vertices.Count / 3;
+            int topCenterIndex = baseCenterIndex + _sectorCount + 1;
+            
+            for(int i = 0; i < 2; ++i)
+            {
+                float h = -height / 2.0f + i * height;
+                float nz = -1 + i * 2;
+                
+                vertices.Add(0);     vertices.Add(h);     vertices.Add(0);
+                normals.Add(0);      normals.Add(nz);      normals.Add(0);
+                texCoords.Add(0.5f); texCoords.Add(0.5f);
+
+                for(int j = 0, k = 0; j < _sectorCount; ++j, k += 3)
+                {
+                    float ux = unitVertices[k];
+                    float uy = unitVertices[k+1];
+                    
+                    vertices.Add(ux * radius);
+                    vertices.Add(h);
+                    vertices.Add(uy * radius);
+
+                    normals.Add(0);
+                    normals.Add(nz);
+                    normals.Add(0);
+
+                    texCoords.Add(-ux * 0.5f + 0.5f);
+                    texCoords.Add(-uy * 0.5f + 0.5f);
+                }
+            }
+
+            var indices = GenIndices(topCenterIndex, baseCenterIndex);
+
+            return (indices, vertices, texCoords, normals);
+        }
+
+        // http://www.songho.ca/opengl/gl_cylinder.html#cylinder
+        private List<int> GenIndices(int topCenterIndex, int baseCenterIndex)
+        {
+            var indices = new List<int>();
+            int k1 = 0;
+            int k2 = _sectorCount + 1;
+            
+            for(int i = 0; i < _sectorCount; ++i, ++k1, ++k2)
+            {
+                indices.Add(k1);
+                indices.Add(k1 + 1);
+                indices.Add(k2);
+
+                indices.Add(k2);
+                indices.Add(k1 + 1);
+                indices.Add(k2 + 1);
+            }
+            
+            for(int i = 0, k = baseCenterIndex + 1; i < _sectorCount; ++i, ++k)
+            {
+                if(i < _sectorCount - 1)
+                {
+                    indices.Add(baseCenterIndex);
+                    indices.Add(k + 1);
+                    indices.Add(k);
+                }
+                else
+                {
+                    indices.Add(baseCenterIndex);
+                    indices.Add(baseCenterIndex + 1);
+                    indices.Add(k);
+                }
+            }
+            
+            for(int i = 0, k = topCenterIndex + 1; i < _sectorCount; ++i, ++k)
+            {
+                if(i < _sectorCount - 1)
+                {
+                    indices.Add(topCenterIndex);
+                    indices.Add(k);
+                    indices.Add(k + 1);
+                }
+                else
+                {
+                    indices.Add(topCenterIndex);
+                    indices.Add(k);
+                    indices.Add(topCenterIndex + 1);
+                }
+            }
+
+            return indices;
         }
     }
 }

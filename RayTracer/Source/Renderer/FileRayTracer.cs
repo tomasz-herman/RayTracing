@@ -41,7 +41,8 @@ namespace RayTracing
                 });
             }
 
-            image.Process(c => (c / Samples).Clamp().GammaCorrection(2.0f));
+            image.Process(c => (c / Samples).Clamp());
+            image.AutoGammaCorrect();
             image.Write(_path);
         }
     }
