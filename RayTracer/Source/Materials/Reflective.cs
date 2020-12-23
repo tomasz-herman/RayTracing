@@ -13,14 +13,14 @@ namespace RayTracing.Materials
 
         public Reflective(Color albedo, float disturbance = 0, AbstractSampler<Vector3> sampler = null)
         {
-            _sampler = sampler ?? new ThreadSafeSampler<Vector3>(Vec3Sampling.UniformSphere, 125, 8);
+            _sampler = sampler ?? new ThreadSafeSampler<Vector3>(Vec3Sampling.UniformSphere, 10000, 8);
             Albedo = new SolidColor(albedo);
             Disturbance = disturbance;
         }
 
         public Reflective(ITexture albedo, float disturbance = 0, AbstractSampler<Vector3> sampler = null)
         {
-            _sampler = sampler ?? new ThreadSafeSampler<Vector3>(Vec3Sampling.UniformSphere, 125, 8);
+            _sampler = sampler ?? new ThreadSafeSampler<Vector3>(Vec3Sampling.UniformSphere, 10000, 8);
             Albedo = albedo;
             Disturbance = disturbance;
         }
