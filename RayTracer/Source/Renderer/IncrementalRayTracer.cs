@@ -15,12 +15,14 @@ namespace RayTracing
 {
     public class IncrementalRayTracer : RayTracer, IRenderer
     {
+        private readonly int _renderStep;
         public Action<int, Texture> OnFrameReady { get; set; }
         public Func<bool> IsCancellationRequested { get; set; }
 
-        public IncrementalRayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution) :
+        public IncrementalRayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution, int renderStep) :
             base(maxDepth, samples, sampling, resolution)
         {
+            _renderStep = renderStep;
         }
 
         public void Render(Scene scene, Camera camera)
@@ -48,10 +50,13 @@ namespace RayTracing
                 if (IsCancellationRequested != null && IsCancellationRequested())
                     return;
 
-                var output = new Texture(image);
-                output.Process(c => (c / (k + 1)).Clamp());
-                output.AutoGammaCorrect();
-                OnFrameReady?.Invoke((k + 1) * 100 / Samples, output);
+                if (k % _renderStep == 0)
+                {
+                    var output = new Texture(image);
+                    output.Process(c => (c / (k + 1)).Clamp());
+                    output.AutoGammaCorrect();
+                    OnFrameReady?.Invoke((k + 1) * 100 / Samples, output);
+                }
             }
         }
     }
