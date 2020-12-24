@@ -6,8 +6,6 @@ namespace RayTracing.Models
 {
     public class Cube : Model
     {
-        public override Vector3 Rotation { get; set; }
-
         private List<Vector3> GetVertices()
         {
             return new List<Vector3>

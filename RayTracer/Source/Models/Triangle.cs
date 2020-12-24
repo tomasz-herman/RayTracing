@@ -7,8 +7,6 @@ namespace RayTracing.Models
 {
     public class Triangle : Model
     {
-        public override Vector3 Rotation { get; set; }
-
         private List<Vector3> _vertices;
         private Vector3 _normal;
 
