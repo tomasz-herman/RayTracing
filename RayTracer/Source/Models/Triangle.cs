@@ -8,15 +8,17 @@ namespace RayTracing.Models
     public class Triangle : Model
     {
         private List<Vector3> _vertices;
+        private List<Vector2> _texCoords;
         private Vector3 _normal;
 
-        public Triangle(Vector3 v1, Vector3 v2, Vector3 v3)
+        public Triangle(Vector3 v1, Vector3 v2, Vector3 v3, Vector2 tc1 = new Vector2(), Vector2 tc2 = new Vector2(), Vector2 tc3 = new Vector2())
         {
             _vertices = new List<Vector3> {v1, v2, v3};
             var a = _vertices[1] - _vertices[0];
             var b = _vertices[2] - _vertices[0];
             _normal = Vector3.Cross(a, b);
             _normal.Normalize();
+            _texCoords = new List<Vector2> {tc1, tc2, tc3};
         }
 
         private protected override void LoadInternal()
