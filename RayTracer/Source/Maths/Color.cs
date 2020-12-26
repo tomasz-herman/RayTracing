@@ -87,7 +87,7 @@ namespace RayTracing.Maths
         }
         
         // from C++ codebase, and previously from JavaFX sources, now in c# code
-        public float[] ToHsb() {
+        public (float hue, float saturation, float brightness) ToHsb() {
             float hue, saturation, brightness;
             float cmax = (R > G) ? R : G;
             if (B > cmax) cmax = B;
@@ -116,22 +116,24 @@ namespace RayTracing.Maths
                 if (hue < 0)
                     hue = hue + 1.0f;
             }
-            return new[]{hue * 360, saturation, brightness};
+            return (hue * 360, saturation, brightness);
         }
 
         public float GetHue()
         {
-            return ToHsb()[0];
+            return ToHsb().hue;
         }
         
         public float GetSaturation()
         {
-            return ToHsb()[1];
+            return ToHsb().saturation;
         }
 
         public float GetBrightness()
         {
-            return ToHsb()[2];
+            float cmax = (R > G) ? R : G;
+            if (B > cmax) cmax = B;
+            return cmax;
         }
     }
 }
