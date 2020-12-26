@@ -32,7 +32,7 @@ namespace RayTracing.Materials
                 _data[i, j] = image._data[i, j];
         }
 
-        public Texture(string path)
+        public Texture(string path, bool glLoad = true)
         {
             Log.Info($"Loading texture from path: {path}");
             Stream stream;
@@ -45,7 +45,7 @@ namespace RayTracing.Materials
             }
 
             LoadFromStream(stream);
-            LoadGLTexture();
+            if(glLoad) LoadGLTexture();
             stream.Dispose();
         }
 
