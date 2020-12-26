@@ -50,7 +50,8 @@ namespace RayTracing
                     return;
 
                 var output = new Texture(image);
-                output.Process(c => (c / (k + 1)).Clamp().GammaCorrection(2.0f));
+                output.Process(c => (c / (k + 1)).Clamp());
+                output.AutoGammaCorrect();
                 OnFrameReady?.Invoke((k + 1) * 100 / Samples, output);
             }
         }

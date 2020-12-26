@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using RayTracing.Maths;
 using StbImageSharp;
@@ -8,8 +9,9 @@ using ColorComponents = StbImageSharp.ColorComponents;
 
 namespace RayTracing.Materials
 {
-    public class Texture : IDisposable
+    public class Texture : ITexture, IDisposable
     {
+        private const string TexturesPath = "RayTracer.Resources.Textures.";
         private int _id;
         private Color[,] _data;
 
@@ -30,10 +32,26 @@ namespace RayTracing.Materials
                 _data[i, j] = image._data[i, j];
         }
 
-        public Texture(string path)
+        public Texture(string path, bool glLoad = true)
         {
-            LoadFromPath(path);
-            LoadGLTexture();
+            Log.Info($"Loading texture from path: {path}");
+            Stream stream;
+            if (Path.IsPathRooted(path))
+                stream = File.OpenRead(path);
+            else
+            {
+                var assembly = GetType().Assembly;
+                stream = assembly.GetManifestResourceStream(TexturesPath + path);
+            }
+
+            LoadFromStream(stream);
+            if(glLoad) LoadGLTexture();
+            stream.Dispose();
+        }
+
+        public Color this[float u, float v]
+        {
+            get => _data[(int) (u * (Height - 1)), (int) ((1 - v) * (Width - 1))];
         }
 
         public Color this[int w, int h]
@@ -49,10 +67,20 @@ namespace RayTracing.Materials
                 _data[i, j] = function(_data[i, j]);
         }
 
-        private void LoadFromPath(string path)
+        public void AutoGammaCorrect()
         {
-            Log.Info($"Loading texture from path: {path}");
-            using var stream = File.OpenRead(path);
+            float sum = 0;
+            for (int i = 0; i < Height; i++)
+            for (int j = 0; j < Width; j++)
+                sum += _data[i, j].GetBrightness();
+            float brightness = sum / (Width * Height);
+            float correction = 2.0f - 1.5f * brightness;
+            Log.Info($"Auto gamma correcting image. Calculated average brightness: {brightness}, applying correction: {correction}.");
+            Process(c => c.GammaCorrection(correction));
+        }
+
+        private void LoadFromStream(Stream stream)
+        {
             ImageResult image = ImageResult.FromStream(stream, ColorComponents.RedGreenBlue);
             _data = new Color[image.Width, image.Height];
             for (int i = 0; i < image.Width * image.Height; ++i)

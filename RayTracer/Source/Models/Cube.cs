@@ -12,8 +12,6 @@ namespace RayTracing.Models
             var buffers = GetBuffers();
             Mesh = new Mesh(buffers.vertexBuffer, buffers.normalBuffer, buffers.texBuffer, buffers.indicesBuffer);
         }
-        
-        public override Vector3 Rotation { get; set; }
 
         private List<Vector3> GetVertices()
         {

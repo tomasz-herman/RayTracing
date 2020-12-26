@@ -43,8 +43,18 @@ namespace RayTracing.Models
             hit.HitPoint = ray.Origin + ray.Direction * hit.Distance;
             hit.ModelHit = this;
             Vector3 normal = (hit.HitPoint - Position) / Scale;
+            GetSphereUV(normal * RotationMatrix, ref hit.TexCoord);
             hit.SetNormal(ref ray, ref normal);
             return true;
+        }
+
+        private void GetSphereUV(Vector3 normal, ref Vector2 UV)
+        {
+            var theta = Math.Acos(-normal.Y);
+            var phi = Math.Atan2(-normal.Z, normal.X) + Math.PI;
+
+            UV.X = (float) (phi / (2 * Math.PI));
+            UV.Y = (float) (theta / Math.PI);
         }
 
         public override Mesh GetMesh()

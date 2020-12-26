@@ -8,17 +8,14 @@ namespace RayTracing.Models
     public class Cylinder : Model
     {
         private Vector3 _normal;
-        private Vector3 _rotation;
-        private Vector3 _position;
         private Vector3 _bottom;
         private Vector3 _top;
 
         private float _height;
-        private float _scale = 1.0f;
         private float _aspect;
         private int _sectorCount;
 
-        
+
         // Radius = Scale
         // Height = Scale * Aspect
         public Cylinder(float aspect = 1.0f, int sectorCount = 100)
@@ -26,34 +23,31 @@ namespace RayTracing.Models
             _sectorCount = sectorCount;
             Aspect = aspect;
         }
-        
+
         public override Vector3 Rotation
         {
-            get => _rotation;
             set
             {
-                _rotation = value;
+                base.Rotation = value;
                 CalculateBottomAndTop();
             }
         }
-        
+
         public override float Scale
         {
-            get => _scale;
             set
             {
-                _scale = value;
-                _height = _aspect * _scale;
+                base.Scale = value;
+                _height = _aspect * value;
                 CalculateBottomAndTop();
             }
         }
 
         public override Vector3 Position
         {
-            get => _position;
             set
             {
-                _position = value;
+                base.Position = value;
                 CalculateBottomAndTop();
             }
         }
@@ -64,7 +58,7 @@ namespace RayTracing.Models
             set
             {
                 _aspect = value;
-                _height = _aspect * _scale;
+                _height = _aspect * Scale;
                 CalculateBottomAndTop();
                 if (loaded)
                 {
@@ -76,14 +70,11 @@ namespace RayTracing.Models
 
         private void CalculateBottomAndTop()
         {
-            Matrix3 rotation = Matrix3.CreateRotationZ(_rotation.Z) * 
-                               Matrix3.CreateRotationY(_rotation.Y) * 
-                               Matrix3.CreateRotationX(_rotation.X);
-            _bottom = -_height * 0.5f * Vector3.UnitY * rotation + Position;
-            _top = _height * 0.5f * Vector3.UnitY * rotation + Position;
+            _bottom = -_height * 0.5f * Vector3.UnitY * RotationMatrix + Position;
+            _top = _height * 0.5f * Vector3.UnitY * RotationMatrix + Position;
             _normal = (_top - _bottom) / _height;
         }
-        
+
         private protected override void LoadInternal()
         {
             var buffers = GetBuffers();
@@ -100,16 +91,16 @@ namespace RayTracing.Models
 
             Vector3 aVec = rayDirection - Vector3.Dot(rayDirection, _normal) * _normal;
             Vector3 bVec = deltaOrigins - Vector3.Dot(deltaOrigins, _normal) * _normal;
-            
+
             float a = Vector3.Dot(aVec, aVec);
             float bHalf = Vector3.Dot(aVec, bVec);
             float c = Vector3.Dot(bVec, bVec) - Scale * Scale;
-            
-            float delta = bHalf*bHalf - a*c;
-            
+
+            float delta = bHalf * bHalf - a * c;
+
             if (delta < 0)
                 return false;
-            
+
             float deltaSq = (float) Math.Sqrt(delta);
 
             float root = (-bHalf - deltaSq) / a;
@@ -122,7 +113,7 @@ namespace RayTracing.Models
 
             Vector3 hitPoint = ray.Origin + ray.Direction * root;
 
-            if (Vector3.Dot(hitPoint - _top, _normal) < 0 && 
+            if (Vector3.Dot(hitPoint - _top, _normal) < 0 &&
                 Vector3.Dot(hitPoint - _bottom, _normal) > 0)
             {
                 hit.Distance = root;
