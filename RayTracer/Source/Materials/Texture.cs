@@ -52,7 +52,7 @@ namespace RayTracing.Materials
 
         public Color this[float u, float v]
         {
-            get => _data[(int) (u * (Width - 1)), (int) ((v) * (Height - 1))];
+            get => _data[(int) (u * (Width - 1)), (int) (v * (Height - 1))];
         }
 
         public Color this[int w, int h]
@@ -110,9 +110,25 @@ namespace RayTracing.Materials
             return raw;
         }
 
+        public byte[] FlippedRawData()
+        {
+            byte[] raw = new byte[Width * Height * 3];
+
+            for (int i = 0; i < Width; i++)
+            for (int j = 0; j < Height; j++)
+            {
+                Color color = _data[i, j];
+                raw[(Height - j - 1) * Width * 3 + i * 3 + 0] = color.RComp;
+                raw[(Height - j - 1) * Width * 3 + i * 3 + 1] = color.GComp;
+                raw[(Height - j - 1) * Width * 3 + i * 3 + 2] = color.BComp;
+            }
+
+            return raw;
+        }
+
         public void Write(string path)
         {
-            byte[] raw = RawData();
+            byte[] raw = FlippedRawData();
             using Stream stream = File.OpenWrite(path);
             ImageWriter writer = new ImageWriter();
             writer.WritePng(raw, Width, Height, StbImageWriteSharp.ColorComponents.RedGreenBlue, stream);
