@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using OpenTK;
 using OpenTK.Graphics;
 
 namespace RayTracing.Maths
@@ -7,14 +8,14 @@ namespace RayTracing.Maths
     public struct Color
     {
         public float R, G, B;
-        public IEnumerable<byte> Components() => new[] { RComp, GComp, BComp };
+        public IEnumerable<byte> Components() => new[] {RComp, GComp, BComp};
         public byte RComp => (byte) (R * 255);
         public byte GComp => (byte) (G * 255);
         public byte BComp => (byte) (B * 255);
-        
+
         private const float MinVal = 0f;
         private const float MaxVal = 1f;
-        
+
         public Color(float r, float g, float b)
         {
             R = r;
@@ -55,7 +56,7 @@ namespace RayTracing.Maths
             first.B *= scalar;
             return first;
         }
-        
+
         public static Color operator /(Color first, float scalar)
         {
             first.R /= scalar;
@@ -85,9 +86,15 @@ namespace RayTracing.Maths
             B = (float) Math.Pow(B, exp);
             return this;
         }
-        
+
+        public Vector3 ToVector3()
+        {
+            return new Vector3(R, G, B);
+        }
+
         // from C++ codebase, and previously from JavaFX sources, now in c# code
-        public float[] ToHsb() {
+        public float[] ToHsb()
+        {
             float hue, saturation, brightness;
             float cmax = (R > G) ? R : G;
             if (B > cmax) cmax = B;
@@ -100,9 +107,12 @@ namespace RayTracing.Maths
             else
                 saturation = 0;
 
-            if (saturation == 0) {
+            if (saturation == 0)
+            {
                 hue = 0;
-            } else {
+            }
+            else
+            {
                 float redc = (cmax - R) / (cmax - cmin);
                 float greenc = (cmax - G) / (cmax - cmin);
                 float bluec = (cmax - B) / (cmax - cmin);
@@ -116,14 +126,15 @@ namespace RayTracing.Maths
                 if (hue < 0)
                     hue = hue + 1.0f;
             }
-            return new[]{hue * 360, saturation, brightness};
+
+            return new[] {hue * 360, saturation, brightness};
         }
 
         public float GetHue()
         {
             return ToHsb()[0];
         }
-        
+
         public float GetSaturation()
         {
             return ToHsb()[1];

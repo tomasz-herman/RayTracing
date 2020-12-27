@@ -66,10 +66,10 @@ namespace RayTracing.Models
         {
             return new[]
             {
-                new Vector2(0, 0),
-                new Vector2(1, 0),
+                new Vector2(0, 1),
                 new Vector2(1, 1),
-                new Vector2(0, 1)
+                new Vector2(1, 0),
+                new Vector2(0, 0)
             };
         }
 
@@ -124,8 +124,9 @@ namespace RayTracing.Models
                 hit.ModelHit = this;
                 hit.SetNormal(ref ray, ref _normal);
                 var hitVector = RotationMatrix * (hit.HitPoint - Position);
-                hit.TexCoord = new Vector2(hitVector.X % Scale < 0 ? -hitVector.X % Scale : hitVector.X % Scale,
-                    hitVector.Z % Scale < 0 ? -hitVector.Z % Scale : hitVector.Z % Scale);
+                hit.TexCoord = new Vector2(
+                    hitVector.Z % Scale < 0 ? 1 + hitVector.Z % Scale : hitVector.Z % Scale,
+                    1 - (hitVector.X % Scale < 0 ? 1 + hitVector.X % Scale : hitVector.X % Scale));
                 return true;
             }
 

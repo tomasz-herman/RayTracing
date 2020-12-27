@@ -42,7 +42,7 @@ namespace RayTracing
                         float u = (i + sample.X) / (width - 1);
                         float v = (j + sample.Y) / (height - 1);
                         Ray ray = camera.GetRay(u, v);
-                        image[i, height - 1 - j] += Shade(ray, scene, MaxDepth);
+                        image[i, j] += Shade(ray, scene, MaxDepth);
                     }
                 });
                 if (IsCancellationRequested != null && IsCancellationRequested())
