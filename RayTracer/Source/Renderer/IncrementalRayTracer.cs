@@ -50,7 +50,7 @@ namespace RayTracing
                 if (IsCancellationRequested != null && IsCancellationRequested())
                     return;
 
-                if (k % _renderStep == 0)
+                if (k % _renderStep == 0 || k == Samples - 1)
                 {
                     var output = new Texture(image);
                     output.Process(c => (c / (k + 1)).Clamp());
