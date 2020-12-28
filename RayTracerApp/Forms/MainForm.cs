@@ -78,7 +78,7 @@ namespace RayTracerApp.Forms
             {
                 Position = new Vector3(5f, 0.5f, 0), Scale = 1,
                 Material = new Diffuse(Color.FromColor4(Color4.Chocolate))
-            });
+            }.Load());
             _scene.AddModel(new Plane
             {
                 Position = new Vector3(0, -0.5f, 0), Scale = 1,
