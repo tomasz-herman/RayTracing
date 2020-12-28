@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using OpenTK;
 using OpenTK.Graphics;
 using RayTracing;
@@ -23,7 +24,10 @@ namespace RayTracerDemo
             scene.AddModel(new Sphere {Position = new Vector3(-1, 0.5f, -0.5f), Scale = 1, Material = new Diffuse(Color.FromColor4(Color4.Orange))});
             scene.AddModel(new Sphere {Position = new Vector3(0, 5.5f, 0), Scale = 1, Material = new Emissive(Color.FromColor4(Color4.White)*10)});
             scene.AddModel(new Sphere {Position = new Vector3(-2.5f, 0.5f, 1), Scale = 1, Material = new Reflective(Color.FromColor4(Color4.Azure), 0.1f)});
-            scene.AddModel(new Sphere {Position = new Vector3(2.5f, 0.5f, 1), Scale = 1, Material = new Reflective(Color.FromColor4(Color4.Aqua), 0.75f)});
+            var matte = new Diffuse(Color.FromColor4(Color4.White));
+            var glass = new Refractive(Color.FromColor4(Color4.White), 1.5f);
+            var matteGlass = new MasterMaterial(new List<IMaterial> {matte, glass}, new List<int> {20, 80});
+            scene.AddModel(new Sphere {Position = new Vector3(2.5f, 0.5f, 1), Scale = 1, Material = matteGlass});
             scene.AddModel(new Plane {Position = new Vector3(0, -0.5f, 0), Scale = 1, Material = new Diffuse(Color.FromColor4(Color4.ForestGreen))});
             scene.AddModel(new Sphere {Position = new Vector3(5f, 0.5f, 1.5f), Scale = 1, Material = new Diffuse(new Texture("earthmap.jpg", false))});
             scene.AddModel(new Triangle(
