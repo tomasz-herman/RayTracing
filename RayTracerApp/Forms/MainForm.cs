@@ -83,7 +83,12 @@ namespace RayTracerApp.Forms
             {
                 Position = new Vector3(5f, 0.5f, 0), Scale = 1,
                 Material = new Diffuse(Color.FromColor4(Color4.Chocolate))
-            });
+            }.Load());
+            _scene.AddModel(new Cylinder(2)
+            {
+                Position = new Vector3(5f, 0.5f, 4), Scale = 1,
+                Material = new Diffuse(new Texture("earthmap.jpg"))
+            }.Load());
             _scene.AddModel(plane);
 
             InitializeFpsTimer();

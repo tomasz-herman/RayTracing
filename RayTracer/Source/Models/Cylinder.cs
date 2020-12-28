@@ -10,6 +10,7 @@ namespace RayTracing.Models
         private Vector3 _normal;
         private Vector3 _bottom;
         private Vector3 _top;
+        private Vector3 _center;
 
         private float _height;
         private float _aspect;
@@ -72,6 +73,7 @@ namespace RayTracing.Models
         {
             _bottom = -_height * 0.5f * Vector3.UnitY * RotationMatrix + Position;
             _top = _height * 0.5f * Vector3.UnitY * RotationMatrix + Position;
+            _center = (_bottom + _top) / 2;
             _normal = (_top - _bottom) / _height;
         }
 
@@ -124,6 +126,7 @@ namespace RayTracing.Models
                 normal = Vector3.Normalize(Vector3.Cross(normal, _normal));
                 normal = Vector3.Cross(normal, _normal);
                 hit.SetNormal(ref ray, ref normal);
+                GetCylinderUV((hitPoint - _center).Normalized() * RotationMatrix, ref hit.TexCoord);
             }
 
             CapHitTest(ref ray, ref hit, from, to, ref _bottom);
@@ -143,7 +146,17 @@ namespace RayTracing.Models
                 hit.HitPoint = hitPoint;
                 hit.ModelHit = this;
                 hit.SetNormal(ref ray, ref _normal);
+                GetCylinderUV((hitPoint - _center).Normalized() * RotationMatrix, ref hit.TexCoord);
             }
+        }
+        
+        private void GetCylinderUV(Vector3 normal, ref Vector2 uv)
+        {
+            var theta = Math.Acos(-normal.Y);
+            var phi = Math.Atan2(-normal.Z, normal.X) + Math.PI;
+
+            uv.X = (float) (phi / (2 * Math.PI));
+            uv.Y = (float) (theta / Math.PI);
         }
 
         public override Mesh GetMesh()
@@ -196,9 +209,6 @@ namespace RayTracing.Models
                     normals.Add(ux);
                     normals.Add(uz);
                     normals.Add(uy);
-                    
-                    texCoords.Add((float)j / _sectorCount);
-                    texCoords.Add(t);
                 }
             }
             
@@ -212,7 +222,6 @@ namespace RayTracing.Models
                 
                 vertices.Add(0);     vertices.Add(h);     vertices.Add(0);
                 normals.Add(0);      normals.Add(nz);      normals.Add(0);
-                texCoords.Add(0.5f); texCoords.Add(0.5f);
 
                 for(int j = 0, k = 0; j < _sectorCount; ++j, k += 3)
                 {
@@ -226,10 +235,16 @@ namespace RayTracing.Models
                     normals.Add(0);
                     normals.Add(nz);
                     normals.Add(0);
-
-                    texCoords.Add(-ux * 0.5f + 0.5f);
-                    texCoords.Add(-uy * 0.5f + 0.5f);
                 }
+            }
+
+            for (int i = 0; i < vertices.Count; i+=3)
+            {
+                Vector2 texCoord = new Vector2();
+                Vector3 vertex = new Vector3(vertices[i], vertices[i + 1], vertices[i + 2]).Normalized();
+                GetCylinderUV(vertex, ref texCoord);
+                texCoords.Add(texCoord.X);
+                texCoords.Add(texCoord.Y);
             }
 
             var indices = GenIndices(topCenterIndex, baseCenterIndex);
