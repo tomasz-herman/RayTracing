@@ -8,13 +8,10 @@ namespace RayTracing.Models
     public class Cylinder : Model
     {
         private Vector3 _normal;
-        private Vector3 _rotation;
-        private Vector3 _position;
         private Vector3 _bottom;
         private Vector3 _top;
 
         private float _height;
-        private float _scale = 1.0f;
         private float _aspect;
         private int _sectorCount;
 
@@ -29,31 +26,28 @@ namespace RayTracing.Models
 
         public override Vector3 Rotation
         {
-            get => _rotation;
             set
             {
-                _rotation = value;
+                base.Rotation = value;
                 CalculateBottomAndTop();
             }
         }
 
         public override float Scale
         {
-            get => _scale;
             set
             {
-                _scale = value;
-                _height = _aspect * _scale;
+                base.Scale = value;
+                _height = _aspect * value;
                 CalculateBottomAndTop();
             }
         }
 
         public override Vector3 Position
         {
-            get => _position;
             set
             {
-                _position = value;
+                base.Position = value;
                 CalculateBottomAndTop();
             }
         }
@@ -64,7 +58,7 @@ namespace RayTracing.Models
             set
             {
                 _aspect = value;
-                _height = _aspect * _scale;
+                _height = _aspect * Scale;
                 CalculateBottomAndTop();
                 if (loaded)
                 {

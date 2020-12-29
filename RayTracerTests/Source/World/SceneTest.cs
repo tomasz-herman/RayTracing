@@ -18,8 +18,8 @@ namespace RayTracerTests.Source.World
             Mock<Sphere> modelA = new Mock<Sphere>();
             Mock<Plane> modelB = new Mock<Plane>();
             Scene scene = new Scene();
-            scene.AddModel(modelA.Object);
-            scene.AddModel(modelB.Object);
+            scene.Hittables.Add(modelA.Object);
+            scene.Hittables.Add(modelB.Object);
             HitInfo info = new HitInfo();
             
             scene.HitTest(new Ray(), ref info, 0, 0);

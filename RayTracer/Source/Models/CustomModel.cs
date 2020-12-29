@@ -1,5 +1,7 @@
-﻿using OpenTK;
+﻿using System.Collections.Generic;
+using OpenTK;
 using RayTracing.Maths;
+using RayTracing.RayTracing;
 
 namespace RayTracing.Models
 {
@@ -35,6 +37,11 @@ namespace RayTracing.Models
         public override Mesh GetMesh()
         {
             return Mesh;
+        }
+        
+        public override List<IHittable> Preprocess()
+        {
+            return MeshToTriangles();
         }
     }
 }
