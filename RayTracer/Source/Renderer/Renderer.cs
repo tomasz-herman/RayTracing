@@ -17,13 +17,12 @@ namespace RayTracing
 
             _shader.Use();
             _shader.SetVector3("ambientLight", ambient.ToVector3());
-            _shader.SetMatrix4("view", camera.GetViewMatrix());
-            _shader.SetMatrix4("projection", camera.GetProjectionMatrix());
 
             foreach (var model in scene.Models)
             {
                 if (!model.Loaded) continue;
                 _shader.SetMatrix4("model", model.GetModelMatrix());
+                _shader.SetMatrix4("mvp", model.GetModelMatrix()*camera.GetViewMatrix()*camera.GetProjectionMatrix());
                 model.Material.Use(_shader);
                 model.GetMesh().Render();
             }
