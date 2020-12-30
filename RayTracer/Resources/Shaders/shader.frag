@@ -14,11 +14,11 @@ uniform sampler2D texture0;
 void main()
 {
     vec4 color;
-    if (singleColor==0){
+    if (singleColor == 0) {
         color = texture(texture0, texCoord);
     }
     else {
         color = vec4(materialColor, 1.0);
     }
-    FragColor = vec4(ambientLight, 1.0)*color;
+    FragColor = vec4(ambientLight, 1.0) * color;
 }
