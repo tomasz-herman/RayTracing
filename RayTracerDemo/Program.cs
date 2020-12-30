@@ -26,7 +26,7 @@ namespace RayTracerDemo
             scene.AddModel(new Sphere {Position = new Vector3(-2.5f, 0.5f, 1), Scale = 1, Material = new Reflective(Color.FromColor4(Color4.Azure), 0.1f)});
             var matte = new Diffuse(Color.FromColor4(Color4.White));
             var glass = new Refractive(Color.FromColor4(Color4.White), 1.5f);
-            var matteGlass = new MasterMaterial(new List<IMaterial> {matte, glass}, new List<int> {20, 80});
+            var matteGlass = new MasterMaterial {Diffuse = matte, Refractive = glass, DiffusePart = 20, RefractivePart = 80};
             scene.AddModel(new Sphere {Position = new Vector3(2.5f, 0.5f, 1), Scale = 1, Material = matteGlass});
             scene.AddModel(new Plane {Position = new Vector3(0, -0.5f, 0), Scale = 1, Material = new Diffuse(Color.FromColor4(Color4.ForestGreen))});
             scene.AddModel(new Sphere {Position = new Vector3(5f, 0.5f, 1.5f), Scale = 1, Material = new Diffuse(new Texture("earthmap.jpg", false))});

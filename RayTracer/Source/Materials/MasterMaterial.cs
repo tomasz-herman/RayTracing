@@ -8,56 +8,64 @@ namespace RayTracing.Materials
 {
     public class MasterMaterial : IMaterial
     {
-        private readonly List<IMaterial> _materials;
-        private readonly List<int> _probabilities;
+        public Emissive Emissive { get; set; }
+        public Diffuse Diffuse { get; set; }
+        public Reflective Reflective { get; set; }
+        public Refractive Refractive { get; set; }
+        public int EmissivePart { get; set; }
+        public int DiffusePart { get; set; }
+        public int ReflectivePart { get; set; }
+        public int RefractivePart { get; set; }
         private readonly AbstractSampler<float> _sampler;
 
-        public MasterMaterial(List<IMaterial> materials, List<int> probabilities, AbstractSampler<float> sampler = null)
+        public MasterMaterial(AbstractSampler<float> sampler = null)
         {
-            if (probabilities.Count != materials.Count)
-                throw new ArgumentException("probabilities size != materials size");
-            if (probabilities.Exists(x => x < 0))
-                throw new ArgumentException("probability < 0");
-
-            _materials = materials;
-            _probabilities = probabilities;
             _sampler = sampler ?? new ThreadSafeSampler<float>(FloatSampling.Random, 10000);
         }
-
-        public MasterMaterial()
+        
+        private IMaterial GetMaterial()
         {
-            _materials = new List<IMaterial>();
-            _probabilities = new List<int>();
-            _sampler = new ThreadSafeSampler<float>(FloatSampling.Random, 10000);
-        }
-
-        public void AddMaterial(IMaterial material, int probability)
-        {
-            _materials.Add(material);
-            _probabilities.Add(probability);
-        }
-
-        private int GetMaterialIndex()
-        {
+            var probabilities = new List<int>(4);
+            var materials = new List<IMaterial>(4);
+            if (Emissive != null)
+            {
+                probabilities.Add(EmissivePart);
+                materials.Add(Emissive);
+            }
+            if (Diffuse != null)
+            {
+                probabilities.Add(DiffusePart);
+                materials.Add(Diffuse);
+            }
+            if (Reflective != null)
+            {
+                probabilities.Add(ReflectivePart);
+                materials.Add(Reflective);
+            }
+            if (Refractive != null)
+            {
+                probabilities.Add(RefractivePart);
+                materials.Add(Refractive);
+            }
+            
             float rand = _sampler.GetSample();
-            int sum = _probabilities.Sum();
+            int sum = probabilities.Sum();
             int seek = (int) (rand * sum) + 1;
             int sought = 0;
-            for (int i = 0; i < _probabilities.Count; i++)
+            for (int i = 0; i < probabilities.Count; i++)
             {
-                if (sought < seek && seek <= sought + _probabilities[i])
-                    return i;
+                if (sought < seek && seek <= sought + probabilities[i])
+                    return materials[i];
 
-                sought += _probabilities[i];
+                sought += probabilities[i];
             }
 
-            return -1;
+            throw new Exception("material not found");
         }
 
         public bool Scatter(ref Ray ray, ref HitInfo hit, out Color attenuation, out Ray scattered)
         {
-            var index = GetMaterialIndex();
-            var material = _materials[index];
+            var material = GetMaterial();
             return material.Scatter(ref ray, ref hit, out attenuation, out scattered);
         }
     }
