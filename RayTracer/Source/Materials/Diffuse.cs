@@ -1,6 +1,7 @@
 using OpenTK;
 using RayTracing.Maths;
 using RayTracing.Sampling;
+using RayTracing.Shaders;
 
 namespace RayTracing.Materials
 {
@@ -30,6 +31,11 @@ namespace RayTracing.Materials
             scattered = new Ray(hit.HitPoint, hit.Normal + _sampler.Sample);
             attenuation = Albedo[hit.TexCoord.X, hit.TexCoord.Y];
             return true;
+        }
+
+        public void Use(Shader shader)
+        {
+            Albedo.Use(shader);
         }
     }
 }
