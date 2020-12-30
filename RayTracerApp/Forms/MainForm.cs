@@ -9,13 +9,13 @@ using RayTracing;
 using RayTracing.Cameras;
 using RayTracing.Lights;
 using RayTracing.Materials;
-using RayTracing.Maths;
 using RayTracing.Models;
 using RayTracing.Sampling;
 using RayTracing.World;
 using Camera = RayTracing.Cameras.Camera;
 using Timer = System.Windows.Forms.Timer;
 using RayTracerApp.SceneControllers;
+using Color = RayTracing.Maths.Color;
 
 namespace RayTracerApp.Forms
 {
@@ -117,6 +117,7 @@ namespace RayTracerApp.Forms
 
         private void OnResize(object sender, EventArgs e)
         {
+            UpdateLastModification();
             UpdateViewport();
         }
 
@@ -159,13 +160,15 @@ namespace RayTracerApp.Forms
 
         private void newObjectButton_Click(object sender, EventArgs e)
         {
-            var form = new NewObjectForm(new NewObjectController(_scene));
+            var form = new NewObjectForm(new NewObjectController(_scene))
+                {StartPosition = FormStartPosition.Manual, Location = Location + Size/3};
             form.Show();
         }
 
         private void editObjectButton_Click(object sender, EventArgs e)
         {
-            var form = new EditObjectForm(new EditObjectController(_scene, _scene.Models[0]));
+            var form = new EditObjectForm(new EditObjectController(_scene, _scene.Models[0]))
+                {StartPosition = FormStartPosition.Manual, Location = Location+ Size/3};
             form.Show();
         }
     }

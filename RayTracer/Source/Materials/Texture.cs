@@ -116,14 +116,15 @@ namespace RayTracing.Materials
             writer.WritePng(raw, Width, Height, StbImageWriteSharp.ColorComponents.RedGreenBlue, stream);
         }
 
-        public void LoadGLTexture()
+        public void LoadGLTexture(TextureUnit unit = TextureUnit.Texture0)
         {
             byte[] raw = RawData();
             _id = GL.GenTexture();
-            Use();
+            Use(unit);
+            GL.PixelStore(PixelStoreParameter.UnpackAlignment,1);
             GL.TexImage2D(TextureTarget.Texture2D,
                 0,
-                PixelInternalFormat.Rgba,
+                PixelInternalFormat.Rgb,
                 Width,
                 Height,
                 0,
@@ -131,17 +132,9 @@ namespace RayTracing.Materials
                 PixelType.UnsignedByte,
                 raw);
 
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter,
-                (int) TextureMinFilter.Linear);
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter,
-                (int) TextureMagFilter.Linear);
-
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int) TextureWrapMode.Repeat);
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int) TextureWrapMode.Repeat);
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapR, (int) TextureWrapMode.Repeat);
             GL.GenerateMipmap(GenerateMipmapTarget.Texture2D);
 
-            Clear();
+            Clear(unit);
         }
 
         private static void Use(int id, TextureUnit unit = TextureUnit.Texture0)
