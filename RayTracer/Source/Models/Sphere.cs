@@ -42,7 +42,8 @@ namespace RayTracing.Models
             hit.Distance = root;
             hit.HitPoint = ray.Origin + ray.Direction * hit.Distance;
             hit.ModelHit = this;
-            Vector3 normal = (hit.HitPoint - Position)/Scale;
+            Vector3 normal = hit.HitPoint - Position;
+            normal.Normalize();
             GetSphereUV(RotationMatrix * normal, ref hit.TexCoord);
             hit.SetNormal(ref ray, ref normal);
             return true;
