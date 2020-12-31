@@ -1,4 +1,5 @@
-﻿using OpenTK.Graphics.OpenGL4;
+﻿using OpenTK;
+using OpenTK.Graphics.OpenGL4;
 using RayTracing.Cameras;
 using RayTracing.Shaders;
 using RayTracing.World;
@@ -17,7 +18,9 @@ namespace RayTracing
 
             _shader.Use();
             _shader.SetVector3("ambientLight", ambient.ToVector3());
-
+            _shader.SetVector3("light.position", new Vector3(0,6f,0));
+            _shader.SetVector3("light.diffuse", new Vector3(1f,1f,1f));
+            
             foreach (var model in scene.Models)
             {
                 if (!model.Loaded) continue;
