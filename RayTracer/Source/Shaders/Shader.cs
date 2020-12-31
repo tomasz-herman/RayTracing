@@ -76,6 +76,18 @@ namespace RayTracing.Shaders
             GL.UseProgram(_handle);
             GL.UniformMatrix4(_uniformLocations[name], true, ref data);
         }
+        
+        public void SetVector3(string name, Vector3 data)
+        {
+            GL.UseProgram(_handle);
+            GL.Uniform3(_uniformLocations[name], data);
+        }
+        
+        public void SetInt(string name, int data)
+        {
+            GL.UseProgram(_handle);
+            GL.Uniform1(_uniformLocations[name], data);
+        }
 
         public void Use()
         {

@@ -1,10 +1,13 @@
 ﻿using OpenTK.Graphics;
 using RayTracing.Maths;
+using RayTracing.Shaders;
 
 namespace RayTracing.Materials
 {
     public interface ITexture
     {
-        public Color this[float x,float y] { get; }
+        Color this[float x, float y] { get; }
+
+        void Use(Shader shader);
     }
 }

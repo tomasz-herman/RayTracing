@@ -16,13 +16,14 @@ namespace RayTracing
             GL.ClearColor(ambient.R, ambient.G, ambient.B, 1.0f);
 
             _shader.Use();
-            _shader.SetMatrix4("view", camera.GetViewMatrix());
-            _shader.SetMatrix4("projection", camera.GetProjectionMatrix());
+            _shader.SetVector3("ambientLight", ambient.ToVector3());
 
             foreach (var model in scene.Models)
             {
                 if (!model.Loaded) continue;
                 _shader.SetMatrix4("model", model.GetModelMatrix());
+                _shader.SetMatrix4("mvp", model.GetModelMatrix()*camera.GetViewMatrix()*camera.GetProjectionMatrix());
+                model.Material.Use(_shader);
                 model.GetMesh().Render();
             }
         }
