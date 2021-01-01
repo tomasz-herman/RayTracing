@@ -27,8 +27,8 @@ namespace RayTracing
             {
                 var light = scene.Lights[i];
                 _shader.SetVector3($"light[{i}].position", light.Position);
-                var color = light.Material.Emitted(0, 0).ToVector3(); // might calculate average of texture
-                _shader.SetVector3($"light[{i}].diffuse", color);
+                var color = ((Emissive)light.Material).AverageColor; // might calculate average of texture
+                _shader.SetVector3($"light[{i}].diffuse", color.ToVector3());
             }
             
             foreach (var model in scene.Models)
