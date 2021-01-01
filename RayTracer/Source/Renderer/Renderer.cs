@@ -21,7 +21,7 @@ namespace RayTracing
             foreach (var model in scene.Models)
             {
                 if (!model.Loaded) continue;
-                _shader.SetMatrix4("model", model.GetModelMatrix());
+                //_shader.SetMatrix4("model", model.GetModelMatrix());
                 _shader.SetMatrix4("mvp", model.GetModelMatrix()*camera.GetViewMatrix()*camera.GetProjectionMatrix());
                 model.Material.Use(_shader);
                 model.GetMesh().Render();

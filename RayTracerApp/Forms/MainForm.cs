@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using OpenTK;
@@ -140,10 +141,13 @@ namespace RayTracerApp.Forms
         private void BackgroundWorkerProgressChanged(object sender,
             ProgressChangedEventArgs e)
         {
-            (e.UserState as Texture)?.Blit();
+            var objects = (List<object>) e.UserState;
+            var texture = (Texture) objects[0];
+            var message = (string) objects[1];
+            texture?.Blit();
             gLControl.SwapBuffers();
-            (e.UserState as Texture)?.Dispose();
-            Text = e.ProgressPercentage + "%";
+            texture?.Dispose();
+            Text = message;
         }
 
         private void InitializeBackgroundWorker()
