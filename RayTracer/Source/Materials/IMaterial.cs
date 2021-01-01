@@ -9,7 +9,7 @@ namespace RayTracing.Materials
     {
         bool Scatter(ref Ray ray, ref HitInfo hit, out Color attenuation, out Ray scattered);
 
-        Color Emitted(float u, float v, ref Vector3 p)
+        Color Emitted(float u, float v)
         {
             return new Color(0, 0, 0);
         }
