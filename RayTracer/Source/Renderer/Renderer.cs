@@ -21,8 +21,9 @@ namespace RayTracing
             
             _shader.Use();
             _shader.SetVector3("ambientLight", ambient.ToVector3());
-            _shader.SetInt("lightsCount", Math.Min(MAX_LIGHTS, scene.Lights.Count));
-            for (int i = 0; i < scene.Lights.Count; i++)
+            var lightsCount = Math.Min(MAX_LIGHTS, scene.Lights.Count);
+            _shader.SetInt("lightsCount", lightsCount);
+            for (int i = 0; i < lightsCount; i++)
             {
                 var light = scene.Lights[i];
                 _shader.SetVector3($"light[{i}].position", light.Position);
