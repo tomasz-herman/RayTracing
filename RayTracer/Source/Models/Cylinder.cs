@@ -10,12 +10,10 @@ namespace RayTracing.Models
         private Vector3 _normal;
         private Vector3 _bottom;
         private Vector3 _top;
-        private Vector3 _center;
 
         private float _height;
         private float _aspect;
-        private int _sectorCount;
-
+        private readonly int _sectorCount;
 
         // Radius = Scale
         // Height = Scale * Aspect
@@ -30,7 +28,7 @@ namespace RayTracing.Models
             set
             {
                 base.Rotation = value;
-                CalculateBottomAndTop();
+                Recalculate();
             }
         }
 
@@ -40,7 +38,7 @@ namespace RayTracing.Models
             {
                 base.Scale = value;
                 _height = _aspect * value;
-                CalculateBottomAndTop();
+                Recalculate();
             }
         }
 
@@ -49,7 +47,7 @@ namespace RayTracing.Models
             set
             {
                 base.Position = value;
-                CalculateBottomAndTop();
+                Recalculate();
             }
         }
 
@@ -60,7 +58,7 @@ namespace RayTracing.Models
             {
                 _aspect = value;
                 _height = _aspect * Scale;
-                CalculateBottomAndTop();
+                Recalculate();
                 if (loaded)
                 {
                     Unload();
@@ -69,12 +67,11 @@ namespace RayTracing.Models
             }
         }
 
-        private void CalculateBottomAndTop()
+        private void Recalculate()
         {
-            _bottom = -_height * 0.5f * Vector3.UnitY * RotationMatrix + Position;
-            _top = _height * 0.5f * Vector3.UnitY * RotationMatrix + Position;
-            _center = (_bottom + _top) / 2;
-            _normal = (_top - _bottom) / _height;
+            _normal = Vector3.UnitY * RotationMatrix;
+            _bottom = -_height * 0.5f * _normal + Position;
+            _top = _height * 0.5f * _normal + Position;
         }
 
         private protected override void LoadInternal()
