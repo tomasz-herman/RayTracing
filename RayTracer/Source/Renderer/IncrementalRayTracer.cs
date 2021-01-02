@@ -15,15 +15,12 @@ namespace RayTracing
 {
     public class IncrementalRayTracer : RayTracer, IRenderer
     {
-        private readonly int _renderStep;
+        public bool RecursionRenderPart { get; set; } = true;
+        public int SamplesRenderStep { get; set; } = 50;
+        public int SamplesInRecursion { get; set; } = 50;
+
         public Action<int, List<object>> OnFrameReady { get; set; }
         public Func<bool> IsCancellationRequested { get; set; }
-
-        public IncrementalRayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution, int renderStep) :
-            base(maxDepth, samples, sampling, resolution)
-        {
-            _renderStep = renderStep;
-        }
 
         public void Render(Scene scene, Camera camera)
         {
@@ -32,20 +29,29 @@ namespace RayTracing
             int height = (int) (width / camera.AspectRatio);
             var image = new Texture(width, height);
             AbstractSampler<Vector2> sampler = new ThreadSafeSampler<Vector2>(Sampling, Samples);
-            
-            RecursionPart(width, height, sampler, camera, scene, image);
-            image.Process(_ => new Color());
+
+            if (RecursionRenderPart)
+            {
+                RecursionPart(width, height, sampler, camera, scene, image);
+                image.Process(_ => new Color());
+            }
             if (IsCancellationRequested != null && IsCancellationRequested())
                 return;
             SamplesPart(width, height, sampler, camera, scene, image);
         }
 
-        private void RecursionPart(int width, int height, AbstractSampler<Vector2> sampler, Camera camera, Scene scene, Texture image)
+        public IncrementalRayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution) :
+            base(maxDepth, samples, sampling, resolution)
+        {
+        }
+
+        private void RecursionPart(int width, int height, AbstractSampler<Vector2> sampler, Camera camera, Scene scene,
+            Texture image)
         {
             for (int recDepth = 1; recDepth < MaxDepth; recDepth++)
             {
                 image.Process(_ => new Color());
-                for (int k = 0; k < _renderStep; k++)
+                for (int k = 0; k < SamplesInRecursion; k++)
                 {
                     Parallel.For(0, width, i =>
                     {
@@ -63,16 +69,20 @@ namespace RayTracing
                     if (IsCancellationRequested != null && IsCancellationRequested())
                         return;
                 }
+
                 var output = new Texture(image);
-                output.Process(c => (c / (_renderStep + 1)).Clamp());
+                output.Process(c => (c / SamplesInRecursion).Clamp());
                 output.AutoGammaCorrect();
                 var percentage = recDepth * 100 / MaxDepth;
-                OnFrameReady?.Invoke(percentage, new List<object>{output, $"Recursion level: {percentage}%, {recDepth}/{MaxDepth}"});
+                OnFrameReady?.Invoke(percentage,
+                    new List<object> {output, $"Recursion level: {percentage}%, {recDepth}/{MaxDepth}"});
             }
         }
-        private void SamplesPart(int width, int height, AbstractSampler<Vector2> sampler, Camera camera, Scene scene, Texture image)
+
+        private void SamplesPart(int width, int height, AbstractSampler<Vector2> sampler, Camera camera, Scene scene,
+            Texture image)
         {
-            for (int k = 0; k < Samples; k++)
+            for (int k = RecursionRenderPart ? SamplesInRecursion : 0; k < Samples; k++)
             {
                 Parallel.For(0, width, i =>
                 {
@@ -90,13 +100,14 @@ namespace RayTracing
                 if (IsCancellationRequested != null && IsCancellationRequested())
                     return;
 
-                if (k != 0 && (k % _renderStep == 0 || k == Samples - 1))
+                if (k % SamplesRenderStep == 0 || k == Samples - 1)
                 {
                     var output = new Texture(image);
                     output.Process(c => (c / (k + 1)).Clamp());
                     output.AutoGammaCorrect();
                     var percentage = (k + 1) * 100 / Samples;
-                    OnFrameReady?.Invoke(percentage, new List<object>{output, $"Samples percentage: {percentage}%, {k}/{Samples}"});
+                    OnFrameReady?.Invoke(percentage,
+                        new List<object> {output, $"Samples percentage: {percentage}%, {k}/{Samples}"});
                 }
             }
         }
