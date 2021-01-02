@@ -17,12 +17,13 @@ namespace RayTracing.World
         public void AddModel(Model model)
         {
             Models.Add(model);
-            if (model.Material is Emissive) // add MasterMaterial
+            if (model.Material is Emissive || model.Material is MasterMaterial &&
+                (model.Material as MasterMaterial).Parts.emissive != 0) // add MasterMaterial
             {
                 Lights.Add(model);
             }
         }
-        
+
         public bool HitTest(Ray ray, ref HitInfo hit, float from, float to)
         {
             HitInfo tempHitInfo = new HitInfo();
@@ -48,8 +49,9 @@ namespace RayTracing.World
             Hittables.Clear();
             foreach (var model in Models)
             {
-                Hittables.AddRange(((IHittable)model).Preprocess());
+                Hittables.AddRange(((IHittable) model).Preprocess());
             }
+
             return Hittables;
         }
     }

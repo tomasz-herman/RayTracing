@@ -36,8 +36,9 @@ namespace RayTracing.Materials
 
         public void Use(Shader shader, float part)
         {
-            Albedo.Use(shader, "useSpecularColor", "specularColor", TextureUnit.Texture2);
-            shader.SetFloat("specularPart", part);
+            Albedo.Use(shader, "materials[2].useColor", "materials[2].color", TextureUnit.Texture2);
+            shader.SetFloat("materials[2].part", part);
+            shader.SetFloat("disturbance", Disturbance);
         }
     }
 }

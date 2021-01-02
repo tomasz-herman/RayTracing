@@ -36,8 +36,8 @@ namespace RayTracing.Materials
 
         public void Use(Shader shader, float part)
         {
-            Albedo.Use(shader, "useDiffuseColor", "diffuseColor", TextureUnit.Texture1);
-            shader.SetFloat("diffusePart", part);
+            Albedo.Use(shader, "materials[1].useColor", "materials[1].color", TextureUnit.Texture1);
+            shader.SetFloat("materials[1].part", part);
         }
     }
 }

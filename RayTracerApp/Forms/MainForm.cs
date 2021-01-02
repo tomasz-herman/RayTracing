@@ -57,47 +57,55 @@ namespace RayTracerApp.Forms
             _renderer = new Renderer();
             _rayTracer = new IncrementalRayTracer(10, 64 * 64, Vec2Sampling.Jittered, gLControl.Width, 50);
             _cameraController = new CameraController(_camera, gLControl, UpdateLastModification);
-            _scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.LightSkyBlue)};
+            _scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.DarkBlue)};
+            var bulb = new MasterMaterial();
+            bulb.Emissive.Emit = new SolidColor(Color.FromColor4(Color4.Yellow) * 25);
+            bulb.Parts = (1, 0, 0, 0);
             _scene.AddModel(new Sphere
             {
                 Position = new Vector3(0, 5.5f, 0), Scale = 1,
-                Material = new Emissive(Color.FromColor4(Color4.White))
+                Material = new MasterMaterial(new Emissive(Color.FromColor4(Color4.White) * 5))
             }.Load());
             _scene.AddModel(new Sphere
             {
                 Position = new Vector3(-2.5f, 0.5f, 1), Scale = 1,
-                Material = new Reflective(Color.FromColor4(Color4.Azure), 0.1f)
+                Material = new MasterMaterial(new Reflective(Color.FromColor4(Color4.Azure), 0.1f))
             }.Load());
             _scene.AddModel(new Sphere
             {
                 Position = new Vector3(2.5f, 0.5f, 1), Scale = 1,
-                Material = new Reflective(new Texture("earthmap.jpg"), 0.75f)
+                Material = new MasterMaterial(new Reflective(new Texture("earthmap.jpg"), 0.75f))
             }.Load());
             _scene.AddModel(new Cylinder(2)
             {
                 Position = new Vector3(5f, 0.5f, 0), Scale = 1,
-                Material = new Diffuse(Color.FromColor4(Color4.Chocolate))
+                Material = new MasterMaterial(new Diffuse(Color.FromColor4(Color4.Chocolate)))
             }.Load());
             _scene.AddModel(new Cylinder(2)
             {
                 Position = new Vector3(5f, 0.5f, 4), Scale = 1,
-                Material = new Diffuse(new Texture("earthmap.jpg"))
+                Material = new MasterMaterial(new Diffuse(new Texture("wood.jpg")))
             }.Load());
             _scene.AddModel(new Cube()
             {
                 Position = new Vector3(0, 0.5f, -3), Scale = 1,
-                Material = new Reflective(new Texture("wood.jpg"), 0.75f),
+                Material = new MasterMaterial(new Reflective(new Texture("wood.jpg"), 0.75f))
             }.Load());
             _scene.AddModel(new Rectangle(2)
             {
                 Position = new Vector3(0, 0.5f, -1.99f), Scale = 0.8f,
-                Material = new Emissive(Color.FromColor4(Color4.White) * 8),
+                Material = new MasterMaterial(new Emissive(Color.FromColor4(Color4.White) * 8)),
                 Rotation = new Vector3((float) Math.PI / 2, 0, 0)
             }.Load());
             _scene.AddModel(new Plane
             {
                 Position = new Vector3(0, -0.5f, 0), Scale = 1,
-                Material = new Diffuse(new Texture("wood.jpg"))
+                Material = new MasterMaterial(new Diffuse(Color.FromColor4(Color4.Green)),
+                    new Reflective(Color.FromColor4(Color4.White), 0.1f),
+                    new Refractive(Color.FromColor4(Color4.Green), 1))
+                {
+                    Parts = (0.0f, 0.8f, 0.1f, 0.0f)
+                }
             }.Load());
 
             InitializeFpsTimer();
