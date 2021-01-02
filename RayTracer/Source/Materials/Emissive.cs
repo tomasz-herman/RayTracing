@@ -1,23 +1,38 @@
-﻿using OpenTK;
+﻿using System;
+using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL4;
 using RayTracing.Maths;
+using RayTracing.Sampling;
 using RayTracing.Shaders;
 
 namespace RayTracing.Materials
 {
     public class Emissive : IMaterial
     {
-        public ITexture Emit { get; set; }
+        public Color AverageColor => _averageColor;
 
+        public ITexture Emit { get; set; }
+        private Color _averageColor;
+        
         public Emissive(ITexture emit)
         {
             Emit = emit;
+            int samples = 10000;
+            var sampler = new ThreadSafeSampler<Vector2>(Vec2Sampling.Random, samples);
+            for (int i = 0; i < samples; i++)
+            {
+                var coords = sampler.GetSample();
+                _averageColor += Emit[coords.X, coords.Y];
+            }
+
+            _averageColor /= samples;
         }
 
         public Emissive(Color emitColor)
         {
             Emit = new SolidColor(emitColor);
+            _averageColor = emitColor;
         }
 
         public bool Scatter(ref Ray ray, ref HitInfo hit, out Color attenuation, out Ray scattered)
@@ -27,7 +42,7 @@ namespace RayTracing.Materials
             return false;
         }
 
-        public Color Emitted(float u, float v)
+        public Color Emitted(float u, float v, ref Vector3 p)
         {
             return Emit[u, v];
         }

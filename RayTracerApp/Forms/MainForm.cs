@@ -61,7 +61,7 @@ namespace RayTracerApp.Forms
             _scene.AddModel(new Sphere
             {
                 Position = new Vector3(0, 5.5f, 0), Scale = 1,
-                Material = new Emissive(Color.FromColor4(Color4.White) * 8)
+                Material = new Emissive(Color.FromColor4(Color4.White))
             }.Load());
             _scene.AddModel(new Sphere
             {
@@ -71,13 +71,28 @@ namespace RayTracerApp.Forms
             _scene.AddModel(new Sphere
             {
                 Position = new Vector3(2.5f, 0.5f, 1), Scale = 1,
-                Material = new Reflective(new Texture("earthmap.jpg"), 0.75f),
-                Rotation = new Vector3((float) Math.PI / 4, (float) Math.PI / 3, (float) Math.PI / 6)
+                Material = new Reflective(new Texture("earthmap.jpg"), 0.75f)
             }.Load());
             _scene.AddModel(new Cylinder(2)
             {
                 Position = new Vector3(5f, 0.5f, 0), Scale = 1,
                 Material = new Diffuse(Color.FromColor4(Color4.Chocolate))
+            }.Load());
+            _scene.AddModel(new Cylinder(2)
+            {
+                Position = new Vector3(5f, 0.5f, 4), Scale = 1,
+                Material = new Diffuse(new Texture("earthmap.jpg"))
+            }.Load());
+            _scene.AddModel(new Cube()
+            {
+                Position = new Vector3(0, 0.5f, -3), Scale = 1,
+                Material = new Reflective(new Texture("wood.jpg"), 0.75f),
+            }.Load());
+            _scene.AddModel(new Rectangle(2)
+            {
+                Position = new Vector3(0, 0.5f, -1.99f), Scale = 0.8f,
+                Material = new Emissive(Color.FromColor4(Color4.White) * 8),
+                Rotation = new Vector3((float) Math.PI / 2, 0, 0)
             }.Load());
             _scene.AddModel(new Plane
             {
@@ -160,14 +175,14 @@ namespace RayTracerApp.Forms
         private void newObjectButton_Click(object sender, EventArgs e)
         {
             var form = new NewObjectForm(new NewObjectController(_scene))
-                {StartPosition = FormStartPosition.Manual, Location = Location + Size/3};
+                {StartPosition = FormStartPosition.Manual, Location = Location + Size / 3};
             form.Show();
         }
 
         private void editObjectButton_Click(object sender, EventArgs e)
         {
             var form = new EditObjectForm(new EditObjectController(_scene, _scene.Models[0]))
-                {StartPosition = FormStartPosition.Manual, Location = Location+ Size/3};
+                {StartPosition = FormStartPosition.Manual, Location = Location + Size / 3};
             form.Show();
         }
     }

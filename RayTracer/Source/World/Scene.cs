@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using RayTracing.Lights;
+using RayTracing.Materials;
 using RayTracing.Maths;
 using RayTracing.Models;
 using RayTracing.RayTracing;
@@ -10,19 +11,18 @@ namespace RayTracing.World
     {
         public List<Model> Models { get; } = new List<Model>();
         public List<IHittable> Hittables { get; } = new List<IHittable>();
-        public List<Light> Lights { get; } = new List<Light>();
+        public List<Model> Lights { get; } = new List<Model>();
         public AmbientLight AmbientLight { get; set; }
 
         public void AddModel(Model model)
         {
             Models.Add(model);
+            if (model.Material is Emissive) // add MasterMaterial
+            {
+                Lights.Add(model);
+            }
         }
-
-        public void AddLight(Light light)
-        {
-            Lights.Add(light);
-        }
-
+        
         public bool HitTest(Ray ray, ref HitInfo hit, float from, float to)
         {
             HitInfo tempHitInfo = new HitInfo();
