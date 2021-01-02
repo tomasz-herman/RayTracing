@@ -1,15 +1,19 @@
 ﻿using System;
 using OpenTK;
 using RayTracing.Maths;
+using RayTracing.Shaders;
 
 namespace RayTracing.Materials
 {
     public interface IMaterial
     {
         bool Scatter(ref Ray ray, ref HitInfo hit, out Color attenuation, out Ray scattered);
-        public Color Emitted(float u, float v, ref Vector3 p)
+
+        Color Emitted(float u, float v, ref Vector3 p)
         {
             return new Color(0, 0, 0);
         }
+
+        void Use(Shader shader);
     }
 }

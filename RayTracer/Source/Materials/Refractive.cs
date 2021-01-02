@@ -2,6 +2,7 @@
 using OpenTK;
 using RayTracing.Maths;
 using RayTracing.Sampling;
+using RayTracing.Shaders;
 
 namespace RayTracing.Materials
 {
@@ -12,7 +13,6 @@ namespace RayTracing.Materials
         public float RefractiveIndex { get; set; }
         private readonly AbstractSampler<float> _sampler;
 
-        
         public Refractive(Color albedo, float refractiveIndex, AbstractSampler<float> sampler = null)
         {
             Albedo = new SolidColor(albedo);
@@ -65,6 +65,11 @@ namespace RayTracing.Materials
             Vector3 rOutPerp = (float) etaiOverEtat * (uv + cosTheta * n);
             Vector3 rOutParallel = -(float) Math.Sqrt(Math.Abs(1.0 - rOutPerp.LengthSquared)) * n;
             return rOutPerp + rOutParallel;
+        }
+        
+        public void Use(Shader shader)
+        {
+            Albedo.Use(shader);
         }
     }
 }
