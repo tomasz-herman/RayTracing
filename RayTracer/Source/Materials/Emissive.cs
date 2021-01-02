@@ -6,16 +6,16 @@ namespace RayTracing.Materials
 {
     public class Emissive: IMaterial
     {
-        private ITexture _emit;
+        public ITexture Emit { get; set; }
 
         public Emissive(ITexture emit)
         {
-            _emit = emit;
+            Emit = emit;
         }
         
         public Emissive(Color emitColor)
         {
-            _emit = new SolidColor(emitColor);
+            Emit = new SolidColor(emitColor);
         }
         
         public bool Scatter(ref Ray ray, ref HitInfo hit, out Color attenuation, out Ray scattered)
@@ -27,7 +27,7 @@ namespace RayTracing.Materials
         
         public Color Emitted(float u, float v, ref Vector3 p)
         {
-            return _emit[u, v];
+            return Emit[u, v];
         }
     }
 }

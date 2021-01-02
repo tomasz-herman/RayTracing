@@ -8,21 +8,29 @@ namespace RayTracing.Materials
     // https://raytracing.github.io/books/RayTracingInOneWeekend.html#dielectrics
     public class Refractive : IMaterial
     {
-        public Color Albedo { get; set; }
-        private readonly double _ir;
+        public ITexture Albedo { get; set; }
+        public float RefractiveIndex { get; set; }
         private readonly AbstractSampler<float> _sampler;
 
+        
         public Refractive(Color albedo, float refractiveIndex, AbstractSampler<float> sampler = null)
         {
+            Albedo = new SolidColor(albedo);
+            RefractiveIndex = refractiveIndex;
+            _sampler = sampler ?? new ThreadSafeSampler<float>(FloatSampling.Random, 10000);
+        }
+        
+        public Refractive(ITexture albedo, float refractiveIndex, AbstractSampler<float> sampler = null)
+        {
             Albedo = albedo;
-            _ir = refractiveIndex;
+            RefractiveIndex = refractiveIndex;
             _sampler = sampler ?? new ThreadSafeSampler<float>(FloatSampling.Random, 10000);
         }
 
         public bool Scatter(ref Ray ray, ref HitInfo hit, out Color attenuation, out Ray scattered)
         {
-            attenuation = Albedo;
-            double refractionRatio = hit.FrontFace ? (1.0 / _ir) : _ir;
+            attenuation = Albedo[hit.TexCoord.X, hit.TexCoord.Y];
+            double refractionRatio = hit.FrontFace ? (1.0 / RefractiveIndex) : RefractiveIndex;
             Vector3 unitDirection = ray.Direction.Normalized();
 
             double cosTheta = Math.Min(Vector3.Dot(-unitDirection, hit.Normal), 1.0);
