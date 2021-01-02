@@ -83,6 +83,17 @@ namespace RayTracerApp.Forms
                 Position = new Vector3(5f, 0.5f, 4), Scale = 1,
                 Material = new Diffuse(new Texture("earthmap.jpg"))
             }.Load());
+            _scene.AddModel(new Cube()
+            {
+                Position = new Vector3(0, 0.5f, -3), Scale = 1,
+                Material = new Reflective(new Texture("wood.jpg"), 0.75f),
+            }.Load());
+            _scene.AddModel(new Rectangle(2)
+            {
+                Position = new Vector3(0, 0.5f, -1.99f), Scale = 0.8f,
+                Material = new Emissive(Color.FromColor4(Color4.White) * 8),
+                Rotation = new Vector3((float) Math.PI / 2, 0, 0)
+            }.Load());
             _scene.AddModel(new Plane
             {
                 Position = new Vector3(0, -0.5f, 0), Scale = 1,
@@ -164,14 +175,14 @@ namespace RayTracerApp.Forms
         private void newObjectButton_Click(object sender, EventArgs e)
         {
             var form = new NewObjectForm(new NewObjectController(_scene))
-                {StartPosition = FormStartPosition.Manual, Location = Location + Size/3};
+                {StartPosition = FormStartPosition.Manual, Location = Location + Size / 3};
             form.Show();
         }
 
         private void editObjectButton_Click(object sender, EventArgs e)
         {
             var form = new EditObjectForm(new EditObjectController(_scene, _scene.Models[0]))
-                {StartPosition = FormStartPosition.Manual, Location = Location+ Size/3};
+                {StartPosition = FormStartPosition.Manual, Location = Location + Size / 3};
             form.Show();
         }
     }
