@@ -13,8 +13,7 @@ namespace RayTracing.Models
 
         private float _height;
         private float _aspect;
-        private int _sectorCount;
-
+        private readonly int _sectorCount;
 
         // Radius = Scale
         // Height = Scale * Aspect
@@ -29,7 +28,7 @@ namespace RayTracing.Models
             set
             {
                 base.Rotation = value;
-                CalculateBottomAndTop();
+                Recalculate();
             }
         }
 
@@ -39,7 +38,7 @@ namespace RayTracing.Models
             {
                 base.Scale = value;
                 _height = _aspect * value;
-                CalculateBottomAndTop();
+                Recalculate();
             }
         }
 
@@ -48,7 +47,7 @@ namespace RayTracing.Models
             set
             {
                 base.Position = value;
-                CalculateBottomAndTop();
+                Recalculate();
             }
         }
 
@@ -59,7 +58,7 @@ namespace RayTracing.Models
             {
                 _aspect = value;
                 _height = _aspect * Scale;
-                CalculateBottomAndTop();
+                Recalculate();
                 if (loaded)
                 {
                     Unload();
@@ -68,11 +67,11 @@ namespace RayTracing.Models
             }
         }
 
-        private void CalculateBottomAndTop()
+        private void Recalculate()
         {
-            _bottom = -_height * 0.5f * Vector3.UnitY * RotationMatrix + Position;
-            _top = _height * 0.5f * Vector3.UnitY * RotationMatrix + Position;
-            _normal = (_top - _bottom) / _height;
+            _normal = Vector3.UnitY * RotationMatrix;
+            _bottom = -_height * 0.5f * _normal + Position;
+            _top = _height * 0.5f * _normal + Position;
         }
 
         private protected override void LoadInternal()
@@ -124,6 +123,7 @@ namespace RayTracing.Models
                 normal = Vector3.Normalize(Vector3.Cross(normal, _normal));
                 normal = Vector3.Cross(normal, _normal);
                 hit.SetNormal(ref ray, ref normal);
+                GetCylinderUV(hitPoint, ref hit.TexCoord);
             }
 
             CapHitTest(ref ray, ref hit, from, to, ref _bottom);
@@ -143,7 +143,24 @@ namespace RayTracing.Models
                 hit.HitPoint = hitPoint;
                 hit.ModelHit = this;
                 hit.SetNormal(ref ray, ref _normal);
+                GetCapUV(hitPoint, ref hit.TexCoord);
             }
+        }
+        
+        private void GetCylinderUV(Vector3 hitPoint, ref Vector2 uv)
+        {
+            var hitVector = RotationMatrix * (hitPoint - Position) / _height;
+
+            var phi = Math.Atan2(hitVector.Z, -hitVector.X) + Math.PI;
+            uv.X = (float) (phi / (2 * Math.PI));
+            uv.Y = 0.5f - hitVector.Y;
+        }
+        
+        private void GetCapUV(Vector3 hitPoint, ref Vector2 uv)
+        {
+            var hitVector = RotationMatrix * (hitPoint - Position) / Scale;
+            uv.X = 1 - (hitVector.X + 1) * 0.5f;
+            uv.Y = 1 - (hitVector.Z + 1) * 0.5f;
         }
 
         public override Mesh GetMesh()
@@ -197,7 +214,7 @@ namespace RayTracing.Models
                     normals.Add(uz);
                     normals.Add(uy);
                     
-                    texCoords.Add((float)j / _sectorCount);
+                    texCoords.Add(1 - (float)j / _sectorCount);
                     texCoords.Add(t);
                 }
             }

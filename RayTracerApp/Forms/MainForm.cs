@@ -71,13 +71,17 @@ namespace RayTracerApp.Forms
             _scene.AddModel(new Sphere
             {
                 Position = new Vector3(2.5f, 0.5f, 1), Scale = 1,
-                Material = new Reflective(new Texture("earthmap.jpg"), 0.75f),
-                Rotation = new Vector3((float) Math.PI / 4, (float) Math.PI / 3, (float) Math.PI / 6)
+                Material = new Reflective(new Texture("earthmap.jpg"), 0.75f)
             }.Load());
             _scene.AddModel(new Cylinder(2)
             {
                 Position = new Vector3(5f, 0.5f, 0), Scale = 1,
                 Material = new Diffuse(Color.FromColor4(Color4.Chocolate))
+            }.Load());
+            _scene.AddModel(new Cylinder(2)
+            {
+                Position = new Vector3(5f, 0.5f, 4), Scale = 1,
+                Material = new Diffuse(new Texture("earthmap.jpg"))
             }.Load());
             _scene.AddModel(new Cube()
             {
