@@ -7,28 +7,28 @@ namespace RayTracing.Materials
     {
         private const int SAMPLES = 10000;
         
-        private IMaterial[] Materials;
-        public Emissive Emissive => (Emissive) Materials[1];
-        public Diffuse Diffuse => (Diffuse) Materials[2];
-        public Reflective Reflective => (Reflective) Materials[3];
-        public Refractive Refractive => (Refractive) Materials[4];
+        private readonly IMaterial[] _materials;
+        public Emissive Emissive => (Emissive) _materials[1];
+        public Diffuse Diffuse => (Diffuse) _materials[2];
+        public Reflective Reflective => (Reflective) _materials[3];
+        public Refractive Refractive => (Refractive) _materials[4];
 
         public (float emissive, float diffuse, float reflective, float refractive) Parts
         {
-            get => parts;
+            get => _parts;
             set
             {
-                parts = value;
+                _parts = value;
                 _sampler = NewSampler();
             }
         }
 
         private AbstractSampler<int> _sampler;
-        private (float emissive, float diffuse, float reflective, float refractive) parts;
+        private (float emissive, float diffuse, float reflective, float refractive) _parts;
 
         public MasterMaterial(AbstractSampler<int> sampler = null)
         {
-            Materials = new IMaterial[]
+            _materials = new IMaterial[]
             {
                 new Emissive(new Color()), //DummyColor, used when all probabilities are 0, ~black body
                 new Emissive(new Color()),
@@ -42,15 +42,15 @@ namespace RayTracing.Materials
         private ThreadSafeSampler<int> NewSampler()
         {
             return new ThreadSafeSampler<int>(count => IntSampling.Distribution(count, 
-                parts.emissive, 
-                parts.diffuse, 
-                parts.reflective,
-                parts.refractive), SAMPLES);
+                _parts.emissive, 
+                _parts.diffuse, 
+                _parts.reflective,
+                _parts.refractive), SAMPLES);
         }
 
         public bool Scatter(ref Ray ray, ref HitInfo hit, out Color attenuation, out Ray scattered)
         {
-            return Materials[_sampler.Sample].Scatter(ref ray, ref hit, out attenuation, out scattered);
+            return _materials[_sampler.Sample].Scatter(ref ray, ref hit, out attenuation, out scattered);
         }
     }
 }
