@@ -1,5 +1,5 @@
 using OpenTK;
-using OpenTK.Graphics;
+using OpenTK.Graphics.OpenGL4;
 using RayTracing.Maths;
 using RayTracing.Sampling;
 using RayTracing.Shaders;
@@ -34,9 +34,10 @@ namespace RayTracing.Materials
             return Vector3.Dot(scattered.Direction, hit.Normal) > 0;
         }
 
-        public void Use(Shader shader)
+        public void Use(Shader shader, float part)
         {
-            Albedo.Use(shader);
+            Albedo.Use(shader, "useSpecularColor", "specularColor", TextureUnit.Texture2);
+            shader.SetFloat("specularPart", part);
         }
     }
 }

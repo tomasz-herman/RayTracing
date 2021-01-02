@@ -1,5 +1,6 @@
 ﻿using RayTracing.Maths;
 using RayTracing.Sampling;
+using RayTracing.Shaders;
 
 namespace RayTracing.Materials
 {
@@ -51,6 +52,13 @@ namespace RayTracing.Materials
         public bool Scatter(ref Ray ray, ref HitInfo hit, out Color attenuation, out Ray scattered)
         {
             return _materials[_sampler.Sample].Scatter(ref ray, ref hit, out attenuation, out scattered);
+        }
+
+        public void Use(Shader shader, float part)
+        {
+            Emissive.Use(shader, Parts.emissive);
+            Diffuse.Use(shader, Parts.diffuse);
+            Reflective.Use(shader, Parts.reflective);
         }
     }
 }

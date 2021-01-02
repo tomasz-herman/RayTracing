@@ -1,4 +1,5 @@
 using OpenTK;
+using OpenTK.Graphics.OpenGL4;
 using RayTracing.Maths;
 using RayTracing.Sampling;
 using RayTracing.Shaders;
@@ -33,9 +34,10 @@ namespace RayTracing.Materials
             return true;
         }
 
-        public void Use(Shader shader)
+        public void Use(Shader shader, float part)
         {
-            Albedo.Use(shader);
+            Albedo.Use(shader, "useDiffuseColor", "diffuseColor", TextureUnit.Texture1);
+            shader.SetFloat("diffusePart", part);
         }
     }
 }

@@ -16,6 +16,9 @@ namespace RayTracing
             GL.ClearColor(ambient.R, ambient.G, ambient.B, 1.0f);
 
             _shader.Use();
+            _shader.SetInt("ambientTexture", 0);
+            _shader.SetInt("diffuseTexture", 1);
+            _shader.SetInt("specularTexture", 2);
             _shader.SetVector3("ambientLight", ambient.ToVector3());
 
             foreach (var model in scene.Models)
@@ -23,7 +26,7 @@ namespace RayTracing
                 if (!model.Loaded) continue;
                 _shader.SetMatrix4("model", model.GetModelMatrix());
                 _shader.SetMatrix4("mvp", model.GetModelMatrix()*camera.GetViewMatrix()*camera.GetProjectionMatrix());
-                model.Material.Use(_shader);
+                model.Material.Use(_shader, 1);
                 model.GetMesh().Render();
             }
         }

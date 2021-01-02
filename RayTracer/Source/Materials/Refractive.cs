@@ -67,9 +67,9 @@ namespace RayTracing.Materials
             return rOutPerp + rOutParallel;
         }
         
-        public void Use(Shader shader)
+        public void Use(Shader shader, float part)
         {
-            Albedo.Use(shader);
+            
         }
     }
 }

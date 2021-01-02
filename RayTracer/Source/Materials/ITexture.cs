@@ -1,4 +1,4 @@
-﻿using OpenTK.Graphics;
+﻿using OpenTK.Graphics.OpenGL4;
 using RayTracing.Maths;
 using RayTracing.Shaders;
 
@@ -8,6 +8,6 @@ namespace RayTracing.Materials
     {
         Color this[float x, float y] { get; }
 
-        void Use(Shader shader);
+        void Use(Shader shader, string useColorUniformName, string colorUniformName, TextureUnit unit);
     }
 }

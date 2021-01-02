@@ -1,5 +1,6 @@
 ﻿using OpenTK;
 using OpenTK.Graphics;
+using OpenTK.Graphics.OpenGL4;
 using RayTracing.Maths;
 using RayTracing.Shaders;
 
@@ -26,14 +27,15 @@ namespace RayTracing.Materials
             return false;
         }
 
-        public Color Emitted(float u, float v, ref Vector3 p)
+        public Color Emitted(float u, float v)
         {
             return Emit[u, v];
         }
 
-        public void Use(Shader shader)
+        public void Use(Shader shader, float part)
         {
-            _emit.Use(shader);
+            Emit.Use(shader, "useAmbientColor", "ambientColor", TextureUnit.Texture0);
+            shader.SetFloat("ambientPart", part);
         }
     }
 }
