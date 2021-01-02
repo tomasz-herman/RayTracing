@@ -41,12 +41,9 @@ void main()
     }
     vec3 normal = normalize(Normal);
     vec3 lights = vec3(0.0, 0.0, 0.0);
-    if (lightsCount != 0)
+    for (int i = 0; i < lightsCount; i++)
     {
-        for (int i = 0; i < lightsCount; i++)
-        {
-            lights += CalcLight(light[i], normal, FragPos);
-        }
+        lights += CalcLight(light[i], normal, FragPos);
     }
     lights += ambientLight;
     FragColor = vec4(lights, 1.0) * color;
