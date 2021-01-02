@@ -30,7 +30,7 @@ namespace RayTracing
             if (scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity))
             {
                 var emitted =
-                    hitInfo.ModelHit.Material.Emitted(hitInfo.TexCoord.X, hitInfo.TexCoord.Y, ref hitInfo.HitPoint);
+                    hitInfo.ModelHit.Material.Emitted(hitInfo.TexCoord.X, hitInfo.TexCoord.Y);
 
                 if (hitInfo.ModelHit.Material.Scatter(ref ray, ref hitInfo, out Color attenuation, out Ray scattered))
                 {

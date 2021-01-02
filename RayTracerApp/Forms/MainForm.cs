@@ -61,7 +61,7 @@ namespace RayTracerApp.Forms
             _scene.AddModel(new Sphere
             {
                 Position = new Vector3(0, 5.5f, 0), Scale = 1,
-                Material = new Emissive(Color.FromColor4(Color4.White) * 8)
+                Material = new Emissive(Color.FromColor4(Color4.White))
             }.Load());
             _scene.AddModel(new Sphere
             {
