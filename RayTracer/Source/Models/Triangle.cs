@@ -26,6 +26,24 @@ namespace RayTracing.Models
         {
             throw new Exception("Triangle is used only in ray tracing");
         }
+        
+        public override bool BoundingBox(out AABB outputBox)
+        {
+            var min = _vertices[0];
+            var max = _vertices[0];
+            foreach (var vertex in _vertices)
+            {
+                min.X = Math.Min(min.X, vertex.X);
+                min.Y = Math.Min(min.Y, vertex.Y);
+                min.Z = Math.Min(min.Z, vertex.Z);
+                
+                max.X = Math.Max(max.X, vertex.X);
+                max.Y = Math.Max(max.Y, vertex.Y);
+                max.Z = Math.Max(max.Z, vertex.Z);
+            }
+            outputBox = new AABB(min, max);
+            return true;
+        }
 
         //source: https://www.scratchapixel.com/code.php?id=9&origin=/lessons/3d-basic-rendering/ray-tracing-rendering-a-triangle
         public override bool HitTest(Ray ray, ref HitInfo hit, float @from, float to)

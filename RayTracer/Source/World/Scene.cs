@@ -31,16 +31,16 @@ namespace RayTracing.World
             bool hitAnything = false;
             float closest = to;
 
-            // return Node.HitTest(ray, ref hit, from, to);
-            foreach (var hittable in Hittables)
-            {
-                if (hittable.HitTest(ray, ref tempHitInfo, from, closest))
-                {
-                    hitAnything = true;
-                    closest = tempHitInfo.Distance;
-                    hit = tempHitInfo;
-                }
-            }
+            return Node.HitTest(ray, ref hit, from, to);
+            // foreach (var hittable in Hittables)
+            // {
+            //     if (hittable.HitTest(ray, ref tempHitInfo, from, closest))
+            //     {
+            //         hitAnything = true;
+            //         closest = tempHitInfo.Distance;
+            //         hit = tempHitInfo;
+            //     }
+            // }
 
             return hitAnything;
         }
