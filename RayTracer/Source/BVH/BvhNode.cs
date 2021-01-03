@@ -49,7 +49,7 @@ namespace RayTracing.BVH
             }
             else
             {
-                objects.Sort((x, y) => comparator(x, y));
+                objects.Sort(start, object_span-1, new FuncComparer<IHittable>(comparator));
                 int mid = start + object_span / 2;
                 Left = new BvhNode(objects, start, mid);
                 Right = new BvhNode(objects, mid, end);
@@ -87,7 +87,20 @@ namespace RayTracing.BVH
         {
             throw new System.NotImplementedException();
         }
-        
+
+        private class FuncComparer<T> : IComparer<T>
+        {
+            private readonly Func<T, T, int> func;
+            public FuncComparer(Func<T, T, int> comparerFunc)
+            {
+                func = comparerFunc;
+            }
+
+            public int Compare(T x, T y)
+            {
+                return func(x, y);
+            }
+        }
         int box_compare(IHittable a, IHittable b, int axis)
         {
             AABB box_a;
@@ -95,10 +108,10 @@ namespace RayTracing.BVH
 
             if (!a.BoundingBox(out box_a) || !b.BoundingBox(out box_b))
             {
-                int ab = 3;
                 throw new Exception("No bounding box in bvh_node constructor.\n");
             }
 
+            
             return box_a.Min[axis].CompareTo(box_b.Min[axis]);
         }
 

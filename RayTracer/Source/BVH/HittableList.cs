@@ -36,13 +36,17 @@ namespace RayTracing.BVH
 
         public static AABB SurroundingBox(AABB box0, AABB box1)
         {
-            var small = new Vector3(Math.Min(box0.Min.X, box1.Min.X),
+            var small = new Vector3(
+                Math.Min(box0.Min.X, box1.Min.X),
                 Math.Min(box0.Min.Y, box1.Min.Y),
-                Math.Min(box0.Min.Z, box1.Min.Z));
+                Math.Min(box0.Min.Z, box1.Min.Z)
+                );
 
-            var big = new Vector3(Math.Max(box0.Max.X, box1.Max.X),
+            var big = new Vector3(
+                Math.Max(box0.Max.X, box1.Max.X),
                 Math.Max(box0.Max.Y, box1.Max.Y),
-                Math.Max(box0.Max.Z, box1.Max.Z));
+                Math.Max(box0.Max.Z, box1.Max.Z)
+                );
 
             return new AABB(small, big);
         }

@@ -29,19 +29,10 @@ namespace RayTracing.Models
         
         public override bool BoundingBox(out AABB outputBox)
         {
-            var min = _vertices[0];
-            var max = _vertices[0];
-            foreach (var vertex in _vertices)
-            {
-                min.X = Math.Min(min.X, vertex.X);
-                min.Y = Math.Min(min.Y, vertex.Y);
-                min.Z = Math.Min(min.Z, vertex.Z);
-                
-                max.X = Math.Max(max.X, vertex.X);
-                max.Y = Math.Max(max.Y, vertex.Y);
-                max.Z = Math.Max(max.Z, vertex.Z);
-            }
-            outputBox = new AABB(min, max);
+            outputBox = new AABB(
+                Vector3.ComponentMin(Vector3.ComponentMin(_vertices[0], _vertices[1]),_vertices[2]),
+                Vector3.ComponentMax(Vector3.ComponentMax(_vertices[0], _vertices[1]),_vertices[2])
+                );
             return true;
         }
 
