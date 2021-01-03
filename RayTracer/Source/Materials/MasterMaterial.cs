@@ -102,14 +102,7 @@ namespace RayTracing.Materials
 
         public Color Emitted(float u, float v)
         {
-            var c = _materials[_sampler.Sample].Emitted(u, v);
-
-            if (Parts.emissive == 1)
-            {
-                c = c;
-            }
-
-            return c;
+            return _materials[_sampler.Sample].Emitted(u, v);
         }
 
         public void Use(Shader shader, float part)
