@@ -54,6 +54,11 @@ namespace RayTracing.Models
 
         public abstract bool HitTest(Ray ray, ref HitInfo hit, float from, float to);
         
+        public virtual bool BoundingBox(out AABB outputBox)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public virtual List<IHittable> Preprocess()
         {
             return new List<IHittable> {this};

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using RayTracing.BVH;
 using RayTracing.Lights;
 using RayTracing.Materials;
 using RayTracing.Maths;
@@ -11,6 +12,7 @@ namespace RayTracing.World
     {
         public List<Model> Models { get; } = new List<Model>();
         public List<IHittable> Hittables { get; } = new List<IHittable>();
+        public BvhNode Node;
         public List<Model> Lights { get; } = new List<Model>();
         public AmbientLight AmbientLight { get; set; }
 
@@ -29,6 +31,7 @@ namespace RayTracing.World
             bool hitAnything = false;
             float closest = to;
 
+            // return Node.HitTest(ray, ref hit, from, to);
             foreach (var hittable in Hittables)
             {
                 if (hittable.HitTest(ray, ref tempHitInfo, from, closest))
@@ -42,6 +45,11 @@ namespace RayTracing.World
             return hitAnything;
         }
 
+        public bool BoundingBox(out AABB outputBox)
+        {
+            throw new System.NotImplementedException();
+        }
+
         //TODO: Might do octree/bvh/w\e division here
         public List<IHittable> Preprocess()
         {
@@ -50,6 +58,8 @@ namespace RayTracing.World
             {
                 Hittables.AddRange(((IHittable)model).Preprocess());
             }
+
+            Node = new BvhNode(Hittables, 0, Hittables.Count);
             return Hittables;
         }
     }

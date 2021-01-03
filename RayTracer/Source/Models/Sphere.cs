@@ -63,6 +63,11 @@ namespace RayTracing.Models
             return Mesh;
         }
 
+        public override bool BoundingBox(out AABB outputBox)
+        {
+            outputBox = new AABB(Position - new Vector3(Scale), Position + new Vector3(Scale));
+            return true;
+        }
 
         private (List<float>, List<float>) GetVertexList(short rings, short sectors)
         {
