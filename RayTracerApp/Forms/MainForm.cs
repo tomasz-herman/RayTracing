@@ -58,22 +58,22 @@ namespace RayTracerApp.Forms
             _rayTracer = new IncrementalRayTracer(10, 64 * 64, Vec2Sampling.Jittered, gLControl.Width, 50);
             _cameraController = new CameraController(_camera, gLControl, UpdateLastModification);
             _scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.LightSkyBlue)};
-            // _scene.AddModel(new Sphere
-            // {
-            //     Position = new Vector3(0, 5.5f, 0), Scale = 1,
-            //     Material = new Emissive(Color.FromColor4(Color4.White))
-            // }.Load());
-            // _scene.AddModel(new Sphere
-            // {
-            //     Position = new Vector3(-2.5f, 0.5f, 1), Scale = 1,
-            //     Material = new Reflective(Color.FromColor4(Color4.Azure), 0.1f)
-            // }.Load());
-            // _scene.AddModel(new Sphere
-            // {
-            //     Position = new Vector3(2.5f, 0.5f, 1), Scale = 1,
-            //     Material = new Reflective(new Texture("earthmap.jpg"), 0.75f)
-            // }.Load());
-            //
+            _scene.AddModel(new Sphere
+            {
+                Position = new Vector3(0, 5.5f, 0), Scale = 1,
+                Material = new Emissive(Color.FromColor4(Color4.White))
+            }.Load());
+            _scene.AddModel(new Sphere
+            {
+                Position = new Vector3(-2.5f, 0.5f, 1), Scale = 1,
+                Material = new Reflective(Color.FromColor4(Color4.Azure), 0.1f)
+            }.Load());
+            _scene.AddModel(new Sphere
+            {
+                Position = new Vector3(2.5f, 0.5f, 1), Scale = 1,
+                Material = new Reflective(new Texture("earthmap.jpg"), 0.75f)
+            }.Load());
+            
             _scene.AddModel(new Triangle(
                 new Vector3(-4f, 0f, -1f),
                 new Vector3(-5f, 2f, 2.5f),
@@ -102,11 +102,11 @@ namespace RayTracerApp.Forms
             //     Material = new Emissive(Color.FromColor4(Color4.White) * 8),
             //     Rotation = new Vector3((float) Math.PI / 2, 0, 0)
             // }.Load());
-            // _scene.AddModel(new Plane
-            // {
-            //     Position = new Vector3(0, -0.5f, 0), Scale = 1,
-            //     Material = new Diffuse(new Texture("wood.jpg"))
-            // }.Load());
+            _scene.AddModel(new Plane
+            {
+                Position = new Vector3(0, -0.5f, 0), Scale = 1,
+                Material = new Diffuse(new Texture("wood.jpg"))
+            }.Load());
 
             InitializeFpsTimer();
             UpdateViewport();

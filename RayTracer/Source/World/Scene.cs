@@ -12,6 +12,7 @@ namespace RayTracing.World
     {
         public List<Model> Models { get; } = new List<Model>();
         public List<IHittable> Hittables { get; } = new List<IHittable>();
+        public List<IHittable> BetterHittables = new List<IHittable>();
         public BvhNode Node;
         public List<Model> Lights { get; } = new List<Model>();
         public AmbientLight AmbientLight { get; set; }
@@ -31,17 +32,17 @@ namespace RayTracing.World
             bool hitAnything = false;
             float closest = to;
 
-            return Node.HitTest(ray, ref hit, from, to);
-            // foreach (var hittable in Hittables)
-            // {
-            //     if (hittable.HitTest(ray, ref tempHitInfo, from, closest))
-            //     {
-            //         hitAnything = true;
-            //         closest = tempHitInfo.Distance;
-            //         hit = tempHitInfo;
-            //     }
-            // }
-
+            //return Node.HitTest(ray, ref hit, from, to);
+            foreach (var hittable in BetterHittables)
+            {
+                if (hittable.HitTest(ray, ref tempHitInfo, from, closest))
+                {
+                    hitAnything = true;
+                    closest = tempHitInfo.Distance;
+                    hit = tempHitInfo;
+                }
+            }
+            
             return hitAnything;
         }
 
@@ -54,12 +55,21 @@ namespace RayTracing.World
         public List<IHittable> Preprocess()
         {
             Hittables.Clear();
+            BetterHittables.Clear();
             foreach (var model in Models)
             {
-                Hittables.AddRange(((IHittable)model).Preprocess());
+                if (model is Plane)
+                {
+                    BetterHittables.Add(model);
+                }
+                else
+                {
+                    Hittables.AddRange(((IHittable)model).Preprocess());
+                }
             }
 
             Node = new BvhNode(Hittables, 0, Hittables.Count);
+            BetterHittables.Add(Node);
             return Hittables;
         }
     }
