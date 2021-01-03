@@ -147,6 +147,20 @@ namespace RayTracing.Models
             }
         }
         
+        // https://www.iquilezles.org/www/articles/diskbbox/diskbbox.htm
+        public override bool BoundingBox(out AABB outputBox)
+        {
+            var normal = _normal.Normalized();
+            float x = (float) Math.Sqrt(1 - normal.X * normal.X);
+            float y = (float) Math.Sqrt(1 - normal.Y * normal.Y);
+            float z = (float) Math.Sqrt(1 - normal.Z * normal.Z);
+            Vector3 e = new Vector3(x, y, z) * Scale;
+            outputBox = new AABB(
+                Vector3.ComponentMin(_top - e, _bottom - e),
+                Vector3.ComponentMax(_top + e, _bottom + e));
+            return true;
+        }
+        
         private void GetCylinderUV(Vector3 hitPoint, ref Vector2 uv)
         {
             var hitVector = RotationMatrix * (hitPoint - Position) / _height;

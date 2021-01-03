@@ -80,16 +80,16 @@ namespace RayTracerApp.Forms
                 new Vector3(-5f, -0.5f, 2f)
             ) {Material = new Reflective(Color.FromColor4(Color4.AliceBlue), 0.05f)});
             
-            // _scene.AddModel(new Cylinder(2)
-            // {
-            //     Position = new Vector3(5f, 0.5f, 0), Scale = 1,
-            //     Material = new Diffuse(Color.FromColor4(Color4.Chocolate))
-            // }.Load());
-            // _scene.AddModel(new Cylinder(2)
-            // {
-            //     Position = new Vector3(5f, 0.5f, 4), Scale = 1,
-            //     Material = new Diffuse(new Texture("earthmap.jpg"))
-            // }.Load());
+            _scene.AddModel(new Cylinder(2)
+            {
+                Position = new Vector3(5f, 0.5f, 0), Scale = 1,
+                Material = new Diffuse(Color.FromColor4(Color4.Chocolate))
+            }.Load());
+            _scene.AddModel(new Cylinder(2)
+            {
+                Position = new Vector3(5f, 0.5f, 4), Scale = 1,
+                Material = new Diffuse(new Texture("earthmap.jpg"))
+            }.Load());
             // _scene.AddModel(new Cube()
             // {
             //     Position = new Vector3(0, 0.5f, -3), Scale = 1,
