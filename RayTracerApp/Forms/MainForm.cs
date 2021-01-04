@@ -56,7 +56,7 @@ namespace RayTracerApp.Forms
         {
             GL.Enable(EnableCap.DepthTest);
             _renderer = new Renderer();
-            _rayTracer = new IncrementalRayTracer(10, 64 * 64, Vec2Sampling.Jittered, gLControl.Width);
+            _rayTracer = new RecursionRayTracer(10, 64 * 64, Vec2Sampling.Jittered, gLControl.Width, 50);
             _cameraController = new CameraController(_camera, gLControl, UpdateLastModification);
             _scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.DarkBlue)};
             var bulb = new MasterMaterial();
@@ -164,13 +164,11 @@ namespace RayTracerApp.Forms
         private void BackgroundWorkerProgressChanged(object sender,
             ProgressChangedEventArgs e)
         {
-            var objects = (List<object>) e.UserState;
-            var texture = (Texture) objects[0];
-            var message = (string) objects[1];
+            var texture = (Texture) e.UserState;
             texture?.Blit();
             gLControl.SwapBuffers();
             texture?.Dispose();
-            Text = message;
+            Text = $@"{e.ProgressPercentage}%";
         }
 
         private void InitializeBackgroundWorker()
