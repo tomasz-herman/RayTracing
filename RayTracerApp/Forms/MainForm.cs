@@ -56,7 +56,7 @@ namespace RayTracerApp.Forms
         {
             GL.Enable(EnableCap.DepthTest);
             _renderer = new Renderer();
-            _rayTracer = new RecursionRayTracer(10, 64 * 64, Vec2Sampling.Jittered, gLControl.Width, 50);
+            _rayTracer = new SamplesRayTracer(8, 1024, Vec2Sampling.Jittered, gLControl.Width, 32);
             _cameraController = new CameraController(_camera, gLControl, UpdateLastModification);
             _scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.DarkBlue)};
             var bulb = new MasterMaterial();

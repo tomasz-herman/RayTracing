@@ -1,60 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using OpenTK;
 using RayTracing.Cameras;
-using RayTracing.Materials;
-using RayTracing.Maths;
-using RayTracing.Sampling;
 using RayTracing.World;
 
 namespace RayTracing
 {
-    public class RecursionRayTracer : IncrementalRayTracer
+    public class RecursionRayTracer : SamplesRayTracer
     {
-        private readonly int _samplesInRecursion;
-        
-        public RecursionRayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution, int samplesInRecursion) : base(
-            maxDepth, samples, sampling, resolution)
+        public RecursionRayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution) : base(
+            maxDepth, samples, sampling, resolution, 1)
         {
-            _samplesInRecursion = samplesInRecursion;
         }
 
         public override void Render(Scene scene, Camera camera)
         {
-            scene.Preprocess();
-            int width = Resolution;
-            int height = (int) (width / camera.AspectRatio);
-            var image = new Texture(width, height);
-            AbstractSampler<Vector2> sampler = new ThreadSafeSampler<Vector2>(Sampling, Samples);
-
-            for (int recDepth = 1; recDepth <= MaxDepth; recDepth++)
+            var maxDepth = MaxDepth;
+            for (int recDepth = 1; recDepth <= maxDepth; recDepth++)
             {
-                image.Process(_ => new Color());
-                for (int k = 0; k < _samplesInRecursion; k++)
-                {
-                    Parallel.For(0, width, i =>
-                    {
-                        if (IsCancellationRequested != null && IsCancellationRequested())
-                            return;
-                        for (int j = 0; j < height; j++)
-                        {
-                            var sample = sampler.GetSample(k);
-                            float u = (i + sample.X) / (width - 1);
-                            float v = (j + sample.Y) / (height - 1);
-                            Ray ray = camera.GetRay(u, v);
-                            image[i, j] += Shade(ray, scene, recDepth);
-                        }
-                    });
-                    if (IsCancellationRequested != null && IsCancellationRequested())
-                        return;
-                }
-
-                var output = new Texture(image);
-                output.Process(c => (c / _samplesInRecursion).Clamp());
-                output.AutoGammaCorrect();
-                var percentage = recDepth * 100 / MaxDepth;
-                OnFrameReady?.Invoke(percentage, output);
+                MaxDepth = recDepth;
+                base.Render(scene, camera);
             }
         }
     }

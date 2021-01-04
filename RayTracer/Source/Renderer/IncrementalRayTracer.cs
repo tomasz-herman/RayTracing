@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using OpenTK;
-using OpenTK.Graphics.OpenGL4;
 using RayTracing.Cameras;
-using RayTracing.Materials;
-using RayTracing.Maths;
-using RayTracing.Models;
-using RayTracing.Sampling;
-using RayTracing.Shaders;
 using RayTracing.World;
 
 namespace RayTracing
