@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Assimp;
 using OpenTK;
 using OpenTK.Graphics;
 
@@ -24,6 +25,16 @@ namespace RayTracing.Maths
         }
 
         public static Color FromColor4(Color4 color4)
+        {
+            return new Color
+            {
+                R = color4.R,
+                G = color4.G,
+                B = color4.B
+            };
+        }
+        
+        public static Color FromAssimpColor4(Color4D color4)
         {
             return new Color
             {
