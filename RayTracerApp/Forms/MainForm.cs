@@ -93,15 +93,29 @@ namespace RayTracerApp.Forms
             _scene.AddModel(new Cube()
             {
                 Position = new Vector3(0, 0.5f, -3), Scale = 1,
-                Material = new Reflective(new Texture("wood.jpg"), 0.75f),
-                Rotation = Vector3.One * (float)Math.PI/6
+                Material = new Reflective(new Texture("wood.jpg"), 0.75f)
             }.Load());
-            // _scene.AddModel(new Rectangle(2)
-            // {
-            //     Position = new Vector3(0, 0.5f, -1.99f), Scale = 0.8f,
-            //     Material = new Emissive(Color.FromColor4(Color4.White) * 8),
-            //     Rotation = new Vector3((float) Math.PI / 2, 0, 0)
-            // }.Load());
+            _scene.AddModel(new Cube()
+            {
+                Position = new Vector3(0, 4f, -3), Scale = 1,
+                Material = new Reflective(new Texture("wood.jpg"), 0.75f)
+            }.Load());
+            _scene.AddModel(new Cube()
+            {
+                Position = new Vector3(0, 8f, -3), Scale = 1,
+                Material = new Reflective(new Texture("wood.jpg"), 0.75f)
+            }.Load());
+            _scene.AddModel(new Cube()
+            {
+                Position = new Vector3(0, 12f, -4), Scale = 1,
+                Material = new Reflective(new Texture("wood.jpg"), 0.75f)
+            }.Load());
+            _scene.AddModel(new Rectangle(2)
+            {
+                Position = new Vector3(0, 0.5f, -1.99f), Scale = 0.8f,
+                Material = new Emissive(Color.FromColor4(Color4.White) * 8),
+                Rotation = new Vector3((float) Math.PI / 2, 0, 0)
+            }.Load());
             _scene.AddModel(new Plane
             {
                 Position = new Vector3(0, -0.5f, 0), Scale = 1,

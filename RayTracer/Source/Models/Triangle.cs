@@ -33,16 +33,18 @@ namespace RayTracing.Models
                 Vector3.ComponentMin(Vector3.ComponentMin(_vertices[0], _vertices[1]),_vertices[2]),
                 Vector3.ComponentMax(Vector3.ComponentMax(_vertices[0], _vertices[1]),_vertices[2])
                 );
+            const float thickness = (float) 1e-5;
+            const float threshold = (float) 1e-7;
             for (int i = 0; i < 3; i++)
             {
-                if(Math.Abs(outputBox.Max[i] - outputBox.Min[i]) < 1e-5)
+                if(Math.Abs(outputBox.Max[i] - outputBox.Min[i]) < threshold)
                 {
                     var vec = outputBox.Min;
-                    vec[i] -= 0.001f;
+                    vec[i] -= thickness;
                     outputBox.Min = vec;
                     
                     vec = outputBox.Max;
-                    vec[i] += 0.001f;
+                    vec[i] += thickness;
                     outputBox.Max = vec;
                 }
             }

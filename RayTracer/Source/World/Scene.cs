@@ -12,15 +12,13 @@ namespace RayTracing.World
     {
         public List<Model> Models { get; } = new List<Model>();
         public List<IHittable> Hittables { get; } = new List<IHittable>();
-        public List<IHittable> BetterHittables = new List<IHittable>();
-        public BvhNode Node;
         public List<Model> Lights { get; } = new List<Model>();
         public AmbientLight AmbientLight { get; set; }
 
         public void AddModel(Model model)
         {
             Models.Add(model);
-            if (model.Material is Emissive) // add MasterMaterial
+            if (model.Material is Emissive)
             {
                 Lights.Add(model);
             }
@@ -31,9 +29,8 @@ namespace RayTracing.World
             HitInfo tempHitInfo = new HitInfo();
             bool hitAnything = false;
             float closest = to;
-
-            //return Node.HitTest(ray, ref hit, from, to);
-            foreach (var hittable in BetterHittables)
+            
+            foreach (var hittable in Hittables)
             {
                 if (hittable.HitTest(ray, ref tempHitInfo, from, closest))
                 {
@@ -50,26 +47,27 @@ namespace RayTracing.World
         {
             throw new System.NotImplementedException();
         }
-
-        //TODO: Might do octree/bvh/w\e division here
+        
         public List<IHittable> Preprocess()
         {
             Hittables.Clear();
-            BetterHittables.Clear();
+            var planes = new List<IHittable>();
+            var hittablesToBvh = new List<IHittable>();
             foreach (var model in Models)
             {
                 if (model is Plane)
                 {
-                    BetterHittables.Add(model);
+                    planes.Add(model);
                 }
                 else
                 {
-                    Hittables.AddRange(((IHittable)model).Preprocess());
+                    hittablesToBvh.AddRange(((IHittable)model).Preprocess());
                 }
             }
 
-            Node = new BvhNode(Hittables, 0, Hittables.Count);
-            BetterHittables.Add(Node);
+            var node = new BvhNode(hittablesToBvh, 0, hittablesToBvh.Count);
+            Hittables.AddRange(planes);
+            Hittables.Add(node);
             return Hittables;
         }
     }
