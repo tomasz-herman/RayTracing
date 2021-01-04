@@ -13,13 +13,13 @@ namespace RayTracing.Models
 
         public void SetMesh(Mesh mesh)
         {
-            base.Mesh = mesh;
+            Mesh = mesh;
             loaded = false;
         }
 
         public CustomModel(Mesh mesh)
         {
-            base.Mesh = mesh;
+            Mesh = mesh;
         }
 
         public override Vector3 Rotation { get; set; }

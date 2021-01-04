@@ -72,8 +72,9 @@ namespace RayTracerApp.Controls.Features
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     filePath = openFileDialog.FileName;
-                    var mesh = ModelLoader.LoadMesh(filePath, Assimp.PostProcessSteps.Triangulate);
-                    (_controller.GetModel() as CustomModel).SetMesh(mesh);
+                    var model = ModelLoader.Load(filePath);
+                    _controller.GetModel()?.Unload();
+                    _controller.SetModel(model);
                     _controller.GetModel().Load();
                 }
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Assimp;
 using OpenTK;
 using OpenTK.Graphics;
 
@@ -24,6 +25,16 @@ namespace RayTracing.Maths
         }
 
         public static Color FromColor4(Color4 color4)
+        {
+            return new Color
+            {
+                R = color4.R,
+                G = color4.G,
+                B = color4.B
+            };
+        }
+        
+        public static Color FromAssimpColor4(Color4D color4)
         {
             return new Color
             {
@@ -93,7 +104,8 @@ namespace RayTracing.Maths
         }
 
         // from C++ codebase, and previously from JavaFX sources, now in c# code
-        public (float hue, float saturation, float brightness) ToHsb() {
+        public (float hue, float saturation, float brightness) ToHsb()
+        {
             float hue, saturation, brightness;
             float cmax = (R > G) ? R : G;
             if (B > cmax) cmax = B;
@@ -125,6 +137,7 @@ namespace RayTracing.Maths
                 if (hue < 0)
                     hue = hue + 1.0f;
             }
+
             return (hue * 360, saturation, brightness);
         }
 

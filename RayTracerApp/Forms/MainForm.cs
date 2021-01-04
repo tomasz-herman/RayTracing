@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using OpenTK;
@@ -55,16 +56,16 @@ namespace RayTracerApp.Forms
         {
             GL.Enable(EnableCap.DepthTest);
             _renderer = new Renderer();
-            _rayTracer = new IncrementalRayTracer(10, 64 * 64, Vec2Sampling.Jittered, gLControl.Width, 50);
+            _rayTracer = new SamplesRayTracer(8, 1024, Vec2Sampling.Jittered, gLControl.Width, 32);
             _cameraController = new CameraController(_camera, gLControl, UpdateLastModification);
-            _scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.DarkBlue)};
+            _scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.LightSkyBlue)};
             var bulb = new MasterMaterial();
             bulb.Emissive.Emit = new SolidColor(Color.FromColor4(Color4.Yellow) * 25);
             bulb.Parts = (1, 0, 0, 0);
             _scene.AddModel(new Sphere
             {
                 Position = new Vector3(0, 5.5f, 0), Scale = 1,
-                Material = new MasterMaterial(new Emissive(Color.FromColor4(Color4.White) * 5))
+                Material = new MasterMaterial(new Emissive(Color.FromColor4(Color4.LightYellow) * 25))
             }.Load());
             _scene.AddModel(new Sphere
             {
@@ -74,7 +75,7 @@ namespace RayTracerApp.Forms
             _scene.AddModel(new Sphere
             {
                 Position = new Vector3(2.5f, 0.5f, 1), Scale = 1,
-                Material = new MasterMaterial(new Reflective(new Texture("earthmap.jpg"), 0.75f))
+                Material = new MasterMaterial(new Diffuse(new Texture("earthmap.jpg")))
             }.Load());
             _scene.AddModel(new Cylinder(2)
             {
@@ -163,10 +164,11 @@ namespace RayTracerApp.Forms
         private void BackgroundWorkerProgressChanged(object sender,
             ProgressChangedEventArgs e)
         {
-            (e.UserState as Texture)?.Blit();
+            var texture = (Texture) e.UserState;
+            texture?.Blit();
             gLControl.SwapBuffers();
-            (e.UserState as Texture)?.Dispose();
-            Text = e.ProgressPercentage + "%";
+            texture?.Dispose();
+            Text = $@"{e.ProgressPercentage}%";
         }
 
         private void InitializeBackgroundWorker()
