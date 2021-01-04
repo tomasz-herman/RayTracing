@@ -14,10 +14,11 @@ namespace RayTracing.Materials
 
         public Color this[float x, float y] => Color;
 
-        public void Use(Shader shader)
+        public void Use(Shader shader, int matNum, float part)
         {
-            shader.SetInt("singleColor", 1);
-            shader.SetVector3("materialColor", Color.ToVector3());
+            shader.SetInt(ITexture.MaterialUseColorUniformName(matNum), 1);
+            shader.SetVector3(ITexture.MaterialColorUniformName(matNum), Color.ToVector3());
+            shader.SetFloat(ITexture.MaterialPartUniformName(matNum), part);
         }
     }
 }

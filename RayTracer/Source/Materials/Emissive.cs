@@ -1,5 +1,4 @@
-﻿using System;
-using OpenTK;
+﻿using OpenTK;
 using OpenTK.Graphics;
 using RayTracing.Maths;
 using RayTracing.Sampling;
@@ -9,29 +8,43 @@ namespace RayTracing.Materials
 {
     public class Emissive : IMaterial
     {
+        private const int SAMPLES = 10000;
+        private ITexture _emit;
+
         public Color AverageColor => _averageColor;
 
-        private ITexture _emit;
+        public ITexture Emit
+        {
+            get => _emit;
+            set
+            {
+                _emit = value;
+                UpdateAverageColor(value);
+            }
+        }
+
         private Color _averageColor;
-        
+
         public Emissive(ITexture emit)
         {
-            _emit = emit;
-            int samples = 10000;
-            var sampler = new ThreadSafeSampler<Vector2>(Vec2Sampling.Random, samples);
-            for (int i = 0; i < samples; i++)
-            {
-                var coords = sampler.GetSample();
-                _averageColor += _emit[coords.X, coords.Y];
-            }
-
-            _averageColor /= samples;
+            Emit = emit;
         }
 
         public Emissive(Color emitColor)
         {
-            _emit = new SolidColor(emitColor);
-            _averageColor = emitColor;
+            Emit = new SolidColor(emitColor);
+        }
+
+        private void UpdateAverageColor(ITexture texture)
+        {
+            var sampler = new ThreadSafeSampler<Vector2>(Vec2Sampling.Random, SAMPLES);
+            for (int i = 0; i < SAMPLES; i++)
+            {
+                var coords = sampler.GetSample();
+                _averageColor += texture[coords.X, coords.Y];
+            }
+
+            _averageColor /= SAMPLES;
         }
 
         public bool Scatter(ref Ray ray, ref HitInfo hit, out Color attenuation, out Ray scattered)
@@ -43,12 +56,12 @@ namespace RayTracing.Materials
 
         public Color Emitted(float u, float v)
         {
-            return _emit[u, v];
+            return Emit[u, v];
         }
 
-        public void Use(Shader shader)
+        public void Use(Shader shader, float part)
         {
-            _emit.Use(shader);
+            Emit.Use(shader, 0, part);
         }
     }
 }
