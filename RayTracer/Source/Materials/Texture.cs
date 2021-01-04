@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
-using OpenTK.Graphics;
-using OpenTK.Graphics.OpenGL;
+using OpenTK.Graphics.OpenGL4;
 using RayTracing.Maths;
 using RayTracing.Shaders;
 using StbImageSharp;
@@ -173,10 +172,11 @@ namespace RayTracing.Materials
             Use(_id, unit);
         }
 
-        public void Use(Shader shader)
+        public void Use(Shader shader, int matNum, float part)
         {
-            shader.SetInt("singleColor", 0);
-            Use();
+            shader.SetInt(ITexture.MaterialUseColorUniformName(matNum), 0);
+            Use(ITexture.MaterialTextureUnit(matNum));
+            shader.SetFloat(ITexture.MaterialPartUniformName(matNum), part);
         }
 
         public static void Clear(TextureUnit unit = TextureUnit.Texture0)

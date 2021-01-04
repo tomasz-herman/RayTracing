@@ -37,13 +37,14 @@ namespace RayTracing.Models
             LoadDataBuffer(TexCoords, TEX_COORDS_INDEX, 2);
             LoadIndexBuffer(Indices);
         }
-        
+
         public void Unload()
         {
             foreach (var vbo in vboIdList)
             {
                 GL.DeleteBuffer(vbo);
             }
+
             vboIdList.Clear();
             GL.DeleteVertexArray(vaoId);
             vaoId = 0;
@@ -102,7 +103,7 @@ namespace RayTracing.Models
             float vz = Positions[3 * Indices[index] + 2];
             return new Vector3(vx, vy, vz);
         }
-        
+
         public Vector3 GetNormal(int index)
         {
             float vx = Normals[3 * Indices[index] + 0];
@@ -110,11 +111,11 @@ namespace RayTracing.Models
             float vz = Normals[3 * Indices[index] + 2];
             return new Vector3(vx, vy, vz);
         }
-        
+
         public Vector2 GetTexCoord(int index)
         {
-            float vx = Normals[2 * Indices[index] + 0];
-            float vy = Normals[2 * Indices[index] + 1];
+            float vx = TexCoords[2 * Indices[index] + 0];
+            float vy = TexCoords[2 * Indices[index] + 1];
             return new Vector2(vx, vy);
         }
     }
