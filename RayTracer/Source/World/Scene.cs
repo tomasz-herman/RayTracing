@@ -18,7 +18,7 @@ namespace RayTracing.World
         public void AddModel(Model model)
         {
             Models.Add(model);
-            if (model.Material is Emissive)
+            if (model.Material is Emissive) // add MasterMaterial
             {
                 Lights.Add(model);
             }
@@ -29,7 +29,7 @@ namespace RayTracing.World
             HitInfo tempHitInfo = new HitInfo();
             bool hitAnything = false;
             float closest = to;
-            
+
             foreach (var hittable in Hittables)
             {
                 if (hittable.HitTest(ray, ref tempHitInfo, from, closest))
@@ -39,7 +39,7 @@ namespace RayTracing.World
                     hit = tempHitInfo;
                 }
             }
-            
+
             return hitAnything;
         }
 

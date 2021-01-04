@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using RayTracing.Maths;
 using RayTracing.RayTracing;
+using RayTracing.Sampling;
 
 namespace RayTracing.BVH
 {
@@ -16,7 +17,7 @@ namespace RayTracing.BVH
         {
             var objects = srcObjects;
             var random = new Random();
-            int axis = random.Next(0, 2);
+            int axis = random.Next(0, 3);
             int Comparator(IHittable a, IHittable b) => BoxCompare(a, b, axis);
 
             int objectSpan = end - start;
@@ -79,13 +80,11 @@ namespace RayTracing.BVH
         {
             if (!a.BoundingBox(out var boxA) || !b.BoundingBox(out var boxB))
             {
-                throw new Exception("No bounding box.\n");
+                throw new Exception("No bounding box");
             }
-
 
             return boxA.Min[axis].CompareTo(boxB.Min[axis]);
         }
-
 
         private class FuncComparer<T> : IComparer<T>
         {
