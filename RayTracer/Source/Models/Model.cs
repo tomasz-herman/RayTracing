@@ -54,7 +54,7 @@ namespace RayTracing.Models
 
         public abstract bool HitTest(Ray ray, ref HitInfo hit, float from, float to);
         
-        public virtual bool BoundingBox(out AABB outputBox)
+        public virtual AABB BoundingBox()
         {
             throw new System.NotImplementedException();
         }

@@ -46,10 +46,8 @@ namespace RayTracing.BVH
                 _right = new BvhNode(objects, mid, end, sampler);
             }
 
-            if (!_left.BoundingBox(out var boxLeft) || !_right.BoundingBox(out var boxRight))
-            {
-                throw new Exception("No bounding box");
-            }
+            var boxLeft = _left.BoundingBox();
+            var boxRight = _right.BoundingBox();
 
             _box = boxLeft + boxRight;
         }
@@ -65,10 +63,9 @@ namespace RayTracing.BVH
             return hitLeft || hitRight;
         }
 
-        public bool BoundingBox(out AABB outputBox)
+        public AABB BoundingBox()
         {
-            outputBox = _box;
-            return true;
+            return _box;
         }
 
         public List<IHittable> Preprocess()
@@ -78,10 +75,8 @@ namespace RayTracing.BVH
 
         private int BoxCompare(IHittable a, IHittable b, int axis)
         {
-            if (!a.BoundingBox(out var boxA) || !b.BoundingBox(out var boxB))
-            {
-                throw new Exception("No bounding box");
-            }
+            var boxA = a.BoundingBox();
+            var boxB = b.BoundingBox();
 
             return boxA.Min[axis].CompareTo(boxB.Min[axis]);
         }

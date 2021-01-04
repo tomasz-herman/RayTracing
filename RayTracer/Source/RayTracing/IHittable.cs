@@ -7,6 +7,6 @@ namespace RayTracing.RayTracing
     {
         bool HitTest(Ray ray, ref HitInfo hit, float from, float to);
         List<IHittable> Preprocess();
-        bool BoundingBox(out AABB outputBox);
+        AABB BoundingBox();
     }
 }

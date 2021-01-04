@@ -54,7 +54,7 @@ namespace RayTracing.World
             return hitAnything;
         }
 
-        public bool BoundingBox(out AABB outputBox)
+        public AABB BoundingBox()
         {
             throw new System.NotImplementedException();
         }

@@ -27,9 +27,9 @@ namespace RayTracing.Models
             throw new Exception("Triangle is used only in ray tracing");
         }
         
-        public override bool BoundingBox(out AABB outputBox)
+        public override AABB BoundingBox()
         {
-            outputBox = new AABB(
+            var outputBox = new AABB(
                 Vector3.ComponentMin(Vector3.ComponentMin(_vertices[0], _vertices[1]),_vertices[2]),
                 Vector3.ComponentMax(Vector3.ComponentMax(_vertices[0], _vertices[1]),_vertices[2])
                 );
@@ -48,7 +48,8 @@ namespace RayTracing.Models
                     outputBox.Max = vec;
                 }
             }
-            return true;
+
+            return outputBox;
         }
 
         //source: https://www.scratchapixel.com/code.php?id=9&origin=/lessons/3d-basic-rendering/ray-tracing-rendering-a-triangle
