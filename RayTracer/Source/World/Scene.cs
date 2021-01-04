@@ -12,6 +12,7 @@ namespace RayTracing.World
     public class Scene : IHittable
     {
         private const int SAMPLES = 10000;
+        public bool BvhMode { get; set; } = true;
         public List<Model> Models { get; } = new List<Model>();
         public List<IHittable> Hittables { get; } = new List<IHittable>();
         public List<Model> Lights { get; } = new List<Model>();
@@ -58,7 +59,17 @@ namespace RayTracing.World
             throw new System.NotImplementedException();
         }
 
-        public List<IHittable> Preprocess()
+        private List<IHittable> StandardPreprocess()
+        {
+            Hittables.Clear();
+            foreach (var model in Models)
+            {
+                Hittables.AddRange(((IHittable) model).Preprocess());
+            }
+            return Hittables;
+        }
+        
+        private List<IHittable> BvhPreprocess()
         {
             Hittables.Clear();
             var planes = new List<IHittable>();
@@ -79,6 +90,18 @@ namespace RayTracing.World
             Hittables.AddRange(planes);
             Hittables.Add(node);
             return Hittables;
+        }
+        
+        public List<IHittable> Preprocess()
+        {
+            if (BvhMode)
+            {
+                return BvhPreprocess();
+            }
+            else
+            {
+                return StandardPreprocess();
+            }
         }
     }
 }
