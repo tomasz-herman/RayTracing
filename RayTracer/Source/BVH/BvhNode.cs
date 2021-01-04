@@ -8,15 +8,17 @@ namespace RayTracing.BVH
 {
     public class BvhNode : IHittable
     {
+        private const int SAMPLES = 10000;
         private readonly IHittable _left;
         private readonly IHittable _right;
         private readonly AABB _box;
 
         // https://raytracing.github.io/books/RayTracingTheNextWeek.html#boundingvolumehierarchies
-        public BvhNode(List<IHittable> srcObjects, int start, int end, AbstractSampler<int> sampler)
+        public BvhNode(List<IHittable> srcObjects, int start, int end, AbstractSampler<int> sampler = null)
         {
+            sampler ??= new ThreadSafeSampler<int>(count => IntSampling.Random(count, 0, 3), SAMPLES);
+
             var objects = srcObjects;
-            var random = new Random();
             int axis = sampler.GetSample();
             int Comparator(IHittable a, IHittable b) => BoxCompare(a, b, axis);
 
