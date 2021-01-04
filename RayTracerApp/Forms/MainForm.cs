@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using OpenTK;
@@ -55,7 +56,7 @@ namespace RayTracerApp.Forms
         {
             GL.Enable(EnableCap.DepthTest);
             _renderer = new Renderer();
-            _rayTracer = new IncrementalRayTracer(10, 64 * 64, Vec2Sampling.Jittered, gLControl.Width, 50);
+            _rayTracer = new SamplesRayTracer(8, 1024, Vec2Sampling.Jittered, gLControl.Width, 32);
             _cameraController = new CameraController(_camera, gLControl, UpdateLastModification);
             _scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.LightSkyBlue)};
             var bulb = new MasterMaterial();
@@ -163,10 +164,11 @@ namespace RayTracerApp.Forms
         private void BackgroundWorkerProgressChanged(object sender,
             ProgressChangedEventArgs e)
         {
-            (e.UserState as Texture)?.Blit();
+            var texture = (Texture) e.UserState;
+            texture?.Blit();
             gLControl.SwapBuffers();
-            (e.UserState as Texture)?.Dispose();
-            Text = e.ProgressPercentage + "%";
+            texture?.Dispose();
+            Text = $@"{e.ProgressPercentage}%";
         }
 
         private void InitializeBackgroundWorker()
