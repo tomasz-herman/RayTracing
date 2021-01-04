@@ -42,5 +42,22 @@ namespace RayTracing.Sampling
 
             return samples;
         }
+
+        public static List<int> Random(int count, int minInclusive, int maxExclusive)
+        {
+            if(count < 0)
+                throw new ArgumentException("Count less than zero");
+            if (minInclusive >= maxExclusive)
+                throw new ArgumentException("Wrong limits");
+            
+            List<int> samples = new List<int>();
+            
+            for (int i = 0; i < count; i++)
+            {
+               samples.Add(_random.Next(minInclusive, maxExclusive));
+            }
+
+            return samples;
+        }
     }
 }

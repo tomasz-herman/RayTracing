@@ -13,11 +13,11 @@ namespace RayTracing.BVH
         private readonly AABB _box;
 
         // https://raytracing.github.io/books/RayTracingTheNextWeek.html#boundingvolumehierarchies
-        public BvhNode(List<IHittable> srcObjects, int start, int end)
+        public BvhNode(List<IHittable> srcObjects, int start, int end, AbstractSampler<int> sampler)
         {
             var objects = srcObjects;
             var random = new Random();
-            int axis = random.Next(0, 3);
+            int axis = sampler.GetSample();
             int Comparator(IHittable a, IHittable b) => BoxCompare(a, b, axis);
 
             int objectSpan = end - start;
@@ -42,8 +42,8 @@ namespace RayTracing.BVH
             {
                 objects.Sort(start, objectSpan - 1, new FuncComparer<IHittable>(Comparator));
                 int mid = start + objectSpan / 2;
-                _left = new BvhNode(objects, start, mid);
-                _right = new BvhNode(objects, mid, end);
+                _left = new BvhNode(objects, start, mid, sampler);
+                _right = new BvhNode(objects, mid, end, sampler);
             }
 
             if (!_left.BoundingBox(out var boxLeft) || !_right.BoundingBox(out var boxRight))

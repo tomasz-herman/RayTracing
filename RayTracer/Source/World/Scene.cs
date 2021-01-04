@@ -5,15 +5,24 @@ using RayTracing.Materials;
 using RayTracing.Maths;
 using RayTracing.Models;
 using RayTracing.RayTracing;
+using RayTracing.Sampling;
 
 namespace RayTracing.World
 {
     public class Scene : IHittable
     {
+        private const int SAMPLES = 10000;
         public List<Model> Models { get; } = new List<Model>();
         public List<IHittable> Hittables { get; } = new List<IHittable>();
         public List<Model> Lights { get; } = new List<Model>();
         public AmbientLight AmbientLight { get; set; }
+
+        private readonly AbstractSampler<int> _axisSampler;
+
+        public Scene()
+        {
+            _axisSampler = new ThreadSafeSampler<int>(count => IntSampling.Random(count, 0, 3), SAMPLES);
+        }
 
         public void AddModel(Model model)
         {
@@ -48,7 +57,7 @@ namespace RayTracing.World
         {
             throw new System.NotImplementedException();
         }
-        
+
         public List<IHittable> Preprocess()
         {
             Hittables.Clear();
@@ -62,11 +71,11 @@ namespace RayTracing.World
                 }
                 else
                 {
-                    hittablesToBvh.AddRange(((IHittable)model).Preprocess());
+                    hittablesToBvh.AddRange(((IHittable) model).Preprocess());
                 }
             }
 
-            var node = new BvhNode(hittablesToBvh, 0, hittablesToBvh.Count);
+            var node = new BvhNode(hittablesToBvh, 0, hittablesToBvh.Count, _axisSampler);
             Hittables.AddRange(planes);
             Hittables.Add(node);
             return Hittables;
