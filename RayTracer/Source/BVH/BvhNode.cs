@@ -51,7 +51,7 @@ namespace RayTracing.BVH
                 throw new Exception("No bounding box");
             }
 
-            _box = AABB.SurroundingBox(boxLeft, boxRight);
+            _box = boxLeft + boxRight;
         }
 
         public bool HitTest(Ray ray, ref HitInfo hit, float @from, float to)
