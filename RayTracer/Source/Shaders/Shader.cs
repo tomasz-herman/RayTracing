@@ -88,6 +88,12 @@ namespace RayTracing.Shaders
             GL.UseProgram(_handle);
             GL.Uniform1(_uniformLocations[name], data);
         }
+        
+        public void SetFloat(string name, float data)
+        {
+            GL.UseProgram(_handle);
+            GL.Uniform1(_uniformLocations[name], data);
+        }
 
         public void Use()
         {
