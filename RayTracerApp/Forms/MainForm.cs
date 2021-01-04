@@ -74,7 +74,7 @@ namespace RayTracerApp.Forms
             _scene.AddModel(new Sphere
             {
                 Position = new Vector3(2.5f, 0.5f, 1), Scale = 1,
-                Material = new MasterMaterial(new Reflective(new Texture("earthmap.jpg"), 0.75f))
+                Material = new MasterMaterial(new Diffuse(new Texture("earthmap.jpg")))
             }.Load());
             _scene.AddModel(new Cylinder(2)
             {

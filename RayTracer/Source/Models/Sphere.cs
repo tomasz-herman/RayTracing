@@ -52,7 +52,7 @@ namespace RayTracing.Models
         private void GetSphereUV(Vector3 normal, ref Vector2 UV)
         {
             var theta = Math.Acos(normal.Y);
-            var phi = Math.Atan2(-normal.Z, normal.X) + Math.PI;
+            var phi = Math.Atan2(normal.Z, -normal.X) + Math.PI;
 
             UV.X = (float) (phi / (2 * Math.PI));
             UV.Y = (float) (theta / Math.PI);
@@ -84,12 +84,10 @@ namespace RayTracing.Models
                     positions.Add(x);
                     positions.Add(y);
                     positions.Add(z);
-                    Vector2 uv = new Vector2();
                     Vector3 normal = new Vector3(x, y, z);
                     normal.Normalize();
-                    GetSphereUV(normal, ref uv);
-                    texCoords.Add(uv.X);
-                    texCoords.Add(uv.Y);
+                    texCoords.Add(1 - s * S);
+                    texCoords.Add(1 - r * R);
                 }
             }
 
