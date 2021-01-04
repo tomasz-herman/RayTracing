@@ -33,9 +33,9 @@ namespace RayTracing.Materials
             return true;
         }
 
-        public void Use(Shader shader)
+        public void Use(Shader shader, float part)
         {
-            Albedo.Use(shader);
+            Albedo.Use(shader, 1, part);
         }
     }
 }

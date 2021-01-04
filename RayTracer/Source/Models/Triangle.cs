@@ -11,7 +11,8 @@ namespace RayTracing.Models
         private List<Vector2> _texCoords;
         private Vector3 _normal;
 
-        public Triangle(Vector3 v1, Vector3 v2, Vector3 v3, Vector2 tc1 = new Vector2(), Vector2 tc2 = new Vector2(), Vector2 tc3 = new Vector2())
+        public Triangle(Vector3 v1, Vector3 v2, Vector3 v3, Vector2 tc1 = new Vector2(), Vector2 tc2 = new Vector2(),
+            Vector2 tc3 = new Vector2())
         {
             _vertices = new List<Vector3> {v1, v2, v3};
             var a = _vertices[1] - _vertices[0];
@@ -51,8 +52,10 @@ namespace RayTracing.Models
 
             if (t > to || t < from) return false;
 
+            var uv = _texCoords[0] + u * (_texCoords[1] - _texCoords[0]) + v * (_texCoords[2] - _texCoords[0]);
+
             hit.ModelHit = this;
-            hit.TexCoord = new Vector2(u, v);
+            hit.TexCoord = uv;
             hit.Distance = t;
             hit.HitPoint = ray.Origin + ray.Direction * t;
             hit.SetNormal(ref ray, ref _normal);
