@@ -33,6 +33,19 @@ namespace RayTracing.Models
                 Vector3.ComponentMin(Vector3.ComponentMin(_vertices[0], _vertices[1]),_vertices[2]),
                 Vector3.ComponentMax(Vector3.ComponentMax(_vertices[0], _vertices[1]),_vertices[2])
                 );
+            for (int i = 0; i < 3; i++)
+            {
+                if(Math.Abs(outputBox.Max[i] - outputBox.Min[i]) < 1e-5)
+                {
+                    var vec = outputBox.Min;
+                    vec[i] -= 0.001f;
+                    outputBox.Min = vec;
+                    
+                    vec = outputBox.Max;
+                    vec[i] += 0.001f;
+                    outputBox.Max = vec;
+                }
+            }
             return true;
         }
 
