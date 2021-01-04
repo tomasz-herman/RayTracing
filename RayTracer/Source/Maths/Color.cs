@@ -87,13 +87,20 @@ namespace RayTracing.Maths
             return this;
         }
 
+        public int Light()
+        {
+            int max = (int)Math.Max(Math.Max(R, G),B);
+            return max;
+        }
+
         public Vector3 ToVector3()
         {
             return new Vector3(R, G, B);
         }
 
         // from C++ codebase, and previously from JavaFX sources, now in c# code
-        public (float hue, float saturation, float brightness) ToHsb() {
+        public (float hue, float saturation, float brightness) ToHsb()
+        {
             float hue, saturation, brightness;
             float cmax = (R > G) ? R : G;
             if (B > cmax) cmax = B;
@@ -125,6 +132,7 @@ namespace RayTracing.Maths
                 if (hue < 0)
                     hue = hue + 1.0f;
             }
+
             return (hue * 360, saturation, brightness);
         }
 

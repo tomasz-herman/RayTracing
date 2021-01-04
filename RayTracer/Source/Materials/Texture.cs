@@ -45,7 +45,7 @@ namespace RayTracing.Materials
             }
 
             LoadFromStream(stream);
-            if(glLoad) LoadGLTexture();
+            if (glLoad) LoadGLTexture();
             stream.Dispose();
         }
 
@@ -58,6 +58,25 @@ namespace RayTracing.Materials
         {
             get => _data[w, h];
             set => _data[w, h] = value;
+        }
+
+        public void Bloom(Color color, int w, int h, int strength = 1)
+        {
+            bool In(int x, int y)
+            {
+                return x >= 0 && x < Width && y >= 0 && y < Height;
+            }
+
+            for (int i = -strength; i < strength; i++)
+            for (int j = -strength; j < strength; j++)
+            {
+                if (In(w + i, h + j))
+                {
+                    int rs = i * i + j * j;
+                    if (rs < strength * strength)
+                        _data[w + i, h + j] += color / (10*strength * (rs + 1));
+                }
+            }
         }
 
         public void Process(Func<Color, Color> function)
@@ -138,7 +157,7 @@ namespace RayTracing.Materials
             byte[] raw = RawData();
             _id = GL.GenTexture();
             Use(unit);
-            GL.PixelStore(PixelStoreParameter.UnpackAlignment,1);
+            GL.PixelStore(PixelStoreParameter.UnpackAlignment, 1);
             GL.TexImage2D(TextureTarget.Texture2D,
                 0,
                 PixelInternalFormat.Rgb,
