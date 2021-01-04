@@ -79,7 +79,7 @@ namespace RayTracing.BVH
         {
             if (!a.BoundingBox(out var boxA) || !b.BoundingBox(out var boxB))
             {
-                throw new Exception("No bounding box in bvh_node constructor.\n");
+                throw new Exception("No bounding box.\n");
             }
 
 
