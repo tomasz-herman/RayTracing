@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Assimp;
 using Assimp.Configs;
@@ -15,7 +16,6 @@ namespace RayTracing.Models
                 PostProcessSteps.Triangulate |
                 PostProcessSteps.GenerateNormals |
                 PostProcessSteps.JoinIdenticalVertices |
-                PostProcessSteps.EmbedTextures |
                 PostProcessSteps.FixInFacingNormals);
         }
 
@@ -59,7 +59,7 @@ namespace RayTracing.Models
                 }
 
                 var mesh = ProcessMesh(scene.Meshes[0]);
-                var material = ProcessMaterial(scene.Materials[scene.Meshes[0].MaterialIndex]);
+                var material = ProcessMaterial(scene.Materials[scene.Meshes[0].MaterialIndex], Path.GetDirectoryName(Path.GetFullPath(path)));
 
                 model.SetMesh(mesh);
                 model.Material = material;
@@ -73,33 +73,37 @@ namespace RayTracing.Models
             }
         }
 
-        private static IMaterial ProcessMaterial(Assimp.Material material)
+        private static IMaterial ProcessMaterial(Assimp.Material material, string dir)
         {
-            Emissive emissive = new Emissive(ProcessTexture(material.HasTextureAmbient, material.ColorAmbient,
-                material.TextureAmbient));
-            Diffuse diffuse = new Diffuse(ProcessTexture(material.HasTextureDiffuse, material.ColorDiffuse,
-                material.TextureDiffuse));
-            Reflective reflective = new Reflective(ProcessTexture(material.HasColorSpecular, material.ColorSpecular,
-                material.TextureSpecular));
-
-            // MasterMaterial material = new MasterMaterial();
-            // material.Emissive.Emit =
-            //     ProcessTexture(material.HasTextureAmbient, material.ColorAmbient, material.TextureAmbient);
-            // material.Diffuse.Albedo =
-            //     ProcessTexture(material.HasTextureDiffuse, material.ColorDiffuse, material.TextureDiffuse);
-            // material.Reflective.Albedo =
-            //     ProcessTexture(material.HasColorSpecular, material.ColorSpecular, material.TextureSpecular);
-            // material.Parts = ProcessMaterialParts(material.ColorAmbient, material.ColorDiffuse, material.ColorSpecular);
-            //
-            // return material;
-
-            return diffuse;
+            Log.Info($"Processing material:: {material.Name}");
+            return new MasterMaterial
+            {
+                Emissive =
+                {
+                    Emit = ProcessTexture(material.HasTextureAmbient, material.ColorAmbient,
+                        material.TextureAmbient, dir)
+                },
+                Diffuse =
+                {
+                    Albedo = ProcessTexture(material.HasTextureDiffuse, material.ColorDiffuse,
+                        material.TextureDiffuse, dir)
+                },
+                Reflective =
+                {
+                    Albedo =
+                        ProcessTexture(material.HasTextureSpecular, material.ColorSpecular, 
+                            material.TextureSpecular, dir),
+                    Disturbance = Math.Min(Math.Max(1 - material.ShininessStrength / 100, 0), 1)
+                },
+                Parts = ProcessMaterialParts(material.ColorAmbient, material.ColorDiffuse, material.ColorSpecular)
+            };
         }
 
-        private static ITexture ProcessTexture(bool hasTexture, Color4D color4, TextureSlot textureSlot)
+        private static ITexture ProcessTexture(bool hasTexture, Color4D color4, TextureSlot textureSlot, string dir)
         {
+            Log.Info($"Processing texture:: hasTex:{hasTexture}, Color: {color4}, Texture:{textureSlot.FilePath}");
             return hasTexture
-                ? (ITexture) new Texture(textureSlot.FilePath)
+                ? (ITexture) new Texture(Path.Combine(dir, textureSlot.FilePath))
                 : new SolidColor(Color.FromAssimpColor4(color4));
         }
 
