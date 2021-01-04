@@ -73,7 +73,7 @@ namespace RayTracing.Materials
                 if (In(w + i, h + j))
                 {
                     int rs = i * i + j * j;
-                    if (rs < strength * strength)
+                    if (rs <= strength * strength)
                         _data[w + i, h + j] += color / (10*strength * (rs + 1));
                 }
             }

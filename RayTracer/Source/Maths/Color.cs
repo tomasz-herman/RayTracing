@@ -87,12 +87,6 @@ namespace RayTracing.Maths
             return this;
         }
 
-        public int Light()
-        {
-            int max = (int)Math.Max(Math.Max(R, G),B);
-            return max;
-        }
-
         public Vector3 ToVector3()
         {
             return new Vector3(R, G, B);
