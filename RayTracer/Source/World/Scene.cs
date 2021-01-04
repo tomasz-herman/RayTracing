@@ -58,9 +58,10 @@ namespace RayTracing.World
             {
                 Hittables.AddRange(((IHittable) model).Preprocess());
             }
+
             return Hittables;
         }
-        
+
         private List<IHittable> BvhPreprocess()
         {
             Hittables.Clear();
@@ -83,7 +84,7 @@ namespace RayTracing.World
             Hittables.Add(node);
             return Hittables;
         }
-        
+
         public List<IHittable> Preprocess()
         {
             if (BvhMode)
