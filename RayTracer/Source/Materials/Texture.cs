@@ -172,10 +172,11 @@ namespace RayTracing.Materials
             Use(_id, unit);
         }
 
-        public void Use(Shader shader, string useColorUniformName, string colorUniformName, TextureUnit unit)
+        public void Use(Shader shader, int matNum, float part)
         {
-            shader.SetInt(useColorUniformName, 0);
-            Use(unit);
+            shader.SetInt(ITexture.MaterialUseColorUniformName(matNum), 0);
+            Use(ITexture.MaterialTextureUnit(matNum));
+            shader.SetFloat(ITexture.MaterialPartUniformName(matNum), part);
         }
 
         public static void Clear(TextureUnit unit = TextureUnit.Texture0)

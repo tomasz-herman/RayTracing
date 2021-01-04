@@ -1,7 +1,5 @@
-﻿using System;
-using OpenTK;
+﻿using OpenTK;
 using OpenTK.Graphics;
-using OpenTK.Graphics.OpenGL4;
 using RayTracing.Maths;
 using RayTracing.Sampling;
 using RayTracing.Shaders;
@@ -63,8 +61,7 @@ namespace RayTracing.Materials
 
         public void Use(Shader shader, float part)
         {
-            Emit.Use(shader, "materials[0].useColor", "materials[0].color", TextureUnit.Texture0);
-            shader.SetFloat("materials[0].part", part);
+            Emit.Use(shader, 0, part);
         }
     }
 }
