@@ -32,6 +32,7 @@ namespace RayTracerApp.Forms
         private Timer _fpsTimer = new Timer();
         private long lastModification;
         private bool rayTracingStarted;
+        private bool _isUiUsed;
 
         public void UpdateLastModification()
         {
@@ -43,7 +44,7 @@ namespace RayTracerApp.Forms
         public bool ShouldRaytrace()
         {
             long now = DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
-            return now - lastModification > SWAP_TIME;
+            return !_isUiUsed && now - lastModification > SWAP_TIME;
         }
 
         public MainForm()
@@ -184,16 +185,27 @@ namespace RayTracerApp.Forms
 
         private void newObjectButton_Click(object sender, EventArgs e)
         {
+            UpdateLastModification();
             var form = new NewObjectForm(new NewObjectController(_scene))
                 {StartPosition = FormStartPosition.Manual, Location = Location + Size / 3};
+            _isUiUsed = true;
+            form.Closed += FormOnClosed;
             form.Show();
         }
 
         private void editObjectButton_Click(object sender, EventArgs e)
         {
+            UpdateLastModification();
             var form = new EditObjectForm(new EditObjectController(_scene, _scene.Models[0]))
                 {StartPosition = FormStartPosition.Manual, Location = Location + Size / 3};
+            form.Closed += FormOnClosed;
             form.Show();
+        }
+        
+        private void FormOnClosed(object? sender, EventArgs e)
+        {
+            _isUiUsed = false;
+            UpdateLastModification();
         }
     }
 }
