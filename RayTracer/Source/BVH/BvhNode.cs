@@ -23,29 +23,25 @@ namespace RayTracing.BVH
             int Comparator(IHittable a, IHittable b) => BoxCompare(a, b, axis);
 
             int objectSpan = end - start;
-            if (objectSpan == 1)
+            switch (objectSpan)
             {
-                _left = _right = objects[start];
-            }
-            else if (objectSpan == 2)
-            {
-                if (Comparator(objects[start], objects[start + 1]) < 0)
-                {
+                case 1:
+                    _left = _right = objects[start];
+                    break;
+                case 2 when Comparator(objects[start], objects[start + 1]) < 0:
                     _left = objects[start];
                     _right = objects[start + 1];
-                }
-                else
-                {
+                    break;
+                case 2:
                     _left = objects[start + 1];
                     _right = objects[start];
-                }
-            }
-            else
-            {
-                objects.Sort(start, objectSpan - 1, new FuncComparer<IHittable>(Comparator));
-                int mid = start + objectSpan / 2;
-                _left = new BvhNode(objects, start, mid, sampler);
-                _right = new BvhNode(objects, mid, end, sampler);
+                    break;
+                default:
+                    objects.Sort(start, objectSpan - 1, new FuncComparer<IHittable>(Comparator));
+                    int mid = start + objectSpan / 2;
+                    _left = new BvhNode(objects, start, mid, sampler);
+                    _right = new BvhNode(objects, mid, end, sampler);
+                    break;
             }
 
             var boxLeft = _left.BoundingBox();
