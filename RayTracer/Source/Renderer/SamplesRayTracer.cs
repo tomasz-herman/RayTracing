@@ -43,7 +43,7 @@ namespace RayTracing
                         Ray ray = camera.GetRay(u, v);
                         var shade = Shade(ray, scene, MaxDepth);
                         image.Bloom(shade, i, j, (int) shade.GetBrightness());
-                        image[i, j] += Shade(ray, scene, MaxDepth);
+                        image[i, j] += shade;
                     }
                 });
                 if (IsCancellationRequested != null && IsCancellationRequested())
