@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using OpenTK;
+using RayTracing.Materials;
 using RayTracing.Maths;
 
 namespace RayTracing.Models
@@ -21,6 +22,7 @@ namespace RayTracing.Models
         {
             _sectorCount = sectorCount;
             Aspect = aspect;
+            Material = new MasterMaterial();
         }
 
         public override Vector3 Rotation
