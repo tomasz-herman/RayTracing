@@ -38,7 +38,7 @@ namespace RayTracing.Models
         {
             return Mesh;
         }
-        
+
         public override List<IHittable> Preprocess()
         {
             return MeshToTriangles();
