@@ -29,6 +29,11 @@ namespace RayTracing.Models
 
         protected virtual Matrix3 RotationMatrix { get; set; } = Matrix3.Identity;
 
+        public Model()
+        {
+            Material = new MasterMaterial();
+        }     
+        
         protected void UpdateRotationMatrix(Vector3 newRotation)
         {
             RotationMatrix = Matrix3.CreateRotationX(newRotation.X) *
