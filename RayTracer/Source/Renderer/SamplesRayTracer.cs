@@ -13,8 +13,9 @@ namespace RayTracing
     public class SamplesRayTracer : IncrementalRayTracer
     {
         private readonly int _samplesRenderStep;
-        
-        public SamplesRayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution, int samplesRenderStep) : base(
+
+        public SamplesRayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution,
+            int samplesRenderStep) : base(
             maxDepth, samples, sampling, resolution)
         {
             _samplesRenderStep = samplesRenderStep;
@@ -40,7 +41,9 @@ namespace RayTracing
                         float u = (i + sample.X) / (width - 1);
                         float v = (j + sample.Y) / (height - 1);
                         Ray ray = camera.GetRay(u, v);
-                        image[i, j] += Shade(ray, scene, MaxDepth);
+                        var shade = Shade(ray, scene, MaxDepth);
+                        image.Bloom(shade, i, j, (int) shade.GetBrightness());
+                        image[i, j] += shade;
                     }
                 });
                 if (IsCancellationRequested != null && IsCancellationRequested())
