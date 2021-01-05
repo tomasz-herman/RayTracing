@@ -7,8 +7,6 @@ namespace RayTracing.Models
 {
     public class Sphere : Model
     {
-        public override Vector3 Rotation { get; set; }
-
         private protected override void LoadInternal()
         {
             var (positions, texCoords) = GetVertexList(100, 100);
@@ -44,9 +42,20 @@ namespace RayTracing.Models
             hit.Distance = root;
             hit.HitPoint = ray.Origin + ray.Direction * hit.Distance;
             hit.ModelHit = this;
-            Vector3 normal = (hit.HitPoint - Position) / Scale;
+            Vector3 normal = hit.HitPoint - Position;
+            normal.Normalize();
+            GetSphereUV(RotationMatrix * normal, ref hit.TexCoord);
             hit.SetNormal(ref ray, ref normal);
             return true;
+        }
+
+        private void GetSphereUV(Vector3 normal, ref Vector2 UV)
+        {
+            var theta = Math.Acos(normal.Y);
+            var phi = Math.Atan2(normal.Z, -normal.X) + Math.PI;
+
+            UV.X = (float) (phi / (2 * Math.PI));
+            UV.Y = (float) (theta / Math.PI);
         }
 
         public override Mesh GetMesh()
@@ -54,6 +63,10 @@ namespace RayTracing.Models
             return Mesh;
         }
 
+        public override AABB BoundingBox()
+        {
+            return new AABB(Position - new Vector3(Scale), Position + new Vector3(Scale));
+        }
 
         private (List<float>, List<float>) GetVertexList(short rings, short sectors)
         {
@@ -75,8 +88,10 @@ namespace RayTracing.Models
                     positions.Add(x);
                     positions.Add(y);
                     positions.Add(z);
+                    Vector3 normal = new Vector3(x, y, z);
+                    normal.Normalize();
                     texCoords.Add(1 - s * S);
-                    texCoords.Add(r * R);
+                    texCoords.Add(1 - r * R);
                 }
             }
 

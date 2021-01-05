@@ -12,7 +12,7 @@ namespace RayTracing.Cameras
         protected float Pitch { get; set; }
         protected float Yaw  { get; set; } = -MathHelper.PiOver2;
         private float _aspectRatio = 16f / 9;
-        protected Vector3 Position { get; set; }
+        public Vector3 Position { get; set; }
         protected Vector3 Horizontal { get; set; }
         protected Vector3 Vertical { get; set; }
         protected Vector3 LowerLeft { get; set; }

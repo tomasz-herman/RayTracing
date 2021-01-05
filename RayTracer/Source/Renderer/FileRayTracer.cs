@@ -22,6 +22,7 @@ namespace RayTracing
 
         public void Render(Scene scene, Camera camera)
         {
+            scene.Preprocess();
             int width = Resolution;
             int height = (int) (width / camera.AspectRatio);
             var image = new Texture(width, height);
@@ -36,12 +37,13 @@ namespace RayTracing
                         float u = (i + sample.X) / (width - 1);
                         float v = (j + sample.Y) / (height - 1);
                         Ray ray = camera.GetRay(u, v);
-                        image[i, height - 1 - j] += Shade(ray, scene, MaxDepth);
+                        image[i, j] += Shade(ray, scene, MaxDepth);
                     }
                 });
             }
 
-            image.Process(c => c / Samples);
+            image.Process(c => (c / Samples).Clamp());
+            image.AutoGammaCorrect();
             image.Write(_path);
         }
     }

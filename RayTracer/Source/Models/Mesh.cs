@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Intrinsics.X86;
+using OpenTK;
 using OpenTK.Graphics.OpenGL4;
 
 namespace RayTracing.Models
@@ -34,6 +36,18 @@ namespace RayTracing.Models
             LoadDataBuffer(Normals, NORMALS_INDEX, 3);
             LoadDataBuffer(TexCoords, TEX_COORDS_INDEX, 2);
             LoadIndexBuffer(Indices);
+        }
+
+        public void Unload()
+        {
+            foreach (var vbo in vboIdList)
+            {
+                GL.DeleteBuffer(vbo);
+            }
+
+            vboIdList.Clear();
+            GL.DeleteVertexArray(vaoId);
+            vaoId = 0;
         }
 
         private void LoadDataBuffer(List<float> buffer, int index, int size)
@@ -80,6 +94,29 @@ namespace RayTracing.Models
             Init();
             GL.DrawElements(PrimitiveType.Triangles, vertexCount, DrawElementsType.UnsignedInt, 0);
             End();
+        }
+
+        public Vector3 GetPostion(int index)
+        {
+            float vx = Positions[3 * Indices[index] + 0];
+            float vy = Positions[3 * Indices[index] + 1];
+            float vz = Positions[3 * Indices[index] + 2];
+            return new Vector3(vx, vy, vz);
+        }
+
+        public Vector3 GetNormal(int index)
+        {
+            float vx = Normals[3 * Indices[index] + 0];
+            float vy = Normals[3 * Indices[index] + 1];
+            float vz = Normals[3 * Indices[index] + 2];
+            return new Vector3(vx, vy, vz);
+        }
+
+        public Vector2 GetTexCoord(int index)
+        {
+            float vx = TexCoords[2 * Indices[index] + 0];
+            float vy = TexCoords[2 * Indices[index] + 1];
+            return new Vector2(vx, vy);
         }
     }
 }

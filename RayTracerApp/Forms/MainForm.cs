@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using OpenTK;
@@ -9,13 +10,13 @@ using RayTracing;
 using RayTracing.Cameras;
 using RayTracing.Lights;
 using RayTracing.Materials;
-using RayTracing.Maths;
 using RayTracing.Models;
 using RayTracing.Sampling;
 using RayTracing.World;
 using Camera = RayTracing.Cameras.Camera;
 using Timer = System.Windows.Forms.Timer;
 using RayTracerApp.SceneControllers;
+using Color = RayTracing.Maths.Color;
 
 namespace RayTracerApp.Forms
 {
@@ -55,27 +56,57 @@ namespace RayTracerApp.Forms
         {
             GL.Enable(EnableCap.DepthTest);
             _renderer = new Renderer();
-            _rayTracer = new IncrementalRayTracer(10, 64, Vec2Sampling.Jittered, gLControl.Width);
+            _rayTracer = new SamplesRayTracer(8, 1024, Vec2Sampling.Jittered, gLControl.Width, 32);
             _cameraController = new CameraController(_camera, gLControl, UpdateLastModification);
             _scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.LightSkyBlue)};
+            var bulb = new MasterMaterial();
+            bulb.Emissive.Emit = new SolidColor(Color.FromColor4(Color4.Yellow) * 25);
+            bulb.Parts = (1, 0, 0, 0);
             _scene.AddModel(new Sphere
             {
-                Position = new Vector3(0, 0.5f, 0), Scale = 1, Material = new Diffuse(Color.FromColor4(Color4.Orange))
+                Position = new Vector3(0, 5.5f, 0), Scale = 1,
+                Material = new MasterMaterial(new Emissive(Color.FromColor4(Color4.LightYellow) * 25))
             }.Load());
             _scene.AddModel(new Sphere
             {
                 Position = new Vector3(-2.5f, 0.5f, 1), Scale = 1,
-                Material = new Reflective(Color.FromColor4(Color4.Azure), 0.1f)
+                Material = new MasterMaterial(new Reflective(Color.FromColor4(Color4.Azure), 0.1f))
             }.Load());
             _scene.AddModel(new Sphere
             {
                 Position = new Vector3(2.5f, 0.5f, 1), Scale = 1,
-                Material = new Reflective(Color.FromColor4(Color4.Aqua), 0.75f)
+                Material = new MasterMaterial(new Diffuse(new Texture("earthmap.jpg")))
+            }.Load());
+            _scene.AddModel(new Cylinder(2)
+            {
+                Position = new Vector3(5f, 0.5f, 0), Scale = 1,
+                Material = new MasterMaterial(new Diffuse(Color.FromColor4(Color4.Chocolate)))
+            }.Load());
+            _scene.AddModel(new Cylinder(2)
+            {
+                Position = new Vector3(5f, 0.5f, 4), Scale = 1,
+                Material = new MasterMaterial(new Diffuse(new Texture("wood.jpg")))
+            }.Load());
+            _scene.AddModel(new Cube()
+            {
+                Position = new Vector3(0, 0.5f, -3), Scale = 1,
+                Material = new MasterMaterial(new Reflective(new Texture("wood.jpg"), 0.75f))
+            }.Load());
+            _scene.AddModel(new Rectangle(2)
+            {
+                Position = new Vector3(0, 0.5f, -1.99f), Scale = 0.8f,
+                Material = new MasterMaterial(new Emissive(Color.FromColor4(Color4.White) * 8)),
+                Rotation = new Vector3((float) Math.PI / 2, 0, 0)
             }.Load());
             _scene.AddModel(new Plane
             {
                 Position = new Vector3(0, -0.5f, 0), Scale = 1,
-                Material = new Diffuse(Color.FromColor4(Color4.ForestGreen))
+                Material = new MasterMaterial(new Diffuse(Color.FromColor4(Color4.Green)),
+                    new Reflective(Color.FromColor4(Color4.White), 0.1f),
+                    new Refractive(Color.FromColor4(Color4.Green), 1))
+                {
+                    Parts = (0.0f, 0.8f, 0.1f, 0.0f)
+                }
             }.Load());
 
             InitializeFpsTimer();
@@ -109,6 +140,7 @@ namespace RayTracerApp.Forms
 
         private void OnResize(object sender, EventArgs e)
         {
+            UpdateLastModification();
             UpdateViewport();
         }
 
@@ -132,10 +164,11 @@ namespace RayTracerApp.Forms
         private void BackgroundWorkerProgressChanged(object sender,
             ProgressChangedEventArgs e)
         {
-            (e.UserState as Texture)?.Blit();
+            var texture = (Texture) e.UserState;
+            texture?.Blit();
             gLControl.SwapBuffers();
-            (e.UserState as Texture)?.Dispose();
-            Text = e.ProgressPercentage + "%";
+            texture?.Dispose();
+            Text = $@"{e.ProgressPercentage}%";
         }
 
         private void InitializeBackgroundWorker()
@@ -148,16 +181,18 @@ namespace RayTracerApp.Forms
             _backgroundWorker.DoWork += StartRender;
             _backgroundWorker.ProgressChanged += BackgroundWorkerProgressChanged;
         }
-        
+
         private void newObjectButton_Click(object sender, EventArgs e)
         {
-            var form = new NewObjectForm(new NewObjectController(_scene));
+            var form = new NewObjectForm(new NewObjectController(_scene))
+                {StartPosition = FormStartPosition.Manual, Location = Location + Size / 3};
             form.Show();
         }
-        
+
         private void editObjectButton_Click(object sender, EventArgs e)
         {
-            var form = new EditObjectForm(new EditObjectController(_scene, _scene.Models[0]));
+            var form = new EditObjectForm(new EditObjectController(_scene, _scene.Models[0]))
+                {StartPosition = FormStartPosition.Manual, Location = Location + Size / 3};
             form.Show();
         }
     }

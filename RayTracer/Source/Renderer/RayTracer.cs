@@ -29,12 +29,15 @@ namespace RayTracing
 
             if (scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity))
             {
+                var emitted =
+                    hitInfo.ModelHit.Material.Emitted(hitInfo.TexCoord.X, hitInfo.TexCoord.Y);
+
                 if (hitInfo.ModelHit.Material.Scatter(ref ray, ref hitInfo, out Color attenuation, out Ray scattered))
                 {
-                    return attenuation * Shade(scattered, scene, depth - 1);
+                    return emitted + attenuation * Shade(scattered, scene, depth - 1);
                 }
 
-                return new Color();
+                return emitted;
             }
 
             return scene.AmbientLight.Color;
