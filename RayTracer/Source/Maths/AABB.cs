@@ -46,6 +46,5 @@ namespace RayTracing.Maths
             return new AABB(Vector3.ComponentMin(first.Min, second.Min), 
                 Vector3.ComponentMax(first.Max, second.Max));
         }
-        
     }
 }
