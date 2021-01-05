@@ -118,5 +118,15 @@ namespace RayTracing.Models
             float vy = TexCoords[2 * Indices[index] + 1];
             return new Vector2(vx, vy);
         }
+
+        public static Mesh operator +(Mesh first, Mesh second)
+        {
+            first.Positions.AddRange(second.Positions);
+            first.Normals.AddRange(second.Normals);
+            first.TexCoords.AddRange(second.TexCoords);
+            int indexOffset = first.Positions.Count / 3;
+            first.Indices.AddRange(second.Indices.ConvertAll(index => index + indexOffset));
+            return first;
+        }
     }
 }
