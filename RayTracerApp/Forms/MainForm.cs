@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL4;
-using RayTracerApp.Forms.Menu;
 using RayTracing;
 using RayTracing.Cameras;
 using RayTracing.Lights;
@@ -15,8 +14,8 @@ using RayTracing.Sampling;
 using RayTracing.World;
 using Camera = RayTracing.Cameras.Camera;
 using Timer = System.Windows.Forms.Timer;
-using RayTracerApp.SceneControllers;
 using Color = RayTracing.Maths.Color;
+using RayTracerApp.SceneController;
 
 namespace RayTracerApp.Forms
 {
@@ -60,9 +59,6 @@ namespace RayTracerApp.Forms
             _rayTracer = new SamplesRayTracer(8, 1024, Vec2Sampling.Jittered, gLControl.Width, 32);
             _cameraController = new CameraController(_camera, gLControl, UpdateLastModification);
             _scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.LightSkyBlue)};
-            var bulb = new MasterMaterial();
-            bulb.Emissive.Emit = new SolidColor(Color.FromColor4(Color4.Yellow) * 25);
-            bulb.Parts = (1, 0, 0, 0);
             _scene.AddModel(new Sphere
             {
                 Position = new Vector3(0, 5.5f, 0), Scale = 1,
@@ -91,7 +87,7 @@ namespace RayTracerApp.Forms
             _scene.AddModel(new Cube()
             {
                 Position = new Vector3(0, 0.5f, -3), Scale = 1,
-                Material = new MasterMaterial(new Reflective(new Texture("wood.jpg"), 0.75f))
+                Material = new MasterMaterial(new Diffuse(new Texture("wood.jpg")))
             }.Load());
             _scene.AddModel(new Rectangle(2)
             {
@@ -186,8 +182,8 @@ namespace RayTracerApp.Forms
         private void newObjectButton_Click(object sender, EventArgs e)
         {
             UpdateLastModification();
-            var form = new NewObjectForm(new NewObjectController(_scene))
-                {StartPosition = FormStartPosition.Manual, Location = Location + Size / 3};
+            var form = new NewObjectForm(new ObjectController(_scene))
+            { StartPosition = FormStartPosition.Manual, Location = Location + Size / 3 };
             _isUiUsed = true;
             form.Closed += FormOnClosed;
             form.Show();
@@ -195,11 +191,32 @@ namespace RayTracerApp.Forms
 
         private void editObjectButton_Click(object sender, EventArgs e)
         {
-            UpdateLastModification();
-            var form = new EditObjectForm(new EditObjectController(_scene, _scene.Models[0]))
-                {StartPosition = FormStartPosition.Manual, Location = Location + Size / 3};
-            form.Closed += FormOnClosed;
-            form.Show();
+            var ray = _camera.GetRay(0.5f, 0.5f);
+            var hitInfo = new HitInfo();
+            _isUiUsed = true;
+            if (_scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity))
+            {
+                var model = hitInfo.ModelHit;
+                if (model is Triangle triangle) model = triangle.Parent;
+                var form = new EditObjectForm(new ObjectController(_scene, model))
+                { StartPosition = FormStartPosition.Manual, Location = Location + Size / 3 };
+                form.Closed += FormOnClosed;
+                form.Show();
+            }
+            else
+            {
+                // TODO: color dialog title
+                ColorDialog MyDialog = new ColorDialog();
+                MyDialog.AllowFullOpen = true;
+                MyDialog.Color = _scene.AmbientLight.Color.ToSystemDrawing();
+
+                if (MyDialog.ShowDialog() == DialogResult.OK)
+                {
+                    _scene.AmbientLight.Color = Color.FromSystemDrawing(MyDialog.Color);
+                }
+                _isUiUsed = false;
+                UpdateLastModification();
+            }
         }
         
         private void FormOnClosed(object? sender, EventArgs e)

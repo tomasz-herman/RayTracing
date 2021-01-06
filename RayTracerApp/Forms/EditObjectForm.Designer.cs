@@ -1,5 +1,5 @@
 ﻿
-namespace RayTracerApp.Forms.Menu
+namespace RayTracerApp.Forms
 {
     partial class EditObjectForm
     {
@@ -29,45 +29,51 @@ namespace RayTracerApp.Forms.Menu
         /// </summary>
         private void InitializeComponent()
         {
-            this.featuresPanel = new RayTracerApp.Controls.FeaturesPanel();
-            this.positionPanel = new RayTracerApp.Controls.PositionPanel();
-            this.materialPanel = new RayTracerApp.Controls.MaterialPanel();
+            this.featuresPanel = new RayTracerApp.Panels.FeaturesPanel();
+            this.positionPanel = new RayTracerApp.Panels.PositionPanel();
+            this.materialPanel = new RayTracerApp.Panels.MaterialPanel();
             this.SuspendLayout();
             // 
             // featuresPanel
             // 
-            this.featuresPanel.Location = new System.Drawing.Point(0, 28);
+            this.featuresPanel.Controller = null;
+            this.featuresPanel.Location = new System.Drawing.Point(0, 26);
             this.featuresPanel.Name = "featuresPanel";
-            this.featuresPanel.Size = new System.Drawing.Size(334, 329);
-            this.featuresPanel.TabIndex = 11;
-            this.materialPanel.Visible = false;
+            this.featuresPanel.Size = new System.Drawing.Size(484, 594);
+            this.featuresPanel.TabIndex = 6;
             // 
             // positionPanel
             // 
-            this.positionPanel.Location = new System.Drawing.Point(0, 28);
+            this.positionPanel.Controller = null;
+            this.positionPanel.Location = new System.Drawing.Point(0, 26);
             this.positionPanel.Name = "positionPanel";
-            this.positionPanel.Size = new System.Drawing.Size(334, 329);
-            this.positionPanel.TabIndex = 12;
-            this.materialPanel.Visible = false;
+            this.positionPanel.Size = new System.Drawing.Size(484, 594);
+            this.positionPanel.TabIndex = 7;
             // 
             // materialPanel
             // 
-            this.materialPanel.Location = new System.Drawing.Point(0, 28);
+            this.materialPanel.Controller = null;
+            this.materialPanel.Location = new System.Drawing.Point(0, 26);
             this.materialPanel.Name = "materialPanel";
-            this.materialPanel.Size = new System.Drawing.Size(334, 329);
-            this.materialPanel.TabIndex = 13;
-            this.materialPanel.Visible = false;
+            this.materialPanel.Size = new System.Drawing.Size(484, 594);
+            this.materialPanel.TabIndex = 8;
             // 
             // EditObjectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 411);
+            this.ClientSize = new System.Drawing.Size(484, 661);
             this.Controls.Add(this.materialPanel);
             this.Controls.Add(this.positionPanel);
             this.Controls.Add(this.featuresPanel);
             this.Name = "EditObjectForm";
             this.Text = "EditObjectForm";
+            this.Controls.SetChildIndex(this.rightNextButton, 0);
+            this.Controls.SetChildIndex(this.middlePreviousButton, 0);
+            this.Controls.SetChildIndex(this.leftCancelButton, 0);
+            this.Controls.SetChildIndex(this.topLabel, 0);
+            this.Controls.SetChildIndex(this.rightFinishButton, 0);
+            this.Controls.SetChildIndex(this.middleCancelButton, 0);
             this.Controls.SetChildIndex(this.featuresPanel, 0);
             this.Controls.SetChildIndex(this.positionPanel, 0);
             this.Controls.SetChildIndex(this.materialPanel, 0);
@@ -77,8 +83,8 @@ namespace RayTracerApp.Forms.Menu
 
         #endregion
 
-        private Controls.FeaturesPanel featuresPanel;
-        private Controls.PositionPanel positionPanel;
-        private Controls.MaterialPanel materialPanel;
+        private Panels.FeaturesPanel featuresPanel;
+        private Panels.PositionPanel positionPanel;
+        private Panels.MaterialPanel materialPanel;
     }
 }

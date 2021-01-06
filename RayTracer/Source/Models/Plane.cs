@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using OpenTK;
+using RayTracing.Materials;
 using RayTracing.Maths;
 
 namespace RayTracing.Models
@@ -17,6 +18,11 @@ namespace RayTracing.Models
                 base.Rotation = value;
                 _normal = Vector3.UnitY * RotationMatrix;
             }
+        }
+
+        public Plane()
+        {
+            Material = new MasterMaterial();
         }
 
         private protected override void LoadInternal()

@@ -79,6 +79,13 @@ namespace RayTracing.Materials
             }
         }
 
+        public static Texture operator *(Texture texture, float multiplier)
+        {
+            var res = new Texture(texture);
+            res.Process(color => color * multiplier);
+            return res;
+        }
+
         public void Process(Func<Color, Color> function)
         {
             for (int i = 0; i < Width; i++)
