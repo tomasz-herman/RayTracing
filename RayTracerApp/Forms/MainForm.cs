@@ -24,7 +24,7 @@ namespace RayTracerApp.Forms
         private const int SWAP_TIME = 2;
         private Scene _scene = new Scene();
         private IRenderer _renderer;
-        private Camera _camera = new OrthographicCamera(new Vector3(0, 0, 20)) {AspectRatio = 1};
+        private Camera _camera = new PerspectiveCamera(new Vector3(0, 0, 20)) {AspectRatio = 1};
         private CameraController _cameraController;
         private IncrementalRayTracer _rayTracer;
         private BackgroundWorker _backgroundWorker;
@@ -82,8 +82,9 @@ namespace RayTracerApp.Forms
             _scene.AddModel(new Cylinder(2)
             {
                 Position = new Vector3(5f, 0.5f, 4), Scale = 1,
-                Material = new MasterMaterial(new Diffuse(new Texture("wood.jpg")))
-            }.Load());
+                Material = new MasterMaterial(new Diffuse(new Texture("wood.jpg"))),
+                Rotation = Vector3.One * (float)Math.PI / 3
+            }.Load()); ;
             _scene.AddModel(new Cube()
             {
                 Position = new Vector3(0, 0.5f, -3), Scale = 1,

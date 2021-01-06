@@ -69,7 +69,7 @@ namespace RayTracing.World
             var hittablesToBvh = new List<IHittable>();
             foreach (var model in Models)
             {
-                if (model is Plane)
+                if (model is Plane || model is Cylinder)
                 {
                     planes.Add(model);
                 }
