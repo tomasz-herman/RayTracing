@@ -43,10 +43,94 @@ namespace RayTracerApp.Forms
             this.gLControl.TabIndex = 0;
             this.gLControl.VSync = true;
             this.gLControl.Load += new System.EventHandler(this.GLControl_Load);
+
+            this.FormClosed += MainForm_FormClosed;
+
             this.Resize += this.OnResize;
             this.Controls.Add(this.gLControl);
+
             InitializeToolstrip();
+            InitializeNewEditDeleteMenu();
+            InitializeNewEditMenu();
             this.ResumeLayout(false);
+        }
+
+
+        private void InitializeNewEditDeleteMenu()
+        {
+            int width = 150;
+            this.addItem1 = new ToolStripMenuItem();
+            this.addItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.addItem1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.addItem1.Text = "Add object";
+            this.addItem1.Name = "AddObject1";
+            this.addItem1.Size = new System.Drawing.Size(width, 22);
+            this.addItem1.Click += AddItem_Click;
+
+            this.editItem1 = new ToolStripMenuItem();
+            this.editItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.editItem1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.editItem1.Text = "Edit object";
+            this.editItem1.Name = "EditObject1";
+            this.editItem1.Size = new System.Drawing.Size(width, 22);
+            this.editItem1.Click += EditItem_Click;
+
+            this.deleteItem1 = new ToolStripMenuItem();
+            this.deleteItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.deleteItem1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.deleteItem1.Text = "Delete object";
+            this.deleteItem1.Name = "DeleteObject1";
+            this.deleteItem1.Size = new System.Drawing.Size(width, 22);
+            this.deleteItem1.Click += DeleteItem_Click;
+
+            this.newDeleteStrip = new ContextMenuStrip(components);
+            this.newDeleteStrip.SuspendLayout();
+            this.newDeleteStrip.AutoSize = false;
+            this.newDeleteStrip.Name = "newDeleteMenu";
+            this.newDeleteStrip.TabIndex = 2;
+            this.newDeleteStrip.Text = "newDeleteMenu";
+            this.newDeleteStrip.Items.Add(addItem1);
+            this.newDeleteStrip.Items.Add(editItem1);
+            this.newDeleteStrip.Items.Add(deleteItem1);
+
+            this.newDeleteStrip.Size = new System.Drawing.Size(width+1, 70);
+
+            this.newDeleteStrip.ResumeLayout(false);
+            this.PerformLayout();
+        }
+
+        private void InitializeNewEditMenu()
+        {
+            int width = 150;
+            this.addItem2 = new ToolStripMenuItem();
+            this.addItem2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.addItem2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.addItem2.Text = "Add object";
+            this.addItem2.Name = "AddObject2";
+            this.addItem2.Size = new System.Drawing.Size(width, 22);
+            this.addItem2.Click += AddItem_Click;
+
+            this.editItem2 = new ToolStripMenuItem();
+            this.editItem2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.editItem2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.editItem2.Text = "Edit object";
+            this.editItem2.Name = "EditObject2";
+            this.editItem2.Size = new System.Drawing.Size(width, 22);
+            this.editItem2.Click += EditItem_Click;
+
+            this.newEditStrip = new ContextMenuStrip(components);
+            this.newEditStrip.SuspendLayout();
+            this.newEditStrip.AutoSize = false;
+            this.newEditStrip.Name = "newEditMenu";
+            this.newEditStrip.TabIndex = 3;
+            this.newEditStrip.Text = "newEditMenu";
+            this.newEditStrip.Items.Add(addItem2);
+            this.newEditStrip.Items.Add(editItem2);
+
+            this.newEditStrip.Size = new System.Drawing.Size(width+1, 48);
+
+            this.newEditStrip.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         private void InitializeToolstrip()
@@ -72,7 +156,7 @@ namespace RayTracerApp.Forms
 
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.TabIndex = 0;
+            this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "toolStrip";
 
             this.newObjectButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -93,7 +177,6 @@ namespace RayTracerApp.Forms
             this.deleteObjectButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.deleteObjectButton.Click += new System.EventHandler(this.deleteObjectButton_Click);
 
-
             this.Controls.Add(this.toolStrip);
 
             this.toolStrip.ResumeLayout(false);
@@ -106,6 +189,13 @@ namespace RayTracerApp.Forms
         private ToolStripButton deleteObjectButton;
         private OpenTK.GLControl gLControl = new GLControl(new OpenTK.Graphics.GraphicsMode(32, 24, 0, 8));
         private ToolStripDropDownButton ddButton;
+        private ContextMenuStrip newDeleteStrip;
+        private ToolStripMenuItem addItem1;
+        private ToolStripMenuItem editItem1;
+        private ToolStripMenuItem deleteItem1;
+        private ToolStripMenuItem addItem2;
+        private ToolStripMenuItem editItem2;
+        private ContextMenuStrip newEditStrip;
 
         #endregion
     }

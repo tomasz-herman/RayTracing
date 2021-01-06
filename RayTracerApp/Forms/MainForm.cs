@@ -35,6 +35,9 @@ namespace RayTracerApp.Forms
         private bool rayTracingStarted;
         private bool _isUiUsed;
 
+        private HitInfo _contextHitInfo;
+        private bool _contextHit;
+
         public void UpdateLastModification()
         {
             lastModification = DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
@@ -59,7 +62,7 @@ namespace RayTracerApp.Forms
         {
             GL.Enable(EnableCap.DepthTest);
             _renderer = new Renderer();
-            _rayTracer = new SamplesRayTracer(8, 1024, Vec2Sampling.Jittered, gLControl.Width, 32);
+            _rayTracer = new SamplesRayTracer(8, 1024, Vec2Sampling.Jittered, gLControl.Width, 8);
             _cameraController = new CameraController(_camera, gLControl, UpdateLastModification);
             _scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.LightSkyBlue)};
             _scene.AddModel(new Sphere
@@ -112,6 +115,8 @@ namespace RayTracerApp.Forms
             _scene.Preprocess();
             InitializeFpsTimer();
             UpdateViewport();
+
+            gLControl.MouseClick += GLControl_MouseClick;
         }
 
         private void InitializeFpsTimer()
@@ -167,7 +172,8 @@ namespace RayTracerApp.Forms
         {
             var texture = (Texture) e.UserState;
             texture?.Blit();
-            gLControl.SwapBuffers();
+            if(!gLControl.IsDisposed)
+                gLControl.SwapBuffers();
             texture?.Dispose();
             Text = $@"{e.ProgressPercentage}%";
         }
@@ -186,12 +192,18 @@ namespace RayTracerApp.Forms
 
         private void newObjectButton_Click(object sender, EventArgs e)
         {
-            UpdateLastModification();
-            var sphere = new Sphere().Load();
             var ray = _camera.GetRay(0.5f, 0.5f);
             var hitInfo = new HitInfo();
+            var hit = _scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity);
+            NewObjectFunction(hit, ref hitInfo);
+        }
+            
+        private void NewObjectFunction(bool hit, ref HitInfo hitInfo)
+        {
+            UpdateLastModification();
+            var sphere = new Sphere().Load();
             _isUiUsed = true;
-            if (_scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity) && hitInfo.Distance < 50)
+            if (hit && hitInfo.Distance < 50)
             {
                 sphere.Position = hitInfo.HitPoint;
             }
@@ -209,11 +221,17 @@ namespace RayTracerApp.Forms
 
         private void editObjectButton_Click(object sender, EventArgs e)
         {
-            UpdateLastModification();
             var ray = _camera.GetRay(0.5f, 0.5f);
             var hitInfo = new HitInfo();
+            var hit = _scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity);
+            EditObjectFunction(hit, ref hitInfo);
+        }
+
+        private void EditObjectFunction(bool hit, ref HitInfo hitInfo)
+        {
+            UpdateLastModification();
             _isUiUsed = true;
-            if (_scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity))
+            if (hit)
             {
                 var model = hitInfo.ModelHit;
                 if (model is Triangle triangle) model = triangle.Parent;
@@ -224,7 +242,6 @@ namespace RayTracerApp.Forms
             }
             else
             {
-                // TODO: color dialog title
                 ColorDialog MyDialog = new ColorDialog();
                 MyDialog.AllowFullOpen = true;
                 MyDialog.Color = _scene.AmbientLight.Color.ToSystemDrawing();
@@ -240,16 +257,22 @@ namespace RayTracerApp.Forms
 
         private void deleteObjectButton_Click(object sender, EventArgs e)
         {
-            UpdateLastModification();
-            _isUiUsed = true;
             var ray = _camera.GetRay(0.5f, 0.5f);
             var hitInfo = new HitInfo();
-            if (_scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity))
+            var hit = _scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity);
+            DeleteObjectFunction(hit, ref hitInfo);
+        }
+
+        private void DeleteObjectFunction(bool hit, ref HitInfo hitInfo)
+        {
+            UpdateLastModification();
+            _isUiUsed = true;
+            if (hit)
             {
                 var model = hitInfo.ModelHit;
                 if (model is Triangle triangle) model = triangle.Parent;
                 string message =
-                $"Are you sure that you would like to delete the {model.ToString()}?";
+                $"Are you sure that you would like to delete the {model}?";
                 const string caption = "Form Closing";
                 var result = MessageBox.Show(message, caption,
                                              MessageBoxButtons.YesNo,
@@ -264,9 +287,52 @@ namespace RayTracerApp.Forms
             _isUiUsed = false;
         }
 
+        private void GLControl_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Right)
+            {
+                var width = (float)gLControl.Width;
+                var height = (float)gLControl.Height;
+                var u = e.X / width;
+                var v = 1 - e.Y / height;
+                var ray = _camera.GetRay(u, v);
+                _contextHitInfo = new HitInfo();
+                _contextHit = _scene.HitTest(ray, ref _contextHitInfo, 0.001f, float.PositiveInfinity);
+                
+                if (_contextHit)
+                {
+                    newDeleteStrip.Show(Cursor.Position);
+                }
+                else
+                {
+                    newEditStrip.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void DeleteItem_Click(object sender, EventArgs e)
+        {
+            DeleteObjectFunction(_contextHit, ref _contextHitInfo);
+        }
+
+        private void EditItem_Click(object sender, EventArgs e)
+        {
+            EditObjectFunction(_contextHit, ref _contextHitInfo);
+        }
+
+        private void AddItem_Click(object sender, EventArgs e)
+        {
+            NewObjectFunction(_contextHit, ref _contextHitInfo);
+        }
+
         private void FormOnClosed(object? sender, EventArgs e)
         {
             _isUiUsed = false;
+            UpdateLastModification();
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
             UpdateLastModification();
         }
     }
