@@ -79,9 +79,12 @@ namespace RayTracing.World
                 }
             }
 
-            var node = new BvhNode(hittablesToBvh, 0, hittablesToBvh.Count);
             Hittables.AddRange(planes);
-            Hittables.Add(node);
+            if (hittablesToBvh != null && hittablesToBvh.Count > 0)
+            {
+                var node = new BvhNode(hittablesToBvh, 0, hittablesToBvh.Count);
+                Hittables.Add(node);
+            }
             return Hittables;
         }
 
