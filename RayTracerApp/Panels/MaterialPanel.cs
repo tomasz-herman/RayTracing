@@ -1,4 +1,5 @@
 ﻿using RayTracerApp.SceneController;
+using RayTracerApp.Utils;
 using RayTracing.Materials;
 using RayTracing.Maths;
 using System;
@@ -29,6 +30,26 @@ namespace RayTracerApp.Panels
         public void UpdateFromModel()
         {
             var material = Controller.Material;
+            if (material.Diffuse.Albedo is Texture)
+                diffuseTexture.Image = TextureConverter.Convert(material.Diffuse.Albedo as Texture);
+            else
+                diffuseTexture.BackColor = material.Diffuse.Albedo[0, 0].ToSystemDrawing();
+
+            if (material.Emissive.Emit is Texture)
+                emissiveTexture.Image = TextureConverter.Convert(material.Emissive.Emit as Texture);
+            else
+                emissiveTexture.BackColor = material.Diffuse.Albedo[0, 0].ToSystemDrawing();
+
+            if (material.Reflective.Albedo is Texture)
+                reflectiveTexture.Image = TextureConverter.Convert(material.Reflective.Albedo as Texture);
+            else
+                reflectiveTexture.BackColor = material.Diffuse.Albedo[0, 0].ToSystemDrawing();
+
+            if (material.Refractive.Albedo is Texture)
+                refractiveTexture.Image = TextureConverter.Convert(material.Refractive.Albedo as Texture);
+            else
+                refractiveTexture.BackColor = material.Diffuse.Albedo[0, 0].ToSystemDrawing();
+
             refractiveIndexUpDown.Value = (decimal)material.Refractive.RefractiveIndex;
             reflectiveDisturbanceUpDown.Value = (decimal)material.Reflective.Disturbance;
             diffuseShareUpDown.Value = (decimal)material.Parts.diffuse;
@@ -66,9 +87,9 @@ namespace RayTracerApp.Panels
             var texturePath = ChooseTexture();
             if (string.IsNullOrEmpty(texturePath)) return;
 
-            Controller.Material.Diffuse.Albedo = new Texture(texturePath);
-            diffuseTexture.BackColor = this.BackColor;
-            diffuseTexture.Text = texturePath.Split(Path.DirectorySeparatorChar)[^1];
+            var texture = new Texture(texturePath);
+            Controller.Material.Diffuse.Albedo = texture;
+            diffuseTexture.Image = TextureConverter.Convert(texture);
         }
 
         private void emissiveFile_Click(object sender, EventArgs e)
@@ -76,9 +97,9 @@ namespace RayTracerApp.Panels
             var texturePath = ChooseTexture();
             if (string.IsNullOrEmpty(texturePath)) return;
 
-            Controller.Material.Emissive.Emit = new Texture(texturePath);
-            emissiveTexture.BackColor = this.BackColor;
-            emissiveTexture.Text = texturePath.Split(Path.DirectorySeparatorChar)[^1];
+            var texture = new Texture(texturePath);
+            Controller.Material.Emissive.Emit = texture;
+            emissiveTexture.Image = TextureConverter.Convert(texture);
         }
 
         private void reflectiveFile_Click(object sender, EventArgs e)
@@ -86,9 +107,9 @@ namespace RayTracerApp.Panels
             var texturePath = ChooseTexture();
             if (string.IsNullOrEmpty(texturePath)) return;
 
-            Controller.Material.Reflective.Albedo = new Texture(texturePath);
-            reflectiveTexture.BackColor = this.BackColor;
-            reflectiveTexture.Text = texturePath.Split(Path.DirectorySeparatorChar)[^1];
+            var texture = new Texture(texturePath);
+            Controller.Material.Reflective.Albedo = texture;
+            reflectiveTexture.Image = TextureConverter.Convert(texture);
         }
 
         private void refractiveFile_Click(object sender, EventArgs e)
@@ -96,9 +117,9 @@ namespace RayTracerApp.Panels
             var texturePath = ChooseTexture();
             if (string.IsNullOrEmpty(texturePath)) return;
 
-            Controller.Material.Refractive.Albedo = new Texture(texturePath);
-            refractiveTexture.BackColor = this.BackColor;
-            refractiveTexture.Text = texturePath.Split(Path.DirectorySeparatorChar)[^1];
+            var texture = new Texture(texturePath);
+            Controller.Material.Refractive.Albedo = texture;
+            refractiveTexture.Image = TextureConverter.Convert(texture);
         }
 
         private void diffuseShareUpDown_ValueChanged(object sender, EventArgs e)
@@ -163,8 +184,7 @@ namespace RayTracerApp.Panels
             {
                 var color = colorDialog.Color;
                 diffuseTexture.BackColor = color;
-                diffuseTexture.Text = "      ";
-
+                diffuseTexture.Image = null;
 
                 Controller.Material.Diffuse.Albedo = new SolidColor(RayTracing.Maths.Color.FromSystemDrawing(color));
             }
@@ -176,7 +196,7 @@ namespace RayTracerApp.Panels
             {
                 var color = colorDialog.Color;
                 emissiveTexture.BackColor = color;
-                emissiveTexture.Text = "      ";
+                emissiveTexture.Image = null;
                 Controller.Material.Emissive.Emit = new SolidColor(RayTracing.Maths.Color.FromSystemDrawing(color));
             }
         }
@@ -187,7 +207,7 @@ namespace RayTracerApp.Panels
             {
                 var color = colorDialog.Color;
                 reflectiveTexture.BackColor = color;
-                reflectiveTexture.Text = "      ";
+                reflectiveTexture.Image = null;
                 Controller.Material.Reflective.Albedo = new SolidColor(RayTracing.Maths.Color.FromSystemDrawing(color));
             }
         }
@@ -198,7 +218,7 @@ namespace RayTracerApp.Panels
             {
                 var color = colorDialog.Color;
                 refractiveTexture.BackColor = color;
-                refractiveTexture.Text = "      ";
+                refractiveTexture.Image = null;
                 Controller.Material.Refractive.Albedo = new SolidColor(RayTracing.Maths.Color.FromSystemDrawing(color));
             }
         }

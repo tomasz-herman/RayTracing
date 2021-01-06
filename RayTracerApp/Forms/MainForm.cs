@@ -24,7 +24,7 @@ namespace RayTracerApp.Forms
         private const int SWAP_TIME = 2;
         private Scene _scene = new Scene();
         private IRenderer _renderer;
-        private Camera _camera = new PerspectiveCamera(new Vector3(0, 0, 20)) {AspectRatio = 1};
+        private Camera _camera = new OrthographicCamera(new Vector3(0, 0, 20)) {AspectRatio = 1};
         private CameraController _cameraController;
         private IncrementalRayTracer _rayTracer;
         private BackgroundWorker _backgroundWorker;
@@ -191,6 +191,8 @@ namespace RayTracerApp.Forms
 
         private void editObjectButton_Click(object sender, EventArgs e)
         {
+            UpdateLastModification();
+            _scene.Preprocess();
             var ray = _camera.GetRay(0.5f, 0.5f);
             var hitInfo = new HitInfo();
             _isUiUsed = true;
