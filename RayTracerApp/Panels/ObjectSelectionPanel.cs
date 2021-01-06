@@ -39,6 +39,7 @@ namespace RayTracerApp.Panels
             }
 
             if (rb.Checked)
+            {
                 switch (rb.Text)
                 {
                     case "Sphere":
@@ -60,6 +61,8 @@ namespace RayTracerApp.Panels
                         Controller.SetModel(new CustomModel());
                         break;
                 }
+                Controller.UpdateModelFromUI();
+            }
         }
     }
 }

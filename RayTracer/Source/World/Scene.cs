@@ -14,17 +14,11 @@ namespace RayTracing.World
         public bool BvhMode { get; set; } = true;
         public List<Model> Models { get; } = new List<Model>();
         public List<IHittable> Hittables { get; } = new List<IHittable>();
-        public List<Model> Lights { get; } = new List<Model>();
         public AmbientLight AmbientLight { get; set; }
 
         public void AddModel(Model model)
         {
             Models.Add(model);
-            if (model.Material is Emissive || model.Material is MasterMaterial &&
-                (model.Material as MasterMaterial).Parts.emissive != 0) // add MasterMaterial
-            {
-                Lights.Add(model);
-            }
         }
 
         public bool HitTest(Ray ray, ref HitInfo hit, float from, float to)
@@ -98,6 +92,11 @@ namespace RayTracing.World
             {
                 return StandardPreprocess();
             }
+        }
+
+        public override string ToString()
+        {
+            return "Scene";
         }
     }
 }

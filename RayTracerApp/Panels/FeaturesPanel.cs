@@ -21,6 +21,18 @@ namespace RayTracerApp.Panels
 
         public void UpdateForModel()
         {
+            var model = Controller.GetModel();
+            switch (model)
+            {
+                case Rectangle rectangle:
+                    rectangle.AspectRatio = (float)aspectRatioUpDown.Value;
+                    break;
+                case Cylinder cylinder:
+                    cylinder.Aspect = (float)aspectRatioUpDown.Value;
+                    break;
+                default:
+                    throw new Exception("Bad model type");
+            }
         }
 
         public void UpdateFromModel()

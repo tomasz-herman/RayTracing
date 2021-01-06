@@ -36,11 +36,26 @@ namespace RayTracerApp.Forms
             _currentPanel = objectSelectionPanel;
             _currentPanel.Controller = _controller;
             topLabel.Text = "Add new object...";
+            SetController();
+
+            controller.UpdateModelFromUI = () => {
+                ChooseOrder();
+                UpdateForModel();
+                materialPanel.UpdateFromModel();
+            };
+            ChooseOrder();
+            foreach(var panel in _order)
+            {
+                panel.UpdateFromModel();
+            }
         }
 
         private void SetController()
         {
-            foreach (var panel in _order) panel.Controller = _controller;
+            objectSelectionPanel.Controller = _controller;
+            featuresPanel.Controller = _controller;
+            positionPanel.Controller = _controller;
+            materialPanel.Controller = _controller;
         }
 
         private void ChooseOrder()
@@ -53,6 +68,14 @@ namespace RayTracerApp.Forms
                 _order = new List<IPanelBase> { objectSelectionPanel, positionPanel, materialPanel };
         }
 
+        private void UpdateForModel()
+        {
+            foreach(var panel in _order)
+            {
+                panel.UpdateForModel();
+            }
+        }
+
         private void MoveNext()
         {
             var index = 0;
@@ -60,14 +83,11 @@ namespace RayTracerApp.Forms
 
             if (index == 0)
             {
-                ChooseOrder();
-                SetController();
-
                 leftCancelButton.Visible = true;
                 middlePreviousButton.Visible = true;
                 middleCancelButton.Visible = false;
 
-                if (_controller.GetModel() is CustomModel)
+                if (_controller.GetModel().GetType() == typeof(CustomModel))
                     topLabel.Text = "Add custom model...";
                 else
                     topLabel.Text = $"Add {_controller.GetModel().GetType().Name.ToLower()}...";
@@ -81,7 +101,6 @@ namespace RayTracerApp.Forms
 
             if (index < _order.Count - 1)
             {
-                _order[index + 1].UpdateForModel();
                 _order[index + 1].ShowPanel();
                 _order[index].HidePanel();
                 _currentPanel = _order[index + 1];
@@ -122,6 +141,7 @@ namespace RayTracerApp.Forms
 
         private void finishButton_Click(object sender, EventArgs e)
         {
+            _controller.GetScene().Preprocess();
             Close();
         }
 

@@ -140,5 +140,10 @@ namespace RayTracing.Models
         {
             return Mesh;
         }
+
+        public override string ToString()
+        {
+            return "Plane";
+        }
     }
 }

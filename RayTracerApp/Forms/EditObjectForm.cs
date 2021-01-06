@@ -22,6 +22,7 @@ namespace RayTracerApp.Forms
         {
             InitializeComponent();
 
+            FormClosed += EditObjectForm_FormClosed;
             rightNextButton.Click += nextButton_Click;
             middlePreviousButton.Click += previousButton_Click;
             leftCancelButton.Click += cancelButton_Click;
@@ -55,6 +56,11 @@ namespace RayTracerApp.Forms
                 topLabel.Text = "Edit custom model...";
             else
                 topLabel.Text = $"Edit {_controller.GetModel().GetType().Name.ToLower()}...";
+        }
+
+        private void EditObjectForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _controller?.GetScene()?.Preprocess();
         }
 
         private void SetController(IObjectController controller)
@@ -131,7 +137,6 @@ namespace RayTracerApp.Forms
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-
             Close();
         }
     }

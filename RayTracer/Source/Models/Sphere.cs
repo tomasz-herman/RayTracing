@@ -124,5 +124,10 @@ namespace RayTracing.Models
 
             return indices;
         }
+
+        public override string ToString()
+        {
+            return "Sphere";
+        }
     }
 }

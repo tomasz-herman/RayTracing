@@ -54,6 +54,7 @@ namespace RayTracerApp.Forms
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.newObjectButton = new System.Windows.Forms.ToolStripButton();
             this.editObjectButton = new System.Windows.Forms.ToolStripButton();
+            this.deleteObjectButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip.SuspendLayout();
 
             this.ddButton = new ToolStripDropDownButton();
@@ -61,7 +62,8 @@ namespace RayTracerApp.Forms
 
             this.ddButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
                 this.newObjectButton,
-                this.editObjectButton
+                this.editObjectButton,
+                this.deleteObjectButton
             });
 
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -85,6 +87,12 @@ namespace RayTracerApp.Forms
             this.editObjectButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.editObjectButton.Click += new System.EventHandler(this.editObjectButton_Click);
 
+            this.deleteObjectButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.deleteObjectButton.Name = "deleteObjectButton";
+            this.deleteObjectButton.Text = "Delete object";
+            this.deleteObjectButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.deleteObjectButton.Click += new System.EventHandler(this.deleteObjectButton_Click);
+
 
             this.Controls.Add(this.toolStrip);
 
@@ -95,6 +103,7 @@ namespace RayTracerApp.Forms
         private ToolStrip toolStrip;
         private ToolStripButton newObjectButton;
         private ToolStripButton editObjectButton;
+        private ToolStripButton deleteObjectButton;
         private OpenTK.GLControl gLControl = new GLControl(new OpenTK.Graphics.GraphicsMode(32, 24, 0, 8));
         private ToolStripDropDownButton ddButton;
 

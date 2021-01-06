@@ -24,7 +24,7 @@ namespace RayTracerApp.Panels
 
         public void UpdateForModel()
         {
-            
+            // done in Controller SetModel()
         }
 
         public void UpdateFromModel()
@@ -38,17 +38,17 @@ namespace RayTracerApp.Panels
             if (material.Emissive.Emit is Texture)
                 emissiveTexture.Image = TextureConverter.Convert(material.Emissive.Emit as Texture);
             else
-                emissiveTexture.BackColor = material.Diffuse.Albedo[0, 0].ToSystemDrawing();
+                emissiveTexture.BackColor = material.Emissive.Emit[0, 0].ToSystemDrawing();
 
             if (material.Reflective.Albedo is Texture)
                 reflectiveTexture.Image = TextureConverter.Convert(material.Reflective.Albedo as Texture);
             else
-                reflectiveTexture.BackColor = material.Diffuse.Albedo[0, 0].ToSystemDrawing();
+                reflectiveTexture.BackColor = material.Reflective.Albedo[0, 0].ToSystemDrawing();
 
             if (material.Refractive.Albedo is Texture)
                 refractiveTexture.Image = TextureConverter.Convert(material.Refractive.Albedo as Texture);
             else
-                refractiveTexture.BackColor = material.Diffuse.Albedo[0, 0].ToSystemDrawing();
+                refractiveTexture.BackColor = material.Refractive.Albedo[0, 0].ToSystemDrawing();
 
             refractiveIndexUpDown.Value = (decimal)material.Refractive.RefractiveIndex;
             reflectiveDisturbanceUpDown.Value = (decimal)material.Reflective.Disturbance;
@@ -221,6 +221,14 @@ namespace RayTracerApp.Panels
                 refractiveTexture.Image = null;
                 Controller.Material.Refractive.Albedo = new SolidColor(RayTracing.Maths.Color.FromSystemDrawing(color));
             }
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+            var rectangle = e.ClipRectangle;
+            rectangle.Inflate(-1, -1);
+
+            ControlPaint.DrawBorder3D(e.Graphics, rectangle, Border3DStyle.Raised, Border3DSide.All);
         }
     }
 }

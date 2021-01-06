@@ -1,4 +1,5 @@
-﻿using RayTracerApp.SceneController;
+﻿using OpenTK;
+using RayTracerApp.SceneController;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,23 @@ namespace RayTracerApp.Panels
 
         public void UpdateForModel()
         {
+            var model = Controller.GetModel();
+            model.Scale = (float)scaleUpDown.Value;
+            var rotation = new Vector3
+            {
+                X = (float)yawUpDown.Value,
+                Y = (float)pitchUpDown.Value,
+                Z = (float)rollUpDown.Value
+            };
+            model.Rotation = rotation;
+
+            var position = new Vector3
+            {
+                X = (float)xUpDown.Value,
+                Y = (float)yUpDown.Value,
+                Z = (float)zUpDown.Value
+            };
+            model.Position = position;
         }
 
         public void UpdateFromModel()

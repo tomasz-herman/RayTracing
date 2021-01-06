@@ -17,6 +17,7 @@ namespace RayTracerApp.SceneController
             get => _material;
             set => _material = value;
         }
+        public Action UpdateModelFromUI { get; set; }
 
         public ObjectController(Scene scene)
         {
@@ -57,6 +58,11 @@ namespace RayTracerApp.SceneController
             }
 
             if (this.model != null) scene.AddModel(this.model);
+        }
+
+        public Scene GetScene()
+        {
+            return scene;
         }
     }
 }

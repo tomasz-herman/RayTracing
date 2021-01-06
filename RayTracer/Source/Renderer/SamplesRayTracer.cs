@@ -30,20 +30,25 @@ namespace RayTracing
 
             for (int k = 0; k < Samples; k++)
             {
-                Parallel.For(0, width, i =>
+                try 
                 {
-                    if (IsCancellationRequested != null && IsCancellationRequested())
-                        return;
-                    for (int j = 0; j < height; j++)
+                    Parallel.For(0, width, new ParallelOptions {CancellationToken = CancellationToken }, i =>
                     {
-                        var sample = sampler.GetSample(k);
-                        float u = (i + sample.X) / (width - 1);
-                        float v = (j + sample.Y) / (height - 1);
-                        Ray ray = camera.GetRay(u, v);
-                        image[i, j] += Shade(ray, scene, MaxDepth);
-                    }
-                });
-                if (IsCancellationRequested != null && IsCancellationRequested())
+                        for (int j = 0; j < height; j++)
+                        {
+                            var sample = sampler.GetSample(k);
+                            float u = (i + sample.X) / (width - 1);
+                            float v = (j + sample.Y) / (height - 1);
+                            Ray ray = camera.GetRay(u, v);
+                            image[i, j] += Shade(ray, scene, MaxDepth);
+                        }
+                    });
+                }
+                catch(Exception)
+                {
+                    return;
+                }
+                if (CancellationToken.IsCancellationRequested)
                     return;
 
                 if (k % _samplesRenderStep == 0 || k == Samples - 1)

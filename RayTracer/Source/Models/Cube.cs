@@ -127,5 +127,10 @@ namespace RayTracing.Models
         {
             return MeshToTriangles();
         }
+
+        public override string ToString()
+        {
+            return "Cube";
+        }
     }
 }

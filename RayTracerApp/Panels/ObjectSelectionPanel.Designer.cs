@@ -63,7 +63,6 @@ namespace RayTracerApp.Panels
             this.rectangleRadioButton.Name = "rectangleRadioButton";
             this.rectangleRadioButton.Size = new System.Drawing.Size(77, 19);
             this.rectangleRadioButton.TabIndex = 5;
-            this.rectangleRadioButton.TabStop = true;
             this.rectangleRadioButton.Text = "Rectangle";
             this.rectangleRadioButton.UseVisualStyleBackColor = true;
             this.rectangleRadioButton.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
@@ -75,7 +74,6 @@ namespace RayTracerApp.Panels
             this.planeRadioButton.Name = "planeRadioButton";
             this.planeRadioButton.Size = new System.Drawing.Size(54, 19);
             this.planeRadioButton.TabIndex = 4;
-            this.planeRadioButton.TabStop = true;
             this.planeRadioButton.Text = "Plane";
             this.planeRadioButton.UseVisualStyleBackColor = true;
             this.planeRadioButton.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
@@ -87,7 +85,6 @@ namespace RayTracerApp.Panels
             this.customModelRadioButton.Name = "customModelRadioButton";
             this.customModelRadioButton.Size = new System.Drawing.Size(104, 19);
             this.customModelRadioButton.TabIndex = 3;
-            this.customModelRadioButton.TabStop = true;
             this.customModelRadioButton.Text = "Custom model";
             this.customModelRadioButton.UseVisualStyleBackColor = true;
             this.customModelRadioButton.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
@@ -99,7 +96,6 @@ namespace RayTracerApp.Panels
             this.cylinderRadioButton.Name = "cylinderRadioButton";
             this.cylinderRadioButton.Size = new System.Drawing.Size(69, 19);
             this.cylinderRadioButton.TabIndex = 2;
-            this.cylinderRadioButton.TabStop = true;
             this.cylinderRadioButton.Text = "Cylinder";
             this.cylinderRadioButton.UseVisualStyleBackColor = true;
             this.cylinderRadioButton.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
@@ -111,7 +107,6 @@ namespace RayTracerApp.Panels
             this.cubeRadioButton.Name = "cubeRadioButton";
             this.cubeRadioButton.Size = new System.Drawing.Size(53, 19);
             this.cubeRadioButton.TabIndex = 1;
-            this.cubeRadioButton.TabStop = true;
             this.cubeRadioButton.Text = "Cube";
             this.cubeRadioButton.UseVisualStyleBackColor = true;
             this.cubeRadioButton.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
@@ -119,6 +114,7 @@ namespace RayTracerApp.Panels
             // sphereRadioButton
             // 
             this.sphereRadioButton.AutoSize = true;
+            this.sphereRadioButton.Checked = true;
             this.sphereRadioButton.Location = new System.Drawing.Point(9, 16);
             this.sphereRadioButton.Name = "sphereRadioButton";
             this.sphereRadioButton.Size = new System.Drawing.Size(61, 19);

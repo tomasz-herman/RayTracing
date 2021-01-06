@@ -16,6 +16,7 @@ using Camera = RayTracing.Cameras.Camera;
 using Timer = System.Windows.Forms.Timer;
 using Color = RayTracing.Maths.Color;
 using RayTracerApp.SceneController;
+using System.Threading;
 
 namespace RayTracerApp.Forms
 {
@@ -28,6 +29,7 @@ namespace RayTracerApp.Forms
         private CameraController _cameraController;
         private IncrementalRayTracer _rayTracer;
         private BackgroundWorker _backgroundWorker;
+        private CancellationTokenSource _cts;
         private Timer _fpsTimer = new Timer();
         private long lastModification;
         private bool rayTracingStarted;
@@ -38,6 +40,7 @@ namespace RayTracerApp.Forms
             lastModification = DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
             rayTracingStarted = false;
             _backgroundWorker?.CancelAsync();
+            _cts?.Cancel();
         }
 
         public bool ShouldRaytrace()
@@ -106,7 +109,7 @@ namespace RayTracerApp.Forms
                     Parts = (0.0f, 0.8f, 0.1f, 0.0f)
                 }
             }.Load());
-
+            _scene.Preprocess();
             InitializeFpsTimer();
             UpdateViewport();
         }
@@ -155,7 +158,7 @@ namespace RayTracerApp.Forms
         private void StartRender(object sender, DoWorkEventArgs e)
         {
             _rayTracer.OnFrameReady = _backgroundWorker.ReportProgress;
-            _rayTracer.IsCancellationRequested = () => _backgroundWorker.CancellationPending;
+            _rayTracer.CancellationToken = _cts.Token;
             _rayTracer.Render(_scene, _camera);
         }
 
@@ -178,12 +181,26 @@ namespace RayTracerApp.Forms
             };
             _backgroundWorker.DoWork += StartRender;
             _backgroundWorker.ProgressChanged += BackgroundWorkerProgressChanged;
+            _cts = new CancellationTokenSource();
         }
 
         private void newObjectButton_Click(object sender, EventArgs e)
         {
             UpdateLastModification();
-            var form = new NewObjectForm(new ObjectController(_scene))
+            var sphere = new Sphere().Load();
+            var ray = _camera.GetRay(0.5f, 0.5f);
+            var hitInfo = new HitInfo();
+            _isUiUsed = true;
+            if (_scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity) && hitInfo.Distance < 50)
+            {
+                sphere.Position = hitInfo.HitPoint;
+            }
+            else
+            {
+                sphere.Position = _camera.Position + _camera.Front.Normalized() * 4;
+            }
+            _scene.AddModel(sphere);
+            var form = new NewObjectForm(new ObjectController(_scene, sphere))
             { StartPosition = FormStartPosition.Manual, Location = Location + Size / 3 };
             _isUiUsed = true;
             form.Closed += FormOnClosed;
@@ -193,7 +210,6 @@ namespace RayTracerApp.Forms
         private void editObjectButton_Click(object sender, EventArgs e)
         {
             UpdateLastModification();
-            _scene.Preprocess();
             var ray = _camera.GetRay(0.5f, 0.5f);
             var hitInfo = new HitInfo();
             _isUiUsed = true;
@@ -221,7 +237,33 @@ namespace RayTracerApp.Forms
                 UpdateLastModification();
             }
         }
-        
+
+        private void deleteObjectButton_Click(object sender, EventArgs e)
+        {
+            UpdateLastModification();
+            _isUiUsed = true;
+            var ray = _camera.GetRay(0.5f, 0.5f);
+            var hitInfo = new HitInfo();
+            if (_scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity))
+            {
+                var model = hitInfo.ModelHit;
+                if (model is Triangle triangle) model = triangle.Parent;
+                string message =
+                $"Are you sure that you would like to delete the {model.ToString()}?";
+                const string caption = "Form Closing";
+                var result = MessageBox.Show(message, caption,
+                                             MessageBoxButtons.YesNo,
+                                             MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    _scene.Models.Remove(model);
+                    _scene.Preprocess();
+                }
+            }
+            _isUiUsed = false;
+        }
+
         private void FormOnClosed(object? sender, EventArgs e)
         {
             _isUiUsed = false;

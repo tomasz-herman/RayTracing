@@ -6,7 +6,7 @@ namespace RayTracing.Cameras
 {
     public abstract class Camera
     {
-        protected Vector3 Front { get; set; } = -Vector3.UnitZ;
+        public Vector3 Front { get; protected set; } = -Vector3.UnitZ;
         protected Vector3 Up { get; set; } = Vector3.UnitY;
         protected Vector3 Right { get; set; } = Vector3.UnitX;
         protected float Pitch { get; set; }
