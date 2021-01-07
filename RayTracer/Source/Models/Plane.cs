@@ -9,7 +9,7 @@ namespace RayTracing.Models
     public class Plane : Model
     {
         private Vector3 _normal = Vector3.UnitY;
-        private int _sideCount = 1000;
+        private int _sideCount = 100;
 
         public override Vector3 Rotation
         {

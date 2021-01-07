@@ -107,5 +107,12 @@ namespace RayTracerApp.Panels
             var nud = sender as NumericUpDown;
             Controller.GetModel().Scale = (float)nud.Value;
         }
+
+        private void tableLayoutPanel1_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
+        {
+            var rectangle = e.CellBounds;
+
+            ControlPaint.DrawBorder3D(e.Graphics, rectangle, Border3DStyle.Raised, Border3DSide.Bottom);
+        }
     }
 }

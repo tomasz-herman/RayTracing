@@ -52,21 +52,27 @@ namespace RayTracerApp.Forms
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.featuresPanel.Controller = null;
-            this.featuresPanel.Location = new System.Drawing.Point(0, 26);
+            this.featuresPanel.Location = new System.Drawing.Point(0, 28);
             this.featuresPanel.Name = "featuresPanel";
-            this.featuresPanel.Size = new System.Drawing.Size(484, 594);
+            this.featuresPanel.Size = new System.Drawing.Size(484, 592);
             this.featuresPanel.TabIndex = 7;
             // 
             // positionPanel
             // 
+            this.positionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.positionPanel.Controller = null;
-            this.positionPanel.Location = new System.Drawing.Point(0, 26);
+            this.positionPanel.Location = new System.Drawing.Point(0, 41);
             this.positionPanel.Name = "positionPanel";
-            this.positionPanel.Size = new System.Drawing.Size(484, 594);
+            this.positionPanel.Size = new System.Drawing.Size(484, 565);
             this.positionPanel.TabIndex = 8;
             // 
             // materialPanel
             // 
+            this.materialPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.materialPanel.Controller = null;
             this.materialPanel.Location = new System.Drawing.Point(0, 26);
             this.materialPanel.Name = "materialPanel";
@@ -83,7 +89,7 @@ namespace RayTracerApp.Forms
             this.Controls.Add(this.featuresPanel);
             this.Controls.Add(this.objectSelectionPanel);
             this.Name = "NewObjectForm";
-            this.Text = "NewObjectForm";
+            this.Text = "Add new model...";
             this.Controls.SetChildIndex(this.rightNextButton, 0);
             this.Controls.SetChildIndex(this.middlePreviousButton, 0);
             this.Controls.SetChildIndex(this.leftCancelButton, 0);
