@@ -58,11 +58,7 @@ namespace RayTracing.Models
                     Log.Warn($"Model {path} containing more than one mesh. Using first mesh.");
                 }
 
-                var mesh = new Mesh(new List<float>(), new List<float>(), new List<float>(), new List<int>());
-                for (int i = 0; i < scene.MeshCount; i++)
-                {
-                    mesh += ProcessMesh(scene.Meshes[i]);
-                }
+                var mesh = ProcessMesh(scene.Meshes[0]);
                 
                 var material = ProcessMaterial(scene.Materials[scene.Meshes[0].MaterialIndex], Path.GetDirectoryName(Path.GetFullPath(path)));
 
