@@ -140,6 +140,7 @@ namespace RayTracerApp.Forms
             this.newObjectButton = new System.Windows.Forms.ToolStripButton();
             this.editObjectButton = new System.Windows.Forms.ToolStripButton();
             this.deleteObjectButton = new System.Windows.Forms.ToolStripButton();
+            this.saveImageToFileButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip.SuspendLayout();
 
             this.ddButton = new ToolStripDropDownButton();
@@ -153,13 +154,20 @@ namespace RayTracerApp.Forms
 
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
                 this.ddButton,
-                this.settingsButton
+                this.settingsButton,
+                this.saveImageToFileButton
             });
 
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "toolStrip";
+
+            this.saveImageToFileButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.saveImageToFileButton.Name = "saveImageToFile";
+            this.saveImageToFileButton.Text = "Save image";
+            this.saveImageToFileButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.saveImageToFileButton.Click += new System.EventHandler(this.SaveImage_Click);
 
             this.settingsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.settingsButton.Name = "settingsButton";
@@ -196,6 +204,7 @@ namespace RayTracerApp.Forms
         private ToolStripButton newObjectButton;
         private ToolStripButton editObjectButton;
         private ToolStripButton deleteObjectButton;
+        private ToolStripButton saveImageToFileButton;
         private OpenTK.GLControl gLControl = new GLControl(new OpenTK.Graphics.GraphicsMode(32, 24, 0, 8));
         private ToolStripDropDownButton ddButton;
         private ContextMenuStrip newDeleteStrip;

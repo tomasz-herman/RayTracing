@@ -38,6 +38,8 @@ namespace RayTracerApp.Forms
         private HitInfo _contextHitInfo;
         private bool _contextHit;
 
+        private Texture _lastTexture;
+
         public void UpdateLastModification()
         {
             lastModification = DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
@@ -158,6 +160,7 @@ namespace RayTracerApp.Forms
             _cameraController.GetCamera().AspectRatio = gLControl.Width / (float) gLControl.Height;
             gLControl.Invalidate();
             _rayTracer.Resolution = gLControl.Width;
+            _lastTexture = new Texture(Width, Height);
         }
 
         private void StartRender(object sender, DoWorkEventArgs e)
@@ -174,6 +177,7 @@ namespace RayTracerApp.Forms
             texture?.Blit();
             if(!gLControl.IsDisposed)
                 gLControl.SwapBuffers();
+            _lastTexture?.CopyFrom(texture);
             texture?.Dispose();
             Text = $@"{e.ProgressPercentage}%";
         }
@@ -327,6 +331,18 @@ namespace RayTracerApp.Forms
                     newEditStrip.Show(Cursor.Position);
                 }
             }
+        }
+
+        private void SaveImage_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            DialogResult result = saveDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                String fileName = saveDialog.FileName;
+                _lastTexture.Write(fileName);
+            }
+
         }
 
         private void DeleteItem_Click(object sender, EventArgs e)
