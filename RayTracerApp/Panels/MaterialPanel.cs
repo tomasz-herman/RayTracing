@@ -223,12 +223,12 @@ namespace RayTracerApp.Panels
             }
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private void tableLayoutPanel1_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
         {
-            var rectangle = e.ClipRectangle;
+            var rectangle = e.CellBounds;
             rectangle.Inflate(-1, -1);
 
-            ControlPaint.DrawBorder3D(e.Graphics, rectangle, Border3DStyle.Raised, Border3DSide.All);
+            ControlPaint.DrawBorder3D(e.Graphics, rectangle, Border3DStyle.Raised, Border3DSide.Bottom);
         }
     }
 }

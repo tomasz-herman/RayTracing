@@ -44,6 +44,9 @@ namespace RayTracerApp.Forms
             // 
             // positionPanel
             // 
+            this.positionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.positionPanel.Controller = null;
             this.positionPanel.Location = new System.Drawing.Point(0, 26);
             this.positionPanel.Name = "positionPanel";
@@ -52,6 +55,9 @@ namespace RayTracerApp.Forms
             // 
             // materialPanel
             // 
+            this.materialPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.materialPanel.Controller = null;
             this.materialPanel.Location = new System.Drawing.Point(0, 26);
             this.materialPanel.Name = "materialPanel";
@@ -67,7 +73,7 @@ namespace RayTracerApp.Forms
             this.Controls.Add(this.positionPanel);
             this.Controls.Add(this.featuresPanel);
             this.Name = "EditObjectForm";
-            this.Text = "EditObjectForm";
+            this.Text = "Edit";
             this.Controls.SetChildIndex(this.rightNextButton, 0);
             this.Controls.SetChildIndex(this.middlePreviousButton, 0);
             this.Controls.SetChildIndex(this.leftCancelButton, 0);

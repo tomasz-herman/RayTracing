@@ -44,6 +44,7 @@ namespace RayTracerApp.Panels
             // 
             this.filePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.filePanel.Controls.Add(this.aspectPanel);
             this.filePanel.Controls.Add(this.fromFileLabel);
             this.filePanel.Controls.Add(this.customModelButton);
             this.filePanel.Location = new System.Drawing.Point(0, 0);
@@ -77,9 +78,9 @@ namespace RayTracerApp.Panels
             | System.Windows.Forms.AnchorStyles.Right)));
             this.aspectPanel.Controls.Add(this.aspectLabel);
             this.aspectPanel.Controls.Add(this.aspectRatioUpDown);
-            this.aspectPanel.Location = new System.Drawing.Point(0, 196);
+            this.aspectPanel.Location = new System.Drawing.Point(0, 0);
             this.aspectPanel.Name = "aspectPanel";
-            this.aspectPanel.Size = new System.Drawing.Size(393, 139);
+            this.aspectPanel.Size = new System.Drawing.Size(393, 153);
             this.aspectPanel.TabIndex = 0;
             // 
             // aspectLabel
@@ -120,7 +121,6 @@ namespace RayTracerApp.Panels
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.aspectPanel);
             this.Controls.Add(this.filePanel);
             this.Name = "FeaturesPanel";
             this.Size = new System.Drawing.Size(393, 410);

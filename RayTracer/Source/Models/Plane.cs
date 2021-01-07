@@ -9,7 +9,7 @@ namespace RayTracing.Models
     public class Plane : Model
     {
         private Vector3 _normal = Vector3.UnitY;
-        private int _sideCount = 1000;
+        private int _sideCount = 100;
 
         public override Vector3 Rotation
         {
@@ -128,8 +128,8 @@ namespace RayTracing.Models
                 hit.SetNormal(ref ray, ref _normal);
                 var hitVector = RotationMatrix * (hit.HitPoint - Position);
                 hit.TexCoord = new Vector2(
-                    hitVector.Z % Scale < 0 ? 1 + hitVector.Z % Scale : hitVector.Z % Scale,
-                    1 - (hitVector.X % Scale < 0 ? 1 + hitVector.X % Scale : hitVector.X % Scale));
+                    hitVector.Z / Scale,
+                    (Scale - hitVector.X) / Scale);
                 return true;
             }
 

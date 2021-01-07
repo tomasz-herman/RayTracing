@@ -30,7 +30,7 @@ namespace RayTracerApp.Panels
                 case Cylinder cylinder:
                     cylinder.Aspect = (float)aspectRatioUpDown.Value;
                     break;
-                case CustomModel cylinder:
+                case CustomModel custoModel:
                     break;
                 default:
                     throw new Exception("Bad model type");
@@ -108,6 +108,7 @@ namespace RayTracerApp.Panels
                     Controller.GetModel()?.Unload();
                     Controller.SetModel(model);
                     Controller.GetModel().Load();
+                    Controller.UpdateModelFromUI();
                 }
             }
         }

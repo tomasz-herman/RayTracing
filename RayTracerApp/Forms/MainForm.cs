@@ -25,7 +25,7 @@ namespace RayTracerApp.Forms
         private const int SWAP_TIME = 2;
         private Scene _scene = new Scene();
         private IRenderer _renderer;
-        private Camera _camera = new PerspectiveCamera(new Vector3(0, 0, 20)) {AspectRatio = 1};
+        private Camera _camera = new LensCamera(new Vector3(0, 0, 20)) {AspectRatio = 1, AutoFocus = true};
         private CameraController _cameraController;
         private IncrementalRayTracer _rayTracer;
         private BackgroundWorker _backgroundWorker;
@@ -129,7 +129,7 @@ namespace RayTracerApp.Forms
         private void OnTimerTick(object sender, EventArgs e)
         {
             _cameraController.UpdateCamera(_fpsTimer.Interval);
-
+                
             if (!rayTracingStarted)
                 if (ShouldRaytrace())
                 {
@@ -141,7 +141,7 @@ namespace RayTracerApp.Forms
                 }
                 else
                 {
-                    _renderer.Render(_scene, _camera);
+                    _renderer.Render(_scene, _cameraController.GetCamera());
                     gLControl.SwapBuffers();
                 }
         }
@@ -157,7 +157,7 @@ namespace RayTracerApp.Forms
             gLControl.Height = Height;
             gLControl.Width = Width;
             GL.Viewport(0, 0, Width, Height);
-            _camera.AspectRatio = gLControl.Width / (float) gLControl.Height;
+            _cameraController.GetCamera().AspectRatio = gLControl.Width / (float) gLControl.Height;
             gLControl.Invalidate();
             _rayTracer.Resolution = gLControl.Width;
         }
@@ -166,7 +166,7 @@ namespace RayTracerApp.Forms
         {
             _rayTracer.OnFrameReady = _backgroundWorker.ReportProgress;
             _rayTracer.CancellationToken = _cts.Token;
-            _rayTracer.Render(_scene, _camera);
+            _rayTracer.Render(_scene, _cameraController.GetCamera());
         }
 
         private void BackgroundWorkerProgressChanged(object sender,
@@ -200,12 +200,31 @@ namespace RayTracerApp.Forms
 
         private void newObjectButton_Click(object sender, EventArgs e)
         {
-            var ray = _camera.GetRay(0.5f, 0.5f);
+            var ray = _cameraController.GetCamera().GetRay(0.5f, 0.5f);
             var hitInfo = new HitInfo();
             var hit = _scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity);
             NewObjectFunction(hit, ref hitInfo);
         }
-            
+
+        private void settingsButton_Click(object sender, EventArgs e)
+        {
+            UpdateLastModification();
+            _isUiUsed = true;
+
+            var controller = new SettingsController(_camera, _rayTracer);
+            var form = new SettingsForm(controller)
+            { StartPosition = FormStartPosition.Manual, Location = Location + Size / 3 };
+
+            form.Closed += FormOnClosed;
+            form.Closed += (a, b) =>
+            {
+                _camera = controller.Camera;
+                _cameraController = new CameraController(_camera, gLControl, UpdateLastModification);
+                _rayTracer = controller.RayTracer;
+            };
+            form.Show();
+        }
+
         private void NewObjectFunction(bool hit, ref HitInfo hitInfo)
         {
             UpdateLastModification();
@@ -229,7 +248,7 @@ namespace RayTracerApp.Forms
 
         private void editObjectButton_Click(object sender, EventArgs e)
         {
-            var ray = _camera.GetRay(0.5f, 0.5f);
+            var ray = _cameraController.GetCamera().GetRay(0.5f, 0.5f);
             var hitInfo = new HitInfo();
             var hit = _scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity);
             EditObjectFunction(hit, ref hitInfo);
@@ -265,7 +284,7 @@ namespace RayTracerApp.Forms
 
         private void deleteObjectButton_Click(object sender, EventArgs e)
         {
-            var ray = _camera.GetRay(0.5f, 0.5f);
+            var ray = _cameraController.GetCamera().GetRay(0.5f, 0.5f);
             var hitInfo = new HitInfo();
             var hit = _scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity);
             DeleteObjectFunction(hit, ref hitInfo);
@@ -281,7 +300,7 @@ namespace RayTracerApp.Forms
                 if (model is Triangle triangle) model = triangle.Parent;
                 string message =
                 $"Are you sure that you would like to delete the {model}?";
-                const string caption = "Form Closing";
+                const string caption = "Delete object";
                 var result = MessageBox.Show(message, caption,
                                              MessageBoxButtons.YesNo,
                                              MessageBoxIcon.Question);
@@ -303,7 +322,7 @@ namespace RayTracerApp.Forms
                 var height = (float)gLControl.Height;
                 var u = e.X / width;
                 var v = 1 - e.Y / height;
-                var ray = _camera.GetRay(u, v);
+                var ray = _cameraController.GetCamera().GetRay(u, v);
                 _contextHitInfo = new HitInfo();
                 _contextHit = _scene.HitTest(ray, ref _contextHitInfo, 0.001f, float.PositiveInfinity);
                 

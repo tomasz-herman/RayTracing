@@ -150,6 +150,7 @@ namespace RayTracerApp.Forms
         private void InitializeToolstrip()
         {
             this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.settingsButton = new System.Windows.Forms.ToolStripButton();
             this.newObjectButton = new System.Windows.Forms.ToolStripButton();
             this.editObjectButton = new System.Windows.Forms.ToolStripButton();
             this.deleteObjectButton = new System.Windows.Forms.ToolStripButton();
@@ -165,13 +166,20 @@ namespace RayTracerApp.Forms
             });
 
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                this.ddButton
+                this.ddButton,
+                this.settingsButton
             });
 
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "toolStrip";
+
+            this.settingsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.settingsButton.Name = "settingsButton";
+            this.settingsButton.Text = "Settings";
+            this.settingsButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
 
             this.newObjectButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.newObjectButton.Name = "newObjectButton";
@@ -198,6 +206,7 @@ namespace RayTracerApp.Forms
         }
 
         private ToolStrip toolStrip;
+        private ToolStripButton settingsButton;
         private ToolStripButton newObjectButton;
         private ToolStripButton editObjectButton;
         private ToolStripButton deleteObjectButton;
