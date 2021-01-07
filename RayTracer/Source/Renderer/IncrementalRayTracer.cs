@@ -11,8 +11,8 @@ namespace RayTracing
     {
         public Action<int, object> OnFrameReady { get; set; }
         public CancellationToken CancellationToken { get; set; }
-
         public int SamplesRenderStep { get; set; }
+
         public abstract void Render(Scene scene, Camera camera);
 
         public IncrementalRayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution, int samplesRenderStep) :

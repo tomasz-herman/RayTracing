@@ -40,7 +40,6 @@ namespace RayTracerApp.Forms
             this.samplesUpDown = new System.Windows.Forms.NumericUpDown();
             this.updateUpDown = new System.Windows.Forms.NumericUpDown();
             this.bloomUpDown = new System.Windows.Forms.NumericUpDown();
-            this.gammaUpDown = new System.Windows.Forms.NumericUpDown();
             this.recursionCheckbox = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
             this.recLevelUpDown = new System.Windows.Forms.NumericUpDown();
@@ -59,10 +58,12 @@ namespace RayTracerApp.Forms
             this.lensCameraRadioButton = new System.Windows.Forms.RadioButton();
             this.perspectiveCameraRadioButton = new System.Windows.Forms.RadioButton();
             this.lensCameraLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.label17 = new System.Windows.Forms.Label();
             this.lensRadiusUpDown = new System.Windows.Forms.NumericUpDown();
             this.focusDistanceUpDown = new System.Windows.Forms.NumericUpDown();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.autoFocusCheckBox = new System.Windows.Forms.CheckBox();
             this.fovUpDown = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -71,15 +72,14 @@ namespace RayTracerApp.Forms
             this.label5 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.finishButton = new System.Windows.Forms.Button();
-            this.label17 = new System.Windows.Forms.Label();
-            this.autoFocusCheckBox = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.gammaCheckBox = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.samplesUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updateUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bloomUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gammaUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.recLevelUpDown)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -130,6 +130,7 @@ namespace RayTracerApp.Forms
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Controls.Add(this.gammaCheckBox, 1, 2);
             this.tableLayoutPanel4.Controls.Add(this.label16, 0, 5);
             this.tableLayoutPanel4.Controls.Add(this.label9, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.label10, 0, 1);
@@ -138,7 +139,6 @@ namespace RayTracerApp.Forms
             this.tableLayoutPanel4.Controls.Add(this.samplesUpDown, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.updateUpDown, 1, 1);
             this.tableLayoutPanel4.Controls.Add(this.bloomUpDown, 1, 3);
-            this.tableLayoutPanel4.Controls.Add(this.gammaUpDown, 1, 2);
             this.tableLayoutPanel4.Controls.Add(this.recursionCheckbox, 1, 4);
             this.tableLayoutPanel4.Controls.Add(this.label13, 0, 4);
             this.tableLayoutPanel4.Controls.Add(this.recLevelUpDown, 1, 5);
@@ -151,6 +151,7 @@ namespace RayTracerApp.Forms
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(643, 303);
             this.tableLayoutPanel4.TabIndex = 0;
             this.tableLayoutPanel4.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tableLayoutPanel_CellPaint);
@@ -262,29 +263,20 @@ namespace RayTracerApp.Forms
             // 
             this.bloomUpDown.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.bloomUpDown.Location = new System.Drawing.Point(422, 163);
+            this.bloomUpDown.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             this.bloomUpDown.Name = "bloomUpDown";
             this.bloomUpDown.Size = new System.Drawing.Size(120, 23);
             this.bloomUpDown.TabIndex = 11;
             this.bloomUpDown.Value = new decimal(new int[] {
-            30,
+            5,
             0,
             0,
             0});
             this.bloomUpDown.ValueChanged += new System.EventHandler(this.bloomUpDown_ValueChanged);
-            // 
-            // gammaUpDown
-            // 
-            this.gammaUpDown.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.gammaUpDown.Location = new System.Drawing.Point(422, 113);
-            this.gammaUpDown.Name = "gammaUpDown";
-            this.gammaUpDown.Size = new System.Drawing.Size(120, 23);
-            this.gammaUpDown.TabIndex = 12;
-            this.gammaUpDown.Value = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.gammaUpDown.ValueChanged += new System.EventHandler(this.gammaUpDown_ValueChanged);
             // 
             // recursionCheckbox
             // 
@@ -544,6 +536,17 @@ namespace RayTracerApp.Forms
             this.lensCameraLayoutPanel.Size = new System.Drawing.Size(152, 119);
             this.lensCameraLayoutPanel.TabIndex = 3;
             // 
+            // label17
+            // 
+            this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(5, 91);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(65, 15);
+            this.label17.TabIndex = 9;
+            this.label17.Text = "Auto focus";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // lensRadiusUpDown
             // 
             this.lensRadiusUpDown.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -620,6 +623,17 @@ namespace RayTracerApp.Forms
             this.label15.TabIndex = 8;
             this.label15.Text = "Focus distance";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // autoFocusCheckBox
+            // 
+            this.autoFocusCheckBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.autoFocusCheckBox.AutoSize = true;
+            this.autoFocusCheckBox.Location = new System.Drawing.Point(106, 91);
+            this.autoFocusCheckBox.Name = "autoFocusCheckBox";
+            this.autoFocusCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.autoFocusCheckBox.TabIndex = 11;
+            this.autoFocusCheckBox.UseVisualStyleBackColor = true;
+            this.autoFocusCheckBox.CheckedChanged += new System.EventHandler(this.autoFocusCheckBox_CheckedChanged);
             // 
             // fovUpDown
             // 
@@ -705,27 +719,26 @@ namespace RayTracerApp.Forms
             this.finishButton.UseVisualStyleBackColor = true;
             this.finishButton.Click += new System.EventHandler(this.finishButton_Click);
             // 
-            // label17
+            // checkBox1
             // 
-            this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(5, 91);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(65, 15);
-            this.label17.TabIndex = 9;
-            this.label17.Text = "Auto focus";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(474, 251);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(15, 14);
+            this.checkBox1.TabIndex = 15;
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // autoFocusCheckBox
+            // gammaCheckBox
             // 
-            this.autoFocusCheckBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.autoFocusCheckBox.AutoSize = true;
-            this.autoFocusCheckBox.Location = new System.Drawing.Point(106, 91);
-            this.autoFocusCheckBox.Name = "autoFocusCheckBox";
-            this.autoFocusCheckBox.Size = new System.Drawing.Size(15, 14);
-            this.autoFocusCheckBox.TabIndex = 11;
-            this.autoFocusCheckBox.UseVisualStyleBackColor = true;
-            this.autoFocusCheckBox.CheckedChanged += new System.EventHandler(this.autoFocusCheckBox_CheckedChanged);
+            this.gammaCheckBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.gammaCheckBox.AutoSize = true;
+            this.gammaCheckBox.Location = new System.Drawing.Point(474, 118);
+            this.gammaCheckBox.Name = "gammaCheckBox";
+            this.gammaCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.gammaCheckBox.TabIndex = 15;
+            this.gammaCheckBox.UseVisualStyleBackColor = true;
+            this.gammaCheckBox.CheckedChanged += new System.EventHandler(this.gammaCheckBox_CheckedChanged);
             // 
             // SettingsForm
             // 
@@ -743,7 +756,6 @@ namespace RayTracerApp.Forms
             ((System.ComponentModel.ISupportInitialize)(this.samplesUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.updateUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bloomUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gammaUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.recLevelUpDown)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -797,7 +809,6 @@ namespace RayTracerApp.Forms
         private System.Windows.Forms.NumericUpDown updateUpDown;
         private System.Windows.Forms.CheckBox recursionCheckbox;
         private System.Windows.Forms.NumericUpDown bloomUpDown;
-        private System.Windows.Forms.NumericUpDown gammaUpDown;
         private System.Windows.Forms.TableLayoutPanel lensCameraLayoutPanel;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.NumericUpDown lensRadiusUpDown;
@@ -809,5 +820,7 @@ namespace RayTracerApp.Forms
         private System.Windows.Forms.Button finishButton;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.CheckBox autoFocusCheckBox;
+        private System.Windows.Forms.CheckBox gammaCheckBox;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

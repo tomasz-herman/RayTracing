@@ -64,7 +64,7 @@ namespace RayTracerApp.Forms
         {
             GL.Enable(EnableCap.DepthTest);
             _renderer = new Renderer();
-            _rayTracer = new SamplesRayTracer(8, 10, Vec2Sampling.Jittered, gLControl.Width, 1);
+            _rayTracer = new SamplesRayTracer(8, 1000, Vec2Sampling.Jittered, gLControl.Width, 10);
             _cameraController = new CameraController(_camera, gLControl, UpdateLastModification);
             _scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.LightSkyBlue)};
             _scene.AddModel(new Sphere
@@ -181,7 +181,6 @@ namespace RayTracerApp.Forms
                 gLControl.SwapBuffers();
             _lastTexture?.CopyFrom(texture);
             texture?.Dispose();
-            Text = $@"{e.ProgressPercentage}%";
             progressBar.Value = e.ProgressPercentage;
         }
 

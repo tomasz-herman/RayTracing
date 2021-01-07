@@ -41,7 +41,7 @@ namespace RayTracerApp.Forms
 
             updateUpDown.Value = rayTracer.SamplesRenderStep;
 
-            gammaUpDown.Value = rayTracer.GammaCorrection;
+            gammaCheckBox.Checked = _controller.RayTracer.GammaCorrection;
 
             bloomUpDown.Value = rayTracer.Bloom;
 
@@ -87,11 +87,6 @@ namespace RayTracerApp.Forms
         private void bloomUpDown_ValueChanged(object sender, EventArgs e)
         {
             _controller.RayTracer.Bloom = (int)bloomUpDown.Value;
-        }
-
-        private void gammaUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            _controller.RayTracer.GammaCorrection = (int)gammaUpDown.Value;
         }
 
         private void updateUpDown_ValueChanged(object sender, EventArgs e)
@@ -200,6 +195,11 @@ namespace RayTracerApp.Forms
             {
                 camera.AutoFocus = autoFocusCheckBox.Checked;
             }
+        }
+
+        private void gammaCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            _controller.RayTracer.GammaCorrection = gammaCheckBox.Checked;
         }
     }
 }

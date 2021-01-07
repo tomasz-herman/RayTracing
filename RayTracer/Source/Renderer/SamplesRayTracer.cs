@@ -36,7 +36,7 @@ namespace RayTracing
                 }
                 else
                 {
-                    lensCamera.FocusDistance = 999999f;
+                    lensCamera.FocusDistance = 100000f;
                 }
             }
 
@@ -58,7 +58,7 @@ namespace RayTracing
                             float v = (j + sample.Y) / (height - 1);
                             Ray ray = camera.GetRay(u, v);
                             var shade = Shade(ray, scene, MaxDepth);
-                            image.Bloom(shade, i, j, (int) shade.GetBrightness());
+                            image.Bloom(shade, i, j, (int) shade.GetBrightness(), Bloom);
                             image[i, j] += shade;
                         }
                     });
@@ -75,7 +75,10 @@ namespace RayTracing
                 {
                     var output = new Texture(image);
                     output.Process(c => (c / (k + 1)).Clamp());
-                    output.AutoGammaCorrect();
+                    if (GammaCorrection)
+                    {
+                        output.AutoGammaCorrect();
+                    }
                     var percentage = (k + 1) * 100 / Samples;
                     OnFrameReady?.Invoke(percentage, output);
                 }
