@@ -64,7 +64,7 @@ namespace RayTracerApp.Forms
         {
             GL.Enable(EnableCap.DepthTest);
             _renderer = new Renderer();
-            _rayTracer = new SamplesRayTracer(8, 1024, Vec2Sampling.Jittered, gLControl.Width, 8);
+            _rayTracer = new SamplesRayTracer(8, 10, Vec2Sampling.Jittered, gLControl.Width, 1);
             _cameraController = new CameraController(_camera, gLControl, UpdateLastModification);
             _scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.LightSkyBlue)};
             _scene.AddModel(new Sphere
@@ -137,6 +137,8 @@ namespace RayTracerApp.Forms
                 {
                     InitializeBackgroundWorker();
                     _backgroundWorker.RunWorkerAsync();
+                    progressBar.Value = 0;
+                    progressBar.Visible = true;
                     rayTracingStarted = true;
                 }
                 else
@@ -180,6 +182,7 @@ namespace RayTracerApp.Forms
             _lastTexture?.CopyFrom(texture);
             texture?.Dispose();
             Text = $@"{e.ProgressPercentage}%";
+            progressBar.Value = e.ProgressPercentage;
         }
 
         private void InitializeBackgroundWorker()
@@ -191,6 +194,11 @@ namespace RayTracerApp.Forms
             };
             _backgroundWorker.DoWork += StartRender;
             _backgroundWorker.ProgressChanged += BackgroundWorkerProgressChanged;
+            _backgroundWorker.RunWorkerCompleted += (o,args) =>
+            {
+                progressBar.Visible = false;
+                gLControl.SwapBuffers();
+            };
             _cts = new CancellationTokenSource();
         }
 
