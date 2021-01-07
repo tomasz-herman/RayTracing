@@ -53,6 +53,7 @@ namespace RayTracerApp.Forms
             {
                 lensRadiusUpDown.Value = (decimal)lc.LensRadius;
                 focusDistanceUpDown.Value = (decimal)lc.FocusDistance;
+                autoFocusCheckBox.Checked = lc.AutoFocus;
                 lensCameraLayoutPanel.Visible = true;
             }
             else
@@ -185,6 +186,20 @@ namespace RayTracerApp.Forms
         private void recLevelUpDown_ValueChanged(object sender, EventArgs e)
         {
             _controller.RayTracer.MaxDepth = (int)recLevelUpDown.Value;
+        }
+
+        private void finishButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void autoFocusCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            var camera = (_controller.Camera as LensCamera);
+            if (camera != null)
+            {
+                camera.AutoFocus = autoFocusCheckBox.Checked;
+            }
         }
     }
 }

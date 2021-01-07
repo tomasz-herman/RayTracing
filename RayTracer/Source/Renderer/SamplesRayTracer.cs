@@ -20,6 +20,22 @@ namespace RayTracing
         public override void Render(Scene scene, Camera camera)
         {
             scene.Preprocess();
+
+            if (camera is LensCamera lensCamera && lensCamera.AutoFocus)
+            {
+                var ray = lensCamera.GetRay(0.5f, 0.5f);
+                var hitInfo = new HitInfo();
+                var hit = scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity);
+                if(hit)
+                {
+                    lensCamera.FocusDistance = hitInfo.Distance;
+                }
+                else
+                {
+                    lensCamera.FocusDistance = 999999f;
+                }
+            }
+
             int width = Resolution;
             int height = (int) (width / camera.AspectRatio);
             var image = new Texture(width, height);

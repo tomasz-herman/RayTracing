@@ -32,7 +32,7 @@ namespace RayTracerApp.Forms
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.label13 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -40,8 +40,10 @@ namespace RayTracerApp.Forms
             this.samplesUpDown = new System.Windows.Forms.NumericUpDown();
             this.updateUpDown = new System.Windows.Forms.NumericUpDown();
             this.bloomUpDown = new System.Windows.Forms.NumericUpDown();
-            this.recursionCheckbox = new System.Windows.Forms.CheckBox();
             this.gammaUpDown = new System.Windows.Forms.NumericUpDown();
+            this.recursionCheckbox = new System.Windows.Forms.CheckBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.recLevelUpDown = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -57,10 +59,10 @@ namespace RayTracerApp.Forms
             this.lensCameraRadioButton = new System.Windows.Forms.RadioButton();
             this.perspectiveCameraRadioButton = new System.Windows.Forms.RadioButton();
             this.lensCameraLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.label15 = new System.Windows.Forms.Label();
             this.lensRadiusUpDown = new System.Windows.Forms.NumericUpDown();
             this.focusDistanceUpDown = new System.Windows.Forms.NumericUpDown();
             this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.fovUpDown = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -68,8 +70,9 @@ namespace RayTracerApp.Forms
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label16 = new System.Windows.Forms.Label();
-            this.recLevelUpDown = new System.Windows.Forms.NumericUpDown();
+            this.finishButton = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.autoFocusCheckBox = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -77,6 +80,7 @@ namespace RayTracerApp.Forms
             ((System.ComponentModel.ISupportInitialize)(this.updateUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bloomUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gammaUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.recLevelUpDown)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -86,31 +90,34 @@ namespace RayTracerApp.Forms
             ((System.ComponentModel.ISupportInitialize)(this.lensRadiusUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.focusDistanceUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fovUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.recLevelUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(611, 586);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(664, 673);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.tableLayoutPanel4);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(3, 296);
+            this.groupBox2.Location = new System.Drawing.Point(3, 339);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(605, 287);
+            this.groupBox2.Size = new System.Drawing.Size(658, 331);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ray Tracer";
@@ -135,7 +142,7 @@ namespace RayTracerApp.Forms
             this.tableLayoutPanel4.Controls.Add(this.recursionCheckbox, 1, 4);
             this.tableLayoutPanel4.Controls.Add(this.label13, 0, 4);
             this.tableLayoutPanel4.Controls.Add(this.recLevelUpDown, 1, 5);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(6, 22);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(9, 22);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 6;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
@@ -144,26 +151,26 @@ namespace RayTracerApp.Forms
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(587, 256);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(643, 303);
             this.tableLayoutPanel4.TabIndex = 0;
             this.tableLayoutPanel4.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tableLayoutPanel_CellPaint);
             // 
-            // label13
+            // label16
             // 
-            this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(30, 181);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(232, 15);
-            this.label13.TabIndex = 5;
-            this.label13.Text = "Ray tracing by recursion levels (unoptimal)";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(116, 269);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(88, 15);
+            this.label16.TabIndex = 13;
+            this.label16.Text = "Recursion leves";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label9
             // 
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(121, 13);
+            this.label9.Location = new System.Drawing.Point(135, 17);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(51, 15);
             this.label9.TabIndex = 1;
@@ -174,7 +181,7 @@ namespace RayTracerApp.Forms
             // 
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(96, 55);
+            this.label10.Location = new System.Drawing.Point(110, 67);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(101, 15);
             this.label10.TabIndex = 2;
@@ -185,7 +192,7 @@ namespace RayTracerApp.Forms
             // 
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(93, 97);
+            this.label11.Location = new System.Drawing.Point(107, 117);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(106, 15);
             this.label11.TabIndex = 3;
@@ -196,7 +203,7 @@ namespace RayTracerApp.Forms
             // 
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(125, 139);
+            this.label12.Location = new System.Drawing.Point(139, 167);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(42, 15);
             this.label12.TabIndex = 4;
@@ -206,7 +213,7 @@ namespace RayTracerApp.Forms
             // samplesUpDown
             // 
             this.samplesUpDown.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.samplesUpDown.Location = new System.Drawing.Point(380, 9);
+            this.samplesUpDown.Location = new System.Drawing.Point(422, 13);
             this.samplesUpDown.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -230,7 +237,7 @@ namespace RayTracerApp.Forms
             // updateUpDown
             // 
             this.updateUpDown.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.updateUpDown.Location = new System.Drawing.Point(380, 51);
+            this.updateUpDown.Location = new System.Drawing.Point(422, 63);
             this.updateUpDown.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -254,7 +261,7 @@ namespace RayTracerApp.Forms
             // bloomUpDown
             // 
             this.bloomUpDown.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.bloomUpDown.Location = new System.Drawing.Point(380, 135);
+            this.bloomUpDown.Location = new System.Drawing.Point(422, 163);
             this.bloomUpDown.Name = "bloomUpDown";
             this.bloomUpDown.Size = new System.Drawing.Size(120, 23);
             this.bloomUpDown.TabIndex = 11;
@@ -265,21 +272,10 @@ namespace RayTracerApp.Forms
             0});
             this.bloomUpDown.ValueChanged += new System.EventHandler(this.bloomUpDown_ValueChanged);
             // 
-            // recursionCheckbox
-            // 
-            this.recursionCheckbox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.recursionCheckbox.AutoSize = true;
-            this.recursionCheckbox.Location = new System.Drawing.Point(432, 182);
-            this.recursionCheckbox.Name = "recursionCheckbox";
-            this.recursionCheckbox.Size = new System.Drawing.Size(15, 14);
-            this.recursionCheckbox.TabIndex = 10;
-            this.recursionCheckbox.UseVisualStyleBackColor = true;
-            this.recursionCheckbox.CheckedChanged += new System.EventHandler(this.recursionCheckbox_CheckedChanged);
-            // 
             // gammaUpDown
             // 
             this.gammaUpDown.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.gammaUpDown.Location = new System.Drawing.Point(380, 93);
+            this.gammaUpDown.Location = new System.Drawing.Point(422, 113);
             this.gammaUpDown.Name = "gammaUpDown";
             this.gammaUpDown.Size = new System.Drawing.Size(120, 23);
             this.gammaUpDown.TabIndex = 12;
@@ -290,13 +286,59 @@ namespace RayTracerApp.Forms
             0});
             this.gammaUpDown.ValueChanged += new System.EventHandler(this.gammaUpDown_ValueChanged);
             // 
+            // recursionCheckbox
+            // 
+            this.recursionCheckbox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.recursionCheckbox.AutoSize = true;
+            this.recursionCheckbox.Location = new System.Drawing.Point(474, 218);
+            this.recursionCheckbox.Name = "recursionCheckbox";
+            this.recursionCheckbox.Size = new System.Drawing.Size(15, 14);
+            this.recursionCheckbox.TabIndex = 10;
+            this.recursionCheckbox.UseVisualStyleBackColor = true;
+            this.recursionCheckbox.CheckedChanged += new System.EventHandler(this.recursionCheckbox_CheckedChanged);
+            // 
+            // label13
+            // 
+            this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(44, 217);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(232, 15);
+            this.label13.TabIndex = 5;
+            this.label13.Text = "Ray tracing by recursion levels (unoptimal)";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // recLevelUpDown
+            // 
+            this.recLevelUpDown.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.recLevelUpDown.Location = new System.Drawing.Point(422, 265);
+            this.recLevelUpDown.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.recLevelUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.recLevelUpDown.Name = "recLevelUpDown";
+            this.recLevelUpDown.Size = new System.Drawing.Size(120, 23);
+            this.recLevelUpDown.TabIndex = 14;
+            this.recLevelUpDown.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.recLevelUpDown.ValueChanged += new System.EventHandler(this.recLevelUpDown_ValueChanged);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tableLayoutPanel2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(605, 287);
+            this.groupBox1.Size = new System.Drawing.Size(658, 330);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Camera";
@@ -318,10 +360,10 @@ namespace RayTracerApp.Forms
             this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 22);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(590, 259);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.47826F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.04348F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.47826F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(643, 302);
             this.tableLayoutPanel2.TabIndex = 0;
             this.tableLayoutPanel2.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tableLayoutPanel_CellPaint);
             // 
@@ -333,9 +375,9 @@ namespace RayTracerApp.Forms
             this.panel2.Controls.Add(this.randomRadioButton);
             this.panel2.Controls.Add(this.centerRadioButton);
             this.panel2.Controls.Add(this.jitteredRadioButton);
-            this.panel2.Location = new System.Drawing.Point(298, 175);
+            this.panel2.Location = new System.Drawing.Point(324, 173);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(289, 81);
+            this.panel2.Size = new System.Drawing.Size(316, 126);
             this.panel2.TabIndex = 5;
             // 
             // randomRadioButton
@@ -386,7 +428,7 @@ namespace RayTracerApp.Forms
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(110, 35);
+            this.label6.Location = new System.Drawing.Point(123, 58);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(74, 15);
             this.label6.TabIndex = 0;
@@ -397,7 +439,7 @@ namespace RayTracerApp.Forms
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(111, 121);
+            this.label7.Location = new System.Drawing.Point(124, 143);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(73, 15);
             this.label7.TabIndex = 1;
@@ -408,7 +450,7 @@ namespace RayTracerApp.Forms
             // 
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(119, 208);
+            this.label8.Location = new System.Drawing.Point(132, 228);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(57, 15);
             this.label8.TabIndex = 2;
@@ -425,12 +467,12 @@ namespace RayTracerApp.Forms
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.lensCameraLayoutPanel, 1, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(298, 3);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(324, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(289, 80);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 125F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(316, 125);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
             // panel1
@@ -443,7 +485,7 @@ namespace RayTracerApp.Forms
             this.panel1.Controls.Add(this.perspectiveCameraRadioButton);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(138, 74);
+            this.panel1.Size = new System.Drawing.Size(152, 119);
             this.panel1.TabIndex = 2;
             // 
             // ortographicCameraRadioButton
@@ -481,32 +523,26 @@ namespace RayTracerApp.Forms
             // 
             // lensCameraLayoutPanel
             // 
+            this.lensCameraLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lensCameraLayoutPanel.ColumnCount = 2;
             this.lensCameraLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.lensCameraLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.lensCameraLayoutPanel.Controls.Add(this.label15, 0, 1);
+            this.lensCameraLayoutPanel.Controls.Add(this.label17, 0, 2);
             this.lensCameraLayoutPanel.Controls.Add(this.lensRadiusUpDown, 1, 0);
             this.lensCameraLayoutPanel.Controls.Add(this.focusDistanceUpDown, 1, 1);
             this.lensCameraLayoutPanel.Controls.Add(this.label14, 0, 0);
-            this.lensCameraLayoutPanel.Location = new System.Drawing.Point(147, 3);
+            this.lensCameraLayoutPanel.Controls.Add(this.label15, 0, 1);
+            this.lensCameraLayoutPanel.Controls.Add(this.autoFocusCheckBox, 1, 2);
+            this.lensCameraLayoutPanel.Location = new System.Drawing.Point(161, 3);
             this.lensCameraLayoutPanel.Name = "lensCameraLayoutPanel";
-            this.lensCameraLayoutPanel.RowCount = 2;
-            this.lensCameraLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.lensCameraLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.lensCameraLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.lensCameraLayoutPanel.Size = new System.Drawing.Size(139, 74);
+            this.lensCameraLayoutPanel.RowCount = 3;
+            this.lensCameraLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.lensCameraLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.lensCameraLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.lensCameraLayoutPanel.Size = new System.Drawing.Size(152, 119);
             this.lensCameraLayoutPanel.TabIndex = 3;
-            // 
-            // label15
-            // 
-            this.label15.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(9, 40);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(51, 30);
-            this.label15.TabIndex = 8;
-            this.label15.Text = "Focus distance";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lensRadiusUpDown
             // 
@@ -516,21 +552,26 @@ namespace RayTracerApp.Forms
             1,
             0,
             0,
-            65536});
-            this.lensRadiusUpDown.Location = new System.Drawing.Point(72, 7);
+            131072});
+            this.lensRadiusUpDown.Location = new System.Drawing.Point(89, 8);
+            this.lensRadiusUpDown.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             this.lensRadiusUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             131072});
             this.lensRadiusUpDown.Name = "lensRadiusUpDown";
-            this.lensRadiusUpDown.Size = new System.Drawing.Size(64, 23);
+            this.lensRadiusUpDown.Size = new System.Drawing.Size(50, 23);
             this.lensRadiusUpDown.TabIndex = 5;
             this.lensRadiusUpDown.Value = new decimal(new int[] {
-            30,
+            25,
             0,
             0,
-            0});
+            131072});
             this.lensRadiusUpDown.ValueChanged += new System.EventHandler(this.lensRadiusUpDown_ValueChanged);
             // 
             // focusDistanceUpDown
@@ -542,17 +583,17 @@ namespace RayTracerApp.Forms
             0,
             0,
             65536});
-            this.focusDistanceUpDown.Location = new System.Drawing.Point(72, 44);
-            this.focusDistanceUpDown.Minimum = new decimal(new int[] {
-            1,
+            this.focusDistanceUpDown.Location = new System.Drawing.Point(89, 47);
+            this.focusDistanceUpDown.Maximum = new decimal(new int[] {
+            9999999,
             0,
             0,
-            131072});
+            0});
             this.focusDistanceUpDown.Name = "focusDistanceUpDown";
-            this.focusDistanceUpDown.Size = new System.Drawing.Size(64, 23);
+            this.focusDistanceUpDown.Size = new System.Drawing.Size(50, 23);
             this.focusDistanceUpDown.TabIndex = 6;
             this.focusDistanceUpDown.Value = new decimal(new int[] {
-            30,
+            5,
             0,
             0,
             0});
@@ -562,24 +603,35 @@ namespace RayTracerApp.Forms
             // 
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(13, 11);
+            this.label14.Location = new System.Drawing.Point(17, 12);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(42, 15);
             this.label14.TabIndex = 7;
             this.label14.Text = "Radius";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label15
+            // 
+            this.label15.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(12, 43);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(51, 30);
+            this.label15.TabIndex = 8;
+            this.label15.Text = "Focus distance";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // fovUpDown
             // 
             this.fovUpDown.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.fovUpDown.Location = new System.Drawing.Point(382, 117);
+            this.fovUpDown.Location = new System.Drawing.Point(422, 139);
             this.fovUpDown.Maximum = new decimal(new int[] {
-            170,
+            90,
             0,
             0,
             0});
             this.fovUpDown.Minimum = new decimal(new int[] {
-            30,
+            10,
             0,
             0,
             0});
@@ -642,46 +694,45 @@ namespace RayTracerApp.Forms
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "linkLabel1";
             // 
-            // label16
+            // finishButton
             // 
-            this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(102, 225);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(88, 15);
-            this.label16.TabIndex = 13;
-            this.label16.Text = "Recursion leves";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.finishButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.finishButton.Location = new System.Drawing.Point(580, 684);
+            this.finishButton.Name = "finishButton";
+            this.finishButton.Size = new System.Drawing.Size(75, 23);
+            this.finishButton.TabIndex = 1;
+            this.finishButton.Text = "Finish";
+            this.finishButton.UseVisualStyleBackColor = true;
+            this.finishButton.Click += new System.EventHandler(this.finishButton_Click);
             // 
-            // recLevelUpDown
+            // label17
             // 
-            this.recLevelUpDown.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.recLevelUpDown.Location = new System.Drawing.Point(380, 221);
-            this.recLevelUpDown.Maximum = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
-            this.recLevelUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.recLevelUpDown.Name = "recLevelUpDown";
-            this.recLevelUpDown.Size = new System.Drawing.Size(120, 23);
-            this.recLevelUpDown.TabIndex = 14;
-            this.recLevelUpDown.Value = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            this.recLevelUpDown.ValueChanged += new System.EventHandler(this.recLevelUpDown_ValueChanged);
+            this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(5, 91);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(65, 15);
+            this.label17.TabIndex = 9;
+            this.label17.Text = "Auto focus";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // autoFocusCheckBox
+            // 
+            this.autoFocusCheckBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.autoFocusCheckBox.AutoSize = true;
+            this.autoFocusCheckBox.Location = new System.Drawing.Point(106, 91);
+            this.autoFocusCheckBox.Name = "autoFocusCheckBox";
+            this.autoFocusCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.autoFocusCheckBox.TabIndex = 11;
+            this.autoFocusCheckBox.UseVisualStyleBackColor = true;
+            this.autoFocusCheckBox.CheckedChanged += new System.EventHandler(this.autoFocusCheckBox_CheckedChanged);
             // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(611, 586);
+            this.ClientSize = new System.Drawing.Size(664, 719);
+            this.Controls.Add(this.finishButton);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "SettingsForm";
             this.Text = "Settings";
@@ -693,6 +744,7 @@ namespace RayTracerApp.Forms
             ((System.ComponentModel.ISupportInitialize)(this.updateUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bloomUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gammaUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.recLevelUpDown)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -706,7 +758,6 @@ namespace RayTracerApp.Forms
             ((System.ComponentModel.ISupportInitialize)(this.lensRadiusUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.focusDistanceUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fovUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.recLevelUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -755,5 +806,8 @@ namespace RayTracerApp.Forms
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.NumericUpDown recLevelUpDown;
         private System.Windows.Forms.NumericUpDown recursionLevelUpDown;
+        private System.Windows.Forms.Button finishButton;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.CheckBox autoFocusCheckBox;
     }
 }

@@ -25,7 +25,7 @@ namespace RayTracerApp.Forms
         private const int SWAP_TIME = 2;
         private Scene _scene = new Scene();
         private IRenderer _renderer;
-        private Camera _camera = new PerspectiveCamera(new Vector3(0, 0, 20)) {AspectRatio = 1};
+        private Camera _camera = new LensCamera(new Vector3(0, 0, 20)) {AspectRatio = 1, AutoFocus = true};
         private CameraController _cameraController;
         private IncrementalRayTracer _rayTracer;
         private BackgroundWorker _backgroundWorker;
