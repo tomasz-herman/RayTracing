@@ -13,6 +13,10 @@ namespace RayTracing
         public Func<int, List<Vector2>> Sampling { get; set; }
         public int Resolution { get; set; }
 
+        public int Bloom { get; set; } = 1;
+
+        public bool GammaCorrection { get; set; } = true;
+
         public RayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution)
         {
             MaxDepth = maxDepth;

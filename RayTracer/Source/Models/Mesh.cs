@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.Intrinsics.X86;
 using OpenTK;
 using OpenTK.Graphics.OpenGL4;
 
@@ -34,7 +33,10 @@ namespace RayTracing.Models
             GL.BindVertexArray(vaoId);
             LoadDataBuffer(Positions, POSITIONS_INDEX, 3);
             LoadDataBuffer(Normals, NORMALS_INDEX, 3);
-            LoadDataBuffer(TexCoords, TEX_COORDS_INDEX, 2);
+            if (TexCoords != null && TexCoords.Count > 0)
+            {
+                LoadDataBuffer(TexCoords, TEX_COORDS_INDEX, 2);
+            }
             LoadIndexBuffer(Indices);
         }
 
@@ -114,9 +116,13 @@ namespace RayTracing.Models
 
         public Vector2 GetTexCoord(int index)
         {
-            float vx = TexCoords[2 * Indices[index] + 0];
-            float vy = TexCoords[2 * Indices[index] + 1];
-            return new Vector2(vx, vy);
+            if (TexCoords != null && TexCoords.Count > 2 * Indices[index] + 1)
+            {
+                float vx = TexCoords[2 * Indices[index] + 0];
+                float vy = TexCoords[2 * Indices[index] + 1];
+                return new Vector2(vx, vy);
+            }
+            return new Vector2();
         }
 
         public static Mesh operator +(Mesh first, Mesh second)

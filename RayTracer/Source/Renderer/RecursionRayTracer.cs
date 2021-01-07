@@ -8,8 +8,8 @@ namespace RayTracing
 {
     public class RecursionRayTracer : SamplesRayTracer
     {
-        public RecursionRayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution) : base(
-            maxDepth, samples, sampling, resolution, 1)
+        public RecursionRayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution, int renderStep) : base(
+            maxDepth, samples, sampling, resolution, renderStep)
         {
         }
 

@@ -51,7 +51,16 @@ namespace RayTracing.Materials
 
         public Color this[float u, float v]
         {
-            get => _data[(int) (u * (Width - 1)), (int) (v * (Height - 1))];
+            get
+            {
+                if (u < 0 || u > 1 || v < 0 || v > 1)
+                {
+                    u -= (float) Math.Floor(u);
+                    v -= (float) Math.Floor(v);
+                }
+
+                return _data[(int) (u * (Width - 1)), (int) (v * (Height - 1))];
+            }
         }
 
         public Color this[int w, int h]
@@ -60,23 +69,46 @@ namespace RayTracing.Materials
             set => _data[w, h] = value;
         }
 
-        public void Bloom(Color color, int w, int h, int strength = 1)
+        public void CopyFrom(Texture texture)
         {
+            if (this.Width != texture.Width || this.Height != texture.Height) return;
+            for (int i = 0; i < Width; i++)
+            {
+                for (int j = 0; j < Height; j++)
+                {
+                    this[i, j] = texture[i, j];
+                }
+            }
+        }
+
+        public void Bloom(Color color, int w, int h, int brightness, int strength = 1)
+        {
+            if (strength == 0 || brightness <= 1) return;
+
+            brightness *= strength;
+
             bool In(int x, int y)
             {
                 return x >= 0 && x < Width && y >= 0 && y < Height;
             }
 
-            for (int i = -strength; i < strength; i++)
-            for (int j = -strength; j < strength; j++)
+            for (int i = -brightness; i < brightness; i++)
+            for (int j = -brightness; j < brightness; j++)
             {
-                if (In(w + i, h + j))
+                if (In(w + i, h + j) && i != 0 && j != 0)
                 {
                     int rs = i * i + j * j;
-                    if (rs <= strength * strength)
-                        _data[w + i, h + j] += color / (10*strength * (rs + 1));
+                    if (rs <= brightness * brightness)
+                        _data[w + i, h + j] += color * strength * strength / (10 * brightness * (rs + 1));
                 }
             }
+        }
+
+        public static Texture operator *(Texture texture, float multiplier)
+        {
+            var res = new Texture(texture);
+            res.Process(color => color * multiplier);
+            return res;
         }
 
         public void Process(Func<Color, Color> function)
