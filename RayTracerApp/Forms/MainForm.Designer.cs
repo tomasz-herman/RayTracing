@@ -37,13 +37,14 @@ namespace RayTracerApp.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Text = "RayTracing";
+            InitializeProgressBar();
             this.gLControl.Location = new System.Drawing.Point(0, 20);
             this.gLControl.Name = "gLControl";
             this.gLControl.Size = new System.Drawing.Size(500, 300);
             this.gLControl.TabIndex = 0;
             this.gLControl.VSync = true;
             this.gLControl.Load += new System.EventHandler(this.GLControl_Load);
-
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.FormClosed += MainForm_FormClosed;
 
             this.Resize += this.OnResize;
@@ -55,6 +56,19 @@ namespace RayTracerApp.Forms
             this.ResumeLayout(false);
         }
 
+        private void InitializeProgressBar()
+        {
+            this.progressBar = new ProgressBar();
+            this.progressBar.Anchor = AnchorStyles.Bottom|AnchorStyles.Left|AnchorStyles.Right;
+            this.progressBar.Width = Width/2;
+            this.progressBar.Height = 20;
+            this.progressBar.Location = new System.Drawing.Point((Width-progressBar.Width)/2, (int)(Height - progressBar.Height*3.5f));
+            this.progressBar.Maximum = 100;
+            this.progressBar.Step = 1;
+            this.progressBar.Value = 0;
+            this.progressBar.Visible = false;
+            this.Controls.Add(this.progressBar);
+        }
 
         private void InitializeNewEditDeleteMenu()
         {
@@ -196,6 +210,7 @@ namespace RayTracerApp.Forms
         private ToolStripMenuItem addItem2;
         private ToolStripMenuItem editItem2;
         private ContextMenuStrip newEditStrip;
+        private ProgressBar progressBar;
 
         #endregion
     }
