@@ -88,7 +88,6 @@ namespace RayTracing.Cameras
 
         public override Matrix4 GetProjectionMatrix()
         {
-            Log.Info("" + _fov);
             return Matrix4.CreatePerspectiveFieldOfView(_fov, AspectRatio, 1, FarPlane);
         }
 
