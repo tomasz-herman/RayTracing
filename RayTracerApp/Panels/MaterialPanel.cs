@@ -56,6 +56,7 @@ namespace RayTracerApp.Panels
             reflectiveShareUpDown.Value = (decimal)material.Parts.reflective;
             refractiveShareUpDown.Value = (decimal)material.Parts.refractive;
             emissiveShareUpDown.Value = (decimal)material.Parts.emissive;
+            ampUpDown.Value = (decimal)material.Emissive.Amplification;
         }
 
         private string ChooseTexture()
@@ -229,6 +230,14 @@ namespace RayTracerApp.Panels
             rectangle.Inflate(-1, -1);
 
             ControlPaint.DrawBorder3D(e.Graphics, rectangle, Border3DStyle.Raised, Border3DSide.Bottom);
+        }
+
+        private void ampUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            var nud = sender as NumericUpDown;
+            float val = (float)nud.Value;
+
+            Controller.Material.Emissive.Amplification = val;
         }
     }
 }

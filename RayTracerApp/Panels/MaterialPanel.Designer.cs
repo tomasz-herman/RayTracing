@@ -75,6 +75,8 @@ namespace RayTracerApp.Panels
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.label4 = new System.Windows.Forms.Label();
+            this.ampUpDown = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.refractiveIndexUpDown)).BeginInit();
@@ -94,6 +96,7 @@ namespace RayTracerApp.Panels
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.diffuseShareUpDown)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ampUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -120,10 +123,10 @@ namespace RayTracerApp.Panels
             this.tableLayoutPanel1.Location = new System.Drawing.Point(11, 9);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.18182F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.27273F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.27273F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.27273F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(490, 549);
             this.tableLayoutPanel1.TabIndex = 0;
             this.tableLayoutPanel1.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tableLayoutPanel1_CellPaint);
@@ -138,13 +141,13 @@ namespace RayTracerApp.Panels
             this.tableLayoutPanel12.Controls.Add(this.refractiveIndexUpDown, 0, 2);
             this.tableLayoutPanel12.Controls.Add(this.tableLayoutPanel13, 0, 0);
             this.tableLayoutPanel12.Controls.Add(this.refractiveShareUpDown, 0, 1);
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(247, 385);
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(247, 400);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
             this.tableLayoutPanel12.RowCount = 3;
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel12.Size = new System.Drawing.Size(240, 161);
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(240, 146);
             this.tableLayoutPanel12.TabIndex = 11;
             // 
             // refractiveIndexUpDown
@@ -156,7 +159,7 @@ namespace RayTracerApp.Panels
             0,
             0,
             131072});
-            this.refractiveIndexUpDown.Location = new System.Drawing.Point(3, 122);
+            this.refractiveIndexUpDown.Location = new System.Drawing.Point(3, 109);
             this.refractiveIndexUpDown.Maximum = new decimal(new int[] {
             10,
             0,
@@ -194,14 +197,14 @@ namespace RayTracerApp.Panels
             this.tableLayoutPanel13.Name = "tableLayoutPanel13";
             this.tableLayoutPanel13.RowCount = 1;
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(234, 47);
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(234, 42);
             this.tableLayoutPanel13.TabIndex = 0;
             // 
             // refractiveTexture
             // 
             this.refractiveTexture.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.refractiveTexture.AutoSize = true;
-            this.refractiveTexture.Location = new System.Drawing.Point(14, 16);
+            this.refractiveTexture.Location = new System.Drawing.Point(14, 13);
             this.refractiveTexture.Name = "refractiveTexture";
             this.refractiveTexture.Size = new System.Drawing.Size(49, 15);
             this.refractiveTexture.TabIndex = 0;
@@ -211,7 +214,7 @@ namespace RayTracerApp.Panels
             // refractiveColor
             // 
             this.refractiveColor.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.refractiveColor.Location = new System.Drawing.Point(81, 12);
+            this.refractiveColor.Location = new System.Drawing.Point(81, 9);
             this.refractiveColor.Name = "refractiveColor";
             this.refractiveColor.Size = new System.Drawing.Size(71, 23);
             this.refractiveColor.TabIndex = 1;
@@ -222,7 +225,7 @@ namespace RayTracerApp.Panels
             // refractiveFile
             // 
             this.refractiveFile.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.refractiveFile.Location = new System.Drawing.Point(159, 12);
+            this.refractiveFile.Location = new System.Drawing.Point(159, 9);
             this.refractiveFile.Name = "refractiveFile";
             this.refractiveFile.Size = new System.Drawing.Size(72, 23);
             this.refractiveFile.TabIndex = 2;
@@ -239,7 +242,7 @@ namespace RayTracerApp.Panels
             0,
             0,
             131072});
-            this.refractiveShareUpDown.Location = new System.Drawing.Point(3, 68);
+            this.refractiveShareUpDown.Location = new System.Drawing.Point(3, 60);
             this.refractiveShareUpDown.Maximum = new decimal(new int[] {
             1,
             0,
@@ -261,20 +264,20 @@ namespace RayTracerApp.Panels
             this.tableLayoutPanel11.Controls.Add(this.label15, 0, 2);
             this.tableLayoutPanel11.Controls.Add(this.label16, 0, 1);
             this.tableLayoutPanel11.Controls.Add(this.label17, 0, 0);
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(125, 385);
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(125, 400);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 3;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(116, 161);
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(116, 146);
             this.tableLayoutPanel11.TabIndex = 10;
             // 
             // label15
             // 
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(3, 126);
+            this.label15.Location = new System.Drawing.Point(3, 113);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(110, 15);
             this.label15.TabIndex = 3;
@@ -285,7 +288,7 @@ namespace RayTracerApp.Panels
             // 
             this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(3, 72);
+            this.label16.Location = new System.Drawing.Point(3, 64);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(110, 15);
             this.label16.TabIndex = 2;
@@ -296,7 +299,7 @@ namespace RayTracerApp.Panels
             // 
             this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(3, 19);
+            this.label17.Location = new System.Drawing.Point(3, 16);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(110, 15);
             this.label17.TabIndex = 1;
@@ -313,13 +316,13 @@ namespace RayTracerApp.Panels
             this.tableLayoutPanel9.Controls.Add(this.reflectiveDisturbanceUpDown, 0, 2);
             this.tableLayoutPanel9.Controls.Add(this.tableLayoutPanel10, 0, 0);
             this.tableLayoutPanel9.Controls.Add(this.reflectiveShareUpDown, 0, 1);
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(247, 221);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(247, 251);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 3;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(240, 158);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(240, 143);
             this.tableLayoutPanel9.TabIndex = 9;
             // 
             // reflectiveDisturbanceUpDown
@@ -331,7 +334,7 @@ namespace RayTracerApp.Panels
             0,
             0,
             131072});
-            this.reflectiveDisturbanceUpDown.Location = new System.Drawing.Point(3, 119);
+            this.reflectiveDisturbanceUpDown.Location = new System.Drawing.Point(3, 107);
             this.reflectiveDisturbanceUpDown.Maximum = new decimal(new int[] {
             1,
             0,
@@ -364,14 +367,14 @@ namespace RayTracerApp.Panels
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(234, 46);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(234, 41);
             this.tableLayoutPanel10.TabIndex = 0;
             // 
             // reflectiveTexture
             // 
             this.reflectiveTexture.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.reflectiveTexture.AutoSize = true;
-            this.reflectiveTexture.Location = new System.Drawing.Point(14, 15);
+            this.reflectiveTexture.Location = new System.Drawing.Point(14, 13);
             this.reflectiveTexture.Name = "reflectiveTexture";
             this.reflectiveTexture.Size = new System.Drawing.Size(49, 15);
             this.reflectiveTexture.TabIndex = 0;
@@ -381,7 +384,7 @@ namespace RayTracerApp.Panels
             // reflectiveColor
             // 
             this.reflectiveColor.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.reflectiveColor.Location = new System.Drawing.Point(81, 11);
+            this.reflectiveColor.Location = new System.Drawing.Point(81, 9);
             this.reflectiveColor.Name = "reflectiveColor";
             this.reflectiveColor.Size = new System.Drawing.Size(71, 23);
             this.reflectiveColor.TabIndex = 1;
@@ -392,7 +395,7 @@ namespace RayTracerApp.Panels
             // reflectiveFile
             // 
             this.reflectiveFile.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.reflectiveFile.Location = new System.Drawing.Point(159, 11);
+            this.reflectiveFile.Location = new System.Drawing.Point(159, 9);
             this.reflectiveFile.Name = "reflectiveFile";
             this.reflectiveFile.Size = new System.Drawing.Size(72, 23);
             this.reflectiveFile.TabIndex = 2;
@@ -409,7 +412,7 @@ namespace RayTracerApp.Panels
             0,
             0,
             131072});
-            this.reflectiveShareUpDown.Location = new System.Drawing.Point(3, 66);
+            this.reflectiveShareUpDown.Location = new System.Drawing.Point(3, 59);
             this.reflectiveShareUpDown.Maximum = new decimal(new int[] {
             1,
             0,
@@ -431,20 +434,20 @@ namespace RayTracerApp.Panels
             this.tableLayoutPanel8.Controls.Add(this.label14, 0, 2);
             this.tableLayoutPanel8.Controls.Add(this.label11, 0, 1);
             this.tableLayoutPanel8.Controls.Add(this.label12, 0, 0);
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(125, 221);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(125, 251);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 3;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(116, 158);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(116, 143);
             this.tableLayoutPanel8.TabIndex = 8;
             // 
             // label14
             // 
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(3, 123);
+            this.label14.Location = new System.Drawing.Point(3, 111);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(110, 15);
             this.label14.TabIndex = 3;
@@ -455,7 +458,7 @@ namespace RayTracerApp.Panels
             // 
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 70);
+            this.label11.Location = new System.Drawing.Point(3, 63);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(110, 15);
             this.label11.TabIndex = 2;
@@ -466,7 +469,7 @@ namespace RayTracerApp.Panels
             // 
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 18);
+            this.label12.Location = new System.Drawing.Point(3, 16);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(110, 15);
             this.label12.TabIndex = 1;
@@ -480,15 +483,16 @@ namespace RayTracerApp.Panels
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel6.ColumnCount = 1;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel6.Controls.Add(this.ampUpDown, 0, 2);
             this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel7, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.emissiveShareUpDown, 0, 1);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(247, 112);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(247, 102);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 2;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(240, 103);
+            this.tableLayoutPanel6.RowCount = 3;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(240, 143);
             this.tableLayoutPanel6.TabIndex = 7;
             // 
             // tableLayoutPanel7
@@ -507,14 +511,14 @@ namespace RayTracerApp.Panels
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(234, 45);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(234, 41);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
             // emissiveTexture
             // 
             this.emissiveTexture.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.emissiveTexture.AutoSize = true;
-            this.emissiveTexture.Location = new System.Drawing.Point(14, 15);
+            this.emissiveTexture.Location = new System.Drawing.Point(14, 13);
             this.emissiveTexture.Name = "emissiveTexture";
             this.emissiveTexture.Size = new System.Drawing.Size(49, 15);
             this.emissiveTexture.TabIndex = 0;
@@ -524,7 +528,7 @@ namespace RayTracerApp.Panels
             // emissiveColor
             // 
             this.emissiveColor.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.emissiveColor.Location = new System.Drawing.Point(81, 11);
+            this.emissiveColor.Location = new System.Drawing.Point(81, 9);
             this.emissiveColor.Name = "emissiveColor";
             this.emissiveColor.Size = new System.Drawing.Size(71, 23);
             this.emissiveColor.TabIndex = 1;
@@ -535,7 +539,7 @@ namespace RayTracerApp.Panels
             // emissiveFile
             // 
             this.emissiveFile.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.emissiveFile.Location = new System.Drawing.Point(159, 11);
+            this.emissiveFile.Location = new System.Drawing.Point(159, 9);
             this.emissiveFile.Name = "emissiveFile";
             this.emissiveFile.Size = new System.Drawing.Size(72, 23);
             this.emissiveFile.TabIndex = 2;
@@ -552,7 +556,7 @@ namespace RayTracerApp.Panels
             0,
             0,
             131072});
-            this.emissiveShareUpDown.Location = new System.Drawing.Point(3, 65);
+            this.emissiveShareUpDown.Location = new System.Drawing.Point(3, 59);
             this.emissiveShareUpDown.Maximum = new decimal(new int[] {
             1,
             0,
@@ -571,23 +575,23 @@ namespace RayTracerApp.Panels
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel5.ColumnCount = 1;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.Controls.Add(this.label4, 0, 2);
             this.tableLayoutPanel5.Controls.Add(this.label8, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.label9, 0, 0);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(125, 112);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(125, 102);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(116, 103);
+            this.tableLayoutPanel5.RowCount = 3;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(116, 143);
             this.tableLayoutPanel5.TabIndex = 6;
             // 
             // label8
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 69);
+            this.label8.Location = new System.Drawing.Point(3, 63);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(110, 15);
             this.label8.TabIndex = 2;
@@ -598,7 +602,7 @@ namespace RayTracerApp.Panels
             // 
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 18);
+            this.label9.Location = new System.Drawing.Point(3, 16);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(110, 15);
             this.label9.TabIndex = 1;
@@ -620,7 +624,7 @@ namespace RayTracerApp.Panels
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(240, 103);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(240, 93);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
             // tableLayoutPanel4
@@ -639,14 +643,14 @@ namespace RayTracerApp.Panels
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(234, 45);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(234, 40);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // diffuseTexture
             // 
             this.diffuseTexture.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.diffuseTexture.AutoSize = true;
-            this.diffuseTexture.Location = new System.Drawing.Point(14, 15);
+            this.diffuseTexture.Location = new System.Drawing.Point(14, 12);
             this.diffuseTexture.Name = "diffuseTexture";
             this.diffuseTexture.Size = new System.Drawing.Size(49, 15);
             this.diffuseTexture.TabIndex = 0;
@@ -656,7 +660,7 @@ namespace RayTracerApp.Panels
             // diffuseColor
             // 
             this.diffuseColor.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.diffuseColor.Location = new System.Drawing.Point(81, 11);
+            this.diffuseColor.Location = new System.Drawing.Point(81, 8);
             this.diffuseColor.Name = "diffuseColor";
             this.diffuseColor.Size = new System.Drawing.Size(71, 23);
             this.diffuseColor.TabIndex = 1;
@@ -667,7 +671,7 @@ namespace RayTracerApp.Panels
             // diffuseFile
             // 
             this.diffuseFile.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.diffuseFile.Location = new System.Drawing.Point(159, 11);
+            this.diffuseFile.Location = new System.Drawing.Point(159, 8);
             this.diffuseFile.Name = "diffuseFile";
             this.diffuseFile.Size = new System.Drawing.Size(72, 23);
             this.diffuseFile.TabIndex = 2;
@@ -684,7 +688,7 @@ namespace RayTracerApp.Panels
             0,
             0,
             131072});
-            this.diffuseShareUpDown.Location = new System.Drawing.Point(3, 65);
+            this.diffuseShareUpDown.Location = new System.Drawing.Point(3, 58);
             this.diffuseShareUpDown.Maximum = new decimal(new int[] {
             1,
             0,
@@ -700,7 +704,7 @@ namespace RayTracerApp.Panels
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 47);
+            this.label1.Location = new System.Drawing.Point(3, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(116, 15);
             this.label1.TabIndex = 0;
@@ -722,14 +726,14 @@ namespace RayTracerApp.Panels
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(116, 103);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(116, 93);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 69);
+            this.label3.Location = new System.Drawing.Point(3, 62);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(110, 15);
             this.label3.TabIndex = 2;
@@ -740,7 +744,7 @@ namespace RayTracerApp.Panels
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 18);
+            this.label2.Location = new System.Drawing.Point(3, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(110, 15);
             this.label2.TabIndex = 1;
@@ -751,7 +755,7 @@ namespace RayTracerApp.Panels
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 156);
+            this.label5.Location = new System.Drawing.Point(3, 166);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(116, 15);
             this.label5.TabIndex = 3;
@@ -762,7 +766,7 @@ namespace RayTracerApp.Panels
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 292);
+            this.label6.Location = new System.Drawing.Point(3, 315);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(116, 15);
             this.label6.TabIndex = 4;
@@ -773,12 +777,39 @@ namespace RayTracerApp.Panels
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 458);
+            this.label7.Location = new System.Drawing.Point(3, 465);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(116, 15);
             this.label7.TabIndex = 5;
             this.label7.Text = "Refractive";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 111);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(110, 15);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Amplification";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ampUpDown
+            // 
+            this.ampUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ampUpDown.DecimalPlaces = 2;
+            this.ampUpDown.Location = new System.Drawing.Point(3, 107);
+            this.ampUpDown.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.ampUpDown.Name = "ampUpDown";
+            this.ampUpDown.Size = new System.Drawing.Size(234, 23);
+            this.ampUpDown.TabIndex = 2;
+            this.ampUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ampUpDown.ValueChanged += new System.EventHandler(this.ampUpDown_ValueChanged);
             // 
             // MaterialPanel
             // 
@@ -815,6 +846,7 @@ namespace RayTracerApp.Panels
             ((System.ComponentModel.ISupportInitialize)(this.diffuseShareUpDown)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ampUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -867,5 +899,7 @@ namespace RayTracerApp.Panels
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ColorDialog colorDialog;
+        private System.Windows.Forms.NumericUpDown ampUpDown;
+        private System.Windows.Forms.Label label4;
     }
 }
