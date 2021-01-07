@@ -97,10 +97,6 @@ namespace RayTracing.Materials
 
         public bool Scatter(ref Ray ray, ref HitInfo hit, out Color attenuation, out Ray scattered)
         {
-            if (Parts.reflective == 0.69f)
-            {
-                var a = 2;
-            }
             return _materials[_sampler.Sample].Scatter(ref ray, ref hit, out attenuation, out scattered);
         }
 
