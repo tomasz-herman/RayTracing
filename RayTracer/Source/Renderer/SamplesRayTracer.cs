@@ -65,7 +65,7 @@ namespace RayTracing
                 }
                 catch (Exception e)
                 {
-                    return;
+                    Log.Warn(e);
                 }
 
                 if (CancellationToken.IsCancellationRequested)

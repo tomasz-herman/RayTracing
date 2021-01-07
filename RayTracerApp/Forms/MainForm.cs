@@ -70,7 +70,7 @@ namespace RayTracerApp.Forms
             _scene.AddModel(new Sphere
             {
                 Position = new Vector3(0, 5.5f, 0), Scale = 1,
-                Material = new MasterMaterial(new Emissive(Color.FromColor4(Color4.LightYellow),25))
+                Material = new MasterMaterial(new Emissive(Color.FromColor4(Color4.LightYellow), 25))
             }.Load());
             _scene.AddModel(new Sphere
             {
@@ -91,8 +91,9 @@ namespace RayTracerApp.Forms
             {
                 Position = new Vector3(5f, 0.5f, 4), Scale = 1,
                 Material = new MasterMaterial(new Diffuse(new Texture("wood.jpg"))),
-                Rotation = Vector3.One * (float)Math.PI / 3
-            }.Load()); ;
+                Rotation = Vector3.One * (float) Math.PI / 3
+            }.Load());
+            ;
             _scene.AddModel(new Cube()
             {
                 Position = new Vector3(0, 0.5f, -3), Scale = 1,
@@ -131,7 +132,7 @@ namespace RayTracerApp.Forms
         private void OnTimerTick(object sender, EventArgs e)
         {
             _cameraController.UpdateCamera(_fpsTimer.Interval);
-                
+
             if (!rayTracingStarted)
                 if (ShouldRaytrace())
                 {
@@ -177,7 +178,7 @@ namespace RayTracerApp.Forms
         {
             var texture = (Texture) e.UserState;
             texture?.Blit();
-            if(!gLControl.IsDisposed)
+            if (!gLControl.IsDisposed)
                 gLControl.SwapBuffers();
             _lastTexture?.CopyFrom(texture);
             texture?.Dispose();
@@ -193,10 +194,11 @@ namespace RayTracerApp.Forms
             };
             _backgroundWorker.DoWork += StartRender;
             _backgroundWorker.ProgressChanged += BackgroundWorkerProgressChanged;
-            _backgroundWorker.RunWorkerCompleted += (o,args) =>
+            _backgroundWorker.RunWorkerCompleted += (o, args) =>
             {
                 progressBar.Visible = false;
-                gLControl.SwapBuffers();
+                if (!gLControl.IsDisposed)
+                    gLControl.SwapBuffers();
             };
             _cts = new CancellationTokenSource();
         }
@@ -216,7 +218,7 @@ namespace RayTracerApp.Forms
 
             var controller = new SettingsController(_camera, _rayTracer);
             var form = new SettingsForm(controller)
-            { StartPosition = FormStartPosition.Manual, Location = Location + Size / 3 };
+                {StartPosition = FormStartPosition.Manual, Location = Location + Size / 3};
 
             form.Closed += FormOnClosed;
             form.Closed += (a, b) =>
@@ -241,9 +243,10 @@ namespace RayTracerApp.Forms
             {
                 sphere.Position = _camera.Position + _camera.Front.Normalized() * 4;
             }
+
             _scene.AddModel(sphere);
             var form = new NewObjectForm(new ObjectController(_scene, sphere))
-            { StartPosition = FormStartPosition.Manual, Location = Location + Size / 3 };
+                {StartPosition = FormStartPosition.Manual, Location = Location + Size / 3};
             _isUiUsed = true;
             form.Closed += FormOnClosed;
             form.Show();
@@ -266,7 +269,7 @@ namespace RayTracerApp.Forms
                 var model = hitInfo.ModelHit;
                 if (model is Triangle triangle) model = triangle.Parent;
                 var form = new EditObjectForm(new ObjectController(_scene, model))
-                { StartPosition = FormStartPosition.Manual, Location = Location + Size / 3 };
+                    {StartPosition = FormStartPosition.Manual, Location = Location + Size / 3};
                 form.Closed += FormOnClosed;
                 form.Show();
             }
@@ -280,6 +283,7 @@ namespace RayTracerApp.Forms
                 {
                     _scene.AmbientLight.Color = Color.FromSystemDrawing(MyDialog.Color);
                 }
+
                 _isUiUsed = false;
                 UpdateLastModification();
             }
@@ -302,11 +306,11 @@ namespace RayTracerApp.Forms
                 var model = hitInfo.ModelHit;
                 if (model is Triangle triangle) model = triangle.Parent;
                 string message =
-                $"Are you sure that you would like to delete the {model}?";
+                    $"Are you sure that you would like to delete the {model}?";
                 const string caption = "Delete object";
                 var result = MessageBox.Show(message, caption,
-                                             MessageBoxButtons.YesNo,
-                                             MessageBoxIcon.Question);
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
@@ -314,21 +318,22 @@ namespace RayTracerApp.Forms
                     _scene.Preprocess();
                 }
             }
+
             _isUiUsed = false;
         }
 
         private void GLControl_MouseClick(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Right)
+            if (e.Button == MouseButtons.Right)
             {
-                var width = (float)gLControl.Width;
-                var height = (float)gLControl.Height;
+                var width = (float) gLControl.Width;
+                var height = (float) gLControl.Height;
                 var u = e.X / width;
                 var v = 1 - e.Y / height;
                 var ray = _cameraController.GetCamera().GetRay(u, v);
                 _contextHitInfo = new HitInfo();
                 _contextHit = _scene.HitTest(ray, ref _contextHitInfo, 0.001f, float.PositiveInfinity);
-                
+
                 if (_contextHit)
                 {
                     newDeleteStrip.Show(Cursor.Position);
@@ -349,7 +354,6 @@ namespace RayTracerApp.Forms
                 String fileName = saveDialog.FileName;
                 _lastTexture.Write(fileName);
             }
-
         }
 
         private void DeleteItem_Click(object sender, EventArgs e)
