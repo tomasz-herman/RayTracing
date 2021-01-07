@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.Intrinsics.X86;
 using OpenTK;
 using OpenTK.Graphics.OpenGL4;
 
@@ -124,6 +123,16 @@ namespace RayTracing.Models
                 return new Vector2(vx, vy);
             }
             return new Vector2();
+        }
+
+        public static Mesh operator +(Mesh first, Mesh second)
+        {
+            int indexOffset = first.Positions.Count / 3;
+            first.Positions.AddRange(second.Positions);
+            first.Normals.AddRange(second.Normals);
+            first.TexCoords.AddRange(second.TexCoords);
+            first.Indices.AddRange(second.Indices.ConvertAll(index => index + indexOffset));
+            return first;
         }
     }
 }
