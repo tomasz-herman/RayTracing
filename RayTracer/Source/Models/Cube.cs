@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using OpenTK;
+using RayTracing.Materials;
 using RayTracing.Maths;
 using RayTracing.RayTracing;
 
@@ -11,6 +12,7 @@ namespace RayTracing.Models
         {
             var buffers = GetBuffers();
             Mesh = new Mesh(buffers.vertexBuffer, buffers.normalBuffer, buffers.texBuffer, buffers.indicesBuffer);
+            Material = new MasterMaterial();
         }
 
         private List<Vector3> GetVertices()
@@ -124,6 +126,11 @@ namespace RayTracing.Models
         public override List<IHittable> Preprocess()
         {
             return MeshToTriangles();
+        }
+
+        public override string ToString()
+        {
+            return "Cube";
         }
     }
 }

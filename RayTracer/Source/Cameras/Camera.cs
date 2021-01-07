@@ -6,18 +6,51 @@ namespace RayTracing.Cameras
 {
     public abstract class Camera
     {
-        protected Vector3 Front { get; set; } = -Vector3.UnitZ;
+        public Vector3 Front { get; protected set; } = -Vector3.UnitZ;
         protected Vector3 Up { get; set; } = Vector3.UnitY;
         protected Vector3 Right { get; set; } = Vector3.UnitX;
-        protected float Pitch { get; set; }
-        protected float Yaw  { get; set; } = -MathHelper.PiOver2;
+        private float _pitch;
+
+        public float Pitch
+        {
+            get => _pitch;
+            set
+            {
+                _pitch = value;
+                UpdateVectors();
+            }
+        }
+
+        private float _yaw = -MathHelper.PiOver2;
+
+        public float Yaw
+        {
+            get => _yaw;
+            set
+            {
+                _yaw = value;
+                UpdateVectors();
+            }
+        }
+
         private float _aspectRatio = 16f / 9;
+        protected float _fov = MathHelper.PiOver3;
         public Vector3 Position { get; set; }
         protected Vector3 Horizontal { get; set; }
         protected Vector3 Vertical { get; set; }
         protected Vector3 LowerLeft { get; set; }
-        
+
         public float FarPlane { get; set; } = 1000f;
+
+        public float Fov
+        {
+            get => MathHelper.RadiansToDegrees(_fov);
+            set
+            {
+                var angle = MathHelper.Clamp(value, 1f, 90f);
+                _fov = MathHelper.DegreesToRadians(angle);
+            }
+        }
 
         public float AspectRatio
         {

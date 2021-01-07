@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using OpenTK;
+using RayTracing.Materials;
 using RayTracing.Maths;
 using RayTracing.RayTracing;
 
@@ -9,9 +10,20 @@ namespace RayTracing.Models
     {
         private float _aspectRatio = 1;
 
+        public float AspectRatio
+        {
+            get => _aspectRatio;
+            set
+            {
+                _aspectRatio = value;
+                LoadInternal();
+            }
+        }
+
         public Rectangle(float aspect)
         {
             _aspectRatio = aspect;
+            Material = new MasterMaterial();
         }
 
         private protected override void LoadInternal()
@@ -105,6 +117,11 @@ namespace RayTracing.Models
         public override List<IHittable> Preprocess()
         {
             return MeshToTriangles();
+        }
+
+        public override string ToString()
+        {
+            return "Rectangle";
         }
     }
 }

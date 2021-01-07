@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL4;
-using RayTracerApp.Forms.Menu;
 using RayTracing;
 using RayTracing.Cameras;
 using RayTracing.Lights;
@@ -15,8 +13,9 @@ using RayTracing.Sampling;
 using RayTracing.World;
 using Camera = RayTracing.Cameras.Camera;
 using Timer = System.Windows.Forms.Timer;
-using RayTracerApp.SceneControllers;
 using Color = RayTracing.Maths.Color;
+using RayTracerApp.SceneController;
+using System.Threading;
 
 namespace RayTracerApp.Forms
 {
@@ -25,25 +24,33 @@ namespace RayTracerApp.Forms
         private const int SWAP_TIME = 2;
         private Scene _scene = new Scene();
         private IRenderer _renderer;
-        private Camera _camera = new PerspectiveCamera(new Vector3(0, 0, 20)) {AspectRatio = 1};
+        private Camera _camera = new LensCamera(new Vector3(0, 0, 20)) {AspectRatio = 1, AutoFocus = true};
         private CameraController _cameraController;
         private IncrementalRayTracer _rayTracer;
         private BackgroundWorker _backgroundWorker;
+        private CancellationTokenSource _cts;
         private Timer _fpsTimer = new Timer();
         private long lastModification;
         private bool rayTracingStarted;
+        private bool _isUiUsed;
+
+        private HitInfo _contextHitInfo;
+        private bool _contextHit;
+
+        private Texture _lastTexture;
 
         public void UpdateLastModification()
         {
             lastModification = DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
             rayTracingStarted = false;
             _backgroundWorker?.CancelAsync();
+            _cts?.Cancel();
         }
 
         public bool ShouldRaytrace()
         {
             long now = DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
-            return now - lastModification > SWAP_TIME;
+            return !_isUiUsed && now - lastModification > SWAP_TIME;
         }
 
         public MainForm()
@@ -56,16 +63,13 @@ namespace RayTracerApp.Forms
         {
             GL.Enable(EnableCap.DepthTest);
             _renderer = new Renderer();
-            _rayTracer = new SamplesRayTracer(8, 1024, Vec2Sampling.Jittered, gLControl.Width, 32);
+            _rayTracer = new SamplesRayTracer(8, 1000, Vec2Sampling.Jittered, gLControl.Width, 10);
             _cameraController = new CameraController(_camera, gLControl, UpdateLastModification);
             _scene.AmbientLight = new AmbientLight {Color = Color.FromColor4(Color4.LightSkyBlue)};
-            var bulb = new MasterMaterial();
-            bulb.Emissive.Emit = new SolidColor(Color.FromColor4(Color4.Yellow) * 25);
-            bulb.Parts = (1, 0, 0, 0);
             _scene.AddModel(new Sphere
             {
                 Position = new Vector3(0, 5.5f, 0), Scale = 1,
-                Material = new MasterMaterial(new Emissive(Color.FromColor4(Color4.LightYellow) * 25))
+                Material = new MasterMaterial(new Emissive(Color.FromColor4(Color4.LightYellow), 25))
             }.Load());
             _scene.AddModel(new Sphere
             {
@@ -85,12 +89,13 @@ namespace RayTracerApp.Forms
             _scene.AddModel(new Cylinder(2)
             {
                 Position = new Vector3(5f, 0.5f, 4), Scale = 1,
-                Material = new MasterMaterial(new Diffuse(new Texture("wood.jpg")))
+                Material = new MasterMaterial(new Diffuse(new Texture("wood.jpg"))),
+                Rotation = Vector3.One * (float) Math.PI / 3
             }.Load());
             _scene.AddModel(new Cube()
             {
                 Position = new Vector3(0, 0.5f, -3), Scale = 1,
-                Material = new MasterMaterial(new Reflective(new Texture("wood.jpg"), 0.75f))
+                Material = new MasterMaterial(new Diffuse(new Texture("wood.jpg")))
             }.Load());
             _scene.AddModel(new Rectangle(2)
             {
@@ -108,9 +113,11 @@ namespace RayTracerApp.Forms
                     Parts = (0.0f, 0.8f, 0.1f, 0.0f)
                 }
             }.Load());
-
+            _scene.Preprocess();
             InitializeFpsTimer();
             UpdateViewport();
+
+            gLControl.MouseClick += GLControl_MouseClick;
         }
 
         private void InitializeFpsTimer()
@@ -129,11 +136,13 @@ namespace RayTracerApp.Forms
                 {
                     InitializeBackgroundWorker();
                     _backgroundWorker.RunWorkerAsync();
+                    progressBar.Value = 0;
+                    progressBar.Visible = true;
                     rayTracingStarted = true;
                 }
                 else
                 {
-                    _renderer.Render(_scene, _camera);
+                    _renderer.Render(_scene, _cameraController.GetCamera());
                     gLControl.SwapBuffers();
                 }
         }
@@ -149,16 +158,17 @@ namespace RayTracerApp.Forms
             gLControl.Height = Height;
             gLControl.Width = Width;
             GL.Viewport(0, 0, Width, Height);
-            _camera.AspectRatio = gLControl.Width / (float) gLControl.Height;
+            _cameraController.GetCamera().AspectRatio = gLControl.Width / (float) gLControl.Height;
             gLControl.Invalidate();
             _rayTracer.Resolution = gLControl.Width;
+            _lastTexture = new Texture(Width, Height);
         }
 
         private void StartRender(object sender, DoWorkEventArgs e)
         {
             _rayTracer.OnFrameReady = _backgroundWorker.ReportProgress;
-            _rayTracer.IsCancellationRequested = () => _backgroundWorker.CancellationPending;
-            _rayTracer.Render(_scene, _camera);
+            _rayTracer.CancellationToken = _cts.Token;
+            _rayTracer.Render(_scene, _cameraController.GetCamera());
         }
 
         private void BackgroundWorkerProgressChanged(object sender,
@@ -166,9 +176,11 @@ namespace RayTracerApp.Forms
         {
             var texture = (Texture) e.UserState;
             texture?.Blit();
-            gLControl.SwapBuffers();
+            if (!gLControl.IsDisposed)
+                gLControl.SwapBuffers();
+            _lastTexture?.CopyFrom(texture);
             texture?.Dispose();
-            Text = $@"{e.ProgressPercentage}%";
+            progressBar.Value = e.ProgressPercentage;
         }
 
         private void InitializeBackgroundWorker()
@@ -180,20 +192,192 @@ namespace RayTracerApp.Forms
             };
             _backgroundWorker.DoWork += StartRender;
             _backgroundWorker.ProgressChanged += BackgroundWorkerProgressChanged;
+            _backgroundWorker.RunWorkerCompleted += (o, args) =>
+            {
+                progressBar.Visible = false;
+                if (!gLControl.IsDisposed)
+                    gLControl.SwapBuffers();
+            };
+            _cts = new CancellationTokenSource();
         }
 
         private void newObjectButton_Click(object sender, EventArgs e)
         {
-            var form = new NewObjectForm(new NewObjectController(_scene))
+            var ray = _cameraController.GetCamera().GetRay(0.5f, 0.5f);
+            var hitInfo = new HitInfo();
+            var hit = _scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity);
+            NewObjectFunction(hit, ref hitInfo);
+        }
+
+        private void settingsButton_Click(object sender, EventArgs e)
+        {
+            UpdateLastModification();
+            _isUiUsed = true;
+
+            var controller = new SettingsController(_camera, _rayTracer);
+            var form = new SettingsForm(controller)
                 {StartPosition = FormStartPosition.Manual, Location = Location + Size / 3};
+
+            form.Closed += FormOnClosed;
+            form.Closed += (a, b) =>
+            {
+                _camera = controller.Camera;
+                _cameraController = new CameraController(_camera, gLControl, UpdateLastModification);
+                _rayTracer = controller.RayTracer;
+            };
+            form.Show();
+        }
+
+        private void NewObjectFunction(bool hit, ref HitInfo hitInfo)
+        {
+            UpdateLastModification();
+            var sphere = new Sphere().Load();
+            _isUiUsed = true;
+            if (hit && hitInfo.Distance < 50)
+            {
+                sphere.Position = hitInfo.HitPoint;
+            }
+            else
+            {
+                sphere.Position = _camera.Position + _camera.Front.Normalized() * 4;
+            }
+
+            _scene.AddModel(sphere);
+            var form = new NewObjectForm(new ObjectController(_scene, sphere))
+                {StartPosition = FormStartPosition.Manual, Location = Location + Size / 3};
+            _isUiUsed = true;
+            form.Closed += FormOnClosed;
             form.Show();
         }
 
         private void editObjectButton_Click(object sender, EventArgs e)
         {
-            var form = new EditObjectForm(new EditObjectController(_scene, _scene.Models[0]))
-                {StartPosition = FormStartPosition.Manual, Location = Location + Size / 3};
-            form.Show();
+            var ray = _cameraController.GetCamera().GetRay(0.5f, 0.5f);
+            var hitInfo = new HitInfo();
+            var hit = _scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity);
+            EditObjectFunction(hit, ref hitInfo);
+        }
+
+        private void EditObjectFunction(bool hit, ref HitInfo hitInfo)
+        {
+            UpdateLastModification();
+            _isUiUsed = true;
+            if (hit)
+            {
+                var model = hitInfo.ModelHit;
+                if (model is Triangle triangle) model = triangle.Parent;
+                var form = new EditObjectForm(new ObjectController(_scene, model))
+                    {StartPosition = FormStartPosition.Manual, Location = Location + Size / 3};
+                form.Closed += FormOnClosed;
+                form.Show();
+            }
+            else
+            {
+                ColorDialog MyDialog = new ColorDialog();
+                MyDialog.AllowFullOpen = true;
+                MyDialog.Color = _scene.AmbientLight.Color.ToSystemDrawing();
+
+                if (MyDialog.ShowDialog() == DialogResult.OK)
+                {
+                    _scene.AmbientLight.Color = Color.FromSystemDrawing(MyDialog.Color);
+                }
+
+                _isUiUsed = false;
+                UpdateLastModification();
+            }
+        }
+
+        private void deleteObjectButton_Click(object sender, EventArgs e)
+        {
+            var ray = _cameraController.GetCamera().GetRay(0.5f, 0.5f);
+            var hitInfo = new HitInfo();
+            var hit = _scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity);
+            DeleteObjectFunction(hit, ref hitInfo);
+        }
+
+        private void DeleteObjectFunction(bool hit, ref HitInfo hitInfo)
+        {
+            UpdateLastModification();
+            _isUiUsed = true;
+            if (hit)
+            {
+                var model = hitInfo.ModelHit;
+                if (model is Triangle triangle) model = triangle.Parent;
+                string message =
+                    $"Are you sure that you would like to delete the {model}?";
+                const string caption = "Delete object";
+                var result = MessageBox.Show(message, caption,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    _scene.Models.Remove(model);
+                    _scene.Preprocess();
+                }
+            }
+
+            _isUiUsed = false;
+        }
+
+        private void GLControl_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                var width = (float) gLControl.Width;
+                var height = (float) gLControl.Height;
+                var u = e.X / width;
+                var v = 1 - e.Y / height;
+                var ray = _cameraController.GetCamera().GetRay(u, v);
+                _contextHitInfo = new HitInfo();
+                _contextHit = _scene.HitTest(ray, ref _contextHitInfo, 0.001f, float.PositiveInfinity);
+
+                if (_contextHit)
+                {
+                    newDeleteStrip.Show(Cursor.Position);
+                }
+                else
+                {
+                    newEditStrip.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void SaveImage_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            DialogResult result = saveDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                String fileName = saveDialog.FileName;
+                _lastTexture.Write(fileName);
+            }
+        }
+
+        private void DeleteItem_Click(object sender, EventArgs e)
+        {
+            DeleteObjectFunction(_contextHit, ref _contextHitInfo);
+        }
+
+        private void EditItem_Click(object sender, EventArgs e)
+        {
+            EditObjectFunction(_contextHit, ref _contextHitInfo);
+        }
+
+        private void AddItem_Click(object sender, EventArgs e)
+        {
+            NewObjectFunction(_contextHit, ref _contextHitInfo);
+        }
+
+        private void FormOnClosed(object? sender, EventArgs e)
+        {
+            _isUiUsed = false;
+            UpdateLastModification();
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            UpdateLastModification();
         }
     }
 }

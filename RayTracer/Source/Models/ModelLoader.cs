@@ -52,18 +52,20 @@ namespace RayTracing.Models
                     Log.Error($"Error loading model {path}. No meshes found.");
                     return model;
                 }
-                
+
                 if (scene.Meshes.Count > 1)
                 {
                     Log.Warn($"Model {path} containing more than one mesh. Using first mesh.");
                 }
 
                 var mesh = ProcessMesh(scene.Meshes[0]);
-                var material = ProcessMaterial(scene.Materials[scene.Meshes[0].MaterialIndex], Path.GetDirectoryName(Path.GetFullPath(path)));
+
+                var material = ProcessMaterial(scene.Materials[scene.Meshes[0].MaterialIndex],
+                    Path.GetDirectoryName(Path.GetFullPath(path)));
 
                 model.SetMesh(mesh);
                 model.Material = material;
-                
+
                 return model;
             }
             catch (AssimpException e)
@@ -80,7 +82,7 @@ namespace RayTracing.Models
             {
                 Emissive =
                 {
-                    Emit = ProcessTexture(material.HasTextureAmbient, material.ColorAmbient,
+                    Albedo = ProcessTexture(material.HasTextureAmbient, material.ColorAmbient,
                         material.TextureAmbient, dir)
                 },
                 Diffuse =
@@ -91,7 +93,7 @@ namespace RayTracing.Models
                 Reflective =
                 {
                     Albedo =
-                        ProcessTexture(material.HasTextureSpecular, material.ColorSpecular, 
+                        ProcessTexture(material.HasTextureSpecular, material.ColorSpecular,
                             material.TextureSpecular, dir),
                     Disturbance = Math.Min(Math.Max(1 - material.ShininessStrength / 100, 0), 1)
                 },

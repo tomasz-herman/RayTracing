@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Threading;
 
 namespace RayTracing.Sampling
 {
@@ -9,7 +8,7 @@ namespace RayTracing.Sampling
         protected readonly List<List<T>> Samples = new List<List<T>>();
         protected readonly int count;
         protected readonly int Sets;
-        
+
         public AbstractSampler(Func<int, List<T>> generator, int count = 64, int sets = 1, Func<T, T> mapper = null)
         {
             this.count = count;
@@ -30,7 +29,7 @@ namespace RayTracing.Sampling
         public abstract T GetSample(int i);
 
         public int Count => count;
-        
+
         public T Sample => GetSample();
     }
 }

@@ -12,22 +12,22 @@ namespace RayTracing.Sampling
         {
             if (probabilities.Length == 0)
                 throw new ArgumentException("Zero lenght probabilities array");
-            if(probabilities.Any(probability => probability < 0)) 
+            if (probabilities.Any(probability => probability < 0))
                 throw new ArgumentException("Probability lesser than zero.");
 
             float sum = probabilities.Sum();
 
-            if(sum == 0)
+            if (sum == 0)
             {
                 Log.Warn("Probabilities sum to 0 returning list containing zeroes");
                 return Enumerable.Repeat(0, count).ToList();
             }
 
             List<int> samples = new List<int>();
-            
+
             for (int i = 0; i < count; i++)
             {
-                float next = (float)_random.NextDouble() * sum;
+                float next = (float) _random.NextDouble() * sum;
                 float counter = 0;
                 for (int j = 0; j < probabilities.Length; j++)
                 {
@@ -45,16 +45,16 @@ namespace RayTracing.Sampling
 
         public static List<int> Random(int count, int minInclusive, int maxExclusive)
         {
-            if(count < 0)
+            if (count < 0)
                 throw new ArgumentException("Count less than zero");
             if (minInclusive >= maxExclusive)
                 throw new ArgumentException("Wrong limits");
-            
+
             List<int> samples = new List<int>();
-            
+
             for (int i = 0; i < count; i++)
             {
-               samples.Add(_random.Next(minInclusive, maxExclusive));
+                samples.Add(_random.Next(minInclusive, maxExclusive));
             }
 
             return samples;

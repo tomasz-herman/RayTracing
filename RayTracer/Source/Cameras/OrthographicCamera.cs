@@ -1,4 +1,3 @@
-using System;
 using OpenTK;
 using RayTracing.Maths;
 

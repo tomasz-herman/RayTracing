@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using RayTracing.BVH;
 using RayTracing.Lights;
-using RayTracing.Materials;
 using RayTracing.Maths;
 using RayTracing.Models;
 using RayTracing.RayTracing;
-using RayTracing.Sampling;
 
 namespace RayTracing.World
 {
@@ -14,17 +12,11 @@ namespace RayTracing.World
         public bool BvhMode { get; set; } = true;
         public List<Model> Models { get; } = new List<Model>();
         public List<IHittable> Hittables { get; } = new List<IHittable>();
-        public List<Model> Lights { get; } = new List<Model>();
         public AmbientLight AmbientLight { get; set; }
 
         public void AddModel(Model model)
         {
             Models.Add(model);
-            if (model.Material is Emissive || model.Material is MasterMaterial &&
-                (model.Material as MasterMaterial).Parts.emissive != 0) // add MasterMaterial
-            {
-                Lights.Add(model);
-            }
         }
 
         public bool HitTest(Ray ray, ref HitInfo hit, float from, float to)
@@ -69,7 +61,7 @@ namespace RayTracing.World
             var hittablesToBvh = new List<IHittable>();
             foreach (var model in Models)
             {
-                if (model is Plane)
+                if (model is Plane || model is Cylinder)
                 {
                     planes.Add(model);
                 }
@@ -79,9 +71,13 @@ namespace RayTracing.World
                 }
             }
 
-            var node = new BvhNode(hittablesToBvh, 0, hittablesToBvh.Count);
             Hittables.AddRange(planes);
-            Hittables.Add(node);
+            if (hittablesToBvh != null && hittablesToBvh.Count > 0)
+            {
+                var node = new BvhNode(hittablesToBvh, 0, hittablesToBvh.Count);
+                Hittables.Add(node);
+            }
+
             return Hittables;
         }
 
@@ -95,6 +91,11 @@ namespace RayTracing.World
             {
                 return StandardPreprocess();
             }
+        }
+
+        public override string ToString()
+        {
+            return "Scene";
         }
     }
 }

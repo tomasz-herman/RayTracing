@@ -44,6 +44,21 @@ namespace RayTracing.Maths
             };
         }
 
+        public static Color FromSystemDrawing(System.Drawing.Color color)
+        {
+            return new Color
+            {
+                R = color.R/256f,
+                G = color.G/256f,
+                B = color.B/256f
+            };
+        }
+
+        public System.Drawing.Color ToSystemDrawing()
+        {
+            return System.Drawing.Color.FromArgb(RComp, GComp, BComp);
+        }
+
         public static Color operator +(Color first, Color second)
         {
             first.R += second.R;
