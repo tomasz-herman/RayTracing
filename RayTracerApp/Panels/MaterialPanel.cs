@@ -35,10 +35,10 @@ namespace RayTracerApp.Panels
             else
                 diffuseTexture.BackColor = material.Diffuse.Albedo[0, 0].ToSystemDrawing();
 
-            if (material.Emissive.Emit is Texture)
-                emissiveTexture.Image = TextureConverter.Convert(material.Emissive.Emit as Texture);
+            if (material.Emissive.Albedo is Texture)
+                emissiveTexture.Image = TextureConverter.Convert(material.Emissive.Albedo as Texture);
             else
-                emissiveTexture.BackColor = material.Emissive.Emit[0, 0].ToSystemDrawing();
+                emissiveTexture.BackColor = material.Emissive.Albedo[0, 0].ToSystemDrawing();
 
             if (material.Reflective.Albedo is Texture)
                 reflectiveTexture.Image = TextureConverter.Convert(material.Reflective.Albedo as Texture);
@@ -98,7 +98,7 @@ namespace RayTracerApp.Panels
             if (string.IsNullOrEmpty(texturePath)) return;
 
             var texture = new Texture(texturePath);
-            Controller.Material.Emissive.Emit = texture;
+            Controller.Material.Emissive.Albedo = texture;
             emissiveTexture.Image = TextureConverter.Convert(texture);
         }
 
@@ -197,7 +197,7 @@ namespace RayTracerApp.Panels
                 var color = colorDialog.Color;
                 emissiveTexture.BackColor = color;
                 emissiveTexture.Image = null;
-                Controller.Material.Emissive.Emit = new SolidColor(RayTracing.Maths.Color.FromSystemDrawing(color));
+                Controller.Material.Emissive.Albedo = new SolidColor(RayTracing.Maths.Color.FromSystemDrawing(color));
             }
         }
 

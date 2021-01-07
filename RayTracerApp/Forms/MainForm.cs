@@ -70,7 +70,7 @@ namespace RayTracerApp.Forms
             _scene.AddModel(new Sphere
             {
                 Position = new Vector3(0, 5.5f, 0), Scale = 1,
-                Material = new MasterMaterial(new Emissive(Color.FromColor4(Color4.LightYellow) * 25))
+                Material = new MasterMaterial(new Emissive(Color.FromColor4(Color4.LightYellow),25))
             }.Load());
             _scene.AddModel(new Sphere
             {

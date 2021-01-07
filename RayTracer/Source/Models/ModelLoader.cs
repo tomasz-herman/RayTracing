@@ -80,7 +80,7 @@ namespace RayTracing.Models
             {
                 Emissive =
                 {
-                    Emit = ProcessTexture(material.HasTextureAmbient, material.ColorAmbient,
+                    Albedo = ProcessTexture(material.HasTextureAmbient, material.ColorAmbient,
                         material.TextureAmbient, dir)
                 },
                 Diffuse =
