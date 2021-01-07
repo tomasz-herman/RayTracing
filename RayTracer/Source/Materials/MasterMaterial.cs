@@ -97,6 +97,10 @@ namespace RayTracing.Materials
 
         public bool Scatter(ref Ray ray, ref HitInfo hit, out Color attenuation, out Ray scattered)
         {
+            if (Parts.reflective == 0.69f)
+            {
+                var a = 2;
+            }
             return _materials[_sampler.Sample].Scatter(ref ray, ref hit, out attenuation, out scattered);
         }
 
@@ -107,9 +111,11 @@ namespace RayTracing.Materials
 
         public void Use(Shader shader, float part)
         {
-            Emissive.Use(shader, Parts.emissive);
-            Diffuse.Use(shader, Parts.diffuse);
-            Reflective.Use(shader, Parts.reflective);
+            var sum = Parts.diffuse + Parts.emissive + Parts.reflective + Parts.refractive;
+            if (sum == 0) sum = 1;
+            Emissive.Use(shader, Parts.emissive / sum);
+            Diffuse.Use(shader, Parts.diffuse / sum);
+            Reflective.Use(shader, Parts.reflective / sum);
         }
     }
 }

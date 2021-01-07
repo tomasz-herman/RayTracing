@@ -26,6 +26,11 @@ namespace RayTracerApp
             _onModification = onModification;
         }
 
+        public Camera GetCamera()
+        {
+            return _camera;
+        }
+
         private void OnKeyUp(object sender, KeyEventArgs e)
         {
             keys[e.KeyCode] = false;

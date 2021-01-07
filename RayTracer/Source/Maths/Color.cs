@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assimp;
 using OpenTK;
 using OpenTK.Graphics;
+using System.Drawing;
 
 namespace RayTracing.Maths
 {
@@ -42,6 +43,21 @@ namespace RayTracing.Maths
                 G = color4.G,
                 B = color4.B
             };
+        }
+
+        public static Color FromSystemDrawing(System.Drawing.Color color)
+        {
+            return new Color
+            {
+                R = color.R/256f,
+                G = color.G/256f,
+                B = color.B/256f
+            };
+        }
+
+        public System.Drawing.Color ToSystemDrawing()
+        {
+            return System.Drawing.Color.FromArgb(RComp, GComp, BComp);
         }
 
         public static Color operator +(Color first, Color second)

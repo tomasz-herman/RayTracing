@@ -9,30 +9,33 @@ namespace RayTracing.Materials
     public class Emissive : IMaterial
     {
         private const int SAMPLES = 10000;
-        private ITexture _emit;
+        private ITexture _albedo;
 
         public Color AverageColor => _averageColor;
+        public float Amplification { get; set; } = 1;
 
-        public ITexture Emit
+        public ITexture Albedo
         {
-            get => _emit;
+            get => _albedo;
             set
             {
-                _emit = value;
+                _albedo = value;
                 UpdateAverageColor(value);
             }
         }
 
         private Color _averageColor;
 
-        public Emissive(ITexture emit)
+        public Emissive(ITexture emit, float amp = 1)
         {
-            Emit = emit;
+            Amplification = amp;
+            Albedo = emit;
         }
 
-        public Emissive(Color emitColor)
+        public Emissive(Color emitColor, float amp = 1)
         {
-            Emit = new SolidColor(emitColor);
+            Amplification = amp;
+            Albedo = new SolidColor(emitColor);
         }
 
         private void UpdateAverageColor(ITexture texture)
@@ -56,12 +59,12 @@ namespace RayTracing.Materials
 
         public Color Emitted(float u, float v)
         {
-            return Emit[u, v];
+            return Albedo[u, v] * Amplification;
         }
 
         public void Use(Shader shader, float part)
         {
-            Emit.Use(shader, 0, part);
+            Albedo.Use(shader, 0, part);
         }
     }
 }

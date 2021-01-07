@@ -19,20 +19,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Controls\NewModelPanel.cs">
-        <SubType>UserControl</SubType>
-      </Compile>
-      <Compile Update="Forms\Menu\NewObjectForm.cs" />
-      <Compile Update="Controls\MaterialPanel.cs">
-        <SubType>UserControl</SubType>
-      </Compile>
       <Compile Update="Properties\Resources.Designer.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
         <DependentUpon>Resources.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Forms\Menu\EditorForm.cs">
-        <SubType>Form</SubType>
       </Compile>
     </ItemGroup>
 

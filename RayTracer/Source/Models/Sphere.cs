@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using OpenTK;
+using RayTracing.Materials;
 using RayTracing.Maths;
 
 namespace RayTracing.Models
 {
     public class Sphere : Model
     {
+        public Sphere()
+        {
+            Material = new MasterMaterial();
+        }
         private protected override void LoadInternal()
         {
             var (positions, texCoords) = GetVertexList(100, 100);
@@ -118,6 +123,11 @@ namespace RayTracing.Models
             }
 
             return indices;
+        }
+
+        public override string ToString()
+        {
+            return "Sphere";
         }
     }
 }

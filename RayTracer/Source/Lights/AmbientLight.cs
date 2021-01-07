@@ -2,7 +2,7 @@
 
 namespace RayTracing.Lights
 {
-    public struct AmbientLight
+    public class AmbientLight
     {
         public Color Color;
     }

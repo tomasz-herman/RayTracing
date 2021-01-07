@@ -9,23 +9,14 @@ namespace RayTracing.Cameras
     public class LensCamera : Camera
     {
         private const int SAMPLE_SETS = 8;
-        
-        private float _fov = MathHelper.PiOver3;
+
         private float _lensRadius;
         private float _focusDistance;
         private AbstractSampler<Vector2> _lensSampler;
         private Func<int, List<Vector2>> _sampling;
         private int _samplesCount;
 
-        public float Fov
-        {
-            get => MathHelper.RadiansToDegrees(_fov);
-            set
-            {
-                var angle = MathHelper.Clamp(value, 1f, 90f);
-                _fov = MathHelper.DegreesToRadians(angle);
-            }
-        }
+        public bool AutoFocus { get; set; }
 
         public float LensRadius
         {
@@ -67,7 +58,7 @@ namespace RayTracing.Cameras
             }
         }
 
-        public LensCamera(Vector3 position, float lensRadius, float focusDistance, int samplesCount = 64, Func<int, List<Vector2>> sampling = null)
+        public LensCamera(Vector3 position, float lensRadius = 0.25f, float focusDistance = 5, int samplesCount = 10000, Func<int, List<Vector2>> sampling = null)
         {
             Position = position;
             _lensRadius = lensRadius;
@@ -94,6 +85,7 @@ namespace RayTracing.Cameras
 
         public override Matrix4 GetProjectionMatrix()
         {
+            Log.Info("" + _fov);
             return Matrix4.CreatePerspectiveFieldOfView(_fov, AspectRatio, 1, FarPlane);
         }
 

@@ -6,18 +6,6 @@ namespace RayTracing.Cameras
 {
     public class PerspectiveCamera : Camera
     {
-        private float _fov = MathHelper.PiOver3;
-
-        public float Fov
-        {
-            get => MathHelper.RadiansToDegrees(_fov);
-            set
-            {
-                var angle = MathHelper.Clamp(value, 1f, 90f);
-                _fov = MathHelper.DegreesToRadians(angle);
-            }
-        }
-
         public PerspectiveCamera(Vector3 position)
         {
             this.Position = position;
