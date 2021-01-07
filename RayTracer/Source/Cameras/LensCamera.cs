@@ -37,28 +37,31 @@ namespace RayTracing.Cameras
                 UpdateViewport();
             }
         }
-        
+
         public Func<int, List<Vector2>> Sampling
         {
             get => _sampling;
             set
             {
                 _sampling = value;
-                _lensSampler = new ThreadSafeSampler<Vector2>(_sampling, _samplesCount, SAMPLE_SETS, Vec2Sampling.ToDisk);
+                _lensSampler =
+                    new ThreadSafeSampler<Vector2>(_sampling, _samplesCount, SAMPLE_SETS, Vec2Sampling.ToDisk);
             }
         }
-        
+
         public int SamplesCount
         {
             get => _samplesCount;
             set
             {
                 _samplesCount = value;
-                _lensSampler = new ThreadSafeSampler<Vector2>(_sampling, _samplesCount, SAMPLE_SETS, Vec2Sampling.ToDisk);
+                _lensSampler =
+                    new ThreadSafeSampler<Vector2>(_sampling, _samplesCount, SAMPLE_SETS, Vec2Sampling.ToDisk);
             }
         }
 
-        public LensCamera(Vector3 position, float lensRadius = 0.25f, float focusDistance = 5, int samplesCount = 10000, Func<int, List<Vector2>> sampling = null)
+        public LensCamera(Vector3 position, float lensRadius = 0.25f, float focusDistance = 5, int samplesCount = 10000,
+            Func<int, List<Vector2>> sampling = null)
         {
             Position = position;
             _lensRadius = lensRadius;
@@ -93,8 +96,9 @@ namespace RayTracing.Cameras
         {
             Vector2 rd = _lensRadius * _lensSampler.Sample;
             Vector3 offset = Right * rd.X + Up * rd.Y;
-            
-            return new Ray(Position + offset, (LowerLeft + x * Horizontal + y * Vertical - Position - offset).Normalized());
+
+            return new Ray(Position + offset,
+                (LowerLeft + x * Horizontal + y * Vertical - Position - offset).Normalized());
         }
     }
 }

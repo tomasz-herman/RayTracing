@@ -148,7 +148,7 @@ namespace RayTracing.Models
                 GetCapUV(hitPoint, ref hit.TexCoord);
             }
         }
-        
+
         // https://www.iquilezles.org/www/articles/diskbbox/diskbbox.htm
         public override AABB BoundingBox()
         {
@@ -161,7 +161,7 @@ namespace RayTracing.Models
                 Vector3.ComponentMin(_top - e, _bottom - e),
                 Vector3.ComponentMax(_top + e, _bottom + e));
         }
-        
+
         private void GetCylinderUV(Vector3 hitPoint, ref Vector2 uv)
         {
             var hitVector = RotationMatrix * (hitPoint - Position) / _height;
@@ -170,7 +170,7 @@ namespace RayTracing.Models
             uv.X = (float) (phi / (2 * Math.PI));
             uv.Y = 0.5f - hitVector.Y;
         }
-        
+
         private void GetCapUV(Vector3 hitPoint, ref Vector2 uv)
         {
             var hitVector = RotationMatrix * (hitPoint - Position) / Scale;
@@ -189,68 +189,75 @@ namespace RayTracing.Models
             float sectorStep = (float) (2 * Math.PI / _sectorCount);
 
             var unitCircleVertices = new List<float>();
-            for(int i = 0; i <= _sectorCount; ++i)
+            for (int i = 0; i <= _sectorCount; ++i)
             {
                 var sectorAngle = i * sectorStep;
-                unitCircleVertices.Add((float)Math.Cos(sectorAngle));
-                unitCircleVertices.Add((float)Math.Sin(sectorAngle));
+                unitCircleVertices.Add((float) Math.Cos(sectorAngle));
+                unitCircleVertices.Add((float) Math.Sin(sectorAngle));
                 unitCircleVertices.Add(0);
             }
+
             return unitCircleVertices;
         }
-        
+
         // http://www.songho.ca/opengl/gl_cylinder.html#cylinder
-        private (List<int> indicesBuffer, List<float> vertexBuffer, List<float> texBuffer, List<float> normalBuffer) GetBuffers()
+        private (List<int> indicesBuffer, List<float> vertexBuffer, List<float> texBuffer, List<float> normalBuffer)
+            GetBuffers()
         {
             var unitVertices = GetUnitCircleVertices();
             var vertices = new List<float>();
             var normals = new List<float>();
             var texCoords = new List<float>();
-            
+
             float height = _aspect;
             float radius = 1f;
-            
-            for(int i = 0; i < 2; ++i)
+
+            for (int i = 0; i < 2; ++i)
             {
                 float h = -height / 2.0f + i * height;
                 float t = 1.0f - i;
 
-                for(int j = 0, k = 0; j <= _sectorCount; ++j, k += 3)
+                for (int j = 0, k = 0; j <= _sectorCount; ++j, k += 3)
                 {
                     float ux = unitVertices[k];
-                    float uy = unitVertices[k+1];
-                    float uz = unitVertices[k+2];
-                    
+                    float uy = unitVertices[k + 1];
+                    float uz = unitVertices[k + 2];
+
                     vertices.Add(ux * radius);
                     vertices.Add(h);
                     vertices.Add(uy * radius);
-                    
+
                     normals.Add(ux);
                     normals.Add(uz);
                     normals.Add(uy);
-                    
-                    texCoords.Add(1 - (float)j / _sectorCount);
+
+                    texCoords.Add(1 - (float) j / _sectorCount);
                     texCoords.Add(t);
                 }
             }
-            
+
             int baseCenterIndex = vertices.Count / 3;
             int topCenterIndex = baseCenterIndex + _sectorCount + 1;
-            
-            for(int i = 0; i < 2; ++i)
+
+            for (int i = 0; i < 2; ++i)
             {
                 float h = -height / 2.0f + i * height;
                 float nz = -1 + i * 2;
-                
-                vertices.Add(0);     vertices.Add(h);     vertices.Add(0);
-                normals.Add(0);      normals.Add(nz);      normals.Add(0);
-                texCoords.Add(0.5f); texCoords.Add(0.5f);
 
-                for(int j = 0, k = 0; j < _sectorCount; ++j, k += 3)
+                vertices.Add(0);
+                vertices.Add(h);
+                vertices.Add(0);
+                normals.Add(0);
+                normals.Add(nz);
+                normals.Add(0);
+                texCoords.Add(0.5f);
+                texCoords.Add(0.5f);
+
+                for (int j = 0, k = 0; j < _sectorCount; ++j, k += 3)
                 {
                     float ux = unitVertices[k];
-                    float uy = unitVertices[k+1];
-                    
+                    float uy = unitVertices[k + 1];
+
                     vertices.Add(ux * radius);
                     vertices.Add(h);
                     vertices.Add(uy * radius);
@@ -275,8 +282,8 @@ namespace RayTracing.Models
             var indices = new List<int>();
             int k1 = 0;
             int k2 = _sectorCount + 1;
-            
-            for(int i = 0; i < _sectorCount; ++i, ++k1, ++k2)
+
+            for (int i = 0; i < _sectorCount; ++i, ++k1, ++k2)
             {
                 indices.Add(k1);
                 indices.Add(k1 + 1);
@@ -286,10 +293,10 @@ namespace RayTracing.Models
                 indices.Add(k1 + 1);
                 indices.Add(k2 + 1);
             }
-            
-            for(int i = 0, k = baseCenterIndex + 1; i < _sectorCount; ++i, ++k)
+
+            for (int i = 0, k = baseCenterIndex + 1; i < _sectorCount; ++i, ++k)
             {
-                if(i < _sectorCount - 1)
+                if (i < _sectorCount - 1)
                 {
                     indices.Add(baseCenterIndex);
                     indices.Add(k + 1);
@@ -302,10 +309,10 @@ namespace RayTracing.Models
                     indices.Add(k);
                 }
             }
-            
-            for(int i = 0, k = topCenterIndex + 1; i < _sectorCount; ++i, ++k)
+
+            for (int i = 0, k = topCenterIndex + 1; i < _sectorCount; ++i, ++k)
             {
-                if(i < _sectorCount - 1)
+                if (i < _sectorCount - 1)
                 {
                     indices.Add(topCenterIndex);
                     indices.Add(k);

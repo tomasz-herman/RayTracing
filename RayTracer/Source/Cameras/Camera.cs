@@ -10,6 +10,7 @@ namespace RayTracing.Cameras
         protected Vector3 Up { get; set; } = Vector3.UnitY;
         protected Vector3 Right { get; set; } = Vector3.UnitX;
         private float _pitch;
+
         public float Pitch
         {
             get => _pitch;
@@ -19,7 +20,9 @@ namespace RayTracing.Cameras
                 UpdateVectors();
             }
         }
+
         private float _yaw = -MathHelper.PiOver2;
+
         public float Yaw
         {
             get => _yaw;
@@ -29,14 +32,16 @@ namespace RayTracing.Cameras
                 UpdateVectors();
             }
         }
+
         private float _aspectRatio = 16f / 9;
         protected float _fov = MathHelper.PiOver3;
         public Vector3 Position { get; set; }
         protected Vector3 Horizontal { get; set; }
         protected Vector3 Vertical { get; set; }
         protected Vector3 LowerLeft { get; set; }
-        
+
         public float FarPlane { get; set; } = 1000f;
+
         public float Fov
         {
             get => MathHelper.RadiansToDegrees(_fov);

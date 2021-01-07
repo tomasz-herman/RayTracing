@@ -7,7 +7,7 @@ namespace RayTracing.Maths
     {
         public Vector3 Min { get; set; }
         public Vector3 Max { get; set; }
-        
+
         public AABB(Vector3 min, Vector3 max)
         {
             if (min.X > max.X || min.Y > max.Y || min.Z > max.Z)
@@ -15,7 +15,7 @@ namespace RayTracing.Maths
             Min = min;
             Max = max;
         }
-        
+
         public AABB(float xMin, float yMin, float zMin, float xMax, float yMax, float zMax)
         {
             if (xMin > xMax || yMin > yMax || zMin > zMax)
@@ -26,7 +26,7 @@ namespace RayTracing.Maths
 
         public bool Test(ref Ray ray, float from = 0, float to = float.PositiveInfinity)
         {
-            for (int a = 0; a < 3; a++) 
+            for (int a = 0; a < 3; a++)
             {
                 float invD = 1.0f / ray.Direction[a];
                 float t0 = (Min[a] - ray.Origin[a]) * invD;
@@ -38,12 +38,13 @@ namespace RayTracing.Maths
                 if (to <= from)
                     return false;
             }
+
             return true;
         }
 
         public static AABB operator +(AABB first, AABB second)
         {
-            return new AABB(Vector3.ComponentMin(first.Min, second.Min), 
+            return new AABB(Vector3.ComponentMin(first.Min, second.Min),
                 Vector3.ComponentMax(first.Max, second.Max));
         }
     }

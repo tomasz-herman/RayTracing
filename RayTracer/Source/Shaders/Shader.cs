@@ -22,9 +22,9 @@ namespace RayTracing.Shaders
             var fragmentShaderId = CompileShader(fragmentShaderSource, ShaderType.FragmentShader);
             _handle = LinkShader(vertexShaderId, fragmentShaderId);
             GL.GetProgram(_handle, GetProgramParameterName.ActiveUniforms, out var numberOfUniforms);
-            
+
             _uniformLocations = new Dictionary<string, int>();
-            
+
             for (var i = 0; i < numberOfUniforms; i++)
             {
                 var key = GL.GetActiveUniform(_handle, i, out _, out _);
@@ -36,7 +36,7 @@ namespace RayTracing.Shaders
         private string ReadShaderFromFile(string shaderName)
         {
             var assembly = GetType().Assembly;
-            using Stream vertexShaderStream = assembly.GetManifestResourceStream(ShadersPath+shaderName);
+            using Stream vertexShaderStream = assembly.GetManifestResourceStream(ShadersPath + shaderName);
             using StreamReader reader = new StreamReader(vertexShaderStream, Encoding.UTF8);
             return reader.ReadToEnd();
         }
@@ -50,7 +50,7 @@ namespace RayTracing.Shaders
             string infoLogVert = GL.GetShaderInfoLog(shaderId);
             if (!string.IsNullOrEmpty(infoLogVert))
                 Log.Error(infoLogVert);
-    
+
             return shaderId;
         }
 
@@ -76,19 +76,19 @@ namespace RayTracing.Shaders
             GL.UseProgram(_handle);
             GL.UniformMatrix4(_uniformLocations[name], true, ref data);
         }
-        
+
         public void SetVector3(string name, Vector3 data)
         {
             GL.UseProgram(_handle);
             GL.Uniform3(_uniformLocations[name], data);
         }
-        
+
         public void SetInt(string name, int data)
         {
             GL.UseProgram(_handle);
             GL.Uniform1(_uniformLocations[name], data);
         }
-        
+
         public void SetFloat(string name, float data)
         {
             GL.UseProgram(_handle);

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Assimp;
 using OpenTK;
 using OpenTK.Graphics;
-using System.Drawing;
 
 namespace RayTracing.Maths
 {

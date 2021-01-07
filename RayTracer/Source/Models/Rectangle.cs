@@ -9,6 +9,7 @@ namespace RayTracing.Models
     public class Rectangle : Model
     {
         private float _aspectRatio = 1;
+
         public float AspectRatio
         {
             get => _aspectRatio;

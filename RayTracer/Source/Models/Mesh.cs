@@ -37,6 +37,7 @@ namespace RayTracing.Models
             {
                 LoadDataBuffer(TexCoords, TEX_COORDS_INDEX, 2);
             }
+
             LoadIndexBuffer(Indices);
         }
 
@@ -122,6 +123,7 @@ namespace RayTracing.Models
                 float vy = TexCoords[2 * Indices[index] + 1];
                 return new Vector2(vx, vy);
             }
+
             return new Vector2();
         }
 

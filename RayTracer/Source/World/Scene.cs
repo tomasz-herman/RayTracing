@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using RayTracing.BVH;
 using RayTracing.Lights;
-using RayTracing.Materials;
 using RayTracing.Maths;
 using RayTracing.Models;
 using RayTracing.RayTracing;
-using RayTracing.Sampling;
 
 namespace RayTracing.World
 {
@@ -79,6 +77,7 @@ namespace RayTracing.World
                 var node = new BvhNode(hittablesToBvh, 0, hittablesToBvh.Count);
                 Hittables.Add(node);
             }
+
             return Hittables;
         }
 

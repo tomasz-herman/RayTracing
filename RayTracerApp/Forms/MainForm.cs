@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using OpenTK;
@@ -93,7 +92,6 @@ namespace RayTracerApp.Forms
                 Material = new MasterMaterial(new Diffuse(new Texture("wood.jpg"))),
                 Rotation = Vector3.One * (float) Math.PI / 3
             }.Load());
-            ;
             _scene.AddModel(new Cube()
             {
                 Position = new Vector3(0, 0.5f, -3), Scale = 1,

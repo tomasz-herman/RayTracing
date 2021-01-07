@@ -1,5 +1,4 @@
-﻿using System;
-using OpenTK.Graphics.OpenGL4;
+﻿using OpenTK.Graphics.OpenGL4;
 using RayTracing.Cameras;
 using RayTracing.Materials;
 using RayTracing.Shaders;
