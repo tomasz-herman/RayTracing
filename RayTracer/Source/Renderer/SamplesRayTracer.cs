@@ -16,7 +16,7 @@ namespace RayTracing
 
         public SamplesRayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution,
             int samplesRenderStep) : base(
-            maxDepth, samples, sampling, resolution)
+            maxDepth, samples, sampling, resolution, samplesRenderStep)
         {
             _samplesRenderStep = samplesRenderStep;
         }
@@ -30,7 +30,7 @@ namespace RayTracing
                 var ray = lensCamera.GetRay(0.5f, 0.5f);
                 var hitInfo = new HitInfo();
                 var hit = scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity);
-                if(hit)
+                if (hit)
                 {
                     lensCamera.FocusDistance = hitInfo.Distance;
                 }
@@ -47,9 +47,9 @@ namespace RayTracing
 
             for (int k = 0; k < Samples; k++)
             {
-                Parallel.For(0, width, i =>
+                try
                 {
-                    Parallel.For(0, width, new ParallelOptions {CancellationToken = CancellationToken }, i =>
+                    Parallel.For(0, width, new ParallelOptions {CancellationToken = CancellationToken}, i =>
                     {
                         for (int j = 0; j < height; j++)
                         {
@@ -57,14 +57,17 @@ namespace RayTracing
                             float u = (i + sample.X) / (width - 1);
                             float v = (j + sample.Y) / (height - 1);
                             Ray ray = camera.GetRay(u, v);
-                            image[i, j] += Shade(ray, scene, MaxDepth);
+                            var shade = Shade(ray, scene, MaxDepth);
+                            image.Bloom(shade, i, j, (int) shade.GetBrightness());
+                            image[i, j] += shade;
                         }
                     });
                 }
-                catch(Exception)
+                catch (Exception e)
                 {
                     return;
                 }
+
                 if (CancellationToken.IsCancellationRequested)
                     return;
 
