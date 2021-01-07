@@ -26,13 +26,10 @@ namespace RayTracing.Materials
 
         public Texture(Texture image) // copy constructor
         {
-            lock(this)
-            {
-                _data = new Color[image.Width, image.Height];
-                for (int i = 0; i < Width; i++)
-                    for (int j = 0; j < Height; j++)
-                        _data[i, j] = image._data[i, j];
-            }
+            _data = new Color[image.Width, image.Height];
+            for (int i = 0; i < Width; i++)
+            for (int j = 0; j < Height; j++)
+                _data[i, j] = image._data[i, j];
         }
 
         public Texture(string path, bool glLoad = true)
@@ -75,7 +72,7 @@ namespace RayTracing.Materials
         public void CopyFrom(Texture texture)
         {
             if (this.Width != texture.Width || this.Height != texture.Height) return;
-            for(int i = 0; i < Width; i++)
+            for (int i = 0; i < Width; i++)
             {
                 for (int j = 0; j < Height; j++)
                 {
@@ -248,11 +245,8 @@ namespace RayTracing.Materials
 
         public void Dispose()
         {
-            lock (this)
-            {
-                GL.DeleteTexture(_id);
-                _data = null;
-            }
+            GL.DeleteTexture(_id);
+            _data = null;
         }
     }
 }
