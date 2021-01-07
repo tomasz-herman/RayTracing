@@ -12,9 +12,13 @@ namespace RayTracing
 {
     public class SamplesRayTracer : IncrementalRayTracer
     {
-        public SamplesRayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution, int samplesRenderStep) : base(
-            maxDepth, samples, sampling, resolution, samplesRenderStep)
+        private readonly int _samplesRenderStep;
+
+        public SamplesRayTracer(int maxDepth, int samples, Func<int, List<Vector2>> sampling, int resolution,
+            int samplesRenderStep) : base(
+            maxDepth, samples, sampling, resolution)
         {
+            _samplesRenderStep = samplesRenderStep;
         }
 
         public override void Render(Scene scene, Camera camera)
@@ -43,7 +47,7 @@ namespace RayTracing
 
             for (int k = 0; k < Samples; k++)
             {
-                try 
+                Parallel.For(0, width, i =>
                 {
                     Parallel.For(0, width, new ParallelOptions {CancellationToken = CancellationToken }, i =>
                     {
@@ -64,7 +68,7 @@ namespace RayTracing
                 if (CancellationToken.IsCancellationRequested)
                     return;
 
-                if (k % SamplesRenderStep == 0 || k == Samples - 1)
+                if (k % _samplesRenderStep == 0 || k == Samples - 1)
                 {
                     var output = new Texture(image);
                     output.Process(c => (c / (k + 1)).Clamp());

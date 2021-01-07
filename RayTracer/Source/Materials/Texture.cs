@@ -51,7 +51,16 @@ namespace RayTracing.Materials
 
         public Color this[float u, float v]
         {
-            get => _data[(int) (u * (Width - 1)), (int) (v * (Height - 1))];
+            get
+            {
+                if (u < 0 || u > 1 || v < 0 || v > 1)
+                {
+                    u -= (float) Math.Floor(u);
+                    v -= (float) Math.Floor(v);
+                }
+
+                return _data[(int) (u * (Width - 1)), (int) (v * (Height - 1))];
+            }
         }
 
         public Color this[int w, int h]
@@ -70,11 +79,11 @@ namespace RayTracing.Materials
             for (int i = -strength; i < strength; i++)
             for (int j = -strength; j < strength; j++)
             {
-                if (In(w + i, h + j))
+                if (In(w + i, h + j) && i != 0 && j != 0)
                 {
                     int rs = i * i + j * j;
                     if (rs <= strength * strength)
-                        _data[w + i, h + j] += color / (10*strength * (rs + 1));
+                        _data[w + i, h + j] += color / (10 * strength * (rs + 1));
                 }
             }
         }
