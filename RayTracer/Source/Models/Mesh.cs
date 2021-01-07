@@ -121,10 +121,10 @@ namespace RayTracing.Models
 
         public static Mesh operator +(Mesh first, Mesh second)
         {
+            int indexOffset = first.Positions.Count / 3;
             first.Positions.AddRange(second.Positions);
             first.Normals.AddRange(second.Normals);
             first.TexCoords.AddRange(second.TexCoords);
-            int indexOffset = first.Positions.Count / 3;
             first.Indices.AddRange(second.Indices.ConvertAll(index => index + indexOffset));
             return first;
         }
