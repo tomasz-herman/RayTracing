@@ -85,18 +85,21 @@ namespace RayTracerApp.Forms
             {
                 leftCancelButton.Visible = true;
                 middlePreviousButton.Visible = true;
+
                 middleCancelButton.Visible = false;
 
-                if (_controller.GetModel().GetType() == typeof(CustomModel))
-                    topLabel.Text = "Add custom model...";
-                else
-                    topLabel.Text = $"Add {_controller.GetModel().GetType().Name.ToLower()}...";
+                rightNextButton.Focus();
+
+                topLabel.Text = $"Add {_controller.GetModel().ToString().ToLower()}...";
             }
 
             if (index == _order.Count - 2)
             {
                 rightFinishButton.Visible = true;
+
                 rightNextButton.Visible = false;
+
+                rightFinishButton.Focus();
             }
 
             if (index < _order.Count - 1)
@@ -116,14 +119,20 @@ namespace RayTracerApp.Forms
                 topLabel.Text = "Add new object...";
 
                 middleCancelButton.Visible = true;
+
                 leftCancelButton.Visible = false;
                 middlePreviousButton.Visible = false;
+
+                middleCancelButton.Focus();
             }
 
             if (index == _order.Count - 1)
             {
                 rightNextButton.Visible = true;
+
                 rightFinishButton.Visible = false;
+
+                middlePreviousButton.Focus();
             }
 
             if (index > 0)
