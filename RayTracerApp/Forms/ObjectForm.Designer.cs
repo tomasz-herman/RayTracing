@@ -44,6 +44,7 @@ namespace RayTracerApp.Forms
             this.rightNextButton.Name = "rightNextButton";
             this.rightNextButton.Size = new System.Drawing.Size(75, 23);
             this.rightNextButton.TabIndex = 0;
+            this.rightNextButton.TabStop = false;
             this.rightNextButton.Text = "Next";
             this.rightNextButton.UseVisualStyleBackColor = true;
             // 
@@ -54,6 +55,7 @@ namespace RayTracerApp.Forms
             this.middlePreviousButton.Name = "middlePreviousButton";
             this.middlePreviousButton.Size = new System.Drawing.Size(75, 23);
             this.middlePreviousButton.TabIndex = 1;
+            this.middlePreviousButton.TabStop = false;
             this.middlePreviousButton.Text = "Previous";
             this.middlePreviousButton.UseVisualStyleBackColor = true;
             this.middlePreviousButton.Visible = false;
@@ -65,6 +67,7 @@ namespace RayTracerApp.Forms
             this.leftCancelButton.Name = "leftCancelButton";
             this.leftCancelButton.Size = new System.Drawing.Size(75, 23);
             this.leftCancelButton.TabIndex = 2;
+            this.leftCancelButton.TabStop = false;
             this.leftCancelButton.Text = "Cancel";
             this.leftCancelButton.UseVisualStyleBackColor = true;
             this.leftCancelButton.Visible = false;
@@ -76,6 +79,7 @@ namespace RayTracerApp.Forms
             this.middleCancelButton.Name = "middleCancelButton";
             this.middleCancelButton.Size = new System.Drawing.Size(75, 23);
             this.middleCancelButton.TabIndex = 3;
+            this.middleCancelButton.TabStop = false;
             this.middleCancelButton.Text = "Cancel";
             this.middleCancelButton.UseVisualStyleBackColor = true;
             // 
@@ -86,6 +90,7 @@ namespace RayTracerApp.Forms
             this.rightFinishButton.Name = "rightFinishButton";
             this.rightFinishButton.Size = new System.Drawing.Size(75, 23);
             this.rightFinishButton.TabIndex = 4;
+            this.rightFinishButton.TabStop = false;
             this.rightFinishButton.Text = "Finish";
             this.rightFinishButton.UseVisualStyleBackColor = true;
             this.rightFinishButton.Visible = false;

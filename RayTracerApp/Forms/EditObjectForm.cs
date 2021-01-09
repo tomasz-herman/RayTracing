@@ -77,13 +77,20 @@ namespace RayTracerApp.Forms
             {
                 leftCancelButton.Visible = true;
                 middlePreviousButton.Visible = true;
+                rightNextButton.Visible = true;
+
                 middleCancelButton.Visible = false;
+
+                rightNextButton.Focus();
             }
 
             if (index == _order.Count - 2)
             {
                 rightFinishButton.Visible = true;
+
                 rightNextButton.Visible = false;
+
+                rightFinishButton.Focus();
             }
 
             if (index < _order.Count - 1)
@@ -100,15 +107,27 @@ namespace RayTracerApp.Forms
 
             if (index == _order.Count - 1)
             {
-                middleCancelButton.Visible = true;
-                leftCancelButton.Visible = false;
-                middlePreviousButton.Visible = false;
+
+                leftCancelButton.Visible = true;
+                middlePreviousButton.Visible = true;
+                rightNextButton.Visible = true;
+
+                middleCancelButton.Visible = false;
+                rightFinishButton.Visible = false;
+
+                middlePreviousButton.Focus();
             }
 
             if (index == 1)
             {
                 rightNextButton.Visible = true;
+                middleCancelButton.Visible = true;
+
                 rightFinishButton.Visible = false;
+                middlePreviousButton.Visible = false;
+                leftCancelButton.Visible = false;
+
+                middleCancelButton.Focus();
             }
 
             if (index > 0)
