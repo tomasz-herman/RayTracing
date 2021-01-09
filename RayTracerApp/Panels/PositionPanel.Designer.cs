@@ -151,8 +151,13 @@ namespace RayTracerApp.Panels
             0,
             65536});
             this.zUpDown.Location = new System.Drawing.Point(100, 119);
+            this.zUpDown.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.zUpDown.Minimum = new decimal(new int[] {
-            100,
+            1000,
             0,
             0,
             -2147483648});
@@ -171,8 +176,13 @@ namespace RayTracerApp.Panels
             0,
             65536});
             this.yUpDown.Location = new System.Drawing.Point(100, 66);
+            this.yUpDown.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.yUpDown.Minimum = new decimal(new int[] {
-            100,
+            1000,
             0,
             0,
             -2147483648});
@@ -230,8 +240,13 @@ namespace RayTracerApp.Panels
             0,
             65536});
             this.xUpDown.Location = new System.Drawing.Point(100, 14);
+            this.xUpDown.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.xUpDown.Minimum = new decimal(new int[] {
-            100,
+            1000,
             0,
             0,
             -2147483648});
@@ -268,13 +283,18 @@ namespace RayTracerApp.Panels
             this.rollUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.rollUpDown.DecimalPlaces = 2;
             this.rollUpDown.Increment = new decimal(new int[] {
-            1,
+            5,
             0,
             0,
-            65536});
+            0});
             this.rollUpDown.Location = new System.Drawing.Point(100, 119);
+            this.rollUpDown.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
             this.rollUpDown.Minimum = new decimal(new int[] {
-            100,
+            360,
             0,
             0,
             -2147483648});
@@ -288,13 +308,18 @@ namespace RayTracerApp.Panels
             this.yawUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.yawUpDown.DecimalPlaces = 2;
             this.yawUpDown.Increment = new decimal(new int[] {
-            1,
+            5,
             0,
             0,
-            65536});
+            0});
             this.yawUpDown.Location = new System.Drawing.Point(100, 66);
+            this.yawUpDown.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
             this.yawUpDown.Minimum = new decimal(new int[] {
-            100,
+            360,
             0,
             0,
             -2147483648});
@@ -347,13 +372,18 @@ namespace RayTracerApp.Panels
             this.pitchUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.pitchUpDown.DecimalPlaces = 2;
             this.pitchUpDown.Increment = new decimal(new int[] {
-            1,
+            5,
             0,
             0,
-            65536});
+            0});
             this.pitchUpDown.Location = new System.Drawing.Point(100, 14);
+            this.pitchUpDown.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
             this.pitchUpDown.Minimum = new decimal(new int[] {
-            100,
+            360,
             0,
             0,
             -2147483648});
@@ -372,8 +402,13 @@ namespace RayTracerApp.Panels
             0,
             65536});
             this.scaleUpDown.Location = new System.Drawing.Point(204, 396);
+            this.scaleUpDown.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.scaleUpDown.Minimum = new decimal(new int[] {
-            100,
+            10000,
             0,
             0,
             -2147483648});
