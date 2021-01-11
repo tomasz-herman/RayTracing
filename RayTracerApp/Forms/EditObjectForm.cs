@@ -38,7 +38,7 @@ namespace RayTracerApp.Forms
             materialPanel.Visible = false;
 
             var model = _controller.GetModel();
-            var featureTypes = new List<Type> { typeof(Cylinder), typeof(Rectangle) };
+            var featureTypes = new List<Type> { typeof(Cylinder), typeof(Rectangle), typeof(Cuboid) };
             if (featureTypes.Contains(model.GetType()))
                 _order = new List<IPanelBase> { featuresPanel, positionPanel, materialPanel };
             else

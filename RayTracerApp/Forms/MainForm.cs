@@ -92,7 +92,7 @@ namespace RayTracerApp.Forms
                 Material = new MasterMaterial(new Diffuse(new Texture("wood.jpg"))),
                 Rotation = Vector3.One * (float) Math.PI / 3
             }.Load());
-            _scene.AddModel(new Cube()
+            _scene.AddModel(new Cuboid()
             {
                 Position = new Vector3(0, 0.5f, -3), Scale = 1,
                 Material = new MasterMaterial(new Diffuse(new Texture("wood.jpg")))

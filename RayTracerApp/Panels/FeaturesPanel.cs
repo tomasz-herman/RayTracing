@@ -30,6 +30,10 @@ namespace RayTracerApp.Panels
                 case Cylinder cylinder:
                     cylinder.Aspect = (float)aspectRatioUpDown.Value;
                     break;
+                case Cuboid cuboid:
+                    cuboid.AspectRatio1 = (float)aspect1UpDown.Value;
+                    cuboid.AspectRatio2 = (float)aspect2UpDown.Value;
+                    break;
                 case CustomModel customModel:
                     break;
                 default:
@@ -47,6 +51,12 @@ namespace RayTracerApp.Panels
                     break;
                 case Cylinder cylinder:
                     aspectRatioUpDown.Value = (decimal)cylinder.Aspect;
+                    break;
+                case Cuboid cuboid:
+                    aspect1UpDown.Value = (decimal)cuboid.AspectRatio1;
+                    aspect2UpDown.Value = (decimal)cuboid.AspectRatio2;
+                    break;
+                case CustomModel customModel:
                     break;
                 default:
                     throw new Exception("Bad model type");
@@ -117,9 +127,54 @@ namespace RayTracerApp.Panels
         {
             if (Controller == null) return;
             var model = Controller.GetModel();
-            bool customModel = model is CustomModel && !(model is Cube);
-            filePanel.Visible = customModel;
-            aspectPanel.Visible = !customModel;
+            filePanel.Visible = false;
+            aspectPanel.Visible = true;
+            aspect2Panel.Visible = false;
+
+            if(model is CustomModel && !(model is Cuboid))
+            {
+                filePanel.Visible = true;
+                aspectPanel.Visible = false;
+                aspect2Panel.Visible = false;
+            }
+            else if(model is Cuboid)
+            {
+                aspect2Panel.Visible = true;
+                aspectPanel.Visible = false;
+            }
+            
+        }
+
+        private void aspect1UpDown_ValueChanged(object sender, EventArgs e)
+        {
+            var nud = sender as NumericUpDown;
+            float val = (float)nud.Value;
+
+            var model = Controller.GetModel();
+            switch (model)
+            {
+                case Cuboid cuboid:
+                    cuboid.AspectRatio1 = val;
+                    break;
+                default:
+                    throw new Exception("Bad model type");
+            }
+        }
+
+        private void aspect2UpDown_ValueChanged(object sender, EventArgs e)
+        {
+            var nud = sender as NumericUpDown;
+            float val = (float)nud.Value;
+
+            var model = Controller.GetModel();
+            switch (model)
+            {
+                case Cuboid cuboid:
+                    cuboid.AspectRatio2 = val;
+                    break;
+                default:
+                    throw new Exception("Bad model type");
+            }
         }
     }
 }
