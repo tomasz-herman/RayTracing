@@ -36,16 +36,16 @@ namespace RayTracerApp.Panels
             this.aspectLabel = new System.Windows.Forms.Label();
             this.aspectRatioUpDown = new System.Windows.Forms.NumericUpDown();
             this.aspect2Panel = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.aspect1UpDown = new System.Windows.Forms.NumericUpDown();
             this.aspect2UpDown = new System.Windows.Forms.NumericUpDown();
+            this.aspect1UpDown = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.filePanel.SuspendLayout();
             this.aspectPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.aspectRatioUpDown)).BeginInit();
             this.aspect2Panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.aspect1UpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspect2UpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aspect1UpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // filePanel
@@ -139,23 +139,30 @@ namespace RayTracerApp.Panels
             this.aspect2Panel.Size = new System.Drawing.Size(393, 66);
             this.aspect2Panel.TabIndex = 2;
             // 
-            // label1
+            // aspect2UpDown
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(42, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Aspect 1:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(42, 40);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 15);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Aspect 2:";
+            this.aspect2UpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.aspect2UpDown.DecimalPlaces = 2;
+            this.aspect2UpDown.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.aspect2UpDown.Location = new System.Drawing.Point(302, 32);
+            this.aspect2UpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.aspect2UpDown.Name = "aspect2UpDown";
+            this.aspect2UpDown.Size = new System.Drawing.Size(75, 23);
+            this.aspect2UpDown.TabIndex = 3;
+            this.aspect2UpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.aspect2UpDown.ValueChanged += new System.EventHandler(this.aspect2UpDown_ValueChanged);
             // 
             // aspect1UpDown
             // 
@@ -182,30 +189,23 @@ namespace RayTracerApp.Panels
             0});
             this.aspect1UpDown.ValueChanged += new System.EventHandler(this.aspect1UpDown_ValueChanged);
             // 
-            // aspect2UpDown
+            // label2
             // 
-            this.aspect2UpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.aspect2UpDown.DecimalPlaces = 2;
-            this.aspect2UpDown.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.aspect2UpDown.Location = new System.Drawing.Point(302, 32);
-            this.aspect2UpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.aspect2UpDown.Name = "aspect2UpDown";
-            this.aspect2UpDown.Size = new System.Drawing.Size(75, 23);
-            this.aspect2UpDown.TabIndex = 3;
-            this.aspect2UpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.aspect2UpDown.ValueChanged += new System.EventHandler(this.aspect2UpDown_ValueChanged);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(42, 40);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(55, 15);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Aspect 2:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(42, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Aspect 1:";
             // 
             // FeaturesPanel
             // 
@@ -224,8 +224,8 @@ namespace RayTracerApp.Panels
             ((System.ComponentModel.ISupportInitialize)(this.aspectRatioUpDown)).EndInit();
             this.aspect2Panel.ResumeLayout(false);
             this.aspect2Panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.aspect1UpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspect2UpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aspect1UpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
