@@ -62,11 +62,32 @@ namespace RayTracerApp.Panels.FeaturesPanels
                     filePath = openFileDialog.FileName;
                     var model = ModelLoader.Load(filePath);
                     Controller.GetModel()?.Unload();
-                    Controller.SetModel(model);
+                    Controller.SetModel(model, true);
                     Controller.GetModel().Load();
                     Controller.UpdateModelFromUI();
+                    predefinedModelComboBox.ResetText();
                 }
             }
+        }
+
+        private void predefinedModelComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var comboBox = sender as ComboBox;
+            var selected = (string)comboBox.SelectedItem;
+            selected = selected.Replace(' ', '_');
+            if (selected == "teapot")
+            {
+                selected += ".fbx";
+            }
+            else
+            {
+                selected += ".dae";
+            }
+            var model = ModelLoader.Load(selected, true);
+            Controller.GetModel()?.Unload();
+            Controller.SetModel(model, true);
+            Controller.GetModel().Load();
+            Controller.UpdateModelFromUI();
         }
     }
 }
