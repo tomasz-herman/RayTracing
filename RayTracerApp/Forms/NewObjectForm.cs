@@ -61,7 +61,7 @@ namespace RayTracerApp.Forms
         private void ChooseOrder()
         {
             var model = _controller.GetModel();
-            var featureTypes = new List<Type> { typeof(Cylinder), typeof(Rectangle), typeof(CustomModel) };
+            var featureTypes = new List<Type> { typeof(Cylinder), typeof(Rectangle), typeof(CustomModel), typeof(Cuboid) };
             if (featureTypes.Contains(model.GetType()))
                 _order = new List<IPanelBase> { objectSelectionPanel, featuresPanel, positionPanel, materialPanel };
             else

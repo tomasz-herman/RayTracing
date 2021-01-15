@@ -38,7 +38,7 @@ namespace RayTracerApp.Forms
             materialPanel.Visible = false;
 
             var model = _controller.GetModel();
-            var featureTypes = new List<Type> { typeof(Cylinder), typeof(Rectangle) };
+            var featureTypes = new List<Type> { typeof(Cylinder), typeof(Rectangle), typeof(Cuboid) };
             if (featureTypes.Contains(model.GetType()))
                 _order = new List<IPanelBase> { featuresPanel, positionPanel, materialPanel };
             else
@@ -52,10 +52,8 @@ namespace RayTracerApp.Forms
             {
                 panel.UpdateFromModel();
             }
-            if (_controller.GetModel() is CustomModel)
-                topLabel.Text = "Edit custom model...";
-            else
-                topLabel.Text = $"Edit {_controller.GetModel().GetType().Name.ToLower()}...";
+
+            topLabel.Text = $"Edit {_controller.GetModel().ToString().ToLower()}...";
         }
 
         private void EditObjectForm_FormClosed(object sender, FormClosedEventArgs e)

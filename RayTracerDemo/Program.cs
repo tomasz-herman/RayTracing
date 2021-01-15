@@ -33,7 +33,7 @@ namespace RayTracerDemo
             scene.AddModel(new Sphere {Position = new Vector3(2.5f, 0.5f, 1), Scale = 1, Material = matteGlass});
             scene.AddModel(new Plane {Position = new Vector3(0, -0.5f, 0), Scale = 1, Material = new Diffuse(Color.FromColor4(Color4.ForestGreen))});
             scene.AddModel(new Sphere {Position = new Vector3(5f, 0.5f, 1.5f), Scale = 1, Material = new Diffuse(new Texture("earthmap.jpg", false))});
-            scene.AddModel(new Cube {Position = new Vector3(1.0f, 0.5f, -1.5f), Rotation = new Vector3(-0, 2f, 0), Material = new Diffuse(Color.FromColor4(Color4.Crimson))});
+            scene.AddModel(new Cuboid {Position = new Vector3(1.0f, 0.5f, -1.5f), Rotation = new Vector3(-0, 2f, 0), Material = new Diffuse(Color.FromColor4(Color4.Crimson))});
             scene.AddModel(new Sphere {Position = new Vector3(0f, 0.0f, 3.5f), Scale = 0.5f, Material = new Refractive(Color.FromColor4(Color4.White), 1.333f)});
             var rayTracer = new FileRayTracer("RenderedScene.png", 10, 64, Vec2Sampling.Jittered, 1280);
             rayTracer.Render(scene, camera);

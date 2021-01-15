@@ -35,7 +35,7 @@ namespace RayTracerApp.Panels
             this.planeRadioButton = new System.Windows.Forms.RadioButton();
             this.customModelRadioButton = new System.Windows.Forms.RadioButton();
             this.cylinderRadioButton = new System.Windows.Forms.RadioButton();
-            this.cubeRadioButton = new System.Windows.Forms.RadioButton();
+            this.cuboidRadioButton = new System.Windows.Forms.RadioButton();
             this.sphereRadioButton = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -49,7 +49,7 @@ namespace RayTracerApp.Panels
             this.panel1.Controls.Add(this.planeRadioButton);
             this.panel1.Controls.Add(this.customModelRadioButton);
             this.panel1.Controls.Add(this.cylinderRadioButton);
-            this.panel1.Controls.Add(this.cubeRadioButton);
+            this.panel1.Controls.Add(this.cuboidRadioButton);
             this.panel1.Controls.Add(this.sphereRadioButton);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -100,16 +100,16 @@ namespace RayTracerApp.Panels
             this.cylinderRadioButton.UseVisualStyleBackColor = true;
             this.cylinderRadioButton.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
             // 
-            // cubeRadioButton
+            // cuboidRadioButton
             // 
-            this.cubeRadioButton.AutoSize = true;
-            this.cubeRadioButton.Location = new System.Drawing.Point(9, 41);
-            this.cubeRadioButton.Name = "cubeRadioButton";
-            this.cubeRadioButton.Size = new System.Drawing.Size(53, 19);
-            this.cubeRadioButton.TabIndex = 1;
-            this.cubeRadioButton.Text = "Cube";
-            this.cubeRadioButton.UseVisualStyleBackColor = true;
-            this.cubeRadioButton.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
+            this.cuboidRadioButton.AutoSize = true;
+            this.cuboidRadioButton.Location = new System.Drawing.Point(9, 41);
+            this.cuboidRadioButton.Name = "cuboidRadioButton";
+            this.cuboidRadioButton.Size = new System.Drawing.Size(64, 19);
+            this.cuboidRadioButton.TabIndex = 1;
+            this.cuboidRadioButton.Text = "Cuboid";
+            this.cuboidRadioButton.UseVisualStyleBackColor = true;
+            this.cuboidRadioButton.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
             // 
             // sphereRadioButton
             // 
@@ -144,7 +144,7 @@ namespace RayTracerApp.Panels
         private System.Windows.Forms.RadioButton planeRadioButton;
         private System.Windows.Forms.RadioButton customModelRadioButton;
         private System.Windows.Forms.RadioButton cylinderRadioButton;
-        private System.Windows.Forms.RadioButton cubeRadioButton;
+        private System.Windows.Forms.RadioButton cuboidRadioButton;
         private System.Windows.Forms.RadioButton sphereRadioButton;
     }
 }

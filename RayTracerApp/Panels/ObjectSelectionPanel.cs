@@ -45,8 +45,8 @@ namespace RayTracerApp.Panels
                     case "Sphere":
                         Controller.SetModel(new Sphere().Load());
                         break;
-                    case "Cube":
-                        Controller.SetModel(new Cube().Load());
+                    case "Cuboid":
+                        Controller.SetModel(new Cuboid().Load());
                         break;
                     case "Cylinder":
                         Controller.SetModel(new Cylinder().Load());
