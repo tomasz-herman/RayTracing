@@ -63,6 +63,7 @@ namespace RayTracerApp.Panels.FeaturesPanels
             "birch tree",
             "mountain",
             "mug",
+            "lamp",
             "tank",
             "teapot",
             "trex"});
