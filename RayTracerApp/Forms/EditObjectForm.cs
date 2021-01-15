@@ -52,10 +52,8 @@ namespace RayTracerApp.Forms
             {
                 panel.UpdateFromModel();
             }
-            if (_controller.GetModel() is CustomModel)
-                topLabel.Text = "Edit custom model...";
-            else
-                topLabel.Text = $"Edit {_controller.GetModel().GetType().Name.ToLower()}...";
+
+            topLabel.Text = $"Edit {_controller.GetModel().ToString().ToLower()}...";
         }
 
         private void EditObjectForm_FormClosed(object sender, FormClosedEventArgs e)
