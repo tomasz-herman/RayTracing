@@ -49,9 +49,7 @@ namespace RayTracing.Models
                 {
                     var assembly = Assembly.GetAssembly(typeof(ModelLoader));
                     Stream stream = assembly.GetManifestResourceStream(ModelsPath + path);
-                    Console.WriteLine(stream);
-                    Console.WriteLine(assembly);
-                    scene = importer.ImportFileFromStream(stream, ppSteps);
+                    scene = importer.ImportFileFromStream(stream, ppSteps, Path.GetExtension(path));
                     stream.Dispose();
                 }
                 else
@@ -137,15 +135,6 @@ namespace RayTracing.Models
             (float emissive, float diffuse, float reflective, float refractive) parts =
                 (Color.FromAssimpColor4(ambient).GetBrightness(), Color.FromAssimpColor4(diffuse).GetBrightness(),
                     Color.FromAssimpColor4(specular).GetBrightness(), 0);
-
-            float sum = parts.emissive + parts.diffuse + parts.reflective;
-            if (sum != 0)
-            {
-                parts.emissive /= sum;
-                parts.diffuse /= sum;
-                parts.reflective /= sum;
-            }
-
             return parts;
         }
 
