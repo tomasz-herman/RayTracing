@@ -74,15 +74,7 @@ namespace RayTracerApp.Panels.FeaturesPanels
         {
             var comboBox = sender as ComboBox;
             var selected = (string)comboBox.SelectedItem;
-            selected = selected.Replace(' ', '_');
-            if (selected == "teapot")
-            {
-                selected += ".fbx";
-            }
-            else
-            {
-                selected += ".dae";
-            }
+            selected = selected.Replace(' ', '_') + ".dae";
             var model = ModelLoader.Load(selected, true);
             Controller.GetModel()?.Unload();
             Controller.SetModel(model, true);
