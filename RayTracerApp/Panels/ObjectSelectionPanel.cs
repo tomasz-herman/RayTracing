@@ -40,24 +40,24 @@ namespace RayTracerApp.Panels
 
             if (rb.Checked)
             {
-                switch (rb.Text)
+                switch (rb.TabIndex)
                 {
-                    case "Sphere":
+                    case 0:
                         Controller.SetModel(new Sphere().Load());
                         break;
-                    case "Cuboid":
+                    case 1:
                         Controller.SetModel(new Cuboid().Load());
                         break;
-                    case "Cylinder":
+                    case 2:
                         Controller.SetModel(new Cylinder().Load());
                         break;
-                    case "Plane":
+                    case 3:
                         Controller.SetModel(new Plane().Load());
                         break;
-                    case "Rectangle":
+                    case 4:
                         Controller.SetModel(new Rectangle(1f).Load());
                         break;
-                    case "Custom model":
+                    case 5:
                         Controller.SetModel(new CustomModel());
                         break;
                 }

@@ -1,0 +1,217 @@
+﻿<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Drawing.Primitives" name="System.Drawing.Primitives, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>126, 14</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>69, 15</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Ilość sampli</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>103, 57</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>114, 15</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Częstotliwość zmian</value>
+  </data>
+  <data name="label11.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>112, 100</value>
+  </data>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>96, 15</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Korekcja gamma</value>
+  </data>
+  <data name="label12.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>134, 143</value>
+  </data>
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>53, 15</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Rozbłysk</value>
+  </data>
+  <data name="label13.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>29, 265</value>
+  </data>
+  <data name="label13.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>263, 30</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Śledzenie promieni według poziomów rekurencji (nieoptymalne)</value>
+  </data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>83, 186</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>154, 15</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Liczba poziomów rekurencji</value>
+  </data>
+  <data name="label18.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>107, 229</value>
+  </data>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>107, 15</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Tryb automatyczny</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Śledzenie promieni</value>
+  </data>
+  <data name="randomRadioButton.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>65, 19</value>
+  </data>
+  <data name="randomRadioButton.Text" xml:space="preserve">
+    <value>Losowe</value>
+  </data>
+  <data name="centerRadioButton.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>76, 19</value>
+  </data>
+  <data name="centerRadioButton.Text" xml:space="preserve">
+    <value>Centralne</value>
+  </data>
+  <data name="jitteredRadioButton.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>71, 19</value>
+  </data>
+  <data name="jitteredRadioButton.Text" xml:space="preserve">
+    <value>Drgające</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>127, 58</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>67, 15</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Typ kamery</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>121, 143</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>79, 15</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Pole widzenia</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>122, 228</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>76, 15</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Próbkowanie</value>
+  </data>
+  <data name="ortographicCameraRadioButton.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>92, 19</value>
+  </data>
+  <data name="ortographicCameraRadioButton.Text" xml:space="preserve">
+    <value>Ortogonalna</value>
+  </data>
+  <data name="lensCameraRadioButton.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>85, 19</value>
+  </data>
+  <data name="lensCameraRadioButton.Text" xml:space="preserve">
+    <value>Z soczewką</value>
+  </data>
+  <data name="perspectiveCameraRadioButton.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>112, 19</value>
+  </data>
+  <data name="perspectiveCameraRadioButton.Text" xml:space="preserve">
+    <value>Perspektywiczna</value>
+  </data>
+  <data name="label14.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>12, 12</value>
+  </data>
+  <data name="label14.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>52, 15</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Promień</value>
+  </data>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>8, 43</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>60, 30</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Odleglość skupienia</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Kamera</value>
+  </data>
+  <data name="finishButton.Text" xml:space="preserve">
+    <value>Zakończ</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Ustawienia</value>
+  </data>
+</root>

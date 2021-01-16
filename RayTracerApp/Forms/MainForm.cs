@@ -16,6 +16,7 @@ using Timer = System.Windows.Forms.Timer;
 using Color = RayTracing.Maths.Color;
 using RayTracerApp.SceneController;
 using System.Threading;
+using System.Globalization;
 
 namespace RayTracerApp.Forms
 {
@@ -349,9 +350,11 @@ namespace RayTracerApp.Forms
             {
                 var model = hitInfo.ModelHit;
                 if (model is Triangle triangle) model = triangle.Parent;
+
                 string message =
-                    $"Are you sure that you would like to delete the {model}?";
-                const string caption = "Delete object";
+                    String.Format(Properties.Strings.DeleteMessage, model.ToString().ToLower());
+                string caption = Properties.Strings.DeleteInfo;
+               
                 var result = MessageBox.Show(message, caption,
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question);

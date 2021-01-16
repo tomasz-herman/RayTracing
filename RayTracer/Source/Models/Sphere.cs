@@ -127,7 +127,7 @@ namespace RayTracing.Models
 
         public override string ToString()
         {
-            return "Sphere";
+            return Properties.Strings.Sphere;
         }
     }
 }
