@@ -36,8 +36,8 @@ namespace RayTracerApp.Panels
             var rotation = new Vector3
             {
 
-                X = FromDegreesToRadians(yawUpDown.Value),
-                Y = FromDegreesToRadians(pitchUpDown.Value),
+                X = FromDegreesToRadians(pitchUpDown.Value),
+                Y = FromDegreesToRadians(yawUpDown.Value),
                 Z = FromDegreesToRadians(rollUpDown.Value)
         };
             model.Rotation = rotation;
