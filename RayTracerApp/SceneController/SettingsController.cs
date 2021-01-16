@@ -11,10 +11,13 @@ namespace RayTracerApp.SceneController
         public Camera Camera { get; set; }
         public IncrementalRayTracer RayTracer { get; set; }
 
-        public SettingsController(Camera camera, IncrementalRayTracer rayTracer)
+        public bool AutomaticMode { get; set; }
+
+        public SettingsController(Camera camera, IncrementalRayTracer rayTracer, bool mode)
         {
             Camera = camera;
             RayTracer = rayTracer;
+            AutomaticMode = mode;
         }
     }
 }

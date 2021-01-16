@@ -49,6 +49,8 @@ namespace RayTracerApp.Forms
 
             recursionCheckbox.Checked = rayTracer is RecursionRayTracer;
 
+            automaticCheckBox.Checked = _controller.AutomaticMode;
+
             if(camera is LensCamera lc)
             {
                 lensRadiusUpDown.Value = (decimal)lc.LensRadius;
@@ -200,6 +202,11 @@ namespace RayTracerApp.Forms
         private void gammaCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             _controller.RayTracer.GammaCorrection = gammaCheckBox.Checked;
+        }
+
+        private void automaticCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            _controller.AutomaticMode = automaticCheckBox.Checked;
         }
     }
 }
