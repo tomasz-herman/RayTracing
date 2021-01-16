@@ -24,7 +24,7 @@ namespace RayTracerApp.Forms
         private const int SWAP_TIME = 2;
         private Scene _scene = new Scene();
         private IRenderer _renderer;
-        private Camera _camera = new LensCamera(new Vector3(0, 0, 20)) {AspectRatio = 1, AutoFocus = true};
+        private Camera _camera = new PerspectiveCamera(new Vector3(0, 0, 20)) {AspectRatio = 1};
         private CameraController _cameraController;
         private IncrementalRayTracer _rayTracer;
         private BackgroundWorker _backgroundWorker;
@@ -33,6 +33,10 @@ namespace RayTracerApp.Forms
         private long lastModification;
         private bool rayTracingStarted;
         private bool _isUiUsed;
+
+        private bool _automaticMode = true;
+        private bool _manualModeCanRun = false;
+        private bool ManualModeBlocked => !_automaticMode && _manualModeCanRun && rayTracingStarted;
 
         private HitInfo _contextHitInfo;
         private bool _contextHit;
@@ -50,7 +54,9 @@ namespace RayTracerApp.Forms
         public bool ShouldRaytrace()
         {
             long now = DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
-            return !_isUiUsed && now - lastModification > SWAP_TIME;
+            bool manualModeCanRun = !_automaticMode && _manualModeCanRun;
+            if (manualModeCanRun) return true;
+            return _automaticMode && !_isUiUsed && now - lastModification > SWAP_TIME;
         }
 
         public MainForm()
@@ -118,6 +124,25 @@ namespace RayTracerApp.Forms
             UpdateViewport();
 
             gLControl.MouseClick += GLControl_MouseClick;
+
+            gLControl.KeyDown += GLControl_KeyDown;
+        }
+
+        private void GLControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (_automaticMode) return;
+            if (e.KeyCode != Keys.R) return;
+            if (_manualModeCanRun)
+            {
+                _manualModeCanRun = false;
+                _cameraController.Blocked = false;
+                UpdateLastModification();
+            }
+            else
+            {
+                _manualModeCanRun = true;
+                _cameraController.Blocked = true;
+            }
         }
 
         private void InitializeFpsTimer()
@@ -139,12 +164,25 @@ namespace RayTracerApp.Forms
                     progressBar.Value = 0;
                     progressBar.Visible = true;
                     rayTracingStarted = true;
+                    if (ManualModeBlocked)
+                    {
+                        this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                        this.MaximizeBox = false;
+                        this.MinimizeBox = false;
+                    }
                 }
                 else
                 {
                     _renderer.Render(_scene, _cameraController.GetCamera());
                     gLControl.SwapBuffers();
                 }
+
+            if(!ManualModeBlocked)
+            {
+                this.FormBorderStyle = FormBorderStyle.Sizable;
+                this.MaximizeBox = true;
+                this.MinimizeBox = true;
+            }
         }
 
         private void OnResize(object sender, EventArgs e)
@@ -203,6 +241,7 @@ namespace RayTracerApp.Forms
 
         private void newObjectButton_Click(object sender, EventArgs e)
         {
+            if (ManualModeBlocked) return;
             var ray = _cameraController.GetCamera().GetRay(0.5f, 0.5f);
             var hitInfo = new HitInfo();
             var hit = _scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity);
@@ -211,10 +250,11 @@ namespace RayTracerApp.Forms
 
         private void settingsButton_Click(object sender, EventArgs e)
         {
+            if (ManualModeBlocked) return;
             UpdateLastModification();
             _isUiUsed = true;
 
-            var controller = new SettingsController(_camera, _rayTracer);
+            var controller = new SettingsController(_camera, _rayTracer, _automaticMode);
             var form = new SettingsForm(controller)
                 {StartPosition = FormStartPosition.Manual, Location = Location + Size / 3};
 
@@ -222,8 +262,12 @@ namespace RayTracerApp.Forms
             form.Closed += (a, b) =>
             {
                 _camera = controller.Camera;
+                _cameraController?.Dispose();
                 _cameraController = new CameraController(_camera, gLControl, UpdateLastModification);
                 _rayTracer = controller.RayTracer;
+                _automaticMode = controller.AutomaticMode;
+                _manualModeCanRun = false;
+                _cameraController.Blocked = false;
             };
             form.Show();
         }
@@ -252,6 +296,7 @@ namespace RayTracerApp.Forms
 
         private void editObjectButton_Click(object sender, EventArgs e)
         {
+            if (ManualModeBlocked) return;
             var ray = _cameraController.GetCamera().GetRay(0.5f, 0.5f);
             var hitInfo = new HitInfo();
             var hit = _scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity);
@@ -289,6 +334,7 @@ namespace RayTracerApp.Forms
 
         private void deleteObjectButton_Click(object sender, EventArgs e)
         {
+            if (ManualModeBlocked) return;
             var ray = _cameraController.GetCamera().GetRay(0.5f, 0.5f);
             var hitInfo = new HitInfo();
             var hit = _scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity);
@@ -322,6 +368,7 @@ namespace RayTracerApp.Forms
 
         private void GLControl_MouseClick(object sender, MouseEventArgs e)
         {
+            if (ManualModeBlocked) return;
             if (e.Button == MouseButtons.Right)
             {
                 var width = (float) gLControl.Width;
