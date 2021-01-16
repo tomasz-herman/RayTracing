@@ -19,7 +19,7 @@ namespace RayTracerApp
         private Point _lastMousePos;
         private Camera _camera;
         private DictionaryWithDefault<Keys, bool> keys = new DictionaryWithDefault<Keys, bool>();
-        private List<Keys> allowedKeys = new List<Keys> { Keys.W, Keys.A, Keys.S, Keys.D, Keys.LShiftKey, Keys.Space };
+        private List<Keys> allowedKeys = new List<Keys> { Keys.W, Keys.A, Keys.S, Keys.D, Keys.ShiftKey, Keys.Space };
         private Control _control;
         public CameraController(Camera camera, Control control, Action onModification)
         {
@@ -41,7 +41,6 @@ namespace RayTracerApp
         {
             if (Blocked) return;
             if (!allowedKeys.Contains(e.KeyCode)) return;
-           
             keys[e.KeyCode] = false;
             if (!e.Shift) keys[Keys.LShiftKey] = false;
             _onModification();

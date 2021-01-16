@@ -45,7 +45,6 @@ namespace RayTracerApp.Forms
 
         public void UpdateLastModification()
         {
-            if (_cameraController?.Blocked == true) return;
             lastModification = DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
             rayTracingStarted = false;
             _backgroundWorker?.CancelAsync();
@@ -263,6 +262,7 @@ namespace RayTracerApp.Forms
             form.Closed += (a, b) =>
             {
                 _camera = controller.Camera;
+                _cameraController?.Dispose();
                 _cameraController = new CameraController(_camera, gLControl, UpdateLastModification);
                 _rayTracer = controller.RayTracer;
                 _automaticMode = controller.AutomaticMode;
