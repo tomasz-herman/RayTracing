@@ -64,6 +64,24 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Z pliku...</value>
   </data>
+  <data name="predefinedModelComboBox.Items" xml:space="preserve">
+    <value>drzewo</value>
+  </data>
+  <data name="predefinedModelComboBox.Items1" xml:space="preserve">
+    <value>góra</value>
+  </data>
+  <data name="predefinedModelComboBox.Items2" xml:space="preserve">
+    <value>kubek</value>
+  </data>
+  <data name="predefinedModelComboBox.Items3" xml:space="preserve">
+    <value>lampa</value>
+  </data>
+  <data name="predefinedModelComboBox.Items4" xml:space="preserve">
+    <value>czołg</value>
+  </data>
+  <data name="predefinedModelComboBox.Items5" xml:space="preserve">
+    <value>dzbanek</value>
+  </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing.Primitives">
     <value>126, 15</value>
   </data>
