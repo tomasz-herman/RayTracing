@@ -13,14 +13,14 @@
   <library_effects>
     <effect id="Tree-effect">
       <profile_COMMON>
-        <newparam sid="tree_png_001-surface">
+        <newparam sid="tree_png-surface">
           <surface type="2D">
-            <init_from>tree_png_001</init_from>
+            <init_from>tree_png</init_from>
           </surface>
         </newparam>
-        <newparam sid="tree_png_001-sampler">
+        <newparam sid="tree_png-sampler">
           <sampler2D>
-            <source>tree_png_001-surface</source>
+            <source>tree_png-surface</source>
           </sampler2D>
         </newparam>
         <technique sid="common">
@@ -29,7 +29,7 @@
               <color sid="emission">0 0 0 1</color>
             </emission>
             <diffuse>
-              <texture texture="tree_png_001-sampler" texcoord="UVMap"/>
+              <texture texture="tree_png-sampler" texcoord="UVMap"/>
             </diffuse>
             <index_of_refraction>
               <float sid="ior">1</float>
@@ -40,8 +40,8 @@
     </effect>
   </library_effects>
   <library_images>
-    <image id="tree_png_001" name="tree_png_001">
-      <init_from>tree.png.001.png</init_from>
+    <image id="tree_png" name="tree_png">
+      <init_from>tree.png</init_from>
     </image>
   </library_images>
   <library_materials>
