@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using Assimp;
 using Assimp.Configs;
 using RayTracing.Materials;
@@ -10,22 +11,25 @@ namespace RayTracing.Models
 {
     public class ModelLoader
     {
-        public static CustomModel Load(string path)
+        private const string ModelsPath = "RayTracer.Resources.Models.";
+        
+        public static CustomModel Load(string path, bool loadFromExe = false)
         {
             return Load(path,
                 PostProcessSteps.Triangulate |
                 PostProcessSteps.GenerateNormals |
                 PostProcessSteps.JoinIdenticalVertices |
-                PostProcessSteps.FixInFacingNormals);
+                PostProcessSteps.FixInFacingNormals, 
+                loadFromExe);
         }
 
-        public static CustomModel Load(string path, PostProcessSteps ppSteps, params PropertyConfig[] configs)
+        public static CustomModel Load(string path, PostProcessSteps ppSteps, bool loadFromExe = false, params PropertyConfig[] configs)
         {
             Log.Info($"Loading model: {path}");
 
             var model = new CustomModel();
 
-            if (!File.Exists(path))
+            if (!File.Exists(path) && !loadFromExe)
             {
                 Log.Error($"Model {path} does not exist.");
                 return model;
@@ -40,7 +44,18 @@ namespace RayTracing.Models
 
             try
             {
-                var scene = importer.ImportFile(path, ppSteps);
+                Scene scene;
+                if (loadFromExe)
+                {
+                    var assembly = Assembly.GetAssembly(typeof(ModelLoader));
+                    Stream stream = assembly.GetManifestResourceStream(ModelsPath + path);
+                    scene = importer.ImportFileFromStream(stream, ppSteps, Path.GetExtension(path));
+                    stream.Dispose();
+                }
+                else
+                {
+                    scene = importer.ImportFile(path, ppSteps);
+                }
                 if (scene == null)
                 {
                     Log.Error($"Error loading model {path}. Scene was null.");
@@ -58,10 +73,14 @@ namespace RayTracing.Models
                     Log.Warn($"Model {path} containing more than one mesh. Using first mesh.");
                 }
 
-                var mesh = ProcessMesh(scene.Meshes[0]);
+                var mesh = new Mesh(new List<float>(), new List<float>(), new List<float>(), new List<int>());
+                for (int i = 0; i < scene.MeshCount; i++)
+                {
+                    mesh += ProcessMesh(scene.Meshes[i]);
+                }
 
                 var material = ProcessMaterial(scene.Materials[scene.Meshes[0].MaterialIndex],
-                    Path.GetDirectoryName(Path.GetFullPath(path)));
+                    loadFromExe ? "" : Path.GetDirectoryName(Path.GetFullPath(path)));
 
                 model.SetMesh(mesh);
                 model.Material = material;
@@ -71,6 +90,7 @@ namespace RayTracing.Models
             catch (AssimpException e)
             {
                 Log.Error("Assimp has thrown an exception.", e);
+                Console.WriteLine(e.Message);
                 return model;
             }
         }
@@ -115,15 +135,6 @@ namespace RayTracing.Models
             (float emissive, float diffuse, float reflective, float refractive) parts =
                 (Color.FromAssimpColor4(ambient).GetBrightness(), Color.FromAssimpColor4(diffuse).GetBrightness(),
                     Color.FromAssimpColor4(specular).GetBrightness(), 0);
-
-            float sum = parts.emissive + parts.diffuse + parts.reflective;
-            if (sum != 0)
-            {
-                parts.emissive /= sum;
-                parts.diffuse /= sum;
-                parts.reflective /= sum;
-            }
-
             return parts;
         }
 

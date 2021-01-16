@@ -33,22 +33,34 @@ namespace RayTracerApp.Panels
             if (material.Diffuse.Albedo is Texture)
                 diffuseTexture.Image = TextureConverter.Convert(material.Diffuse.Albedo as Texture);
             else
+            {
                 diffuseTexture.BackColor = material.Diffuse.Albedo[0, 0].ToSystemDrawing();
+                diffuseTexture.Image = null;
+            }
 
             if (material.Emissive.Albedo is Texture)
                 emissiveTexture.Image = TextureConverter.Convert(material.Emissive.Albedo as Texture);
             else
+            {
                 emissiveTexture.BackColor = material.Emissive.Albedo[0, 0].ToSystemDrawing();
+                emissiveTexture.Image = null;
+            }
 
             if (material.Reflective.Albedo is Texture)
                 reflectiveTexture.Image = TextureConverter.Convert(material.Reflective.Albedo as Texture);
             else
+            {
                 reflectiveTexture.BackColor = material.Reflective.Albedo[0, 0].ToSystemDrawing();
+                reflectiveTexture.Image = null;
+            }
 
             if (material.Refractive.Albedo is Texture)
                 refractiveTexture.Image = TextureConverter.Convert(material.Refractive.Albedo as Texture);
             else
+            {
                 refractiveTexture.BackColor = material.Refractive.Albedo[0, 0].ToSystemDrawing();
+                refractiveTexture.Image = null;
+            }
 
             refractiveIndexUpDown.Value = (decimal)material.Refractive.RefractiveIndex;
             reflectiveDisturbanceUpDown.Value = (decimal)material.Reflective.Disturbance;
