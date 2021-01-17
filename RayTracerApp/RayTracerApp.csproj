@@ -1,5 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
+  
+    <PropertyGroup>
+        <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+    </PropertyGroup>
+  
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <TargetFramework>net5.0-windows</TargetFramework>
