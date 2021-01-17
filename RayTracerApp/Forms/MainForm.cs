@@ -476,5 +476,13 @@ namespace RayTracerApp.Forms
             }
             _isUiUsed = false;
         }
+
+        private void clearSceneButton_Click(object? sender, EventArgs e)
+        {
+            var next = new Scene();
+            next.AmbientLight = _scene.AmbientLight;
+            _scene = next;
+            UpdateLastModification();
+        }
     }
 }

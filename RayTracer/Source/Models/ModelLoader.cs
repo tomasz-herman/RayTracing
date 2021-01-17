@@ -82,7 +82,7 @@ namespace RayTracing.Models
                 var material = ProcessMaterial(scene.Materials[scene.Meshes[0].MaterialIndex],
                     loadFromExe ? "" : Path.GetDirectoryName(Path.GetFullPath(path)));
 
-                model.SetMesh(mesh);
+                model.Mesh = mesh;
                 model.Material = material;
 
                 return model;

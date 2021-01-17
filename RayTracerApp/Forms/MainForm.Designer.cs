@@ -157,6 +157,7 @@ namespace RayTracerApp.Forms
             this.saveImageToFileButton = new System.Windows.Forms.ToolStripButton();
             this.saveSceneButton = new System.Windows.Forms.ToolStripButton();
             this.loadSceneButton = new System.Windows.Forms.ToolStripButton();
+            this.clearSceneButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip.SuspendLayout();
 
             this.ddButton = new ToolStripDropDownButton();
@@ -173,7 +174,8 @@ namespace RayTracerApp.Forms
             
             this.sceneDdButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
                 this.loadSceneButton,
-                this.saveSceneButton
+                this.saveSceneButton,
+                this.clearSceneButton
             });
 
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -229,6 +231,12 @@ namespace RayTracerApp.Forms
             this.loadSceneButton.Text = "Load scene";
             this.loadSceneButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.loadSceneButton.Click += new System.EventHandler(this.loadSceneButton_Click);
+            
+            this.clearSceneButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.clearSceneButton.Name = "clearSceneButton";
+            this.clearSceneButton.Text = "Clear scene";
+            this.clearSceneButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.clearSceneButton.Click += new System.EventHandler(this.clearSceneButton_Click);
 
             this.Controls.Add(this.toolStrip);
 
@@ -244,6 +252,7 @@ namespace RayTracerApp.Forms
         private ToolStripButton saveImageToFileButton;
         private ToolStripButton saveSceneButton;
         private ToolStripButton loadSceneButton;
+        private ToolStripButton clearSceneButton;
         private OpenTK.GLControl gLControl = new GLControl(new OpenTK.Graphics.GraphicsMode(32, 24, 0, 8));
         private ToolStripDropDownButton ddButton;
         private ToolStripDropDownButton sceneDdButton;
