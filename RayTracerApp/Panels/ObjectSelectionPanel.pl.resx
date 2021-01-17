@@ -57,13 +57,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing.Primitives" name="System.Drawing.Primitives, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing.Primitives" name="System.Drawing.Primitives, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="rectangleRadioButton.Size" type="System.Drawing.Size, System.Drawing.Primitives">
     <value>75, 19</value>
-  </data>
-  <assembly alias="System.Private.CoreLib" name="System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
-  <data name="rectangleRadioButton.TabIndex" type="System.Int32, System.Private.CoreLib">
-    <value>4</value>
   </data>
   <data name="rectangleRadioButton.Text" xml:space="preserve">
     <value>Prostokąt</value>
@@ -71,17 +67,11 @@
   <data name="planeRadioButton.Size" type="System.Drawing.Size, System.Drawing.Primitives">
     <value>86, 19</value>
   </data>
-  <data name="planeRadioButton.TabIndex" type="System.Int32, System.Private.CoreLib">
-    <value>3</value>
-  </data>
   <data name="planeRadioButton.Text" xml:space="preserve">
     <value>Płaszczyzna</value>
   </data>
   <data name="customModelRadioButton.Size" type="System.Drawing.Size, System.Drawing.Primitives">
     <value>146, 19</value>
-  </data>
-  <data name="customModelRadioButton.TabIndex" type="System.Int32, System.Private.CoreLib">
-    <value>5</value>
   </data>
   <data name="customModelRadioButton.Text" xml:space="preserve">
     <value>Model niestandardowy</value>
@@ -105,6 +95,6 @@
     <value>Sfera</value>
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing.Primitives">
-    <value>350, 415</value>
+    <value>338, 407</value>
   </data>
 </root>
