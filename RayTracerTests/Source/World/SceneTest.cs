@@ -17,11 +17,13 @@ namespace RayTracerTests.Source.World
         {
             Mock<Sphere> modelA = new Mock<Sphere>();
             Mock<Plane> modelB = new Mock<Plane>();
-            Scene scene = new Scene();
-            scene.Hittables.Add(modelA.Object);
-            scene.Hittables.Add(modelB.Object);
+            modelA.Setup(x => x.Preprocess()).Returns(new List<IHittable>{modelA.Object});
+            modelB.Setup(x => x.Preprocess()).Returns(new List<IHittable>{modelB.Object});
+            Scene scene = new Scene {BvhMode = false};
+            scene.Models.Add(modelA.Object);
+            scene.Models.Add(modelB.Object);
             HitInfo info = new HitInfo();
-            
+            scene.Preprocess();
             scene.HitTest(new Ray(), ref info, 0, 0);
             
             modelA.Verify(m => m.HitTest(new Ray(), ref info, 0, 0));

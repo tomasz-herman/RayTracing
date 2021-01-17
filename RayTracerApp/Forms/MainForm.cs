@@ -16,6 +16,7 @@ using Timer = System.Windows.Forms.Timer;
 using Color = RayTracing.Maths.Color;
 using RayTracerApp.SceneController;
 using System.Threading;
+using Newtonsoft.Json;
 
 namespace RayTracerApp.Forms
 {
@@ -416,7 +417,7 @@ namespace RayTracerApp.Forms
             NewObjectFunction(_contextHit, ref _contextHitInfo);
         }
 
-        private void FormOnClosed(object? sender, EventArgs e)
+        private void FormOnClosed(object sender, EventArgs e)
         {
             _isUiUsed = false;
             UpdateLastModification();
@@ -425,6 +426,55 @@ namespace RayTracerApp.Forms
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             UpdateLastModification();
+        }
+
+        private void saveSceneButton_Click(object? sender, EventArgs e)
+        {
+            UpdateLastModification();
+            _isUiUsed = true;
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            DialogResult result = saveDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                String fileName = saveDialog.FileName;
+                var settings = new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.All,
+                    ContractResolver = ShouldSerializeContractResolver.Instance
+                };
+                var json = JsonConvert.SerializeObject(_scene, settings);
+                System.IO.StreamWriter writer = new System.IO.StreamWriter(fileName);
+                writer.Write(json);
+                writer.Close();
+                writer.Dispose();
+            }
+            _isUiUsed = false;
+        }
+
+        private void loadSceneButton_Click(object? sender, EventArgs e)
+        {
+            UpdateLastModification();
+            _isUiUsed = true;
+            OpenFileDialog loadDialog = new OpenFileDialog();
+            DialogResult result = loadDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                System.IO.StreamReader reader = new System.IO.StreamReader(loadDialog.OpenFile());
+                var json = reader.ReadToEnd();
+                var settings = new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.All,
+                    ContractResolver = ShouldSerializeContractResolver.Instance
+                };
+                var scene = JsonConvert.DeserializeObject(json, typeof(Scene), settings);
+                _scene = scene as Scene;
+                foreach (var model in _scene.Models)
+                {
+                    model.Load();
+                }
+                UpdateLastModification();
+            }
+            _isUiUsed = false;
         }
     }
 }

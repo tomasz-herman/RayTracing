@@ -19,6 +19,20 @@ namespace RayTracing.Materials
         public int Height => _data.GetLength(1);
         public int Id => _id;
 
+        public Color[,] Data
+        {
+            get => _data;
+            set
+            {
+                _data = value;
+                LoadGLTexture();
+            }
+        }
+
+        public Texture()
+        {
+        }
+
         public Texture(int width, int height)
         {
             _data = new Color[width, height];

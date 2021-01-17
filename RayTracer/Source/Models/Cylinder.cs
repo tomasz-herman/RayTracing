@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using OpenTK;
 using RayTracing.Materials;
 using RayTracing.Maths;
@@ -14,19 +15,19 @@ namespace RayTracing.Models
 
         private float _height;
         private float _aspect;
-        private readonly int _sectorCount;
+        private readonly int _sectorCount = 100;
 
         // Radius = Scale
         // Height = Scale * Aspect
-        public Cylinder(float aspect = 1.0f, int sectorCount = 100)
+        public Cylinder(float aspect = 1.0f)
         {
-            _sectorCount = sectorCount;
             Aspect = aspect;
             Material = new MasterMaterial();
         }
 
         public override Vector3 Rotation
         {
+            get => base.Rotation;
             set
             {
                 base.Rotation = value;
@@ -36,6 +37,7 @@ namespace RayTracing.Models
 
         public override float Scale
         {
+            get => base.Scale;
             set
             {
                 base.Scale = value;
@@ -46,6 +48,7 @@ namespace RayTracing.Models
 
         public override Vector3 Position
         {
+            get => base.Position;
             set
             {
                 base.Position = value;

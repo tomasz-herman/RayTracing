@@ -155,21 +155,32 @@ namespace RayTracerApp.Forms
             this.editObjectButton = new System.Windows.Forms.ToolStripButton();
             this.deleteObjectButton = new System.Windows.Forms.ToolStripButton();
             this.saveImageToFileButton = new System.Windows.Forms.ToolStripButton();
+            this.saveSceneButton = new System.Windows.Forms.ToolStripButton();
+            this.loadSceneButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip.SuspendLayout();
 
             this.ddButton = new ToolStripDropDownButton();
             this.ddButton.Text = "Edit";
+            
+            this.sceneDdButton = new ToolStripDropDownButton();
+            this.sceneDdButton.Text = "Scene";
 
             this.ddButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
                 this.newObjectButton,
                 this.editObjectButton,
                 this.deleteObjectButton
             });
+            
+            this.sceneDdButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                this.loadSceneButton,
+                this.saveSceneButton
+            });
 
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
                 this.ddButton,
                 this.settingsButton,
-                this.saveImageToFileButton
+                this.saveImageToFileButton,
+                this.sceneDdButton
             });
 
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
@@ -206,6 +217,18 @@ namespace RayTracerApp.Forms
             this.deleteObjectButton.Text = "Delete object";
             this.deleteObjectButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.deleteObjectButton.Click += new System.EventHandler(this.deleteObjectButton_Click);
+            
+            this.saveSceneButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.saveSceneButton.Name = "saveSceneButton";
+            this.saveSceneButton.Text = "Save scene";
+            this.saveSceneButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.saveSceneButton.Click += new System.EventHandler(this.saveSceneButton_Click);
+
+            this.loadSceneButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.loadSceneButton.Name = "loadSceneButton";
+            this.loadSceneButton.Text = "Load scene";
+            this.loadSceneButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.loadSceneButton.Click += new System.EventHandler(this.loadSceneButton_Click);
 
             this.Controls.Add(this.toolStrip);
 
@@ -219,8 +242,11 @@ namespace RayTracerApp.Forms
         private ToolStripButton editObjectButton;
         private ToolStripButton deleteObjectButton;
         private ToolStripButton saveImageToFileButton;
+        private ToolStripButton saveSceneButton;
+        private ToolStripButton loadSceneButton;
         private OpenTK.GLControl gLControl = new GLControl(new OpenTK.Graphics.GraphicsMode(32, 24, 0, 8));
         private ToolStripDropDownButton ddButton;
+        private ToolStripDropDownButton sceneDdButton;
         private ContextMenuStrip newDeleteStrip;
         private ToolStripMenuItem addItem1;
         private ToolStripMenuItem editItem1;

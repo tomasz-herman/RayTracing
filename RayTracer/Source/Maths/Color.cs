@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Assimp;
+using Newtonsoft.Json;
 using OpenTK;
 using OpenTK.Graphics;
 
@@ -10,8 +11,11 @@ namespace RayTracing.Maths
     {
         public float R, G, B;
         public IEnumerable<byte> Components() => new[] {RComp, GComp, BComp};
+        [JsonIgnore]
         public byte RComp => (byte) (R * 255);
+        [JsonIgnore]
         public byte GComp => (byte) (G * 255);
+        [JsonIgnore]
         public byte BComp => (byte) (B * 255);
 
         private const float MinVal = 0f;

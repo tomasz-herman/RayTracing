@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using OpenTK;
 using RayTracing.Maths;
 using RayTracing.Sampling;
@@ -10,6 +11,7 @@ namespace RayTracing.Materials
         public ITexture Albedo { get; set; }
         private readonly AbstractSampler<Vector3> _sampler;
 
+        [JsonConstructor]
         public Diffuse(ITexture albedo, AbstractSampler<Vector3> sampler = null)
         {
             _sampler = sampler ??
