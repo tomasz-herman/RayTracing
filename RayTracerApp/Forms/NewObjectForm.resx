@@ -57,4 +57,193 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;middlePreviousButton.Name" xml:space="preserve">
+    <value>middlePreviousButton</value>
+  </data>
+  <data name="&gt;&gt;middlePreviousButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=5.0.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;middlePreviousButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;middlePreviousButton.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;leftCancelButton.Name" xml:space="preserve">
+    <value>leftCancelButton</value>
+  </data>
+  <data name="&gt;&gt;leftCancelButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=5.0.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;leftCancelButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;leftCancelButton.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;middleCancelButton.Name" xml:space="preserve">
+    <value>middleCancelButton</value>
+  </data>
+  <data name="&gt;&gt;middleCancelButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=5.0.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;middleCancelButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;middleCancelButton.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;rightFinishButton.Name" xml:space="preserve">
+    <value>rightFinishButton</value>
+  </data>
+  <data name="&gt;&gt;rightFinishButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=5.0.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rightFinishButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;rightFinishButton.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;topLabel.Name" xml:space="preserve">
+    <value>topLabel</value>
+  </data>
+  <data name="&gt;&gt;topLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=5.0.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;topLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;topLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;rightNextButton.Name" xml:space="preserve">
+    <value>rightNextButton</value>
+  </data>
+  <data name="&gt;&gt;rightNextButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=5.0.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rightNextButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;rightNextButton.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=5.0.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="objectSelectionPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <assembly alias="System.Drawing.Primitives" name="System.Drawing.Primitives, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="objectSelectionPanel.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>0, 26</value>
+  </data>
+  <data name="objectSelectionPanel.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>484, 594</value>
+  </data>
+  <assembly alias="System.Private.CoreLib" name="System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
+  <data name="objectSelectionPanel.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;objectSelectionPanel.Name" xml:space="preserve">
+    <value>objectSelectionPanel</value>
+  </data>
+  <data name="&gt;&gt;objectSelectionPanel.Type" xml:space="preserve">
+    <value>RayTracerApp.Panels.ObjectSelectionPanel, RayTracerApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;objectSelectionPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;objectSelectionPanel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="featuresPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="featuresPanel.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>0, 28</value>
+  </data>
+  <data name="featuresPanel.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>484, 592</value>
+  </data>
+  <data name="featuresPanel.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;featuresPanel.Name" xml:space="preserve">
+    <value>featuresPanel</value>
+  </data>
+  <data name="&gt;&gt;featuresPanel.Type" xml:space="preserve">
+    <value>RayTracerApp.Panels.FeaturesPanel, RayTracerApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;featuresPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;featuresPanel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="positionPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="positionPanel.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>0, 41</value>
+  </data>
+  <data name="positionPanel.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>484, 565</value>
+  </data>
+  <data name="positionPanel.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;positionPanel.Name" xml:space="preserve">
+    <value>positionPanel</value>
+  </data>
+  <data name="&gt;&gt;positionPanel.Type" xml:space="preserve">
+    <value>RayTracerApp.Panels.PositionPanel, RayTracerApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;positionPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;positionPanel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="materialPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="materialPanel.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>0, 26</value>
+  </data>
+  <data name="materialPanel.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>484, 594</value>
+  </data>
+  <data name="materialPanel.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;materialPanel.Name" xml:space="preserve">
+    <value>materialPanel</value>
+  </data>
+  <data name="&gt;&gt;materialPanel.Type" xml:space="preserve">
+    <value>RayTracerApp.Panels.MaterialPanel, RayTracerApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;materialPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;materialPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing.Primitives">
+    <value>7, 15</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>484, 661</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Adding new object</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>NewObjectForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>RayTracerApp.Forms.ObjectForm, RayTracerApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
 </root>
