@@ -164,7 +164,7 @@ namespace RayTracerApp.Forms
             this.ddButton.Text = Properties.Strings.EditScene;
             
             this.sceneDdButton = new ToolStripDropDownButton();
-            this.sceneDdButton.Text = "Scene";
+            this.sceneDdButton.Text = Properties.Strings.Scene;
 
             this.ddButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
                 this.newObjectButton,
@@ -222,19 +222,19 @@ namespace RayTracerApp.Forms
             
             this.saveSceneButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.saveSceneButton.Name = "saveSceneButton";
-            this.saveSceneButton.Text = "Save scene";
+            this.saveSceneButton.Text = Properties.Strings.SaveScene;
             this.saveSceneButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.saveSceneButton.Click += new System.EventHandler(this.saveSceneButton_Click);
 
             this.loadSceneButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.loadSceneButton.Name = "loadSceneButton";
-            this.loadSceneButton.Text = "Load scene";
+            this.loadSceneButton.Text = Properties.Strings.LoadScene;
             this.loadSceneButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.loadSceneButton.Click += new System.EventHandler(this.loadSceneButton_Click);
             
             this.clearSceneButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.clearSceneButton.Name = "clearSceneButton";
-            this.clearSceneButton.Text = "Clear scene";
+            this.clearSceneButton.Text = Properties.Strings.ClearScene;
             this.clearSceneButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.clearSceneButton.Click += new System.EventHandler(this.clearSceneButton_Click);
 

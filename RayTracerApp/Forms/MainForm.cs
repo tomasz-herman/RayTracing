@@ -431,7 +431,7 @@ namespace RayTracerApp.Forms
             UpdateLastModification();
         }
 
-        private void saveSceneButton_Click(object? sender, EventArgs e)
+        private void saveSceneButton_Click(object sender, EventArgs e)
         {
             if (ManualModeBlocked) return;
             UpdateLastModification();
@@ -455,7 +455,7 @@ namespace RayTracerApp.Forms
             _isUiUsed = false;
         }
 
-        private void loadSceneButton_Click(object? sender, EventArgs e)
+        private void loadSceneButton_Click(object sender, EventArgs e)
         {
             if (ManualModeBlocked) return;
             UpdateLastModification();
@@ -477,12 +477,14 @@ namespace RayTracerApp.Forms
                 {
                     model.Load();
                 }
+
+                _scene.Preprocess();
                 UpdateLastModification();
             }
             _isUiUsed = false;
         }
 
-        private void clearSceneButton_Click(object? sender, EventArgs e)
+        private void clearSceneButton_Click(object sender, EventArgs e)
         {
             if (ManualModeBlocked) return;
             var next = new Scene();

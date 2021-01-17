@@ -19,7 +19,7 @@ namespace RayTracerApp.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Strings {
@@ -88,6 +88,15 @@ namespace RayTracerApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear.
+        /// </summary>
+        internal static string ClearScene {
+            get {
+                return ResourceManager.GetString("ClearScene", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete object.
         /// </summary>
         internal static string DeleteInfo {
@@ -142,6 +151,15 @@ namespace RayTracerApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Load.
+        /// </summary>
+        internal static string LoadScene {
+            get {
+                return ResourceManager.GetString("LoadScene", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ray tracing.
         /// </summary>
         internal static string RayTracing {
@@ -156,6 +174,24 @@ namespace RayTracerApp.Properties {
         internal static string SaveImage {
             get {
                 return ResourceManager.GetString("SaveImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string SaveScene {
+            get {
+                return ResourceManager.GetString("SaveScene", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scene.
+        /// </summary>
+        internal static string Scene {
+            get {
+                return ResourceManager.GetString("Scene", resourceCulture);
             }
         }
         
