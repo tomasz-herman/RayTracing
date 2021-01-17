@@ -19,7 +19,7 @@ namespace RayTracerApp.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Strings {
@@ -115,7 +115,7 @@ namespace RayTracerApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Usuń obiekt.
+        ///   Looks up a localized string similar to Delete object.
         /// </summary>
         internal static string DeleteObject {
             get {
@@ -124,7 +124,7 @@ namespace RayTracerApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edytuj obiekt.
+        ///   Looks up a localized string similar to Edit object.
         /// </summary>
         internal static string EditObject {
             get {
