@@ -37,6 +37,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ./RayTracerApp/bin/Release/netcoreapp3.1/win10-x64/publish/RayTracerApp.exe
+          asset_path: ./RayTracerApp/bin/Release/net5.0-windows/win10-x64/publish/RayTracerApp.exe
           asset_name: RayTracerApp.exe
           asset_content_type: application/exe
