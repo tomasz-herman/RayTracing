@@ -18,6 +18,9 @@ using RayTracerApp.SceneController;
 using System.Threading;
 using Newtonsoft.Json;
 using System.Globalization;
+using System.IO;
+using System.IO.Compression;
+using System.Text;
 
 namespace RayTracerApp.Forms
 {
@@ -447,10 +450,17 @@ namespace RayTracerApp.Forms
                     ContractResolver = ShouldSerializeContractResolver.Instance
                 };
                 var json = JsonConvert.SerializeObject(_scene, settings);
-                System.IO.StreamWriter writer = new System.IO.StreamWriter(fileName);
-                writer.Write(json);
-                writer.Close();
-                writer.Dispose();
+                
+                using (var output = File.Create(fileName))
+                using (var gz = new GZipStream(output, CompressionMode.Compress))
+                {
+                    var bytes = Encoding.UTF8.GetBytes(json);
+                    gz.Write(bytes);
+                }
+                // System.IO.StreamWriter writer = new System.IO.StreamWriter(fileName);
+                // writer.Write(json);
+                // writer.Close();
+                // writer.Dispose();
             }
             _isUiUsed = false;
         }
@@ -464,22 +474,28 @@ namespace RayTracerApp.Forms
             DialogResult result = loadDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                System.IO.StreamReader reader = new System.IO.StreamReader(loadDialog.OpenFile());
-                var json = reader.ReadToEnd();
-                var settings = new JsonSerializerSettings
+                using (var memoryStream = new MemoryStream())
+                using (var input = loadDialog.OpenFile())
+                using (var gz = new GZipStream(input, CompressionMode.Decompress))
                 {
-                    TypeNameHandling = TypeNameHandling.All,
-                    ContractResolver = ShouldSerializeContractResolver.Instance
-                };
-                var scene = JsonConvert.DeserializeObject(json, typeof(Scene), settings);
-                _scene = scene as Scene;
-                foreach (var model in _scene.Models)
-                {
-                    model.Load();
+                    gz.CopyTo(memoryStream);
+                    var bytes = memoryStream.ToArray();
+                    var json = Encoding.Default.GetString(bytes);
+                    var settings = new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All,
+                        ContractResolver = ShouldSerializeContractResolver.Instance
+                    };
+                    var scene = JsonConvert.DeserializeObject(json, typeof(Scene), settings);
+                    _scene = scene as Scene;
+                    foreach (var model in _scene.Models)
+                    {
+                        model.Load();
+                    }
+                    
+                    _scene.Preprocess();
+                    UpdateLastModification();
                 }
-
-                _scene.Preprocess();
-                UpdateLastModification();
             }
             _isUiUsed = false;
         }
