@@ -153,4 +153,16 @@
   <data name="Settings" xml:space="preserve">
     <value>Ustawienia</value>
   </data>
+  <data name="Scene" xml:space="preserve">
+    <value>Scena</value>
+  </data>
+  <data name="SaveScene" xml:space="preserve">
+    <value>Zapisz scenę</value>
+  </data>
+  <data name="LoadScene" xml:space="preserve">
+    <value>Wczytaj scenę</value>
+  </data>
+  <data name="ClearScene" xml:space="preserve">
+    <value>Wyczyść</value>
+  </data>
 </root>

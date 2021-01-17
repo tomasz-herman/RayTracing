@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using OpenTK;
 using RayTracing.Maths;
 using RayTracing.Sampling;
@@ -10,7 +11,7 @@ namespace RayTracing.Materials
         public ITexture Albedo { get; set; }
         public float Disturbance { get; set; }
         private readonly AbstractSampler<Vector3> _sampler;
-
+        
         public Reflective(Color albedo, float disturbance = 0, AbstractSampler<Vector3> sampler = null)
         {
             _sampler = sampler ?? new ThreadSafeSampler<Vector3>(Vec3Sampling.UniformSphere, 10000, 8);
@@ -18,6 +19,7 @@ namespace RayTracing.Materials
             Disturbance = disturbance;
         }
 
+        [JsonConstructor]
         public Reflective(ITexture albedo, float disturbance = 0, AbstractSampler<Vector3> sampler = null)
         {
             _sampler = sampler ?? new ThreadSafeSampler<Vector3>(Vec3Sampling.UniformSphere, 10000, 8);

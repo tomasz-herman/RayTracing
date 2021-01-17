@@ -137,6 +137,7 @@ namespace RayTracing.Models
             var buffers = GetBuffers();
             Mesh = new Mesh(buffers.vertexBuffer, buffers.normalBuffer, buffers.texBuffer, buffers.indicesBuffer);
             Mesh.Load();
+            loaded = true;
         }
 
         public override bool HitTest(Ray ray, ref HitInfo hit, float from, float to)

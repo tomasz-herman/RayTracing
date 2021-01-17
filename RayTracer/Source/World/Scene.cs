@@ -11,7 +11,7 @@ namespace RayTracing.World
     {
         public bool BvhMode { get; set; } = true;
         public List<Model> Models { get; } = new List<Model>();
-        public List<IHittable> Hittables { get; } = new List<IHittable>();
+        private List<IHittable> Hittables { get; } = new List<IHittable>();
         public AmbientLight AmbientLight { get; set; }
 
         public void AddModel(Model model)

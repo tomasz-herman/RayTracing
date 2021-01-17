@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using OpenTK;
 using RayTracing.Maths;
 using RayTracing.Sampling;
@@ -20,6 +21,7 @@ namespace RayTracing.Materials
             _sampler = sampler ?? new ThreadSafeSampler<float>(FloatSampling.Random, 10000);
         }
         
+        [JsonConstructor]
         public Refractive(ITexture albedo, float refractiveIndex, AbstractSampler<float> sampler = null)
         {
             Albedo = albedo;
