@@ -115,7 +115,7 @@ namespace RayTracerApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Usuń obiekt.
+        ///   Looks up a localized string similar to Delete object.
         /// </summary>
         internal static string DeleteObject {
             get {
@@ -124,7 +124,7 @@ namespace RayTracerApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edytuj obiekt.
+        ///   Looks up a localized string similar to Edit object.
         /// </summary>
         internal static string EditObject {
             get {

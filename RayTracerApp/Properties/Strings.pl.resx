@@ -157,10 +157,10 @@
     <value>Scena</value>
   </data>
   <data name="SaveScene" xml:space="preserve">
-    <value>Zapisz scenę</value>
+    <value>Zapisz</value>
   </data>
   <data name="LoadScene" xml:space="preserve">
-    <value>Wczytaj scenę</value>
+    <value>Wczytaj</value>
   </data>
   <data name="ClearScene" xml:space="preserve">
     <value>Wyczyść</value>

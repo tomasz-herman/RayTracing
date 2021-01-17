@@ -133,10 +133,10 @@
     <value>Are you sure that you would like to delete the {0}?</value>
   </data>
   <data name="DeleteObject" xml:space="preserve">
-    <value>Usuń obiekt</value>
+    <value>Delete object</value>
   </data>
   <data name="EditObject" xml:space="preserve">
-    <value>Edytuj obiekt</value>
+    <value>Edit object</value>
   </data>
   <data name="EditObjectMessage" xml:space="preserve">
     <value>Edit {0}...</value>
