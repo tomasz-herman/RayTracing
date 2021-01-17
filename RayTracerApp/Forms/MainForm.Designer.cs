@@ -36,7 +36,7 @@ namespace RayTracerApp.Forms
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "RayTracing";
+            this.Text = Properties.Strings.RayTracing;
             InitializeProgressBar();
             this.gLControl.Location = new System.Drawing.Point(0, 20);
             this.gLControl.Name = "gLControl";
@@ -76,7 +76,7 @@ namespace RayTracerApp.Forms
             this.addItem1 = new ToolStripMenuItem();
             this.addItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.addItem1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.addItem1.Text = "Add object";
+            this.addItem1.Text = Properties.Strings.AddObject;
             this.addItem1.Name = "AddObject1";
             this.addItem1.Size = new System.Drawing.Size(width, 22);
             this.addItem1.Click += AddItem_Click;
@@ -84,7 +84,7 @@ namespace RayTracerApp.Forms
             this.editItem1 = new ToolStripMenuItem();
             this.editItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.editItem1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.editItem1.Text = "Edit object";
+            this.editItem1.Text = Properties.Strings.EditObject;
             this.editItem1.Name = "EditObject1";
             this.editItem1.Size = new System.Drawing.Size(width, 22);
             this.editItem1.Click += EditItem_Click;
@@ -92,7 +92,7 @@ namespace RayTracerApp.Forms
             this.deleteItem1 = new ToolStripMenuItem();
             this.deleteItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.deleteItem1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.deleteItem1.Text = "Delete object";
+            this.deleteItem1.Text = Properties.Strings.DeleteObject;
             this.deleteItem1.Name = "DeleteObject1";
             this.deleteItem1.Size = new System.Drawing.Size(width, 22);
             this.deleteItem1.Click += DeleteItem_Click;
@@ -119,7 +119,7 @@ namespace RayTracerApp.Forms
             this.addItem2 = new ToolStripMenuItem();
             this.addItem2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.addItem2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.addItem2.Text = "Add object";
+            this.addItem2.Text = Properties.Strings.AddObject;
             this.addItem2.Name = "AddObject2";
             this.addItem2.Size = new System.Drawing.Size(width, 22);
             this.addItem2.Click += AddItem_Click;
@@ -127,7 +127,7 @@ namespace RayTracerApp.Forms
             this.editItem2 = new ToolStripMenuItem();
             this.editItem2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.editItem2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.editItem2.Text = "Edit object";
+            this.editItem2.Text = Properties.Strings.EditObject;
             this.editItem2.Name = "EditObject2";
             this.editItem2.Size = new System.Drawing.Size(width, 22);
             this.editItem2.Click += EditItem_Click;
@@ -161,7 +161,7 @@ namespace RayTracerApp.Forms
             this.toolStrip.SuspendLayout();
 
             this.ddButton = new ToolStripDropDownButton();
-            this.ddButton.Text = "Edit";
+            this.ddButton.Text = Properties.Strings.EditScene;
             
             this.sceneDdButton = new ToolStripDropDownButton();
             this.sceneDdButton.Text = "Scene";
@@ -192,31 +192,31 @@ namespace RayTracerApp.Forms
 
             this.saveImageToFileButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.saveImageToFileButton.Name = "saveImageToFile";
-            this.saveImageToFileButton.Text = "Save image";
+            this.saveImageToFileButton.Text = Properties.Strings.SaveImage;
             this.saveImageToFileButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.saveImageToFileButton.Click += new System.EventHandler(this.SaveImage_Click);
 
             this.settingsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.settingsButton.Name = "settingsButton";
-            this.settingsButton.Text = "Settings";
+            this.settingsButton.Text = Properties.Strings.Settings;
             this.settingsButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
 
             this.newObjectButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.newObjectButton.Name = "newObjectButton";
-            this.newObjectButton.Text = "New object";
+            this.newObjectButton.Text = Properties.Strings.AddObject;
             this.newObjectButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.newObjectButton.Click += new System.EventHandler(this.newObjectButton_Click);
 
             this.editObjectButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.editObjectButton.Name = "editObjectButton";
-            this.editObjectButton.Text = "Edit object";
+            this.editObjectButton.Text = Properties.Strings.EditObject;
             this.editObjectButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.editObjectButton.Click += new System.EventHandler(this.editObjectButton_Click);
 
             this.deleteObjectButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.deleteObjectButton.Name = "deleteObjectButton";
-            this.deleteObjectButton.Text = "Delete object";
+            this.deleteObjectButton.Text = Properties.Strings.DeleteObject;
             this.deleteObjectButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.deleteObjectButton.Click += new System.EventHandler(this.deleteObjectButton_Click);
             

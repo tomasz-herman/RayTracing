@@ -57,4 +57,208 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;rectangleRadioButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <assembly alias="System.Drawing.Primitives" name="System.Drawing.Primitives, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="customModelRadioButton.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>104, 19</value>
+  </data>
+  <assembly alias="System.Private.CoreLib" name="System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
+  <data name="cylinderRadioButton.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;cuboidRadioButton.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="planeRadioButton.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="cylinderRadioButton.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>9, 66</value>
+  </data>
+  <data name="cylinderRadioButton.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>69, 19</value>
+  </data>
+  <data name="&gt;&gt;cuboidRadioButton.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;rectangleRadioButton.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;customModelRadioButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;customModelRadioButton.Name" xml:space="preserve">
+    <value>customModelRadioButton</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;customModelRadioButton.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="panel1.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>0</value>
+  </data>
+  <data name="planeRadioButton.Text" xml:space="preserve">
+    <value>Plane</value>
+  </data>
+  <data name="rectangleRadioButton.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>9, 116</value>
+  </data>
+  <data name="&gt;&gt;cylinderRadioButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="cuboidRadioButton.Text" xml:space="preserve">
+    <value>Cuboid</value>
+  </data>
+  <data name="cuboidRadioButton.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>9, 41</value>
+  </data>
+  <data name="sphereRadioButton.Text" xml:space="preserve">
+    <value>Sphere</value>
+  </data>
+  <data name="sphereRadioButton.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="customModelRadioButton.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>9, 141</value>
+  </data>
+  <data name="planeRadioButton.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>4</value>
+  </data>
+  <data name="planeRadioButton.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>9, 91</value>
+  </data>
+  <data name="cylinderRadioButton.Text" xml:space="preserve">
+    <value>Cylinder</value>
+  </data>
+  <data name="rectangleRadioButton.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>77, 19</value>
+  </data>
+  <data name="sphereRadioButton.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>0</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>350, 415</value>
+  </data>
+  <data name="cuboidRadioButton.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;customModelRadioButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>334, 390</value>
+  </data>
+  <data name="&gt;&gt;planeRadioButton.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="customModelRadioButton.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;rectangleRadioButton.Name" xml:space="preserve">
+    <value>rectangleRadioButton</value>
+  </data>
+  <data name="&gt;&gt;planeRadioButton.Name" xml:space="preserve">
+    <value>planeRadioButton</value>
+  </data>
+  <data name="&gt;&gt;cylinderRadioButton.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="rectangleRadioButton.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>5</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing.Primitives">
+    <value>7, 15</value>
+  </data>
+  <data name="&gt;&gt;cylinderRadioButton.Name" xml:space="preserve">
+    <value>cylinderRadioButton</value>
+  </data>
+  <data name="rectangleRadioButton.Text" xml:space="preserve">
+    <value>Rectangle</value>
+  </data>
+  <data name="customModelRadioButton.Text" xml:space="preserve">
+    <value>Custom model</value>
+  </data>
+  <data name="&gt;&gt;cylinderRadioButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cuboidRadioButton.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>64, 19</value>
+  </data>
+  <data name="&gt;&gt;sphereRadioButton.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="cylinderRadioButton.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>2</value>
+  </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;cuboidRadioButton.Name" xml:space="preserve">
+    <value>cuboidRadioButton</value>
+  </data>
+  <data name="&gt;&gt;rectangleRadioButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="panel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;sphereRadioButton.Name" xml:space="preserve">
+    <value>sphereRadioButton</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sphereRadioButton.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;planeRadioButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="sphereRadioButton.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>9, 16</value>
+  </data>
+  <data name="&gt;&gt;cuboidRadioButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sphereRadioButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;planeRadioButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="rectangleRadioButton.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="sphereRadioButton.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>61, 19</value>
+  </data>
+  <data name="planeRadioButton.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>54, 19</value>
+  </data>
+  <data name="cuboidRadioButton.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ObjectSelectionPanel</value>
+  </data>
+  <data name="customModelRadioButton.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
 </root>

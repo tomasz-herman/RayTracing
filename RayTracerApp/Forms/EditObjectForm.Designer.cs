@@ -73,7 +73,7 @@ namespace RayTracerApp.Forms
             this.Controls.Add(this.positionPanel);
             this.Controls.Add(this.featuresPanel);
             this.Name = "EditObjectForm";
-            this.Text = "Edit";
+            this.Text = "Edycja obiektu";
             this.Controls.SetChildIndex(this.rightNextButton, 0);
             this.Controls.SetChildIndex(this.middlePreviousButton, 0);
             this.Controls.SetChildIndex(this.leftCancelButton, 0);

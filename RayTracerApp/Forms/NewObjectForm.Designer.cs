@@ -89,7 +89,7 @@ namespace RayTracerApp.Forms
             this.Controls.Add(this.featuresPanel);
             this.Controls.Add(this.objectSelectionPanel);
             this.Name = "NewObjectForm";
-            this.Text = "Add new model...";
+            this.Text = "Dodawanie nowego obiektu";
             this.Controls.SetChildIndex(this.rightNextButton, 0);
             this.Controls.SetChildIndex(this.middlePreviousButton, 0);
             this.Controls.SetChildIndex(this.leftCancelButton, 0);

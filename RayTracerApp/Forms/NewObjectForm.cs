@@ -8,6 +8,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Globalization;
+using System.Threading;
 using Rectangle = RayTracing.Models.Rectangle;
 
 namespace RayTracerApp.Forms
@@ -35,7 +37,9 @@ namespace RayTracerApp.Forms
 
             _currentPanel = objectSelectionPanel;
             _currentPanel.Controller = _controller;
-            topLabel.Text = "Add new object...";
+
+            topLabel.Text = Properties.Strings.AddObjectMessageEmpty;
+
             SetController();
 
             controller.UpdateModelFromUI = () => {
@@ -90,7 +94,7 @@ namespace RayTracerApp.Forms
 
                 rightNextButton.Focus();
 
-                topLabel.Text = $"Add {_controller.GetModel().ToString().ToLower()}...";
+                topLabel.Text = String.Format(Properties.Strings.AddObjectMessage, _controller.GetModel().ToString().ToLower());
             }
 
             if (index == _order.Count - 2)
@@ -116,7 +120,7 @@ namespace RayTracerApp.Forms
 
             if (index == 1)
             {
-                topLabel.Text = "Add new object...";
+                topLabel.Text = Properties.Strings.AddObjectMessageEmpty;
 
                 middleCancelButton.Visible = true;
 

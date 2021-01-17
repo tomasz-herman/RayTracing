@@ -50,7 +50,7 @@ namespace RayTracing.Models
 
         public override string ToString()
         {
-            return "Custom model";
+            return Properties.Strings.CustomModel;
         }
     }
 }
