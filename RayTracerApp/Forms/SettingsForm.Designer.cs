@@ -29,11 +29,11 @@ namespace RayTracerApp.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.gammaCheckBox = new System.Windows.Forms.CheckBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -41,11 +41,12 @@ namespace RayTracerApp.Forms
             this.samplesUpDown = new System.Windows.Forms.NumericUpDown();
             this.updateUpDown = new System.Windows.Forms.NumericUpDown();
             this.bloomUpDown = new System.Windows.Forms.NumericUpDown();
-            this.recLevelUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label18 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.automaticCheckBox = new System.Windows.Forms.CheckBox();
             this.recursionCheckbox = new System.Windows.Forms.CheckBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.recLevelUpDown = new System.Windows.Forms.NumericUpDown();
+            this.automaticCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -96,42 +97,21 @@ namespace RayTracerApp.Forms
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
             this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(664, 673);
-            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Controls.Add(this.tableLayoutPanel4);
-            this.groupBox2.Location = new System.Drawing.Point(3, 339);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(658, 331);
-            this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Ray Tracer";
             // 
             // tableLayoutPanel4
             // 
-            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            resources.ApplyResources(this.tableLayoutPanel4, "tableLayoutPanel4");
             this.tableLayoutPanel4.Controls.Add(this.gammaCheckBox, 1, 2);
             this.tableLayoutPanel4.Controls.Add(this.label9, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.label10, 0, 1);
@@ -146,90 +126,39 @@ namespace RayTracerApp.Forms
             this.tableLayoutPanel4.Controls.Add(this.label18, 0, 5);
             this.tableLayoutPanel4.Controls.Add(this.recLevelUpDown, 1, 4);
             this.tableLayoutPanel4.Controls.Add(this.automaticCheckBox, 1, 5);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(9, 22);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 7;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28531F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28531F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28531F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28531F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28531F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28531F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28816F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(643, 303);
-            this.tableLayoutPanel4.TabIndex = 0;
             this.tableLayoutPanel4.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tableLayoutPanel_CellPaint);
             // 
             // gammaCheckBox
             // 
-            this.gammaCheckBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.gammaCheckBox.AutoSize = true;
-            this.gammaCheckBox.Location = new System.Drawing.Point(474, 100);
+            resources.ApplyResources(this.gammaCheckBox, "gammaCheckBox");
             this.gammaCheckBox.Name = "gammaCheckBox";
-            this.gammaCheckBox.Size = new System.Drawing.Size(15, 14);
-            this.gammaCheckBox.TabIndex = 15;
             this.gammaCheckBox.UseVisualStyleBackColor = true;
             this.gammaCheckBox.CheckedChanged += new System.EventHandler(this.gammaCheckBox_CheckedChanged);
             // 
-            // label16
-            // 
-            this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(116, 186);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(88, 15);
-            this.label16.TabIndex = 13;
-            this.label16.Text = "Recursion leves";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // label9
             // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(135, 14);
+            resources.ApplyResources(this.label9, "label9");
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(51, 15);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "Samples";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label10
             // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(110, 57);
+            resources.ApplyResources(this.label10, "label10");
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(101, 15);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "Update frequency";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label11
             // 
-            this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(107, 100);
+            resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(106, 15);
-            this.label11.TabIndex = 3;
-            this.label11.Text = "Gamma correction";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label12
             // 
-            this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(139, 143);
+            resources.ApplyResources(this.label12, "label12");
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(42, 15);
-            this.label12.TabIndex = 4;
-            this.label12.Text = "Bloom";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // samplesUpDown
             // 
-            this.samplesUpDown.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.samplesUpDown.Location = new System.Drawing.Point(422, 10);
+            resources.ApplyResources(this.samplesUpDown, "samplesUpDown");
             this.samplesUpDown.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -241,8 +170,6 @@ namespace RayTracerApp.Forms
             0,
             0});
             this.samplesUpDown.Name = "samplesUpDown";
-            this.samplesUpDown.Size = new System.Drawing.Size(120, 23);
-            this.samplesUpDown.TabIndex = 6;
             this.samplesUpDown.Value = new decimal(new int[] {
             1000,
             0,
@@ -252,8 +179,7 @@ namespace RayTracerApp.Forms
             // 
             // updateUpDown
             // 
-            this.updateUpDown.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.updateUpDown.Location = new System.Drawing.Point(422, 53);
+            resources.ApplyResources(this.updateUpDown, "updateUpDown");
             this.updateUpDown.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -265,8 +191,6 @@ namespace RayTracerApp.Forms
             0,
             0});
             this.updateUpDown.Name = "updateUpDown";
-            this.updateUpDown.Size = new System.Drawing.Size(120, 23);
-            this.updateUpDown.TabIndex = 7;
             this.updateUpDown.Value = new decimal(new int[] {
             30,
             0,
@@ -276,16 +200,13 @@ namespace RayTracerApp.Forms
             // 
             // bloomUpDown
             // 
-            this.bloomUpDown.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.bloomUpDown.Location = new System.Drawing.Point(422, 139);
+            resources.ApplyResources(this.bloomUpDown, "bloomUpDown");
             this.bloomUpDown.Maximum = new decimal(new int[] {
             5,
             0,
             0,
             0});
             this.bloomUpDown.Name = "bloomUpDown";
-            this.bloomUpDown.Size = new System.Drawing.Size(120, 23);
-            this.bloomUpDown.TabIndex = 11;
             this.bloomUpDown.Value = new decimal(new int[] {
             5,
             0,
@@ -293,10 +214,31 @@ namespace RayTracerApp.Forms
             0});
             this.bloomUpDown.ValueChanged += new System.EventHandler(this.bloomUpDown_ValueChanged);
             // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            // 
+            // recursionCheckbox
+            // 
+            resources.ApplyResources(this.recursionCheckbox, "recursionCheckbox");
+            this.recursionCheckbox.Name = "recursionCheckbox";
+            this.recursionCheckbox.UseVisualStyleBackColor = true;
+            this.recursionCheckbox.CheckedChanged += new System.EventHandler(this.recursionCheckbox_CheckedChanged);
+            // 
+            // label16
+            // 
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.Name = "label16";
+            // 
+            // label18
+            // 
+            resources.ApplyResources(this.label18, "label18");
+            this.label18.Name = "label18";
+            // 
             // recLevelUpDown
             // 
-            this.recLevelUpDown.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.recLevelUpDown.Location = new System.Drawing.Point(422, 182);
+            resources.ApplyResources(this.recLevelUpDown, "recLevelUpDown");
             this.recLevelUpDown.Maximum = new decimal(new int[] {
             20,
             0,
@@ -308,8 +250,6 @@ namespace RayTracerApp.Forms
             0,
             0});
             this.recLevelUpDown.Name = "recLevelUpDown";
-            this.recLevelUpDown.Size = new System.Drawing.Size(120, 23);
-            this.recLevelUpDown.TabIndex = 14;
             this.recLevelUpDown.Value = new decimal(new int[] {
             8,
             0,
@@ -317,283 +257,139 @@ namespace RayTracerApp.Forms
             0});
             this.recLevelUpDown.ValueChanged += new System.EventHandler(this.recLevelUpDown_ValueChanged);
             // 
-            // label18
-            // 
-            this.label18.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(112, 229);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(97, 15);
-            this.label18.TabIndex = 16;
-            this.label18.Text = "Automatic mode";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label13
-            // 
-            this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(44, 273);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(232, 15);
-            this.label13.TabIndex = 5;
-            this.label13.Text = "Ray tracing by recursion levels (unoptimal)";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // automaticCheckBox
             // 
-            this.automaticCheckBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.automaticCheckBox.AutoSize = true;
-            this.automaticCheckBox.Location = new System.Drawing.Point(474, 229);
+            resources.ApplyResources(this.automaticCheckBox, "automaticCheckBox");
             this.automaticCheckBox.Name = "automaticCheckBox";
-            this.automaticCheckBox.Size = new System.Drawing.Size(15, 14);
-            this.automaticCheckBox.TabIndex = 17;
             this.automaticCheckBox.UseVisualStyleBackColor = true;
             this.automaticCheckBox.CheckedChanged += new System.EventHandler(this.automaticCheckBox_CheckedChanged);
             // 
-            // recursionCheckbox
-            // 
-            this.recursionCheckbox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.recursionCheckbox.AutoSize = true;
-            this.recursionCheckbox.Location = new System.Drawing.Point(474, 273);
-            this.recursionCheckbox.Name = "recursionCheckbox";
-            this.recursionCheckbox.Size = new System.Drawing.Size(15, 14);
-            this.recursionCheckbox.TabIndex = 10;
-            this.recursionCheckbox.UseVisualStyleBackColor = true;
-            this.recursionCheckbox.CheckedChanged += new System.EventHandler(this.recursionCheckbox_CheckedChanged);
-            // 
             // groupBox1
             // 
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.tableLayoutPanel2);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(658, 330);
-            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Camera";
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            resources.ApplyResources(this.tableLayoutPanel2, "tableLayoutPanel2");
             this.tableLayoutPanel2.Controls.Add(this.panel2, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.label6, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.label7, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.label8, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.fovUpDown, 1, 1);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 22);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.47826F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.04348F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.47826F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(643, 302);
-            this.tableLayoutPanel2.TabIndex = 0;
             this.tableLayoutPanel2.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tableLayoutPanel_CellPaint);
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Controls.Add(this.randomRadioButton);
             this.panel2.Controls.Add(this.centerRadioButton);
             this.panel2.Controls.Add(this.jitteredRadioButton);
-            this.panel2.Location = new System.Drawing.Point(324, 173);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(316, 126);
-            this.panel2.TabIndex = 5;
             // 
             // randomRadioButton
             // 
-            this.randomRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.randomRadioButton.AutoSize = true;
-            this.randomRadioButton.Location = new System.Drawing.Point(0, 54);
+            resources.ApplyResources(this.randomRadioButton, "randomRadioButton");
             this.randomRadioButton.Name = "randomRadioButton";
-            this.randomRadioButton.Size = new System.Drawing.Size(70, 19);
-            this.randomRadioButton.TabIndex = 2;
-            this.randomRadioButton.Text = "Random";
             this.randomRadioButton.UseVisualStyleBackColor = true;
             this.randomRadioButton.CheckedChanged += new System.EventHandler(this.randomRadioButton_CheckedChanged);
             // 
             // centerRadioButton
             // 
-            this.centerRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.centerRadioButton.AutoSize = true;
-            this.centerRadioButton.Location = new System.Drawing.Point(0, 29);
+            resources.ApplyResources(this.centerRadioButton, "centerRadioButton");
             this.centerRadioButton.Name = "centerRadioButton";
-            this.centerRadioButton.Size = new System.Drawing.Size(60, 19);
-            this.centerRadioButton.TabIndex = 1;
-            this.centerRadioButton.Text = "Center";
             this.centerRadioButton.UseVisualStyleBackColor = true;
             this.centerRadioButton.CheckedChanged += new System.EventHandler(this.centerRadioButton_CheckedChanged);
             // 
             // jitteredRadioButton
             // 
-            this.jitteredRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.jitteredRadioButton.AutoSize = true;
+            resources.ApplyResources(this.jitteredRadioButton, "jitteredRadioButton");
             this.jitteredRadioButton.Checked = true;
-            this.jitteredRadioButton.Location = new System.Drawing.Point(0, 4);
             this.jitteredRadioButton.Name = "jitteredRadioButton";
-            this.jitteredRadioButton.Size = new System.Drawing.Size(63, 19);
-            this.jitteredRadioButton.TabIndex = 0;
             this.jitteredRadioButton.TabStop = true;
-            this.jitteredRadioButton.Text = "Jittered";
             this.jitteredRadioButton.UseVisualStyleBackColor = true;
             this.jitteredRadioButton.CheckedChanged += new System.EventHandler(this.jitteredRadioButton_CheckedChanged);
             // 
             // label6
             // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(123, 58);
+            resources.ApplyResources(this.label6, "label6");
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(74, 15);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Camera type";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label7
             // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(124, 143);
+            resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 15);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "Field of view";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label8
             // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(132, 228);
+            resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(57, 15);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "Sampling";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
             this.tableLayoutPanel3.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.lensCameraLayoutPanel, 1, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(324, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 125F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(316, 125);
-            this.tableLayoutPanel3.TabIndex = 3;
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Controls.Add(this.ortographicCameraRadioButton);
             this.panel1.Controls.Add(this.lensCameraRadioButton);
             this.panel1.Controls.Add(this.perspectiveCameraRadioButton);
-            this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(152, 119);
-            this.panel1.TabIndex = 2;
             // 
             // ortographicCameraRadioButton
             // 
-            this.ortographicCameraRadioButton.AutoSize = true;
-            this.ortographicCameraRadioButton.Location = new System.Drawing.Point(0, 54);
+            resources.ApplyResources(this.ortographicCameraRadioButton, "ortographicCameraRadioButton");
             this.ortographicCameraRadioButton.Name = "ortographicCameraRadioButton";
-            this.ortographicCameraRadioButton.Size = new System.Drawing.Size(89, 19);
-            this.ortographicCameraRadioButton.TabIndex = 2;
-            this.ortographicCameraRadioButton.Text = "Ortographic";
             this.ortographicCameraRadioButton.UseVisualStyleBackColor = true;
             this.ortographicCameraRadioButton.CheckedChanged += new System.EventHandler(this.ortographicCameraRadioButton_CheckedChanged);
             // 
             // lensCameraRadioButton
             // 
-            this.lensCameraRadioButton.AutoSize = true;
-            this.lensCameraRadioButton.Location = new System.Drawing.Point(0, 29);
+            resources.ApplyResources(this.lensCameraRadioButton, "lensCameraRadioButton");
             this.lensCameraRadioButton.Name = "lensCameraRadioButton";
-            this.lensCameraRadioButton.Size = new System.Drawing.Size(49, 19);
-            this.lensCameraRadioButton.TabIndex = 1;
-            this.lensCameraRadioButton.Text = "Lens";
             this.lensCameraRadioButton.UseVisualStyleBackColor = true;
             this.lensCameraRadioButton.CheckedChanged += new System.EventHandler(this.lensCameraRadioButton_CheckedChanged);
             // 
             // perspectiveCameraRadioButton
             // 
-            this.perspectiveCameraRadioButton.AutoSize = true;
-            this.perspectiveCameraRadioButton.Location = new System.Drawing.Point(0, 4);
+            resources.ApplyResources(this.perspectiveCameraRadioButton, "perspectiveCameraRadioButton");
             this.perspectiveCameraRadioButton.Name = "perspectiveCameraRadioButton";
-            this.perspectiveCameraRadioButton.Size = new System.Drawing.Size(85, 19);
-            this.perspectiveCameraRadioButton.TabIndex = 0;
-            this.perspectiveCameraRadioButton.Text = "Perspective";
             this.perspectiveCameraRadioButton.UseVisualStyleBackColor = true;
             this.perspectiveCameraRadioButton.CheckedChanged += new System.EventHandler(this.perspectiveCameraRadioButton_CheckedChanged);
             // 
             // lensCameraLayoutPanel
             // 
-            this.lensCameraLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lensCameraLayoutPanel.ColumnCount = 2;
-            this.lensCameraLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.lensCameraLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            resources.ApplyResources(this.lensCameraLayoutPanel, "lensCameraLayoutPanel");
             this.lensCameraLayoutPanel.Controls.Add(this.label17, 0, 2);
             this.lensCameraLayoutPanel.Controls.Add(this.lensRadiusUpDown, 1, 0);
             this.lensCameraLayoutPanel.Controls.Add(this.focusDistanceUpDown, 1, 1);
             this.lensCameraLayoutPanel.Controls.Add(this.label14, 0, 0);
             this.lensCameraLayoutPanel.Controls.Add(this.label15, 0, 1);
             this.lensCameraLayoutPanel.Controls.Add(this.autoFocusCheckBox, 1, 2);
-            this.lensCameraLayoutPanel.Location = new System.Drawing.Point(161, 3);
             this.lensCameraLayoutPanel.Name = "lensCameraLayoutPanel";
-            this.lensCameraLayoutPanel.RowCount = 3;
-            this.lensCameraLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.lensCameraLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.lensCameraLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.lensCameraLayoutPanel.Size = new System.Drawing.Size(152, 119);
-            this.lensCameraLayoutPanel.TabIndex = 3;
             // 
             // label17
             // 
-            this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(5, 91);
+            resources.ApplyResources(this.label17, "label17");
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(65, 15);
-            this.label17.TabIndex = 9;
-            this.label17.Text = "Auto focus";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lensRadiusUpDown
             // 
-            this.lensRadiusUpDown.Anchor = System.Windows.Forms.AnchorStyles.None;
+            resources.ApplyResources(this.lensRadiusUpDown, "lensRadiusUpDown");
             this.lensRadiusUpDown.DecimalPlaces = 2;
             this.lensRadiusUpDown.Increment = new decimal(new int[] {
             1,
             0,
             0,
             131072});
-            this.lensRadiusUpDown.Location = new System.Drawing.Point(89, 8);
             this.lensRadiusUpDown.Maximum = new decimal(new int[] {
             5,
             0,
@@ -605,8 +401,6 @@ namespace RayTracerApp.Forms
             0,
             131072});
             this.lensRadiusUpDown.Name = "lensRadiusUpDown";
-            this.lensRadiusUpDown.Size = new System.Drawing.Size(50, 23);
-            this.lensRadiusUpDown.TabIndex = 5;
             this.lensRadiusUpDown.Value = new decimal(new int[] {
             25,
             0,
@@ -616,22 +410,19 @@ namespace RayTracerApp.Forms
             // 
             // focusDistanceUpDown
             // 
-            this.focusDistanceUpDown.Anchor = System.Windows.Forms.AnchorStyles.None;
+            resources.ApplyResources(this.focusDistanceUpDown, "focusDistanceUpDown");
             this.focusDistanceUpDown.DecimalPlaces = 2;
             this.focusDistanceUpDown.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.focusDistanceUpDown.Location = new System.Drawing.Point(89, 47);
             this.focusDistanceUpDown.Maximum = new decimal(new int[] {
             9999999,
             0,
             0,
             0});
             this.focusDistanceUpDown.Name = "focusDistanceUpDown";
-            this.focusDistanceUpDown.Size = new System.Drawing.Size(50, 23);
-            this.focusDistanceUpDown.TabIndex = 6;
             this.focusDistanceUpDown.Value = new decimal(new int[] {
             5,
             0,
@@ -641,41 +432,24 @@ namespace RayTracerApp.Forms
             // 
             // label14
             // 
-            this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(17, 12);
+            resources.ApplyResources(this.label14, "label14");
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(42, 15);
-            this.label14.TabIndex = 7;
-            this.label14.Text = "Radius";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label15
             // 
-            this.label15.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(12, 43);
+            resources.ApplyResources(this.label15, "label15");
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(51, 30);
-            this.label15.TabIndex = 8;
-            this.label15.Text = "Focus distance";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // autoFocusCheckBox
             // 
-            this.autoFocusCheckBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.autoFocusCheckBox.AutoSize = true;
-            this.autoFocusCheckBox.Location = new System.Drawing.Point(106, 91);
+            resources.ApplyResources(this.autoFocusCheckBox, "autoFocusCheckBox");
             this.autoFocusCheckBox.Name = "autoFocusCheckBox";
-            this.autoFocusCheckBox.Size = new System.Drawing.Size(15, 14);
-            this.autoFocusCheckBox.TabIndex = 11;
             this.autoFocusCheckBox.UseVisualStyleBackColor = true;
             this.autoFocusCheckBox.CheckedChanged += new System.EventHandler(this.autoFocusCheckBox_CheckedChanged);
             // 
             // fovUpDown
             // 
-            this.fovUpDown.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.fovUpDown.Location = new System.Drawing.Point(422, 139);
+            resources.ApplyResources(this.fovUpDown, "fovUpDown");
             this.fovUpDown.Maximum = new decimal(new int[] {
             90,
             0,
@@ -687,8 +461,6 @@ namespace RayTracerApp.Forms
             0,
             0});
             this.fovUpDown.Name = "fovUpDown";
-            this.fovUpDown.Size = new System.Drawing.Size(120, 23);
-            this.fovUpDown.TabIndex = 4;
             this.fovUpDown.Value = new decimal(new int[] {
             30,
             0,
@@ -698,83 +470,55 @@ namespace RayTracerApp.Forms
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 23);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 23);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "label2";
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 23);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "label3";
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 23);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "label4";
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(100, 23);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "label5";
             // 
             // linkLabel1
             // 
-            this.linkLabel1.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.linkLabel1, "linkLabel1");
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(100, 23);
-            this.linkLabel1.TabIndex = 0;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "linkLabel1";
             // 
             // finishButton
             // 
-            this.finishButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.finishButton.Location = new System.Drawing.Point(580, 684);
+            resources.ApplyResources(this.finishButton, "finishButton");
             this.finishButton.Name = "finishButton";
-            this.finishButton.Size = new System.Drawing.Size(75, 23);
-            this.finishButton.TabIndex = 1;
-            this.finishButton.Text = "Finish";
             this.finishButton.UseVisualStyleBackColor = true;
             this.finishButton.Click += new System.EventHandler(this.finishButton_Click);
             // 
             // checkBox1
             // 
-            this.checkBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(474, 251);
+            resources.ApplyResources(this.checkBox1, "checkBox1");
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 15;
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // SettingsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(664, 719);
             this.Controls.Add(this.finishButton);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "SettingsForm";
-            this.Text = "Settings";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);

@@ -29,6 +29,7 @@ namespace RayTracerApp.Panels.FeaturesPanels
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AspectFeature));
             this.aspectLabel = new System.Windows.Forms.Label();
             this.aspectRatioUpDown = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.aspectRatioUpDown)).BeginInit();
@@ -36,31 +37,24 @@ namespace RayTracerApp.Panels.FeaturesPanels
             // 
             // aspectLabel
             // 
-            this.aspectLabel.AutoSize = true;
-            this.aspectLabel.Location = new System.Drawing.Point(30, 30);
+            resources.ApplyResources(this.aspectLabel, "aspectLabel");
             this.aspectLabel.Name = "aspectLabel";
-            this.aspectLabel.Size = new System.Drawing.Size(46, 15);
-            this.aspectLabel.TabIndex = 2;
-            this.aspectLabel.Text = "Aspect:";
             // 
             // aspectRatioUpDown
             // 
-            this.aspectRatioUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.aspectRatioUpDown, "aspectRatioUpDown");
             this.aspectRatioUpDown.DecimalPlaces = 2;
             this.aspectRatioUpDown.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.aspectRatioUpDown.Location = new System.Drawing.Point(200, 28);
             this.aspectRatioUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             131072});
             this.aspectRatioUpDown.Name = "aspectRatioUpDown";
-            this.aspectRatioUpDown.Size = new System.Drawing.Size(75, 23);
-            this.aspectRatioUpDown.TabIndex = 3;
             this.aspectRatioUpDown.Value = new decimal(new int[] {
             1,
             0,
@@ -70,12 +64,11 @@ namespace RayTracerApp.Panels.FeaturesPanels
             // 
             // AspectFeature
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.aspectRatioUpDown);
             this.Controls.Add(this.aspectLabel);
             this.Name = "AspectFeature";
-            this.Size = new System.Drawing.Size(300, 100);
             ((System.ComponentModel.ISupportInitialize)(this.aspectRatioUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -8,6 +8,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Globalization;
+using System.Threading;
 using Rectangle = RayTracing.Models.Rectangle;
 
 namespace RayTracerApp.Forms
@@ -53,7 +55,7 @@ namespace RayTracerApp.Forms
                 panel.UpdateFromModel();
             }
 
-            topLabel.Text = $"Edit {_controller.GetModel().ToString().ToLower()}...";
+            topLabel.Text = String.Format(Properties.Strings.EditObjectMessage, _controller.GetModel().ToString().ToLower());
         }
 
         private void EditObjectForm_FormClosed(object sender, FormClosedEventArgs e)

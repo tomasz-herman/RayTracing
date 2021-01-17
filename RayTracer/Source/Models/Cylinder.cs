@@ -331,7 +331,7 @@ namespace RayTracing.Models
 
         public override string ToString()
         {
-            return "Cylinder";
+            return Properties.Strings.Cylinder;
         }
     }
 }

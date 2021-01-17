@@ -57,4 +57,1490 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing.Primitives" name="System.Drawing.Primitives, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="tableLayoutPanel8.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>136, 156</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 46</value>
+  </data>
+  <data name="&gt;&gt;refractiveColor.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <assembly alias="System.Private.CoreLib" name="System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
+  <data name="refractiveIndexUpDown.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>2</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>130, 15</value>
+  </data>
+  <data name="tableLayoutPanel10.ColumnCount" type="System.Int32, System.Private.CoreLib">
+    <value>3</value>
+  </data>
+  <data name="emissiveColor.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>101, 11</value>
+  </data>
+  <assembly alias="System.Drawing.Common" name="System.Drawing.Common, Version=4.0.2.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
+  <data name="emissiveTexture.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing.Common">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="label7.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="refractiveColor.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="&gt;&gt;reflectiveDisturbanceUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;refractiveShareUpDown.Parent" xml:space="preserve">
+    <value>tableLayoutPanel12</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel6.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;refractiveColor.Name" xml:space="preserve">
+    <value>refractiveColor</value>
+  </data>
+  <data name="tableLayoutPanel10.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="reflectiveTexture" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="reflectiveColor" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="reflectiveFile" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,33,33333,Percent,33,33333,Percent,33,33333" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="&gt;&gt;label12.Name" xml:space="preserve">
+    <value>label12</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel12.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Disturbance</value>
+  </data>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel13.Parent" xml:space="preserve">
+    <value>tableLayoutPanel12</value>
+  </data>
+  <data name="label16.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel8.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="reflectiveColor.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>101, 11</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel10.Parent" xml:space="preserve">
+    <value>tableLayoutPanel9</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Texture</value>
+  </data>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>130, 15</value>
+  </data>
+  <data name="reflectiveShareUpDown.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>275, 23</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="tableLayoutPanel5.RowCount" type="System.Int32, System.Private.CoreLib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="refractiveTexture.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutPanel7.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>275, 46</value>
+  </data>
+  <data name="reflectiveShareUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tableLayoutPanel8.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>145, 273</value>
+  </data>
+  <data name="tableLayoutPanel3.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;refractiveTexture.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tableLayoutPanel11.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>136, 157</value>
+  </data>
+  <data name="&gt;&gt;refractiveTexture.Parent" xml:space="preserve">
+    <value>tableLayoutPanel13</value>
+  </data>
+  <data name="refractiveTexture.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel4.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;label14.Parent" xml:space="preserve">
+    <value>tableLayoutPanel8</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>130, 15</value>
+  </data>
+  <data name="reflectiveTexture.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;label12.Parent" xml:space="preserve">
+    <value>tableLayoutPanel8</value>
+  </data>
+  <data name="refractiveFile.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>2</value>
+  </data>
+  <data name="tableLayoutPanel5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="label6.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>4</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>130, 15</value>
+  </data>
+  <data name="tableLayoutPanel11.ColumnCount" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutPanel9.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>287, 273</value>
+  </data>
+  <data name="reflectiveTexture.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing.Common">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;diffuseShareUpDown.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel3.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="label14.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;emissiveColor.Parent" xml:space="preserve">
+    <value>tableLayoutPanel7</value>
+  </data>
+  <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;reflectiveColor.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="diffuseColor.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>101, 11</value>
+  </data>
+  <data name="&gt;&gt;diffuseTexture.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="emissiveTexture.Text" xml:space="preserve">
+    <value>              </value>
+  </data>
+  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
+    <value>tableLayoutPanel5</value>
+  </data>
+  <data name="refractiveShareUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="tableLayoutPanel13.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>0</value>
+  </data>
+  <data name="emissiveFile.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>192, 11</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel7.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label14.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Diffuse</value>
+  </data>
+  <data name="emissiveTexture.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="reflectiveTexture.Text" xml:space="preserve">
+    <value>              </value>
+  </data>
+  <data name="&gt;&gt;diffuseShareUpDown.Name" xml:space="preserve">
+    <value>diffuseShareUpDown</value>
+  </data>
+  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="label9.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="label9.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="tableLayoutPanel10.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>275, 46</value>
+  </data>
+  <data name="tableLayoutPanel4.ColumnCount" type="System.Int32, System.Private.CoreLib">
+    <value>3</value>
+  </data>
+  <data name="emissiveFile.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>72, 23</value>
+  </data>
+  <data name="&gt;&gt;label12.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ampUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="&gt;&gt;reflectiveFile.Name" xml:space="preserve">
+    <value>reflectiveFile</value>
+  </data>
+  <data name="&gt;&gt;emissiveColor.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tableLayoutPanel12.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="refractiveIndexUpDown" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel13" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="refractiveShareUpDown" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Percent,33,33333,Percent,33,33333,Percent,33,33333" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="tableLayoutPanel2.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="refractiveTexture.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>21, 15</value>
+  </data>
+  <data name="label14.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="label8.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>tableLayoutPanel5</value>
+  </data>
+  <data name="label11.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>136, 15</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel13.Name" xml:space="preserve">
+    <value>tableLayoutPanel13</value>
+  </data>
+  <data name="&gt;&gt;label17.Name" xml:space="preserve">
+    <value>label17</value>
+  </data>
+  <data name="label14.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>3</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Texture</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;label15.Parent" xml:space="preserve">
+    <value>tableLayoutPanel11</value>
+  </data>
+  <data name="diffuseTexture.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>0</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Reflective</value>
+  </data>
+  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;refractiveShareUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="refractiveFile.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>192, 11</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;refractiveTexture.Name" xml:space="preserve">
+    <value>refractiveTexture</value>
+  </data>
+  <data name="emissiveTexture.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>21, 15</value>
+  </data>
+  <data name="tableLayoutPanel2.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label3" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,Absolute,20" /&gt;&lt;Rows Styles="Percent,50,Percent,50" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;refractiveColor.Parent" xml:space="preserve">
+    <value>tableLayoutPanel13</value>
+  </data>
+  <data name="reflectiveFile.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>72, 23</value>
+  </data>
+  <data name="&gt;&gt;emissiveShareUpDown.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="emissiveColor.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>71, 23</value>
+  </data>
+  <data name="label12.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 18</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel10.Name" xml:space="preserve">
+    <value>tableLayoutPanel10</value>
+  </data>
+  <data name="label17.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 18</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ampUpDown.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>2</value>
+  </data>
+  <data name="refractiveShareUpDown.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>275, 23</value>
+  </data>
+  <data name="label6.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="tableLayoutPanel6.RowCount" type="System.Int32, System.Private.CoreLib">
+    <value>3</value>
+  </data>
+  <data name="reflectiveTexture.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>21, 15</value>
+  </data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 70</value>
+  </data>
+  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MaterialPanel</value>
+  </data>
+  <data name="label8.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>2</value>
+  </data>
+  <data name="emissiveTexture.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>49, 15</value>
+  </data>
+  <data name="&gt;&gt;ampUpDown.Name" xml:space="preserve">
+    <value>ampUpDown</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>136, 15</value>
+  </data>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
+  </data>
+  <data name="tableLayoutPanel7.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="emissiveTexture" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="emissiveColor" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="emissiveFile" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,33,33333,Percent,33,33333,Percent,33,33333" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="&gt;&gt;emissiveColor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tableLayoutPanel2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;ampUpDown.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label15.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="label15.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing.Common">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;diffuseShareUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;reflectiveColor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;reflectiveFile.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tableLayoutPanel13.RowCount" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel2.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="emissiveShareUpDown.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="tableLayoutPanel2.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>136, 102</value>
+  </data>
+  <data name="reflectiveColor.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>71, 23</value>
+  </data>
+  <data name="&gt;&gt;reflectiveColor.Name" xml:space="preserve">
+    <value>reflectiveColor</value>
+  </data>
+  <data name="diffuseShareUpDown.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>275, 23</value>
+  </data>
+  <data name="diffuseTexture.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>21, 15</value>
+  </data>
+  <data name="&gt;&gt;label9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;emissiveTexture.Parent" xml:space="preserve">
+    <value>tableLayoutPanel7</value>
+  </data>
+  <data name="&gt;&gt;diffuseColor.Name" xml:space="preserve">
+    <value>diffuseColor</value>
+  </data>
+  <data name="reflectiveFile.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel13.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing.Primitives">
+    <value>7, 15</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 70</value>
+  </data>
+  <data name="&gt;&gt;label6.Name" xml:space="preserve">
+    <value>label6</value>
+  </data>
+  <data name="diffuseShareUpDown.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="emissiveColor.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
+    <value>tableLayoutPanel11</value>
+  </data>
+  <data name="&gt;&gt;refractiveShareUpDown.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label12.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="&gt;&gt;label11.Name" xml:space="preserve">
+    <value>label11</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 18</value>
+  </data>
+  <data name="&gt;&gt;ampUpDown.Parent" xml:space="preserve">
+    <value>tableLayoutPanel6</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="tableLayoutPanel12.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>11</value>
+  </data>
+  <data name="emissiveFile.Text" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel4.Parent" xml:space="preserve">
+    <value>tableLayoutPanel3</value>
+  </data>
+  <data name="&gt;&gt;refractiveIndexUpDown.Parent" xml:space="preserve">
+    <value>tableLayoutPanel12</value>
+  </data>
+  <data name="diffuseColor.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>71, 23</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Emissive</value>
+  </data>
+  <data name="reflectiveFile.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>192, 11</value>
+  </data>
+  <data name="refractiveIndexUpDown.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>275, 23</value>
+  </data>
+  <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>11, 9</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="label16.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;reflectiveTexture.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutPanel1.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;emissiveTexture.Name" xml:space="preserve">
+    <value>emissiveTexture</value>
+  </data>
+  <data name="refractiveColor.Text" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="label16.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing.Common">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="tableLayoutPanel4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;colorDialog.Name" xml:space="preserve">
+    <value>colorDialog</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>130, 15</value>
+  </data>
+  <data name="label5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="refractiveIndexUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="diffuseFile.Text" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="diffuseColor.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="tableLayoutPanel3.RowCount" type="System.Int32, System.Private.CoreLib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel7.Name" xml:space="preserve">
+    <value>tableLayoutPanel7</value>
+  </data>
+  <data name="tableLayoutPanel3.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>281, 102</value>
+  </data>
+  <data name="reflectiveDisturbanceUpDown.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>275, 23</value>
+  </data>
+  <data name="label11.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="&gt;&gt;reflectiveTexture.Name" xml:space="preserve">
+    <value>reflectiveTexture</value>
+  </data>
+  <data name="label5.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing.Common">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;refractiveShareUpDown.Name" xml:space="preserve">
+    <value>refractiveShareUpDown</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;emissiveFile.Name" xml:space="preserve">
+    <value>emissiveFile</value>
+  </data>
+  <data name="tableLayoutPanel4.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 3</value>
+  </data>
+  <data name="ampUpDown.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 118</value>
+  </data>
+  <data name="tableLayoutPanel2.ColumnCount" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="tableLayoutPanel3.ColumnCount" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;emissiveShareUpDown.Parent" xml:space="preserve">
+    <value>tableLayoutPanel6</value>
+  </data>
+  <data name="label14.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 122</value>
+  </data>
+  <data name="label9.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing.Common">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="reflectiveDisturbanceUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="tableLayoutPanel13.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="refractiveTexture" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="refractiveColor" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="refractiveFile" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,33,33333,Percent,33,33333,Percent,33,33333" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="diffuseTexture.Text" xml:space="preserve">
+    <value>              </value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>130, 15</value>
+  </data>
+  <data name="label17.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="tableLayoutPanel7.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 3</value>
+  </data>
+  <data name="&gt;&gt;refractiveFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="tableLayoutPanel9.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="reflectiveDisturbanceUpDown" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel10" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="reflectiveShareUpDown" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Percent,33,33333,Percent,33,33333,Percent,33,33333" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="tableLayoutPanel6.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="label17.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing.Common">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="tableLayoutPanel12.ColumnCount" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label5.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>3</value>
+  </data>
+  <data name="reflectiveTexture.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="label15.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="tableLayoutPanel10.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;label11.Parent" xml:space="preserve">
+    <value>tableLayoutPanel8</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 181</value>
+  </data>
+  <data name="tableLayoutPanel6.ColumnCount" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel5.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+    <value>tableLayoutPanel5</value>
+  </data>
+  <data name="&gt;&gt;refractiveIndexUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tableLayoutPanel9.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel13.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label14.Name" xml:space="preserve">
+    <value>label14</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Refractive</value>
+  </data>
+  <data name="label12.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing.Common">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="refractiveTexture.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;label16.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label17.Parent" xml:space="preserve">
+    <value>tableLayoutPanel11</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel8.Name" xml:space="preserve">
+    <value>tableLayoutPanel8</value>
+  </data>
+  <data name="label12.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;emissiveShareUpDown.Name" xml:space="preserve">
+    <value>emissiveShareUpDown</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel12.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="reflectiveShareUpDown.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 66</value>
+  </data>
+  <data name="&gt;&gt;diffuseFile.Parent" xml:space="preserve">
+    <value>tableLayoutPanel4</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="tableLayoutPanel10.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 3</value>
+  </data>
+  <data name="tableLayoutPanel10.RowCount" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="refractiveTexture.Text" xml:space="preserve">
+    <value>              </value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel11.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;emissiveFile.Parent" xml:space="preserve">
+    <value>tableLayoutPanel7</value>
+  </data>
+  <data name="label5.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="refractiveColor.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="tableLayoutPanel8.RowCount" type="System.Int32, System.Private.CoreLib">
+    <value>3</value>
+  </data>
+  <data name="diffuseFile.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>2</value>
+  </data>
+  <data name="tableLayoutPanel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="tableLayoutPanel13.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;reflectiveFile.Parent" xml:space="preserve">
+    <value>tableLayoutPanel10</value>
+  </data>
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>130, 15</value>
+  </data>
+  <data name="diffuseTexture.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing.Common">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel6.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;emissiveFile.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 343</value>
+  </data>
+  <data name="tableLayoutPanel3.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tableLayoutPanel4" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="diffuseShareUpDown" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,Absolute,20" /&gt;&lt;Rows Styles="Percent,50,Percent,50" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="label1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="&gt;&gt;label8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label11.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 70</value>
+  </data>
+  <data name="label7.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing.Common">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;diffuseColor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="diffuseTexture.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>49, 15</value>
+  </data>
+  <data name="refractiveShareUpDown.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="diffuseColor.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="reflectiveColor.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;reflectiveDisturbanceUpDown.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="reflectiveDisturbanceUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="tableLayoutPanel1.RowCount" type="System.Int32, System.Private.CoreLib">
+    <value>4</value>
+  </data>
+  <data name="refractiveTexture.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing.Common">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="reflectiveShareUpDown.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="tableLayoutPanel7.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;emissiveTexture.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="refractiveFile.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Amplification</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="tableLayoutPanel2.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>145, 3</value>
+  </data>
+  <data name="refractiveShareUpDown.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 66</value>
+  </data>
+  <data name="tableLayoutPanel6.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>281, 156</value>
+  </data>
+  <data name="refractiveIndexUpDown.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 119</value>
+  </data>
+  <data name="&gt;&gt;diffuseFile.Name" xml:space="preserve">
+    <value>diffuseFile</value>
+  </data>
+  <data name="&gt;&gt;label15.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel9.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="diffuseFile.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="tableLayoutPanel7.ColumnCount" type="System.Int32, System.Private.CoreLib">
+    <value>3</value>
+  </data>
+  <data name="tableLayoutPanel5.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label4" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label8" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label9" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Percent,33,33333,Percent,33,33333,Percent,33,33333" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="emissiveFile.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>2</value>
+  </data>
+  <data name="tableLayoutPanel9.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>281, 156</value>
+  </data>
+  <data name="tableLayoutPanel4.RowCount" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;emissiveTexture.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label12.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;diffuseFile.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="diffuseShareUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="tableLayoutPanel9.RowCount" type="System.Int32, System.Private.CoreLib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;reflectiveShareUpDown.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="reflectiveFile.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>2</value>
+  </data>
+  <data name="tableLayoutPanel6.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>287, 111</value>
+  </data>
+  <data name="&gt;&gt;label8.Name" xml:space="preserve">
+    <value>label8</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>136, 15</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Texture</value>
+  </data>
+  <data name="&gt;&gt;refractiveTexture.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;reflectiveColor.Parent" xml:space="preserve">
+    <value>tableLayoutPanel10</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel4.Name" xml:space="preserve">
+    <value>tableLayoutPanel4</value>
+  </data>
+  <data name="&gt;&gt;refractiveFile.Parent" xml:space="preserve">
+    <value>tableLayoutPanel13</value>
+  </data>
+  <data name="emissiveFile.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;reflectiveTexture.Parent" xml:space="preserve">
+    <value>tableLayoutPanel10</value>
+  </data>
+  <data name="&gt;&gt;refractiveColor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="reflectiveDisturbanceUpDown.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 118</value>
+  </data>
+  <data name="tableLayoutPanel12.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>287, 435</value>
+  </data>
+  <data name="label14.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing.Common">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;diffuseTexture.Name" xml:space="preserve">
+    <value>diffuseTexture</value>
+  </data>
+  <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing.Common">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="diffuseShareUpDown.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 65</value>
+  </data>
+  <data name="&gt;&gt;reflectiveShareUpDown.Parent" xml:space="preserve">
+    <value>tableLayoutPanel9</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel6.Name" xml:space="preserve">
+    <value>tableLayoutPanel6</value>
+  </data>
+  <data name="tableLayoutPanel11.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label15" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label16" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label17" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Percent,33,33333,Percent,33,33333,Percent,33,33333" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="tableLayoutPanel12.RowCount" type="System.Int32, System.Private.CoreLib">
+    <value>3</value>
+  </data>
+  <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tableLayoutPanel12" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel11" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel9" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel8" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel6" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel5" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel3" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel2" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label5" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label6" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label7" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,25,Percent,25,Percent,50" /&gt;&lt;Rows Styles="Percent,18,18182,Percent,27,27273,Percent,27,27273,Percent,27,27273" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="&gt;&gt;emissiveColor.Name" xml:space="preserve">
+    <value>emissiveColor</value>
+  </data>
+  <data name="&gt;&gt;diffuseColor.Parent" xml:space="preserve">
+    <value>tableLayoutPanel4</value>
+  </data>
+  <data name="&gt;&gt;diffuseColor.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="refractiveColor.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>101, 11</value>
+  </data>
+  <data name="label6.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tableLayoutPanel9.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;reflectiveShareUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel12.Name" xml:space="preserve">
+    <value>tableLayoutPanel12</value>
+  </data>
+  <data name="tableLayoutPanel3.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>287, 3</value>
+  </data>
+  <data name="label6.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing.Common">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;label15.Name" xml:space="preserve">
+    <value>label15</value>
+  </data>
+  <data name="&gt;&gt;colorDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColorDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tableLayoutPanel8.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="label3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing.Common">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="label2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="label11.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing.Common">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="tableLayoutPanel2.RowCount" type="System.Int32, System.Private.CoreLib">
+    <value>2</value>
+  </data>
+  <data name="label7.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="tableLayoutPanel4.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="diffuseTexture" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="diffuseColor" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="diffuseFile" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,33,33333,Percent,33,33333,Percent,33,33333" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="tableLayoutPanel13.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 3</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel9.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tableLayoutPanel8.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>8</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>130, 15</value>
+  </data>
+  <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tableLayoutPanel11.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>145, 435</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Texture</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel5.Name" xml:space="preserve">
+    <value>tableLayoutPanel5</value>
+  </data>
+  <data name="tableLayoutPanel5.ColumnCount" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="tableLayoutPanel4.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>275, 45</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="diffuseFile.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>72, 23</value>
+  </data>
+  <data name="diffuseTexture.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="ampUpDown.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>275, 23</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel8.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tableLayoutPanel5.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>145, 111</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 506</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>2</value>
+  </data>
+  <data name="refractiveColor.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>71, 23</value>
+  </data>
+  <data name="&gt;&gt;diffuseFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label8.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing.Common">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;refractiveIndexUpDown.Name" xml:space="preserve">
+    <value>refractiveIndexUpDown</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel3.Name" xml:space="preserve">
+    <value>tableLayoutPanel3</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tableLayoutPanel6.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="ampUpDown" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel7" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="emissiveShareUpDown" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Percent,33,33333,Percent,33,33333,Percent,33,33333" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 122</value>
+  </data>
+  <data name="emissiveColor.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="label14.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>130, 15</value>
+  </data>
+  <data name="label4.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="reflectiveTexture.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>49, 15</value>
+  </data>
+  <data name="tableLayoutPanel12.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="emissiveShareUpDown.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 66</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing.Common">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel9.Name" xml:space="preserve">
+    <value>tableLayoutPanel9</value>
+  </data>
+  <data name="tableLayoutPanel4.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, System.Private.CoreLib">
+    <value>3</value>
+  </data>
+  <data name="tableLayoutPanel9.ColumnCount" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;diffuseTexture.Parent" xml:space="preserve">
+    <value>tableLayoutPanel4</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel2.Name" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="emissiveColor.Text" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;reflectiveShareUpDown.Name" xml:space="preserve">
+    <value>reflectiveShareUpDown</value>
+  </data>
+  <data name="tableLayoutPanel13.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>275, 46</value>
+  </data>
+  <data name="label15.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;label16.Name" xml:space="preserve">
+    <value>label16</value>
+  </data>
+  <data name="label11.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel5.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tableLayoutPanel5.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>6</value>
+  </data>
+  <data name="label8.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel10.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label9.Name" xml:space="preserve">
+    <value>label9</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 69</value>
+  </data>
+  <data name="refractiveTexture.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>49, 15</value>
+  </data>
+  <data name="&gt;&gt;reflectiveDisturbanceUpDown.Parent" xml:space="preserve">
+    <value>tableLayoutPanel9</value>
+  </data>
+  <data name="reflectiveTexture.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;emissiveFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="emissiveShareUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="diffuseShareUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>130, 15</value>
+  </data>
+  <data name="diffuseFile.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>192, 11</value>
+  </data>
+  <data name="diffuseTexture.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="label3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="refractiveFile.Text" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="tableLayoutPanel7.RowCount" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;diffuseTexture.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label16.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="emissiveShareUpDown.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>275, 23</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel11.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 18</value>
+  </data>
+  <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>3, 123</value>
+  </data>
+  <data name="emissiveTexture.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="label7.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel11.Name" xml:space="preserve">
+    <value>tableLayoutPanel11</value>
+  </data>
+  <data name="&gt;&gt;ampUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="reflectiveColor.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>136, 15</value>
+  </data>
+  <data name="&gt;&gt;refractiveIndexUpDown.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="reflectiveColor.Text" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="diffuseColor.Text" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="&gt;&gt;refractiveFile.Name" xml:space="preserve">
+    <value>refractiveFile</value>
+  </data>
+  <data name="label4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing.Common">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel3.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;reflectiveTexture.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>593, 614</value>
+  </data>
+  <data name="tableLayoutPanel12.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>281, 157</value>
+  </data>
+  <data name="tableLayoutPanel6.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>7</value>
+  </data>
+  <data name="tableLayoutPanel13.ColumnCount" type="System.Int32, System.Private.CoreLib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;emissiveShareUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tableLayoutPanel8.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label14" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label11" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label12" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Percent,33,33333,Percent,33,33333,Percent,33,33333" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tableLayoutPanel5.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>136, 156</value>
+  </data>
+  <data name="label4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="&gt;&gt;label17.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tableLayoutPanel11.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>10</value>
+  </data>
+  <data name="emissiveShareUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="&gt;&gt;label11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tableLayoutPanel3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;reflectiveFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Reflective Index</value>
+  </data>
+  <data name="label17.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="tableLayoutPanel8.ColumnCount" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="reflectiveDisturbanceUpDown.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;diffuseShareUpDown.Parent" xml:space="preserve">
+    <value>tableLayoutPanel3</value>
+  </data>
+  <data name="tableLayoutPanel10.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>571, 595</value>
+  </data>
+  <data name="&gt;&gt;reflectiveDisturbanceUpDown.Name" xml:space="preserve">
+    <value>reflectiveDisturbanceUpDown</value>
+  </data>
+  <data name="refractiveShareUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="refractiveIndexUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="&gt;&gt;refractiveFile.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel7.Parent" xml:space="preserve">
+    <value>tableLayoutPanel6</value>
+  </data>
+  <data name="tableLayoutPanel7.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>0</value>
+  </data>
+  <data name="label9.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="ampUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel2.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="emissiveTexture.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>0</value>
+  </data>
+  <data name="label17.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>1</value>
+  </data>
+  <data name="refractiveFile.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>72, 23</value>
+  </data>
+  <data name="reflectiveFile.Text" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="tableLayoutPanel11.RowCount" type="System.Int32, System.Private.CoreLib">
+    <value>3</value>
+  </data>
+  <data name="tableLayoutPanel11.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel12.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="reflectiveShareUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>130, 15</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
 </root>

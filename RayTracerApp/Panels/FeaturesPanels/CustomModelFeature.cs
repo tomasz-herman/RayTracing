@@ -73,8 +73,34 @@ namespace RayTracerApp.Panels.FeaturesPanels
         private void predefinedModelComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var comboBox = sender as ComboBox;
-            var selected = (string)comboBox.SelectedItem;
-            selected = selected.Replace(' ', '_') + ".dae";
+            var selected = "";
+            switch (comboBox.SelectedIndex)
+            {
+                case 0:
+                    selected = "birch_tree";
+                    break;
+                case 1:
+                    selected = "mountain";
+                    break;
+                case 2:
+                    selected = "mug";
+                    break;
+                case 3:
+                    selected = "lamp";
+                    break;
+                case 4:
+                    selected = "tank";
+                    break;
+                case 5:
+                    selected = "teapot";
+                    break;
+                case 6:
+                    selected = "trex";
+                    break;
+                default:
+                    throw new Exception("Wrong argument");
+            }
+            selected = selected + ".dae";
             var model = ModelLoader.Load(selected, true);
             Controller.GetModel()?.Unload();
             Controller.SetModel(model, true);

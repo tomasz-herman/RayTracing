@@ -156,7 +156,7 @@ namespace RayTracing.Models
 
         public override string ToString()
         {
-            return "Cuboid";
+            return Properties.Strings.Cuboid;
         }
     }
 }

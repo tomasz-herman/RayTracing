@@ -121,7 +121,7 @@ namespace RayTracing.Models
 
         public override string ToString()
         {
-            return "Rectangle";
+            return Properties.Strings.Rectangle;
         }
     }
 }
