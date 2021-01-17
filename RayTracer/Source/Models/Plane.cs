@@ -142,7 +142,7 @@ namespace RayTracing.Models
 
         public override string ToString()
         {
-            return "Plane";
+            return Properties.Strings.Plane;
         }
     }
 }

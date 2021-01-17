@@ -16,6 +16,11 @@ using Timer = System.Windows.Forms.Timer;
 using Color = RayTracing.Maths.Color;
 using RayTracerApp.SceneController;
 using System.Threading;
+using Newtonsoft.Json;
+using System.Globalization;
+using System.IO;
+using System.IO.Compression;
+using System.Text;
 
 namespace RayTracerApp.Forms
 {
@@ -24,7 +29,7 @@ namespace RayTracerApp.Forms
         private const int SWAP_TIME = 2;
         private Scene _scene = new Scene();
         private IRenderer _renderer;
-        private Camera _camera = new LensCamera(new Vector3(0, 0, 20)) {AspectRatio = 1, AutoFocus = true};
+        private Camera _camera = new PerspectiveCamera(new Vector3(0, 0, 20)) {AspectRatio = 1};
         private CameraController _cameraController;
         private IncrementalRayTracer _rayTracer;
         private BackgroundWorker _backgroundWorker;
@@ -33,6 +38,10 @@ namespace RayTracerApp.Forms
         private long lastModification;
         private bool rayTracingStarted;
         private bool _isUiUsed;
+
+        private bool _automaticMode = true;
+        private bool _manualModeCanRun = false;
+        private bool ManualModeBlocked => !_automaticMode && _manualModeCanRun && rayTracingStarted;
 
         private HitInfo _contextHitInfo;
         private bool _contextHit;
@@ -50,7 +59,9 @@ namespace RayTracerApp.Forms
         public bool ShouldRaytrace()
         {
             long now = DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
-            return !_isUiUsed && now - lastModification > SWAP_TIME;
+            bool manualModeCanRun = !_automaticMode && _manualModeCanRun;
+            if (manualModeCanRun) return true;
+            return _automaticMode && !_isUiUsed && now - lastModification > SWAP_TIME;
         }
 
         public MainForm()
@@ -92,7 +103,7 @@ namespace RayTracerApp.Forms
                 Material = new MasterMaterial(new Diffuse(new Texture("wood.jpg"))),
                 Rotation = Vector3.One * (float) Math.PI / 3
             }.Load());
-            _scene.AddModel(new Cube()
+            _scene.AddModel(new Cuboid()
             {
                 Position = new Vector3(0, 0.5f, -3), Scale = 1,
                 Material = new MasterMaterial(new Diffuse(new Texture("wood.jpg")))
@@ -118,6 +129,25 @@ namespace RayTracerApp.Forms
             UpdateViewport();
 
             gLControl.MouseClick += GLControl_MouseClick;
+
+            gLControl.KeyDown += GLControl_KeyDown;
+        }
+
+        private void GLControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (_automaticMode) return;
+            if (e.KeyCode != Keys.R) return;
+            if (_manualModeCanRun)
+            {
+                _manualModeCanRun = false;
+                _cameraController.Blocked = false;
+                UpdateLastModification();
+            }
+            else
+            {
+                _manualModeCanRun = true;
+                _cameraController.Blocked = true;
+            }
         }
 
         private void InitializeFpsTimer()
@@ -139,12 +169,25 @@ namespace RayTracerApp.Forms
                     progressBar.Value = 0;
                     progressBar.Visible = true;
                     rayTracingStarted = true;
+                    if (ManualModeBlocked)
+                    {
+                        this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                        this.MaximizeBox = false;
+                        this.MinimizeBox = false;
+                    }
                 }
                 else
                 {
                     _renderer.Render(_scene, _cameraController.GetCamera());
                     gLControl.SwapBuffers();
                 }
+
+            if(!ManualModeBlocked)
+            {
+                this.FormBorderStyle = FormBorderStyle.Sizable;
+                this.MaximizeBox = true;
+                this.MinimizeBox = true;
+            }
         }
 
         private void OnResize(object sender, EventArgs e)
@@ -203,6 +246,7 @@ namespace RayTracerApp.Forms
 
         private void newObjectButton_Click(object sender, EventArgs e)
         {
+            if (ManualModeBlocked) return;
             var ray = _cameraController.GetCamera().GetRay(0.5f, 0.5f);
             var hitInfo = new HitInfo();
             var hit = _scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity);
@@ -211,10 +255,11 @@ namespace RayTracerApp.Forms
 
         private void settingsButton_Click(object sender, EventArgs e)
         {
+            if (ManualModeBlocked) return;
             UpdateLastModification();
             _isUiUsed = true;
 
-            var controller = new SettingsController(_camera, _rayTracer);
+            var controller = new SettingsController(_camera, _rayTracer, _automaticMode);
             var form = new SettingsForm(controller)
                 {StartPosition = FormStartPosition.Manual, Location = Location + Size / 3};
 
@@ -222,8 +267,12 @@ namespace RayTracerApp.Forms
             form.Closed += (a, b) =>
             {
                 _camera = controller.Camera;
+                _cameraController?.Dispose();
                 _cameraController = new CameraController(_camera, gLControl, UpdateLastModification);
                 _rayTracer = controller.RayTracer;
+                _automaticMode = controller.AutomaticMode;
+                _manualModeCanRun = false;
+                _cameraController.Blocked = false;
             };
             form.Show();
         }
@@ -252,6 +301,7 @@ namespace RayTracerApp.Forms
 
         private void editObjectButton_Click(object sender, EventArgs e)
         {
+            if (ManualModeBlocked) return;
             var ray = _cameraController.GetCamera().GetRay(0.5f, 0.5f);
             var hitInfo = new HitInfo();
             var hit = _scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity);
@@ -289,6 +339,7 @@ namespace RayTracerApp.Forms
 
         private void deleteObjectButton_Click(object sender, EventArgs e)
         {
+            if (ManualModeBlocked) return;
             var ray = _cameraController.GetCamera().GetRay(0.5f, 0.5f);
             var hitInfo = new HitInfo();
             var hit = _scene.HitTest(ray, ref hitInfo, 0.001f, float.PositiveInfinity);
@@ -303,9 +354,11 @@ namespace RayTracerApp.Forms
             {
                 var model = hitInfo.ModelHit;
                 if (model is Triangle triangle) model = triangle.Parent;
+
                 string message =
-                    $"Are you sure that you would like to delete the {model}?";
-                const string caption = "Delete object";
+                    String.Format(Properties.Strings.DeleteMessage, model.ToString().ToLower());
+                string caption = Properties.Strings.DeleteInfo;
+               
                 var result = MessageBox.Show(message, caption,
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question);
@@ -322,6 +375,7 @@ namespace RayTracerApp.Forms
 
         private void GLControl_MouseClick(object sender, MouseEventArgs e)
         {
+            if (ManualModeBlocked) return;
             if (e.Button == MouseButtons.Right)
             {
                 var width = (float) gLControl.Width;
@@ -369,7 +423,7 @@ namespace RayTracerApp.Forms
             NewObjectFunction(_contextHit, ref _contextHitInfo);
         }
 
-        private void FormOnClosed(object? sender, EventArgs e)
+        private void FormOnClosed(object sender, EventArgs e)
         {
             _isUiUsed = false;
             UpdateLastModification();
@@ -377,6 +431,85 @@ namespace RayTracerApp.Forms
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            UpdateLastModification();
+        }
+
+        private void saveSceneButton_Click(object sender, EventArgs e)
+        {
+            if (ManualModeBlocked) return;
+            UpdateLastModification();
+            _isUiUsed = true;
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            DialogResult result = saveDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                String fileName = saveDialog.FileName;
+                var settings = new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.All,
+                    ContractResolver = ShouldSerializeContractResolver.Instance
+                };
+                var json = JsonConvert.SerializeObject(_scene, settings);
+                
+                using (var output = File.Create(fileName))
+                using (var gz = new GZipStream(output, CompressionMode.Compress))
+                {
+                    var bytes = Encoding.UTF8.GetBytes(json);
+                    gz.Write(bytes);
+                }
+            }
+            _isUiUsed = false;
+        }
+
+        private void loadSceneButton_Click(object sender, EventArgs e)
+        {
+            if (ManualModeBlocked) return;
+            UpdateLastModification();
+            _isUiUsed = true;
+            OpenFileDialog loadDialog = new OpenFileDialog();
+            DialogResult result = loadDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                try
+                {
+                    using (var memoryStream = new MemoryStream())
+                    using (var input = loadDialog.OpenFile())
+                    using (var gz = new GZipStream(input, CompressionMode.Decompress))
+                    {
+                        gz.CopyTo(memoryStream);
+                        var bytes = memoryStream.ToArray();
+                        var json = Encoding.Default.GetString(bytes);
+                        var settings = new JsonSerializerSettings
+                        {
+                            TypeNameHandling = TypeNameHandling.All,
+                            ContractResolver = ShouldSerializeContractResolver.Instance
+                        };
+                        var scene = JsonConvert.DeserializeObject(json, typeof(Scene), settings);
+                        _scene = scene as Scene;
+                        foreach (var model in _scene.Models)
+                        {
+                            model.Load();
+                        }
+
+                        _scene.Preprocess();
+                        UpdateLastModification();
+                    }
+                }
+                catch(Exception)
+                {
+                    MessageBox.Show(Properties.Strings.WrongFileFormat);
+                    UpdateLastModification();
+                }
+            }
+            _isUiUsed = false;
+        }
+
+        private void clearSceneButton_Click(object sender, EventArgs e)
+        {
+            if (ManualModeBlocked) return;
+            var next = new Scene();
+            next.AmbientLight = _scene.AmbientLight;
+            _scene = next;
             UpdateLastModification();
         }
     }

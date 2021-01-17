@@ -1,4 +1,5 @@
-﻿using OpenTK;
+﻿using Newtonsoft.Json;
+using OpenTK;
 using OpenTK.Graphics;
 using RayTracing.Maths;
 using RayTracing.Sampling;
@@ -11,7 +12,7 @@ namespace RayTracing.Materials
         private const int SAMPLES = 10000;
         private ITexture _albedo;
 
-        public Color AverageColor => _averageColor;
+        [JsonIgnore] public Color AverageColor => _averageColor;
         public float Amplification { get; set; } = 1;
 
         public ITexture Albedo
@@ -26,10 +27,11 @@ namespace RayTracing.Materials
 
         private Color _averageColor;
 
-        public Emissive(ITexture emit, float amp = 1)
+        [JsonConstructor]
+        public Emissive(ITexture albedo, float amp = 1)
         {
             Amplification = amp;
-            Albedo = emit;
+            Albedo = albedo;
         }
 
         public Emissive(Color emitColor, float amp = 1)

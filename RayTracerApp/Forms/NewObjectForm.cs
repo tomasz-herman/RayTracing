@@ -8,6 +8,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Globalization;
+using System.Threading;
 using Rectangle = RayTracing.Models.Rectangle;
 
 namespace RayTracerApp.Forms
@@ -35,7 +37,9 @@ namespace RayTracerApp.Forms
 
             _currentPanel = objectSelectionPanel;
             _currentPanel.Controller = _controller;
-            topLabel.Text = "Add new object...";
+
+            topLabel.Text = Properties.Strings.AddObjectMessageEmpty;
+
             SetController();
 
             controller.UpdateModelFromUI = () => {
@@ -61,7 +65,7 @@ namespace RayTracerApp.Forms
         private void ChooseOrder()
         {
             var model = _controller.GetModel();
-            var featureTypes = new List<Type> { typeof(Cylinder), typeof(Rectangle), typeof(CustomModel) };
+            var featureTypes = new List<Type> { typeof(Cylinder), typeof(Rectangle), typeof(CustomModel), typeof(Cuboid) };
             if (featureTypes.Contains(model.GetType()))
                 _order = new List<IPanelBase> { objectSelectionPanel, featuresPanel, positionPanel, materialPanel };
             else
@@ -85,18 +89,21 @@ namespace RayTracerApp.Forms
             {
                 leftCancelButton.Visible = true;
                 middlePreviousButton.Visible = true;
+
                 middleCancelButton.Visible = false;
 
-                if (_controller.GetModel().GetType() == typeof(CustomModel))
-                    topLabel.Text = "Add custom model...";
-                else
-                    topLabel.Text = $"Add {_controller.GetModel().GetType().Name.ToLower()}...";
+                rightNextButton.Focus();
+
+                topLabel.Text = String.Format(Properties.Strings.AddObjectMessage, _controller.GetModel().ToString().ToLower());
             }
 
             if (index == _order.Count - 2)
             {
                 rightFinishButton.Visible = true;
+
                 rightNextButton.Visible = false;
+
+                rightFinishButton.Focus();
             }
 
             if (index < _order.Count - 1)
@@ -113,17 +120,23 @@ namespace RayTracerApp.Forms
 
             if (index == 1)
             {
-                topLabel.Text = "Add new object...";
+                topLabel.Text = Properties.Strings.AddObjectMessageEmpty;
 
                 middleCancelButton.Visible = true;
+
                 leftCancelButton.Visible = false;
                 middlePreviousButton.Visible = false;
+
+                middleCancelButton.Focus();
             }
 
             if (index == _order.Count - 1)
             {
                 rightNextButton.Visible = true;
+
                 rightFinishButton.Visible = false;
+
+                middlePreviousButton.Focus();
             }
 
             if (index > 0)

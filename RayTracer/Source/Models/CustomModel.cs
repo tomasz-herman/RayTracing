@@ -7,14 +7,18 @@ namespace RayTracing.Models
 {
     public class CustomModel : Model
     {
+        public Mesh Mesh
+        {
+            get => base.Mesh;
+            set
+            {
+                base.Mesh = value;
+                loaded = false;
+            }
+        }
+        
         public CustomModel()
         {
-        }
-
-        public void SetMesh(Mesh mesh)
-        {
-            Mesh = mesh;
-            loaded = false;
         }
 
         public CustomModel(Mesh mesh)
@@ -46,7 +50,7 @@ namespace RayTracing.Models
 
         public override string ToString()
         {
-            return "Custom model";
+            return Properties.Strings.CustomModel;
         }
     }
 }

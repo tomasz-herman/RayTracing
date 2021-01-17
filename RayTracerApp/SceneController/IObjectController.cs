@@ -15,7 +15,7 @@ namespace RayTracerApp.SceneController
             set;
         }
         void DeleteModel();
-        void SetModel(Model model);
+        void SetModel(Model model, bool newMaterial = false);
         Model GetModel();
         Scene GetScene();
         Action UpdateModelFromUI { get; set; }

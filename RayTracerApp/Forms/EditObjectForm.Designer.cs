@@ -29,51 +29,62 @@ namespace RayTracerApp.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditObjectForm));
             this.featuresPanel = new RayTracerApp.Panels.FeaturesPanel();
             this.positionPanel = new RayTracerApp.Panels.PositionPanel();
             this.materialPanel = new RayTracerApp.Panels.MaterialPanel();
             this.SuspendLayout();
             // 
+            // middlePreviousButton
+            // 
+            resources.ApplyResources(this.middlePreviousButton, "middlePreviousButton");
+            // 
+            // leftCancelButton
+            // 
+            resources.ApplyResources(this.leftCancelButton, "leftCancelButton");
+            // 
+            // middleCancelButton
+            // 
+            resources.ApplyResources(this.middleCancelButton, "middleCancelButton");
+            // 
+            // rightFinishButton
+            // 
+            resources.ApplyResources(this.rightFinishButton, "rightFinishButton");
+            // 
+            // topLabel
+            // 
+            resources.ApplyResources(this.topLabel, "topLabel");
+            // 
+            // rightNextButton
+            // 
+            resources.ApplyResources(this.rightNextButton, "rightNextButton");
+            // 
             // featuresPanel
             // 
             this.featuresPanel.Controller = null;
-            this.featuresPanel.Location = new System.Drawing.Point(0, 26);
+            resources.ApplyResources(this.featuresPanel, "featuresPanel");
             this.featuresPanel.Name = "featuresPanel";
-            this.featuresPanel.Size = new System.Drawing.Size(484, 594);
-            this.featuresPanel.TabIndex = 6;
             // 
             // positionPanel
             // 
-            this.positionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.positionPanel, "positionPanel");
             this.positionPanel.Controller = null;
-            this.positionPanel.Location = new System.Drawing.Point(0, 26);
             this.positionPanel.Name = "positionPanel";
-            this.positionPanel.Size = new System.Drawing.Size(484, 594);
-            this.positionPanel.TabIndex = 7;
             // 
             // materialPanel
             // 
-            this.materialPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.materialPanel, "materialPanel");
             this.materialPanel.Controller = null;
-            this.materialPanel.Location = new System.Drawing.Point(0, 26);
             this.materialPanel.Name = "materialPanel";
-            this.materialPanel.Size = new System.Drawing.Size(484, 594);
-            this.materialPanel.TabIndex = 8;
             // 
             // EditObjectForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 661);
             this.Controls.Add(this.materialPanel);
             this.Controls.Add(this.positionPanel);
             this.Controls.Add(this.featuresPanel);
             this.Name = "EditObjectForm";
-            this.Text = "Edit";
             this.Controls.SetChildIndex(this.rightNextButton, 0);
             this.Controls.SetChildIndex(this.middlePreviousButton, 0);
             this.Controls.SetChildIndex(this.leftCancelButton, 0);

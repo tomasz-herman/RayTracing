@@ -8,6 +8,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Globalization;
+using System.Threading;
 using Rectangle = RayTracing.Models.Rectangle;
 
 namespace RayTracerApp.Forms
@@ -38,7 +40,7 @@ namespace RayTracerApp.Forms
             materialPanel.Visible = false;
 
             var model = _controller.GetModel();
-            var featureTypes = new List<Type> { typeof(Cylinder), typeof(Rectangle) };
+            var featureTypes = new List<Type> { typeof(Cylinder), typeof(Rectangle), typeof(Cuboid) };
             if (featureTypes.Contains(model.GetType()))
                 _order = new List<IPanelBase> { featuresPanel, positionPanel, materialPanel };
             else
@@ -52,10 +54,8 @@ namespace RayTracerApp.Forms
             {
                 panel.UpdateFromModel();
             }
-            if (_controller.GetModel() is CustomModel)
-                topLabel.Text = "Edit custom model...";
-            else
-                topLabel.Text = $"Edit {_controller.GetModel().GetType().Name.ToLower()}...";
+
+            topLabel.Text = String.Format(Properties.Strings.EditObjectMessage, _controller.GetModel().ToString().ToLower());
         }
 
         private void EditObjectForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -77,13 +77,20 @@ namespace RayTracerApp.Forms
             {
                 leftCancelButton.Visible = true;
                 middlePreviousButton.Visible = true;
+                rightNextButton.Visible = true;
+
                 middleCancelButton.Visible = false;
+
+                rightNextButton.Focus();
             }
 
             if (index == _order.Count - 2)
             {
                 rightFinishButton.Visible = true;
+
                 rightNextButton.Visible = false;
+
+                rightFinishButton.Focus();
             }
 
             if (index < _order.Count - 1)
@@ -100,15 +107,27 @@ namespace RayTracerApp.Forms
 
             if (index == _order.Count - 1)
             {
-                middleCancelButton.Visible = true;
-                leftCancelButton.Visible = false;
-                middlePreviousButton.Visible = false;
+
+                leftCancelButton.Visible = true;
+                middlePreviousButton.Visible = true;
+                rightNextButton.Visible = true;
+
+                middleCancelButton.Visible = false;
+                rightFinishButton.Visible = false;
+
+                middlePreviousButton.Focus();
             }
 
             if (index == 1)
             {
                 rightNextButton.Visible = true;
+                middleCancelButton.Visible = true;
+
                 rightFinishButton.Visible = false;
+                middlePreviousButton.Visible = false;
+                leftCancelButton.Visible = false;
+
+                middleCancelButton.Focus();
             }
 
             if (index > 0)

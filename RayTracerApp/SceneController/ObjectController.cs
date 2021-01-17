@@ -44,7 +44,7 @@ namespace RayTracerApp.SceneController
             return model;
         }
 
-        public void SetModel(Model model)
+        public void SetModel(Model model, bool newMaterial = false)
         {
             DeleteModel();
             this.model = model;
@@ -54,7 +54,14 @@ namespace RayTracerApp.SceneController
             }
             else
             {
-                model.Material = Material;
+                if (!newMaterial)
+                {
+                    model.Material = Material;
+                }
+                else
+                {
+                    Material = (MasterMaterial)model.Material;
+                }
             }
 
             if (this.model != null) scene.AddModel(this.model);

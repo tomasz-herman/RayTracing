@@ -1,4 +1,5 @@
-﻿using RayTracing.Maths;
+﻿using Newtonsoft.Json;
+using RayTracing.Maths;
 using RayTracing.Sampling;
 using RayTracing.Shaders;
 
@@ -34,7 +35,7 @@ namespace RayTracing.Materials
             set => _materials[4] = value;
         }
 
-        public Color AverageColor => Emissive.AverageColor;
+        [JsonIgnore] public Color AverageColor => Emissive.AverageColor;
 
         public (float emissive, float diffuse, float reflective, float refractive) Parts
         {
@@ -60,28 +61,29 @@ namespace RayTracing.Materials
                 new Refractive(new Color(), 1)
             };
 
-            foreach (var material in materials)
-            {
-                switch (material)
+            if (materials != null)
+                foreach (var material in materials)
                 {
-                    case Emissive mat:
-                        Emissive = mat;
-                        _parts.emissive = 1;
-                        break;
-                    case Diffuse mat:
-                        Diffuse = mat;
-                        _parts.diffuse = 1;
-                        break;
-                    case Reflective mat:
-                        Reflective = mat;
-                        _parts.reflective = 1;
-                        break;
-                    case Refractive mat:
-                        Refractive = mat;
-                        _parts.refractive = 1;
-                        break;
+                    switch (material)
+                    {
+                        case Emissive mat:
+                            Emissive = mat;
+                            _parts.emissive = 1;
+                            break;
+                        case Diffuse mat:
+                            Diffuse = mat;
+                            _parts.diffuse = 1;
+                            break;
+                        case Reflective mat:
+                            Reflective = mat;
+                            _parts.reflective = 1;
+                            break;
+                        case Refractive mat:
+                            Refractive = mat;
+                            _parts.refractive = 1;
+                            break;
+                    }
                 }
-            }
 
             _sampler = NewSampler();
         }

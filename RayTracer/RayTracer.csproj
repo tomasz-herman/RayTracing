@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="AssimpNet" Version="5.0.0-beta1" />
+        <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
         <PackageReference Include="OpenTK" Version="3.1.0" />
         <PackageReference Include="Serilog" Version="2.10.1-dev-01249" />
         <PackageReference Include="Serilog.Sinks.Async" Version="1.4.1-dev-00073" />
@@ -20,5 +21,22 @@
         <EmbeddedResource Include="Resources\Shaders\*" />
         <None Remove="Resources\Textures\*" />
         <EmbeddedResource Include="Resources\Textures\*" />
+        <None Remove="Resources\Models\*" />
+        <EmbeddedResource Include="Resources\Models\*" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Properties\Strings.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Strings.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Properties\Strings.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
     </ItemGroup>
 </Project>

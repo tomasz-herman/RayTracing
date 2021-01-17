@@ -19,16 +19,27 @@ namespace RayTracerApp.Panels
 
         public IObjectController Controller { get; set; }
 
+        float FromDegreesToRadians(decimal degrees)
+        {
+            return (float)(degrees / 180) * (float)Math.PI;
+        }
+
+        decimal FromRadiansToDegrees(float radians)
+        {
+            return (decimal)(radians / (float)Math.PI * 180);
+        }
+
         public void UpdateForModel()
         {
             var model = Controller.GetModel();
             model.Scale = (float)scaleUpDown.Value;
             var rotation = new Vector3
             {
-                X = (float)yawUpDown.Value,
-                Y = (float)pitchUpDown.Value,
-                Z = (float)rollUpDown.Value
-            };
+
+                X = FromDegreesToRadians(pitchUpDown.Value),
+                Y = FromDegreesToRadians(yawUpDown.Value),
+                Z = FromDegreesToRadians(rollUpDown.Value)
+        };
             model.Rotation = rotation;
 
             var position = new Vector3
@@ -45,9 +56,9 @@ namespace RayTracerApp.Panels
             var model = Controller.GetModel();
             scaleUpDown.Value = (decimal)model.Scale;
 
-            rollUpDown.Value = (decimal)model.Rotation.Z;
-            yawUpDown.Value = (decimal)model.Rotation.Y;
-            pitchUpDown.Value = (decimal)model.Rotation.X;
+            rollUpDown.Value = FromRadiansToDegrees(model.Rotation.Z);
+            yawUpDown.Value = FromRadiansToDegrees(model.Rotation.Y);
+            pitchUpDown.Value = FromRadiansToDegrees(model.Rotation.X);
 
             xUpDown.Value = (decimal)model.Position.X;
             yUpDown.Value = (decimal)model.Position.Y;
@@ -82,7 +93,7 @@ namespace RayTracerApp.Panels
         {
             var nud = sender as NumericUpDown;
             var rotation = Controller.GetModel().Rotation;
-            rotation.X = (float)nud.Value;
+            rotation.X = FromDegreesToRadians(nud.Value);
             Controller.GetModel().Rotation = rotation;
         }
 
@@ -90,7 +101,7 @@ namespace RayTracerApp.Panels
         {
             var nud = sender as NumericUpDown;
             var rotation = Controller.GetModel().Rotation;
-            rotation.Y = (float)nud.Value;
+            rotation.Y = FromDegreesToRadians(nud.Value);
             Controller.GetModel().Rotation = rotation;
         }
 
@@ -98,7 +109,7 @@ namespace RayTracerApp.Panels
         {
             var nud = sender as NumericUpDown;
             var rotation = Controller.GetModel().Rotation;
-            rotation.Z = (float)nud.Value;
+            rotation.Z = FromDegreesToRadians(nud.Value);
             Controller.GetModel().Rotation = rotation;
         }
 

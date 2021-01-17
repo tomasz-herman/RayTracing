@@ -1,4 +1,5 @@
-﻿using RayTracing.Maths;
+﻿using Newtonsoft.Json;
+using RayTracing.Maths;
 using RayTracing.Shaders;
 
 namespace RayTracing.Materials
@@ -7,6 +8,7 @@ namespace RayTracing.Materials
     {
         public Color Color;
 
+        [JsonConstructor]
         public SolidColor(Color color)
         {
             Color = color;

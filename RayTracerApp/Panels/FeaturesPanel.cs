@@ -17,7 +17,21 @@ namespace RayTracerApp.Panels
             InitializeComponent();
         }
 
-        public IObjectController Controller { get; set; }
+        private IObjectController _controller;
+        public IObjectController Controller
+        {
+            get
+            {
+                return _controller;
+            }
+            set
+            {
+                _controller = value;
+                customModelFeature.Controller = _controller;
+                aspectFeature.Controller = _controller;
+                doubleAspectFeature.Controller = _controller;
+            }
+        }
 
         public void UpdateForModel()
         {
@@ -25,12 +39,13 @@ namespace RayTracerApp.Panels
             switch (model)
             {
                 case Rectangle rectangle:
-                    rectangle.AspectRatio = (float)aspectRatioUpDown.Value;
-                    break;
                 case Cylinder cylinder:
-                    cylinder.Aspect = (float)aspectRatioUpDown.Value;
+                    aspectFeature.UpdateForModel();
                     break;
-                case CustomModel custoModel:
+                case Cuboid cuboid:
+                    doubleAspectFeature.UpdateForModel();
+                    break;
+                case CustomModel customModel:
                     break;
                 default:
                     throw new Exception("Bad model type");
@@ -43,83 +58,43 @@ namespace RayTracerApp.Panels
             switch (model)
             {
                 case Rectangle rectangle:
-                    aspectRatioUpDown.Value = (decimal)rectangle.AspectRatio;
-                    break;
                 case Cylinder cylinder:
-                    aspectRatioUpDown.Value = (decimal)cylinder.Aspect;
+                    aspectFeature.UpdateFromModel();
+                    break;
+                case Cuboid cuboid:
+                    doubleAspectFeature.UpdateFromModel();
+                    break;
+                case CustomModel customModel:
                     break;
                 default:
                     throw new Exception("Bad model type");
-            }
-        }
-
-        private void aspectRatioUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            var nud = sender as NumericUpDown;
-            float val = (float)nud.Value;
-
-            var model = Controller.GetModel();
-            switch(model)
-            {
-                case Rectangle rectangle:
-                    rectangle.AspectRatio = val;
-                    break;
-                case Cylinder cylinder:
-                    cylinder.Aspect = val;
-                    break;
-                default:
-                    throw new Exception("Bad model type");
-            }
-        }
-
-        private void customModelButton_Click(object sender, EventArgs e)
-        {
-            string filePath = "";
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = Path.Combine(Application.StartupPath, "../..");
-                openFileDialog.Filter =
-                    "All types|*.fbx;*.dae;*.gltf;*.glb;*.blend;*.3ds;*.ase;*.obj;*.ifc;*.xgl;*.zgl;*.ply;*.lwo;*.lws;*.lxo;*.stl;*.x;*.ac;*.ms3d|" +
-                    "Autodesk (*.fbx)|*.fbx|" +
-                    "Collada (*.dae)|*.dae|" +
-                    "glTF (*.gltf, *.glb)|*.gltf;*.glb|" +
-                    "Blender 3D (*.blend)|*.blend|" +
-                    "3ds Max 3DS (*.3ds)|*.3ds|" +
-                    "3ds Max ASE (*.ase)|*.ase|" +
-                    "Wavefront Object (*.obj)|*.obj|" +
-                    "Industry Foundation Classes (IFC/Step) (*.ifc)|*.ifc|" +
-                    "XGL (*.xgl, *.zgl)|*.xgl;*.zgl|" +
-                    "Stanford Polygon Library (*.ply)|*.ply|" +
-                    "LightWave (*.lwo)|*.lwo|" +
-                    "LightWave Scene (*.lws)|*.lws|" +
-                    "Modo (*.lxo)|*.lxo|" +
-                    "Stereolithography (*.stl)|*.stl|" +
-                    "DirectX X (*.x)|*.x|" +
-                    "AC3D (*.ac)|*.ac|" +
-                    "Milkshape 3D (*.ms3d)|*.ms3d";
-
-                openFileDialog.FilterIndex = 1;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    filePath = openFileDialog.FileName;
-                    var model = ModelLoader.Load(filePath);
-                    Controller.GetModel()?.Unload();
-                    Controller.SetModel(model);
-                    Controller.GetModel().Load();
-                    Controller.UpdateModelFromUI();
-                }
             }
         }
 
         private void FeaturesPanel_VisibleChanged(object sender, EventArgs e)
         {
-            if (Controller == null) return;
-            var model = Controller.GetModel();
-            bool customModel = model is CustomModel && !(model is Cube);
-            filePanel.Visible = customModel;
-            aspectPanel.Visible = !customModel;
+            customModelFeature.Visible = false;
+            aspectFeature.Visible = false;
+            doubleAspectFeature.Visible = false;
+
+            var model = Controller?.GetModel();
+            if (model == null) return;
+            switch (model)
+            {
+                case Rectangle rectangle:
+                case Cylinder cylinder:
+                    aspectFeature.Visible = true;
+                    break;
+                case Cuboid cuboid:
+                    doubleAspectFeature.Visible = true;
+                    break;
+                case CustomModel customModel:
+                    customModelFeature.Visible = true;
+                    break;
+                default:
+                    throw new Exception("Bad model type");
+            }
+
         }
     }
 }
