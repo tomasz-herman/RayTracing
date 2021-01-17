@@ -470,26 +470,34 @@ namespace RayTracerApp.Forms
             DialogResult result = loadDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                using (var memoryStream = new MemoryStream())
-                using (var input = loadDialog.OpenFile())
-                using (var gz = new GZipStream(input, CompressionMode.Decompress))
+                try
                 {
-                    gz.CopyTo(memoryStream);
-                    var bytes = memoryStream.ToArray();
-                    var json = Encoding.Default.GetString(bytes);
-                    var settings = new JsonSerializerSettings
+                    using (var memoryStream = new MemoryStream())
+                    using (var input = loadDialog.OpenFile())
+                    using (var gz = new GZipStream(input, CompressionMode.Decompress))
                     {
-                        TypeNameHandling = TypeNameHandling.All,
-                        ContractResolver = ShouldSerializeContractResolver.Instance
-                    };
-                    var scene = JsonConvert.DeserializeObject(json, typeof(Scene), settings);
-                    _scene = scene as Scene;
-                    foreach (var model in _scene.Models)
-                    {
-                        model.Load();
+                        gz.CopyTo(memoryStream);
+                        var bytes = memoryStream.ToArray();
+                        var json = Encoding.Default.GetString(bytes);
+                        var settings = new JsonSerializerSettings
+                        {
+                            TypeNameHandling = TypeNameHandling.All,
+                            ContractResolver = ShouldSerializeContractResolver.Instance
+                        };
+                        var scene = JsonConvert.DeserializeObject(json, typeof(Scene), settings);
+                        _scene = scene as Scene;
+                        foreach (var model in _scene.Models)
+                        {
+                            model.Load();
+                        }
+
+                        _scene.Preprocess();
+                        UpdateLastModification();
                     }
-                    
-                    _scene.Preprocess();
+                }
+                catch(Exception)
+                {
+                    MessageBox.Show(Properties.Strings.WrongFileFormat);
                     UpdateLastModification();
                 }
             }

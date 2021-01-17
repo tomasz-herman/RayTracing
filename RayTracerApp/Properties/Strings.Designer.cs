@@ -203,5 +203,14 @@ namespace RayTracerApp.Properties {
                 return ResourceManager.GetString("Settings", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong file format.
+        /// </summary>
+        internal static string WrongFileFormat {
+            get {
+                return ResourceManager.GetString("WrongFileFormat", resourceCulture);
+            }
+        }
     }
 }

@@ -165,4 +165,7 @@
   <data name="ClearScene" xml:space="preserve">
     <value>Clear</value>
   </data>
+  <data name="WrongFileFormat" xml:space="preserve">
+    <value>Wrong file format</value>
+  </data>
 </root>
