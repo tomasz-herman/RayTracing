@@ -430,6 +430,7 @@ namespace RayTracerApp.Forms
 
         private void saveSceneButton_Click(object? sender, EventArgs e)
         {
+            if (ManualModeBlocked) return;
             UpdateLastModification();
             _isUiUsed = true;
             SaveFileDialog saveDialog = new SaveFileDialog();
@@ -453,6 +454,7 @@ namespace RayTracerApp.Forms
 
         private void loadSceneButton_Click(object? sender, EventArgs e)
         {
+            if (ManualModeBlocked) return;
             UpdateLastModification();
             _isUiUsed = true;
             OpenFileDialog loadDialog = new OpenFileDialog();
@@ -479,6 +481,7 @@ namespace RayTracerApp.Forms
 
         private void clearSceneButton_Click(object? sender, EventArgs e)
         {
+            if (ManualModeBlocked) return;
             var next = new Scene();
             next.AmbientLight = _scene.AmbientLight;
             _scene = next;
