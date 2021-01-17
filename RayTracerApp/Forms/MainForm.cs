@@ -457,10 +457,6 @@ namespace RayTracerApp.Forms
                     var bytes = Encoding.UTF8.GetBytes(json);
                     gz.Write(bytes);
                 }
-                // System.IO.StreamWriter writer = new System.IO.StreamWriter(fileName);
-                // writer.Write(json);
-                // writer.Close();
-                // writer.Dispose();
             }
             _isUiUsed = false;
         }
