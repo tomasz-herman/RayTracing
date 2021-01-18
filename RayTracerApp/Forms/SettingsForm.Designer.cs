@@ -239,11 +239,6 @@ namespace RayTracerApp.Forms
             // recLevelUpDown
             // 
             resources.ApplyResources(this.recLevelUpDown, "recLevelUpDown");
-            this.recLevelUpDown.Maximum = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
             this.recLevelUpDown.Minimum = new decimal(new int[] {
             1,
             0,
