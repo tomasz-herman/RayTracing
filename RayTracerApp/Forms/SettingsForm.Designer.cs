@@ -456,7 +456,7 @@ namespace RayTracerApp.Forms
             0,
             0});
             this.fovUpDown.Minimum = new decimal(new int[] {
-            10,
+            5,
             0,
             0,
             0});
