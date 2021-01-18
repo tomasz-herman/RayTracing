@@ -13,7 +13,9 @@ namespace RayTracerApp
         [STAThread]
         static void Main()
         {
+#if DEBUG
             Log.Configure();
+#endif
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
