@@ -36,6 +36,30 @@ namespace RayTracerApp.Forms
             this.materialPanel = new RayTracerApp.Panels.MaterialPanel();
             this.SuspendLayout();
             // 
+            // middlePreviousButton
+            // 
+            resources.ApplyResources(this.middlePreviousButton, "middlePreviousButton");
+            // 
+            // leftCancelButton
+            // 
+            resources.ApplyResources(this.leftCancelButton, "leftCancelButton");
+            // 
+            // middleCancelButton
+            // 
+            resources.ApplyResources(this.middleCancelButton, "middleCancelButton");
+            // 
+            // rightFinishButton
+            // 
+            resources.ApplyResources(this.rightFinishButton, "rightFinishButton");
+            // 
+            // topLabel
+            // 
+            resources.ApplyResources(this.topLabel, "topLabel");
+            // 
+            // rightNextButton
+            // 
+            resources.ApplyResources(this.rightNextButton, "rightNextButton");
+            // 
             // objectSelectionPanel
             // 
             resources.ApplyResources(this.objectSelectionPanel, "objectSelectionPanel");

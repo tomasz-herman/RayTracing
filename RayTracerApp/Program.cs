@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Windows.Forms;
 using RayTracerApp.Forms;
 using RayTracing;
@@ -13,9 +14,7 @@ namespace RayTracerApp
         [STAThread]
         static void Main()
         {
-#if DEBUG
             Log.Configure();
-#endif
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
