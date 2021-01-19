@@ -1,5 +1,4 @@
 using System;
-using System.Globalization;
 using System.Windows.Forms;
 using RayTracerApp.Forms;
 using RayTracing;
