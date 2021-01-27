@@ -97,6 +97,9 @@ namespace RayTracerApp.Panels.FeaturesPanels
                 case 6:
                     selected = "trex";
                     break;
+                case 7:
+                    selected = "grass";
+                    break;
                 default:
                     throw new Exception("Wrong argument");
             }
