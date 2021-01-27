@@ -18,6 +18,11 @@ namespace RayTracerApp.Panels
         public MaterialPanel()
         {
             InitializeComponent();
+            var spaces = "              ";
+            reflectiveTexture.Text = spaces;
+            diffuseTexture.Text = spaces;
+            refractiveTexture.Text = spaces;
+            emissiveTexture.Text = spaces;
         }
 
         public IObjectController Controller { get; set; }
