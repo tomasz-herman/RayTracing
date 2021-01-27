@@ -63,11 +63,11 @@
   </data>
   <assembly alias="System.Drawing.Common" name="System.Drawing.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
   <data name="aspectLabel.Font" type="System.Drawing.Font, System.Drawing.Common">
-    <value>Microsoft Sans Serif, 9pt</value>
+    <value>Segoe UI, 9pt</value>
   </data>
   <assembly alias="System.Drawing.Primitives" name="System.Drawing.Primitives, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="aspectLabel.Location" type="System.Drawing.Point, System.Drawing.Primitives">
-    <value>52, 29</value>
+    <value>54, 31</value>
   </data>
   <data name="aspectLabel.Size" type="System.Drawing.Size, System.Drawing.Primitives">
     <value>43, 15</value>
@@ -95,13 +95,13 @@
     <value>Top, Right</value>
   </data>
   <data name="aspectRatioUpDown.Font" type="System.Drawing.Font, System.Drawing.Common">
-    <value>Consolas, 11.25pt</value>
+    <value>Segoe UI, 9pt</value>
   </data>
   <data name="aspectRatioUpDown.Location" type="System.Drawing.Point, System.Drawing.Primitives">
     <value>200, 29</value>
   </data>
   <data name="aspectRatioUpDown.Size" type="System.Drawing.Size, System.Drawing.Primitives">
-    <value>75, 25</value>
+    <value>75, 23</value>
   </data>
   <data name="aspectRatioUpDown.TabIndex" type="System.Int32, System.Private.CoreLib">
     <value>3</value>
