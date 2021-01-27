@@ -27,7 +27,11 @@ namespace RayTracing
 
         public Color Shade(Ray ray, Scene scene, int depth)
         {
-            if (depth == 0) return new Color();
+            if (depth == 0)
+            {
+                var ambient = scene.AmbientLight.Color;
+                return new Color(ambient.R, ambient.G, ambient.B);
+            }
 
             HitInfo hitInfo = new HitInfo();
 
