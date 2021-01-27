@@ -90,6 +90,9 @@
   <data name="customModelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
+  <data name="customModelButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
   <data name="customModelButton.Location" type="System.Drawing.Point, System.Drawing.Primitives">
     <value>182, 69</value>
   </data>
@@ -116,6 +119,9 @@
   </data>
   <data name="predefinedModelComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
+  </data>
+  <data name="predefinedModelComboBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
   <data name="predefinedModelComboBox.Items" xml:space="preserve">
     <value>tree</value>

@@ -76,16 +76,19 @@ namespace RayTracerApp.Panels
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
+            this.label1.ForeColor = System.Drawing.Color.Gainsboro;
             this.label1.Name = "label1";
             // 
             // label2
             // 
             resources.ApplyResources(this.label2, "label2");
+            this.label2.ForeColor = System.Drawing.Color.Gainsboro;
             this.label2.Name = "label2";
             // 
             // label3
             // 
             resources.ApplyResources(this.label3, "label3");
+            this.label3.ForeColor = System.Drawing.Color.Gainsboro;
             this.label3.Name = "label3";
             // 
             // tableLayoutPanel2
@@ -102,7 +105,9 @@ namespace RayTracerApp.Panels
             // zUpDown
             // 
             resources.ApplyResources(this.zUpDown, "zUpDown");
+            this.zUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.zUpDown.DecimalPlaces = 2;
+            this.zUpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.zUpDown.Increment = new decimal(new int[] {
             1,
             0,
@@ -124,7 +129,9 @@ namespace RayTracerApp.Panels
             // yUpDown
             // 
             resources.ApplyResources(this.yUpDown, "yUpDown");
+            this.yUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.yUpDown.DecimalPlaces = 2;
+            this.yUpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.yUpDown.Increment = new decimal(new int[] {
             1,
             0,
@@ -146,22 +153,27 @@ namespace RayTracerApp.Panels
             // label4
             // 
             resources.ApplyResources(this.label4, "label4");
+            this.label4.ForeColor = System.Drawing.Color.Gainsboro;
             this.label4.Name = "label4";
             // 
             // label5
             // 
             resources.ApplyResources(this.label5, "label5");
+            this.label5.ForeColor = System.Drawing.Color.Gainsboro;
             this.label5.Name = "label5";
             // 
             // label6
             // 
             resources.ApplyResources(this.label6, "label6");
+            this.label6.ForeColor = System.Drawing.Color.Gainsboro;
             this.label6.Name = "label6";
             // 
             // xUpDown
             // 
             resources.ApplyResources(this.xUpDown, "xUpDown");
+            this.xUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.xUpDown.DecimalPlaces = 2;
+            this.xUpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.xUpDown.Increment = new decimal(new int[] {
             1,
             0,
@@ -194,7 +206,9 @@ namespace RayTracerApp.Panels
             // rollUpDown
             // 
             resources.ApplyResources(this.rollUpDown, "rollUpDown");
+            this.rollUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.rollUpDown.DecimalPlaces = 2;
+            this.rollUpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.rollUpDown.Increment = new decimal(new int[] {
             5,
             0,
@@ -216,7 +230,9 @@ namespace RayTracerApp.Panels
             // yawUpDown
             // 
             resources.ApplyResources(this.yawUpDown, "yawUpDown");
+            this.yawUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.yawUpDown.DecimalPlaces = 2;
+            this.yawUpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.yawUpDown.Increment = new decimal(new int[] {
             5,
             0,
@@ -238,22 +254,27 @@ namespace RayTracerApp.Panels
             // label7
             // 
             resources.ApplyResources(this.label7, "label7");
+            this.label7.ForeColor = System.Drawing.Color.Gainsboro;
             this.label7.Name = "label7";
             // 
             // label8
             // 
             resources.ApplyResources(this.label8, "label8");
+            this.label8.ForeColor = System.Drawing.Color.Gainsboro;
             this.label8.Name = "label8";
             // 
             // label9
             // 
             resources.ApplyResources(this.label9, "label9");
+            this.label9.ForeColor = System.Drawing.Color.Gainsboro;
             this.label9.Name = "label9";
             // 
             // pitchUpDown
             // 
             resources.ApplyResources(this.pitchUpDown, "pitchUpDown");
+            this.pitchUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.pitchUpDown.DecimalPlaces = 2;
+            this.pitchUpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.pitchUpDown.Increment = new decimal(new int[] {
             5,
             0,
@@ -275,7 +296,9 @@ namespace RayTracerApp.Panels
             // scaleUpDown
             // 
             resources.ApplyResources(this.scaleUpDown, "scaleUpDown");
+            this.scaleUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.scaleUpDown.DecimalPlaces = 2;
+            this.scaleUpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.scaleUpDown.Increment = new decimal(new int[] {
             1,
             0,
@@ -303,6 +326,7 @@ namespace RayTracerApp.Panels
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "PositionPanel";
             this.tableLayoutPanel1.ResumeLayout(false);

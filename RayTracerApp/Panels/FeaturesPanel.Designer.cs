@@ -58,6 +58,7 @@ namespace RayTracerApp.Panels
             // 
             this.aspectFeature.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.aspectFeature.Controller = null;
             this.aspectFeature.Location = new System.Drawing.Point(0, 0);
             this.aspectFeature.Name = "aspectFeature";
             this.aspectFeature.Size = new System.Drawing.Size(381, 85);
@@ -67,6 +68,7 @@ namespace RayTracerApp.Panels
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.aspectFeature);
             this.Controls.Add(this.doubleAspectFeature);
             this.Controls.Add(this.customModelFeature);

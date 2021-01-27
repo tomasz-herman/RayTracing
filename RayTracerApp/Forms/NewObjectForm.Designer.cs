@@ -38,49 +38,63 @@ namespace RayTracerApp.Forms
             // 
             // middlePreviousButton
             // 
-            resources.ApplyResources(this.middlePreviousButton, "middlePreviousButton");
+            this.middlePreviousButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.middlePreviousButton.ForeColor = System.Drawing.Color.Gainsboro;
+            this.middlePreviousButton.UseVisualStyleBackColor = false;
             // 
             // leftCancelButton
             // 
-            resources.ApplyResources(this.leftCancelButton, "leftCancelButton");
+            this.leftCancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.leftCancelButton.ForeColor = System.Drawing.Color.Gainsboro;
+            this.leftCancelButton.UseVisualStyleBackColor = false;
             // 
             // middleCancelButton
             // 
-            resources.ApplyResources(this.middleCancelButton, "middleCancelButton");
+            this.middleCancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.middleCancelButton.ForeColor = System.Drawing.Color.Gainsboro;
+            this.middleCancelButton.UseVisualStyleBackColor = false;
             // 
             // rightFinishButton
             // 
-            resources.ApplyResources(this.rightFinishButton, "rightFinishButton");
+            this.rightFinishButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.rightFinishButton.ForeColor = System.Drawing.Color.Gainsboro;
+            this.rightFinishButton.UseVisualStyleBackColor = false;
             // 
             // topLabel
             // 
-            resources.ApplyResources(this.topLabel, "topLabel");
+            this.topLabel.ForeColor = System.Drawing.Color.Gainsboro;
             // 
             // rightNextButton
             // 
-            resources.ApplyResources(this.rightNextButton, "rightNextButton");
+            this.rightNextButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.rightNextButton.ForeColor = System.Drawing.Color.Gainsboro;
+            this.rightNextButton.UseVisualStyleBackColor = false;
             // 
             // objectSelectionPanel
             // 
             resources.ApplyResources(this.objectSelectionPanel, "objectSelectionPanel");
+            this.objectSelectionPanel.BackColor = System.Drawing.Color.Transparent;
             this.objectSelectionPanel.Controller = null;
             this.objectSelectionPanel.Name = "objectSelectionPanel";
             // 
             // featuresPanel
             // 
             resources.ApplyResources(this.featuresPanel, "featuresPanel");
+            this.featuresPanel.BackColor = System.Drawing.Color.Transparent;
             this.featuresPanel.Controller = null;
             this.featuresPanel.Name = "featuresPanel";
             // 
             // positionPanel
             // 
             resources.ApplyResources(this.positionPanel, "positionPanel");
+            this.positionPanel.BackColor = System.Drawing.Color.Transparent;
             this.positionPanel.Controller = null;
             this.positionPanel.Name = "positionPanel";
             // 
             // materialPanel
             // 
             resources.ApplyResources(this.materialPanel, "materialPanel");
+            this.materialPanel.BackColor = System.Drawing.Color.Transparent;
             this.materialPanel.Controller = null;
             this.materialPanel.Name = "materialPanel";
             // 
@@ -88,6 +102,7 @@ namespace RayTracerApp.Forms
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.Controls.Add(this.materialPanel);
             this.Controls.Add(this.positionPanel);
             this.Controls.Add(this.featuresPanel);

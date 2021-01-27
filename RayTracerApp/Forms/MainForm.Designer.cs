@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using OpenTK;
 
@@ -46,6 +47,8 @@ namespace RayTracerApp.Forms
             this.gLControl.Load += new System.EventHandler(this.GLControl_Load);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.FormClosed += MainForm_FormClosed;
+
+            this.Icon = Properties.Resources.icon;
 
             this.Resize += this.OnResize;
             this.Controls.Add(this.gLControl);

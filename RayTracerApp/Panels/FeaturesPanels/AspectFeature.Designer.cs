@@ -38,12 +38,16 @@ namespace RayTracerApp.Panels.FeaturesPanels
             // aspectLabel
             // 
             resources.ApplyResources(this.aspectLabel, "aspectLabel");
+            this.aspectLabel.BackColor = System.Drawing.Color.Transparent;
+            this.aspectLabel.ForeColor = System.Drawing.Color.Gainsboro;
             this.aspectLabel.Name = "aspectLabel";
             // 
             // aspectRatioUpDown
             // 
             resources.ApplyResources(this.aspectRatioUpDown, "aspectRatioUpDown");
+            this.aspectRatioUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.aspectRatioUpDown.DecimalPlaces = 2;
+            this.aspectRatioUpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.aspectRatioUpDown.Increment = new decimal(new int[] {
             1,
             0,
@@ -66,8 +70,10 @@ namespace RayTracerApp.Panels.FeaturesPanels
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.aspectRatioUpDown);
             this.Controls.Add(this.aspectLabel);
+            this.ForeColor = System.Drawing.Color.Transparent;
             this.Name = "AspectFeature";
             ((System.ComponentModel.ISupportInitialize)(this.aspectRatioUpDown)).EndInit();
             this.ResumeLayout(false);
