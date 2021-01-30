@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using OpenTK;
 using RayTracing.Materials;
 using RayTracing.Maths;
+using Properties = RayTracer.Properties;
 
 namespace RayTracing.Models
 {

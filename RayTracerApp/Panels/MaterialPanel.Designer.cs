@@ -103,6 +103,7 @@ namespace RayTracerApp.Panels
             // tableLayoutPanel1
             // 
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel12, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel11, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel9, 2, 2);
@@ -115,6 +116,7 @@ namespace RayTracerApp.Panels
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label6, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label7, 0, 3);
+            this.tableLayoutPanel1.ForeColor = System.Drawing.Color.Gainsboro;
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.tableLayoutPanel1_CellPaint);
             // 
@@ -129,7 +131,9 @@ namespace RayTracerApp.Panels
             // refractiveIndexUpDown
             // 
             resources.ApplyResources(this.refractiveIndexUpDown, "refractiveIndexUpDown");
+            this.refractiveIndexUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.refractiveIndexUpDown.DecimalPlaces = 2;
+            this.refractiveIndexUpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.refractiveIndexUpDown.Increment = new decimal(new int[] {
             1,
             0,
@@ -163,33 +167,31 @@ namespace RayTracerApp.Panels
             // 
             // refractiveTexture
             // 
-            this.refractiveTexture.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.refractiveTexture.AutoSize = true;
-            this.refractiveTexture.Location = new System.Drawing.Point(14, 13);
+            resources.ApplyResources(this.refractiveTexture, "refractiveTexture");
             this.refractiveTexture.Name = "refractiveTexture";
-            this.refractiveTexture.Size = new System.Drawing.Size(49, 15);
-            this.refractiveTexture.TabIndex = 0;
-            this.refractiveTexture.Text = "              ";
-            this.refractiveTexture.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // refractiveColor
             // 
             resources.ApplyResources(this.refractiveColor, "refractiveColor");
+            this.refractiveColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.refractiveColor.Name = "refractiveColor";
-            this.refractiveColor.UseVisualStyleBackColor = true;
+            this.refractiveColor.UseVisualStyleBackColor = false;
             this.refractiveColor.Click += new System.EventHandler(this.refractiveColor_Click);
             // 
             // refractiveFile
             // 
             resources.ApplyResources(this.refractiveFile, "refractiveFile");
+            this.refractiveFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.refractiveFile.Name = "refractiveFile";
-            this.refractiveFile.UseVisualStyleBackColor = true;
+            this.refractiveFile.UseVisualStyleBackColor = false;
             this.refractiveFile.Click += new System.EventHandler(this.refractiveFile_Click);
             // 
             // refractiveShareUpDown
             // 
             resources.ApplyResources(this.refractiveShareUpDown, "refractiveShareUpDown");
+            this.refractiveShareUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.refractiveShareUpDown.DecimalPlaces = 2;
+            this.refractiveShareUpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.refractiveShareUpDown.Increment = new decimal(new int[] {
             1,
             0,
@@ -214,16 +216,22 @@ namespace RayTracerApp.Panels
             // label15
             // 
             resources.ApplyResources(this.label15, "label15");
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.ForeColor = System.Drawing.Color.Gainsboro;
             this.label15.Name = "label15";
             // 
             // label16
             // 
             resources.ApplyResources(this.label16, "label16");
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.ForeColor = System.Drawing.Color.Gainsboro;
             this.label16.Name = "label16";
             // 
             // label17
             // 
             resources.ApplyResources(this.label17, "label17");
+            this.label17.BackColor = System.Drawing.Color.Transparent;
+            this.label17.ForeColor = System.Drawing.Color.Gainsboro;
             this.label17.Name = "label17";
             // 
             // tableLayoutPanel9
@@ -237,7 +245,9 @@ namespace RayTracerApp.Panels
             // reflectiveDisturbanceUpDown
             // 
             resources.ApplyResources(this.reflectiveDisturbanceUpDown, "reflectiveDisturbanceUpDown");
+            this.reflectiveDisturbanceUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.reflectiveDisturbanceUpDown.DecimalPlaces = 2;
+            this.reflectiveDisturbanceUpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.reflectiveDisturbanceUpDown.Increment = new decimal(new int[] {
             1,
             0,
@@ -266,33 +276,31 @@ namespace RayTracerApp.Panels
             // 
             // reflectiveTexture
             // 
-            this.reflectiveTexture.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.reflectiveTexture.AutoSize = true;
-            this.reflectiveTexture.Location = new System.Drawing.Point(14, 13);
+            resources.ApplyResources(this.reflectiveTexture, "reflectiveTexture");
             this.reflectiveTexture.Name = "reflectiveTexture";
-            this.reflectiveTexture.Size = new System.Drawing.Size(49, 15);
-            this.reflectiveTexture.TabIndex = 0;
-            this.reflectiveTexture.Text = "              ";
-            this.reflectiveTexture.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // reflectiveColor
             // 
             resources.ApplyResources(this.reflectiveColor, "reflectiveColor");
+            this.reflectiveColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.reflectiveColor.Name = "reflectiveColor";
-            this.reflectiveColor.UseVisualStyleBackColor = true;
+            this.reflectiveColor.UseVisualStyleBackColor = false;
             this.reflectiveColor.Click += new System.EventHandler(this.reflectiveColor_Click);
             // 
             // reflectiveFile
             // 
             resources.ApplyResources(this.reflectiveFile, "reflectiveFile");
+            this.reflectiveFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.reflectiveFile.Name = "reflectiveFile";
-            this.reflectiveFile.UseVisualStyleBackColor = true;
+            this.reflectiveFile.UseVisualStyleBackColor = false;
             this.reflectiveFile.Click += new System.EventHandler(this.reflectiveFile_Click);
             // 
             // reflectiveShareUpDown
             // 
             resources.ApplyResources(this.reflectiveShareUpDown, "reflectiveShareUpDown");
+            this.reflectiveShareUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.reflectiveShareUpDown.DecimalPlaces = 2;
+            this.reflectiveShareUpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.reflectiveShareUpDown.Increment = new decimal(new int[] {
             1,
             0,
@@ -317,16 +325,22 @@ namespace RayTracerApp.Panels
             // label14
             // 
             resources.ApplyResources(this.label14, "label14");
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.ForeColor = System.Drawing.Color.Gainsboro;
             this.label14.Name = "label14";
             // 
             // label11
             // 
             resources.ApplyResources(this.label11, "label11");
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.ForeColor = System.Drawing.Color.Gainsboro;
             this.label11.Name = "label11";
             // 
             // label12
             // 
             resources.ApplyResources(this.label12, "label12");
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.ForeColor = System.Drawing.Color.Gainsboro;
             this.label12.Name = "label12";
             // 
             // tableLayoutPanel6
@@ -340,7 +354,9 @@ namespace RayTracerApp.Panels
             // ampUpDown
             // 
             resources.ApplyResources(this.ampUpDown, "ampUpDown");
+            this.ampUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.ampUpDown.DecimalPlaces = 2;
+            this.ampUpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.ampUpDown.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -359,33 +375,31 @@ namespace RayTracerApp.Panels
             // 
             // emissiveTexture
             // 
-            this.emissiveTexture.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.emissiveTexture.AutoSize = true;
-            this.emissiveTexture.Location = new System.Drawing.Point(14, 13);
+            resources.ApplyResources(this.emissiveTexture, "emissiveTexture");
             this.emissiveTexture.Name = "emissiveTexture";
-            this.emissiveTexture.Size = new System.Drawing.Size(49, 15);
-            this.emissiveTexture.TabIndex = 0;
-            this.emissiveTexture.Text = "              ";
-            this.emissiveTexture.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // emissiveColor
             // 
             resources.ApplyResources(this.emissiveColor, "emissiveColor");
+            this.emissiveColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.emissiveColor.Name = "emissiveColor";
-            this.emissiveColor.UseVisualStyleBackColor = true;
+            this.emissiveColor.UseVisualStyleBackColor = false;
             this.emissiveColor.Click += new System.EventHandler(this.emissiveColor_Click);
             // 
             // emissiveFile
             // 
             resources.ApplyResources(this.emissiveFile, "emissiveFile");
+            this.emissiveFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.emissiveFile.Name = "emissiveFile";
-            this.emissiveFile.UseVisualStyleBackColor = true;
+            this.emissiveFile.UseVisualStyleBackColor = false;
             this.emissiveFile.Click += new System.EventHandler(this.emissiveFile_Click);
             // 
             // emissiveShareUpDown
             // 
             resources.ApplyResources(this.emissiveShareUpDown, "emissiveShareUpDown");
+            this.emissiveShareUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.emissiveShareUpDown.DecimalPlaces = 2;
+            this.emissiveShareUpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.emissiveShareUpDown.Increment = new decimal(new int[] {
             1,
             0,
@@ -410,16 +424,22 @@ namespace RayTracerApp.Panels
             // label4
             // 
             resources.ApplyResources(this.label4, "label4");
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.ForeColor = System.Drawing.Color.Gainsboro;
             this.label4.Name = "label4";
             // 
             // label8
             // 
             resources.ApplyResources(this.label8, "label8");
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.ForeColor = System.Drawing.Color.Gainsboro;
             this.label8.Name = "label8";
             // 
             // label9
             // 
             resources.ApplyResources(this.label9, "label9");
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.ForeColor = System.Drawing.Color.Gainsboro;
             this.label9.Name = "label9";
             // 
             // tableLayoutPanel3
@@ -439,33 +459,31 @@ namespace RayTracerApp.Panels
             // 
             // diffuseTexture
             // 
-            this.diffuseTexture.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.diffuseTexture.AutoSize = true;
-            this.diffuseTexture.Location = new System.Drawing.Point(14, 12);
+            resources.ApplyResources(this.diffuseTexture, "diffuseTexture");
             this.diffuseTexture.Name = "diffuseTexture";
-            this.diffuseTexture.Size = new System.Drawing.Size(49, 15);
-            this.diffuseTexture.TabIndex = 0;
-            this.diffuseTexture.Text = "              ";
-            this.diffuseTexture.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // diffuseColor
             // 
             resources.ApplyResources(this.diffuseColor, "diffuseColor");
+            this.diffuseColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.diffuseColor.Name = "diffuseColor";
-            this.diffuseColor.UseVisualStyleBackColor = true;
+            this.diffuseColor.UseVisualStyleBackColor = false;
             this.diffuseColor.Click += new System.EventHandler(this.diffuseColor_Click);
             // 
             // diffuseFile
             // 
             resources.ApplyResources(this.diffuseFile, "diffuseFile");
+            this.diffuseFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.diffuseFile.Name = "diffuseFile";
-            this.diffuseFile.UseVisualStyleBackColor = true;
+            this.diffuseFile.UseVisualStyleBackColor = false;
             this.diffuseFile.Click += new System.EventHandler(this.diffuseFile_Click);
             // 
             // diffuseShareUpDown
             // 
             resources.ApplyResources(this.diffuseShareUpDown, "diffuseShareUpDown");
+            this.diffuseShareUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.diffuseShareUpDown.DecimalPlaces = 2;
+            this.diffuseShareUpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.diffuseShareUpDown.Increment = new decimal(new int[] {
             1,
             0,
@@ -482,6 +500,8 @@ namespace RayTracerApp.Panels
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.ForeColor = System.Drawing.Color.Gainsboro;
             this.label1.Name = "label1";
             // 
             // tableLayoutPanel2
@@ -494,32 +514,43 @@ namespace RayTracerApp.Panels
             // label3
             // 
             resources.ApplyResources(this.label3, "label3");
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.ForeColor = System.Drawing.Color.Gainsboro;
             this.label3.Name = "label3";
             // 
             // label2
             // 
             resources.ApplyResources(this.label2, "label2");
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.ForeColor = System.Drawing.Color.Gainsboro;
             this.label2.Name = "label2";
             // 
             // label5
             // 
             resources.ApplyResources(this.label5, "label5");
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.ForeColor = System.Drawing.Color.Gainsboro;
             this.label5.Name = "label5";
             // 
             // label6
             // 
             resources.ApplyResources(this.label6, "label6");
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.ForeColor = System.Drawing.Color.Gainsboro;
             this.label6.Name = "label6";
             // 
             // label7
             // 
             resources.ApplyResources(this.label7, "label7");
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.ForeColor = System.Drawing.Color.Gainsboro;
             this.label7.Name = "label7";
             // 
             // MaterialPanel
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "MaterialPanel";
             this.tableLayoutPanel1.ResumeLayout(false);

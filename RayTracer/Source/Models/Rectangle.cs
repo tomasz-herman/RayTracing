@@ -3,6 +3,7 @@ using OpenTK;
 using RayTracing.Materials;
 using RayTracing.Maths;
 using RayTracing.RayTracing;
+using Properties = RayTracer.Properties;
 
 namespace RayTracing.Models
 {

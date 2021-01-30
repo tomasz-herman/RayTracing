@@ -2,12 +2,13 @@
 using OpenTK;
 using RayTracing.Maths;
 using RayTracing.RayTracing;
+using Properties = RayTracer.Properties;
 
 namespace RayTracing.Models
 {
     public class CustomModel : Model
     {
-        public Mesh Mesh
+        public new Mesh Mesh
         {
             get => base.Mesh;
             set

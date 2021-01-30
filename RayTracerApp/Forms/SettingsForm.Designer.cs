@@ -106,6 +106,7 @@ namespace RayTracerApp.Forms
             // 
             resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Controls.Add(this.tableLayoutPanel4);
+            this.groupBox2.ForeColor = System.Drawing.Color.Gainsboro;
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
@@ -139,26 +140,32 @@ namespace RayTracerApp.Forms
             // label9
             // 
             resources.ApplyResources(this.label9, "label9");
+            this.label9.ForeColor = System.Drawing.Color.Gainsboro;
             this.label9.Name = "label9";
             // 
             // label10
             // 
             resources.ApplyResources(this.label10, "label10");
+            this.label10.ForeColor = System.Drawing.Color.Gainsboro;
             this.label10.Name = "label10";
             // 
             // label11
             // 
             resources.ApplyResources(this.label11, "label11");
+            this.label11.ForeColor = System.Drawing.Color.Gainsboro;
             this.label11.Name = "label11";
             // 
             // label12
             // 
             resources.ApplyResources(this.label12, "label12");
+            this.label12.ForeColor = System.Drawing.Color.Gainsboro;
             this.label12.Name = "label12";
             // 
             // samplesUpDown
             // 
             resources.ApplyResources(this.samplesUpDown, "samplesUpDown");
+            this.samplesUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.samplesUpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.samplesUpDown.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -180,6 +187,8 @@ namespace RayTracerApp.Forms
             // updateUpDown
             // 
             resources.ApplyResources(this.updateUpDown, "updateUpDown");
+            this.updateUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.updateUpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.updateUpDown.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -201,6 +210,8 @@ namespace RayTracerApp.Forms
             // bloomUpDown
             // 
             resources.ApplyResources(this.bloomUpDown, "bloomUpDown");
+            this.bloomUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.bloomUpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.bloomUpDown.Maximum = new decimal(new int[] {
             5,
             0,
@@ -217,6 +228,7 @@ namespace RayTracerApp.Forms
             // label13
             // 
             resources.ApplyResources(this.label13, "label13");
+            this.label13.ForeColor = System.Drawing.Color.Gainsboro;
             this.label13.Name = "label13";
             // 
             // recursionCheckbox
@@ -229,21 +241,20 @@ namespace RayTracerApp.Forms
             // label16
             // 
             resources.ApplyResources(this.label16, "label16");
+            this.label16.ForeColor = System.Drawing.Color.Gainsboro;
             this.label16.Name = "label16";
             // 
             // label18
             // 
             resources.ApplyResources(this.label18, "label18");
+            this.label18.ForeColor = System.Drawing.Color.Gainsboro;
             this.label18.Name = "label18";
             // 
             // recLevelUpDown
             // 
             resources.ApplyResources(this.recLevelUpDown, "recLevelUpDown");
-            this.recLevelUpDown.Maximum = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
+            this.recLevelUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.recLevelUpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.recLevelUpDown.Minimum = new decimal(new int[] {
             1,
             0,
@@ -266,8 +277,9 @@ namespace RayTracerApp.Forms
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.tableLayoutPanel2);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.ForeColor = System.Drawing.Color.Gainsboro;
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
@@ -294,6 +306,7 @@ namespace RayTracerApp.Forms
             // randomRadioButton
             // 
             resources.ApplyResources(this.randomRadioButton, "randomRadioButton");
+            this.randomRadioButton.ForeColor = System.Drawing.Color.Gainsboro;
             this.randomRadioButton.Name = "randomRadioButton";
             this.randomRadioButton.UseVisualStyleBackColor = true;
             this.randomRadioButton.CheckedChanged += new System.EventHandler(this.randomRadioButton_CheckedChanged);
@@ -301,6 +314,7 @@ namespace RayTracerApp.Forms
             // centerRadioButton
             // 
             resources.ApplyResources(this.centerRadioButton, "centerRadioButton");
+            this.centerRadioButton.ForeColor = System.Drawing.Color.Gainsboro;
             this.centerRadioButton.Name = "centerRadioButton";
             this.centerRadioButton.UseVisualStyleBackColor = true;
             this.centerRadioButton.CheckedChanged += new System.EventHandler(this.centerRadioButton_CheckedChanged);
@@ -309,6 +323,7 @@ namespace RayTracerApp.Forms
             // 
             resources.ApplyResources(this.jitteredRadioButton, "jitteredRadioButton");
             this.jitteredRadioButton.Checked = true;
+            this.jitteredRadioButton.ForeColor = System.Drawing.Color.Gainsboro;
             this.jitteredRadioButton.Name = "jitteredRadioButton";
             this.jitteredRadioButton.TabStop = true;
             this.jitteredRadioButton.UseVisualStyleBackColor = true;
@@ -317,16 +332,19 @@ namespace RayTracerApp.Forms
             // label6
             // 
             resources.ApplyResources(this.label6, "label6");
+            this.label6.ForeColor = System.Drawing.Color.Gainsboro;
             this.label6.Name = "label6";
             // 
             // label7
             // 
             resources.ApplyResources(this.label7, "label7");
+            this.label7.ForeColor = System.Drawing.Color.Gainsboro;
             this.label7.Name = "label7";
             // 
             // label8
             // 
             resources.ApplyResources(this.label8, "label8");
+            this.label8.ForeColor = System.Drawing.Color.Gainsboro;
             this.label8.Name = "label8";
             // 
             // tableLayoutPanel3
@@ -347,6 +365,7 @@ namespace RayTracerApp.Forms
             // ortographicCameraRadioButton
             // 
             resources.ApplyResources(this.ortographicCameraRadioButton, "ortographicCameraRadioButton");
+            this.ortographicCameraRadioButton.ForeColor = System.Drawing.Color.Gainsboro;
             this.ortographicCameraRadioButton.Name = "ortographicCameraRadioButton";
             this.ortographicCameraRadioButton.UseVisualStyleBackColor = true;
             this.ortographicCameraRadioButton.CheckedChanged += new System.EventHandler(this.ortographicCameraRadioButton_CheckedChanged);
@@ -354,6 +373,7 @@ namespace RayTracerApp.Forms
             // lensCameraRadioButton
             // 
             resources.ApplyResources(this.lensCameraRadioButton, "lensCameraRadioButton");
+            this.lensCameraRadioButton.ForeColor = System.Drawing.Color.Gainsboro;
             this.lensCameraRadioButton.Name = "lensCameraRadioButton";
             this.lensCameraRadioButton.UseVisualStyleBackColor = true;
             this.lensCameraRadioButton.CheckedChanged += new System.EventHandler(this.lensCameraRadioButton_CheckedChanged);
@@ -361,6 +381,7 @@ namespace RayTracerApp.Forms
             // perspectiveCameraRadioButton
             // 
             resources.ApplyResources(this.perspectiveCameraRadioButton, "perspectiveCameraRadioButton");
+            this.perspectiveCameraRadioButton.ForeColor = System.Drawing.Color.Gainsboro;
             this.perspectiveCameraRadioButton.Name = "perspectiveCameraRadioButton";
             this.perspectiveCameraRadioButton.UseVisualStyleBackColor = true;
             this.perspectiveCameraRadioButton.CheckedChanged += new System.EventHandler(this.perspectiveCameraRadioButton_CheckedChanged);
@@ -379,12 +400,15 @@ namespace RayTracerApp.Forms
             // label17
             // 
             resources.ApplyResources(this.label17, "label17");
+            this.label17.ForeColor = System.Drawing.Color.Gainsboro;
             this.label17.Name = "label17";
             // 
             // lensRadiusUpDown
             // 
             resources.ApplyResources(this.lensRadiusUpDown, "lensRadiusUpDown");
+            this.lensRadiusUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.lensRadiusUpDown.DecimalPlaces = 2;
+            this.lensRadiusUpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.lensRadiusUpDown.Increment = new decimal(new int[] {
             1,
             0,
@@ -411,7 +435,9 @@ namespace RayTracerApp.Forms
             // focusDistanceUpDown
             // 
             resources.ApplyResources(this.focusDistanceUpDown, "focusDistanceUpDown");
+            this.focusDistanceUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.focusDistanceUpDown.DecimalPlaces = 2;
+            this.focusDistanceUpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.focusDistanceUpDown.Increment = new decimal(new int[] {
             1,
             0,
@@ -433,11 +459,13 @@ namespace RayTracerApp.Forms
             // label14
             // 
             resources.ApplyResources(this.label14, "label14");
+            this.label14.ForeColor = System.Drawing.Color.Gainsboro;
             this.label14.Name = "label14";
             // 
             // label15
             // 
             resources.ApplyResources(this.label15, "label15");
+            this.label15.ForeColor = System.Drawing.Color.Gainsboro;
             this.label15.Name = "label15";
             // 
             // autoFocusCheckBox
@@ -450,13 +478,15 @@ namespace RayTracerApp.Forms
             // fovUpDown
             // 
             resources.ApplyResources(this.fovUpDown, "fovUpDown");
+            this.fovUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.fovUpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.fovUpDown.Maximum = new decimal(new int[] {
             90,
             0,
             0,
             0});
             this.fovUpDown.Minimum = new decimal(new int[] {
-            10,
+            5,
             0,
             0,
             0});
@@ -502,8 +532,10 @@ namespace RayTracerApp.Forms
             // finishButton
             // 
             resources.ApplyResources(this.finishButton, "finishButton");
+            this.finishButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.finishButton.ForeColor = System.Drawing.Color.Gainsboro;
             this.finishButton.Name = "finishButton";
-            this.finishButton.UseVisualStyleBackColor = true;
+            this.finishButton.UseVisualStyleBackColor = false;
             this.finishButton.Click += new System.EventHandler(this.finishButton_Click);
             // 
             // checkBox1
@@ -516,8 +548,10 @@ namespace RayTracerApp.Forms
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.Controls.Add(this.finishButton);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.ForeColor = System.Drawing.Color.Gainsboro;
             this.Name = "SettingsForm";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -586,7 +620,6 @@ namespace RayTracerApp.Forms
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.NumericUpDown recLevelUpDown;
-        private System.Windows.Forms.NumericUpDown recursionLevelUpDown;
         private System.Windows.Forms.Button finishButton;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.CheckBox autoFocusCheckBox;

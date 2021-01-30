@@ -57,7 +57,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing.Primitives" name="System.Drawing.Primitives, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Śledzenie promieni</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Kamera</value>
+  </data>
+  <assembly alias="System.Drawing.Primitives" name="System.Drawing.Primitives, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing.Primitives">
     <value>126, 14</value>
   </data>
@@ -120,9 +126,6 @@
   </data>
   <data name="label18.Text" xml:space="preserve">
     <value>Tryb automatyczny</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Śledzenie promieni</value>
   </data>
   <data name="randomRadioButton.Size" type="System.Drawing.Size, System.Drawing.Primitives">
     <value>65, 19</value>
@@ -204,9 +207,6 @@
   </data>
   <data name="label15.Text" xml:space="preserve">
     <value>Odleglość skupienia</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Kamera</value>
   </data>
   <data name="finishButton.Text" xml:space="preserve">
     <value>Zakończ</value>

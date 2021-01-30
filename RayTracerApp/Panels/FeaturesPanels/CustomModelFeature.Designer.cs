@@ -39,18 +39,24 @@ namespace RayTracerApp.Panels.FeaturesPanels
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.ForeColor = System.Drawing.Color.Gainsboro;
             this.label1.Name = "label1";
             // 
             // customModelButton
             // 
             resources.ApplyResources(this.customModelButton, "customModelButton");
+            this.customModelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.customModelButton.ForeColor = System.Drawing.Color.Gainsboro;
             this.customModelButton.Name = "customModelButton";
-            this.customModelButton.UseVisualStyleBackColor = true;
+            this.customModelButton.UseVisualStyleBackColor = false;
             this.customModelButton.Click += new System.EventHandler(this.customModelButton_Click);
             // 
             // predefinedModelComboBox
             // 
             resources.ApplyResources(this.predefinedModelComboBox, "predefinedModelComboBox");
+            this.predefinedModelComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.predefinedModelComboBox.ForeColor = System.Drawing.Color.Gainsboro;
             this.predefinedModelComboBox.FormattingEnabled = true;
             this.predefinedModelComboBox.Items.AddRange(new object[] {
             resources.GetString("predefinedModelComboBox.Items"),
@@ -59,19 +65,23 @@ namespace RayTracerApp.Panels.FeaturesPanels
             resources.GetString("predefinedModelComboBox.Items3"),
             resources.GetString("predefinedModelComboBox.Items4"),
             resources.GetString("predefinedModelComboBox.Items5"),
-            resources.GetString("predefinedModelComboBox.Items6")});
+            resources.GetString("predefinedModelComboBox.Items6"),
+            resources.GetString("predefinedModelComboBox.Items7")});
             this.predefinedModelComboBox.Name = "predefinedModelComboBox";
             this.predefinedModelComboBox.SelectedIndexChanged += new System.EventHandler(this.predefinedModelComboBox_SelectedIndexChanged);
             // 
             // label2
             // 
             resources.ApplyResources(this.label2, "label2");
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.ForeColor = System.Drawing.Color.Gainsboro;
             this.label2.Name = "label2";
             // 
             // CustomModelFeature
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.predefinedModelComboBox);
             this.Controls.Add(this.customModelButton);

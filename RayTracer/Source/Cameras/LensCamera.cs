@@ -16,7 +16,7 @@ namespace RayTracing.Cameras
         private Func<int, List<Vector2>> _sampling;
         private int _samplesCount;
 
-        public bool AutoFocus { get; set; }
+        public bool AutoFocus { get; set; } = true;
 
         public float LensRadius
         {
@@ -60,7 +60,7 @@ namespace RayTracing.Cameras
             }
         }
 
-        public LensCamera(Vector3 position, float lensRadius = 0.25f, float focusDistance = 5, int samplesCount = 10000,
+        public LensCamera(Vector3 position, float lensRadius = 0.2f, float focusDistance = 5, int samplesCount = 10000,
             Func<int, List<Vector2>> sampling = null)
         {
             Position = position;

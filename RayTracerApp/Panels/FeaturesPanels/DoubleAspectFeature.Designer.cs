@@ -41,7 +41,9 @@ namespace RayTracerApp.Panels.FeaturesPanels
             // aspect2UpDown
             // 
             resources.ApplyResources(this.aspect2UpDown, "aspect2UpDown");
+            this.aspect2UpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.aspect2UpDown.DecimalPlaces = 2;
+            this.aspect2UpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.aspect2UpDown.Increment = new decimal(new int[] {
             1,
             0,
@@ -63,7 +65,9 @@ namespace RayTracerApp.Panels.FeaturesPanels
             // aspect1UpDown
             // 
             resources.ApplyResources(this.aspect1UpDown, "aspect1UpDown");
+            this.aspect1UpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.aspect1UpDown.DecimalPlaces = 2;
+            this.aspect1UpDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.aspect1UpDown.Increment = new decimal(new int[] {
             1,
             0,
@@ -85,17 +89,22 @@ namespace RayTracerApp.Panels.FeaturesPanels
             // label2
             // 
             resources.ApplyResources(this.label2, "label2");
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.ForeColor = System.Drawing.Color.Gainsboro;
             this.label2.Name = "label2";
             // 
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.ForeColor = System.Drawing.Color.Gainsboro;
             this.label1.Name = "label1";
             // 
             // DoubleAspectFeature
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.aspect2UpDown);
             this.Controls.Add(this.aspect1UpDown);
             this.Controls.Add(this.label2);

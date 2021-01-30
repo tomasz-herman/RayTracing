@@ -154,6 +154,7 @@ namespace RayTracerApp.Forms
                 _controller.Camera = newCamera;
                 lensRadiusUpDown.Value = (decimal)newCamera.LensRadius;
                 focusDistanceUpDown.Value = (decimal)newCamera.FocusDistance;
+                autoFocusCheckBox.Checked = newCamera.AutoFocus;
                 UpdateCamera(previous, newCamera);
             }
         }

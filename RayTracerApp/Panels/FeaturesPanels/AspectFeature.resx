@@ -57,13 +57,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Private.CoreLib" name="System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
+  <assembly alias="System.Private.CoreLib" name="System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
   <data name="aspectLabel.AutoSize" type="System.Boolean, System.Private.CoreLib">
     <value>True</value>
   </data>
-  <assembly alias="System.Drawing.Primitives" name="System.Drawing.Primitives, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing.Common" name="System.Drawing.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
+  <data name="aspectLabel.Font" type="System.Drawing.Font, System.Drawing.Common">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <assembly alias="System.Drawing.Primitives" name="System.Drawing.Primitives, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="aspectLabel.Location" type="System.Drawing.Point, System.Drawing.Primitives">
-    <value>30, 30</value>
+    <value>54, 31</value>
   </data>
   <data name="aspectLabel.Size" type="System.Drawing.Size, System.Drawing.Primitives">
     <value>43, 15</value>
@@ -78,7 +82,7 @@
     <value>aspectLabel</value>
   </data>
   <data name="&gt;&gt;aspectLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=5.0.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;aspectLabel.Parent" xml:space="preserve">
     <value>$this</value>
@@ -86,12 +90,15 @@
   <data name="&gt;&gt;aspectLabel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=5.0.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="aspectRatioUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
+  <data name="aspectRatioUpDown.Font" type="System.Drawing.Font, System.Drawing.Common">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="aspectRatioUpDown.Location" type="System.Drawing.Point, System.Drawing.Primitives">
-    <value>200, 28</value>
+    <value>200, 29</value>
   </data>
   <data name="aspectRatioUpDown.Size" type="System.Drawing.Size, System.Drawing.Primitives">
     <value>75, 23</value>
@@ -103,7 +110,7 @@
     <value>aspectRatioUpDown</value>
   </data>
   <data name="&gt;&gt;aspectRatioUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=5.0.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;aspectRatioUpDown.Parent" xml:space="preserve">
     <value>$this</value>
@@ -111,7 +118,7 @@
   <data name="&gt;&gt;aspectRatioUpDown.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+  <metadata name="$this.Localizable" type="System.Boolean, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing.Primitives">
@@ -124,6 +131,6 @@
     <value>AspectFeature</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=5.0.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
