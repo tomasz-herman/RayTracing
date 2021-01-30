@@ -66,7 +66,8 @@ namespace RayTracerApp.Panels.FeaturesPanels
             resources.GetString("predefinedModelComboBox.Items4"),
             resources.GetString("predefinedModelComboBox.Items5"),
             resources.GetString("predefinedModelComboBox.Items6"),
-            resources.GetString("predefinedModelComboBox.Items7")});
+            resources.GetString("predefinedModelComboBox.Items7"),
+            resources.GetString("predefinedModelComboBox.Items8")});
             this.predefinedModelComboBox.Name = "predefinedModelComboBox";
             this.predefinedModelComboBox.SelectedIndexChanged += new System.EventHandler(this.predefinedModelComboBox_SelectedIndexChanged);
             // 
