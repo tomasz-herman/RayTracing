@@ -83,21 +83,24 @@ namespace RayTracerApp.Panels.FeaturesPanels
                     selected = "mountain";
                     break;
                 case 2:
-                    selected = "mug";
+                    selected = "mountain_highres";
                     break;
                 case 3:
-                    selected = "lamp";
+                    selected = "mug";
                     break;
                 case 4:
-                    selected = "tank";
+                    selected = "lamp";
                     break;
                 case 5:
-                    selected = "teapot";
+                    selected = "tank";
                     break;
                 case 6:
-                    selected = "trex";
+                    selected = "teapot";
                     break;
                 case 7:
+                    selected = "trex";
+                    break;
+                case 8:
                     selected = "grass";
                     break;
                 default:

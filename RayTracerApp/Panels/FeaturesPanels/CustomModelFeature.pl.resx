@@ -71,21 +71,24 @@
     <value>góra</value>
   </data>
   <data name="predefinedModelComboBox.Items2" xml:space="preserve">
-    <value>kubek</value>
+    <value>góra (HQ)</value>
   </data>
   <data name="predefinedModelComboBox.Items3" xml:space="preserve">
-    <value>lampa</value>
+    <value>kubek</value>
   </data>
   <data name="predefinedModelComboBox.Items4" xml:space="preserve">
-    <value>czołg</value>
+    <value>lampa</value>
   </data>
   <data name="predefinedModelComboBox.Items5" xml:space="preserve">
-    <value>dzbanek</value>
+    <value>czołg</value>
   </data>
   <data name="predefinedModelComboBox.Items6" xml:space="preserve">
-    <value>tyranozaur</value>
+    <value>dzbanek</value>
   </data>
   <data name="predefinedModelComboBox.Items7" xml:space="preserve">
+    <value>tyranozaur</value>
+  </data>
+  <data name="predefinedModelComboBox.Items8" xml:space="preserve">
     <value>trawa</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing.Primitives">
