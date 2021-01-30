@@ -620,7 +620,6 @@ namespace RayTracerApp.Forms
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.NumericUpDown recLevelUpDown;
-        private System.Windows.Forms.NumericUpDown recursionLevelUpDown;
         private System.Windows.Forms.Button finishButton;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.CheckBox autoFocusCheckBox;
