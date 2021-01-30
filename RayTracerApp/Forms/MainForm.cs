@@ -82,38 +82,34 @@ namespace RayTracerApp.Forms
                 Position = new Vector3(0, 5.5f, 0), Scale = 1,
                 Material = new MasterMaterial(new Emissive(Color.FromColor4(Color4.LightYellow), 25))
             }.Load());
+
             _scene.AddModel(new Sphere
             {
-                Position = new Vector3(-2.5f, 0.5f, 1), Scale = 1,
-                Material = new MasterMaterial(new Reflective(Color.FromColor4(Color4.Azure), 0.1f))
+                Position = new Vector3(-2.5f, 0.5f, 2.5f), Scale = 1,
+                Material = new MasterMaterial(new Diffuse(Color.FromColor4(Color4.Red)))
             }.Load());
+
             _scene.AddModel(new Sphere
             {
-                Position = new Vector3(2.5f, 0.5f, 1), Scale = 1,
+                Position = new Vector3(2.5f, 0.5f, -2.5f),
+                Scale = 1,
                 Material = new MasterMaterial(new Diffuse(new Texture("earthmap.jpg")))
             }.Load());
-            _scene.AddModel(new Cylinder(2)
+
+            _scene.AddModel(new Sphere
             {
-                Position = new Vector3(5f, 0.5f, 0), Scale = 1,
-                Material = new MasterMaterial(new Diffuse(Color.FromColor4(Color4.Chocolate)))
+                Position = new Vector3(2.5f, 0.5f, 2.5f),
+                Scale = 1,
+                Material = new MasterMaterial(new Refractive(Color.FromColor4(Color4.White), 1.5f))
             }.Load());
-            _scene.AddModel(new Cylinder(2)
+
+            _scene.AddModel(new Sphere
             {
-                Position = new Vector3(5f, 0.5f, 4), Scale = 1,
-                Material = new MasterMaterial(new Diffuse(new Texture("wood.jpg"))),
-                Rotation = Vector3.One * (float) Math.PI / 3
+                Position = new Vector3(-2.5f, 0.5f, -2.5f),
+                Scale = 1,
+                Material = new MasterMaterial(new Reflective(Color.FromColor4(Color4.White), 0.05f))
             }.Load());
-            _scene.AddModel(new Cuboid()
-            {
-                Position = new Vector3(0, 0.5f, -3), Scale = 1,
-                Material = new MasterMaterial(new Diffuse(new Texture("wood.jpg")))
-            }.Load());
-            _scene.AddModel(new Rectangle(2)
-            {
-                Position = new Vector3(0, 0.5f, -1.99f), Scale = 0.8f,
-                Material = new MasterMaterial(new Emissive(Color.FromColor4(Color4.White) * 8)),
-                Rotation = new Vector3((float) Math.PI / 2, 0, 0)
-            }.Load());
+
             _scene.AddModel(new Plane
             {
                 Position = new Vector3(0, -0.5f, 0), Scale = 1,
