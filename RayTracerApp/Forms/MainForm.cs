@@ -17,7 +17,6 @@ using Color = RayTracing.Maths.Color;
 using RayTracerApp.SceneController;
 using System.Threading;
 using Newtonsoft.Json;
-using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Text;

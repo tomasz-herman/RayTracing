@@ -8,7 +8,7 @@ namespace RayTracing.Models
 {
     public class CustomModel : Model
     {
-        public Mesh Mesh
+        public new Mesh Mesh
         {
             get => base.Mesh;
             set
