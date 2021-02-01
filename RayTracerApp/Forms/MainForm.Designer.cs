@@ -38,6 +38,7 @@ namespace RayTracerApp.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Text = Properties.Strings.RayTracing;
+            InitializeToolstrip();
             InitializeProgressBar();
             this.gLControl.Location = new System.Drawing.Point(0, 20);
             this.gLControl.Name = "gLControl";
@@ -53,7 +54,6 @@ namespace RayTracerApp.Forms
             this.Resize += this.OnResize;
             this.Controls.Add(this.gLControl);
 
-            InitializeToolstrip();
             InitializeNewEditDeleteMenu();
             InitializeNewEditMenu();
             this.ResumeLayout(false);
@@ -102,15 +102,13 @@ namespace RayTracerApp.Forms
 
             this.newDeleteStrip = new ContextMenuStrip(components);
             this.newDeleteStrip.SuspendLayout();
-            this.newDeleteStrip.AutoSize = false;
+            this.newDeleteStrip.AutoSize = true;
             this.newDeleteStrip.Name = "newDeleteMenu";
             this.newDeleteStrip.TabIndex = 2;
             this.newDeleteStrip.Text = "newDeleteMenu";
             this.newDeleteStrip.Items.Add(addItem1);
             this.newDeleteStrip.Items.Add(editItem1);
             this.newDeleteStrip.Items.Add(deleteItem1);
-
-            this.newDeleteStrip.Size = new System.Drawing.Size(width+1, 70);
 
             this.newDeleteStrip.ResumeLayout(false);
             this.PerformLayout();
@@ -137,14 +135,12 @@ namespace RayTracerApp.Forms
 
             this.newEditStrip = new ContextMenuStrip(components);
             this.newEditStrip.SuspendLayout();
-            this.newEditStrip.AutoSize = false;
+            this.newEditStrip.AutoSize = true;
             this.newEditStrip.Name = "newEditMenu";
             this.newEditStrip.TabIndex = 3;
             this.newEditStrip.Text = "newEditMenu";
             this.newEditStrip.Items.Add(addItem2);
             this.newEditStrip.Items.Add(editItem2);
-
-            this.newEditStrip.Size = new System.Drawing.Size(width+1, 48);
 
             this.newEditStrip.ResumeLayout(false);
             this.PerformLayout();
@@ -241,8 +237,8 @@ namespace RayTracerApp.Forms
             this.clearSceneButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.clearSceneButton.Click += new System.EventHandler(this.clearSceneButton_Click);
 
+            this.toolStrip.AutoSize = true;
             this.Controls.Add(this.toolStrip);
-
             this.toolStrip.ResumeLayout(false);
             this.PerformLayout();
         }
